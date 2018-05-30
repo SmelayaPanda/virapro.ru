@@ -3,6 +3,7 @@
   "description": "Nuxt-SSR-Firebase: Nuxt.js with Firebase Functions Production Setup",
   "dependencies": {
     "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "^6.23.0",
     "clone": "^2.1.1",
@@ -13,11 +14,14 @@
     "firebase-functions": "^0.6.1",
     "lodash": "^4.17.4",
     "nuxt": "1.0.0-rc11",
-    "vue": "~2.4.2",
+    "vue": "^2.5.0",
     "vue-meta": "^1.2.0",
+    "vue-server-renderer": "^2.5.3",
+    "vue-template-compiler": "^2.5.3",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.0",
-    "element-ui": "latest"
+    "element-ui": "latest",
+    "vuetify": "latest"
   },
   "private": true
 }

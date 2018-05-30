@@ -32,26 +32,33 @@ module.exports = {
   loading: {
     color: '#3B8070'
   },
+  modules: [
+    'nuxt-sass-resources-loader'
+  ],
+  sassResources: [
+    '@/assets/styles/global.scss'
+  ],
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    '@/plugins/vuetify'
   ],
   css: [
     {src: '@/assets/styles/main.css', lang: 'css'},
-    {src: 'element-ui/lib/theme-chalk/index.css'}
+    // {src: '@/assets/styles/global.scss'},
+    {src: 'element-ui/lib/theme-chalk/index.css'},
+    {src: 'vuetify/dist/vuetify.min.css'}
+
   ],
   /*
    ** Build configuration
    */
   buildDir: '../prod/server/nuxt',
   build: {
-    vendor: ['element-ui'],
+    vendor: ['element-ui', 'vuetify'],
     publicPath: '/assets/',
     extractCSS: true,
     babel: {
-      presets: [
-        'es2015',
-        'stage-0'
-      ],
+      presets: ['es2015', 'stage-0'],
       plugins: [
         ["transform-runtime", {
           "polyfill": true,

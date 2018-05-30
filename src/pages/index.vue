@@ -1,6 +1,9 @@
+<!-- NOTE:
+For render vuetify elements in first loading set delay after which its will be showed
+( as loading flag with timeout 1000 )
+DOMException: Failed to execute 'appendChild' on 'Node'-->
 <template>
-  <section class="container">
-    <div>
+  <div class="container">
       <logo/>
       <h1 class="mui--text-display1">Nuxt.js Firebase Functions</h1>
       <el-button type="success">Hello</el-button>
@@ -11,8 +14,7 @@
         @click="reloadPage">
         Reload Page
       </button>
-    </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -34,3 +36,7 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+
+</style>

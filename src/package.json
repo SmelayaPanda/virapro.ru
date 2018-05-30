@@ -15,11 +15,12 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "element-ui": "latest",
     "nuxt": "^1.0.0-rc11",
     "vue": "^2.5.3",
-    "vue-template-compiler": "^2.5.3",
     "vue-server-renderer": "^2.5.3",
-    "element-ui": "latest"
+    "vue-template-compiler": "^2.5.3",
+    "vuetify": "latest"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -31,6 +32,10 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "nuxt-sass-resources-loader": "^1.2.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "vue-style-loader": "^4.1.0"
   }
 }

@@ -5,16 +5,20 @@ const app = express();
 
 const config = {
   dev: false,
+  debug: true,
   plugins: [
-      '../../src/plugins/element-ui'
+      '../../src/plugins/element-ui',
+      '../../src/plugins/vuetify'
   ],
   css: [
-      {src: 'element-ui/lib/theme-chalk/index.css'}
+      {src: 'element-ui/lib/theme-chalk/index.css'},
+      {src: 'vuetify/dist/vuetify.min.css'}
   ],
   buildDir: 'nuxt',
   build: {
-    vendor: ['element-ui'],
-    publicPath: '/assets/'
+    vendor: ['element-ui', 'vuetify'],
+    publicPath: '/assets/',
+    presets: ['es2015', 'stage-0'],
   }
 }
 const nuxt = new Nuxt(config);
