@@ -17,19 +17,11 @@ module.exports = {
         content: 'Nuxt.js project'
       }
     ],
-    link: [{
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: '/favicon.ico'
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css?family=Roboto'
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://cdn.muicss.com/mui-0.9.35/css/mui.min.css'
-      }
+    link: [
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+      {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto'},
+      {rel: 'stylesheet', href: 'https://cdn.muicss.com/mui-0.9.35/css/mui.min.css'},
+      {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'}
     ]
   },
 
@@ -40,15 +32,19 @@ module.exports = {
   loading: {
     color: '#3B8070'
   },
-  css: [{
-    src: '@/assets/styles/main.css',
-    lang: 'css'
-  }],
+  plugins: [
+    '@/plugins/element-ui'
+  ],
+  css: [
+    {src: '@/assets/styles/main.css', lang: 'css'},
+    {src: 'element-ui/lib/theme-chalk/index.css'}
+  ],
   /*
    ** Build configuration
    */
   buildDir: '../prod/server/nuxt',
   build: {
+    vendor: ['element-ui'],
     publicPath: '/assets/',
     extractCSS: true,
     babel: {

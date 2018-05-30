@@ -5,8 +5,15 @@ const app = express();
 
 const config = {
   dev: false,
+  plugins: [
+      '../../src/plugins/element-ui'
+  ],
+  css: [
+      {src: 'element-ui/lib/theme-chalk/index.css'}
+  ],
   buildDir: 'nuxt',
   build: {
+    vendor: ['element-ui'],
     publicPath: '/assets/'
   }
 }

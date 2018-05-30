@@ -3,6 +3,7 @@
     <div>
       <logo/>
       <h1 class="mui--text-display1">Nuxt.js Firebase Functions</h1>
+      <el-button type="success">Hello</el-button>
       <h2 class="headline">Rendered From:<span class="render-result">{{renderSource}}</span></h2>
       <button
         id="reload-btn"

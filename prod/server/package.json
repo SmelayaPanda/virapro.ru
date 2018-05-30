@@ -16,7 +16,8 @@
     "vue": "~2.4.2",
     "vue-meta": "^1.2.0",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.0"
+    "vuex": "^3.0.0",
+    "element-ui": "latest"
   },
   "private": true
 }
