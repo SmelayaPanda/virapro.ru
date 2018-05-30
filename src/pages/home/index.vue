@@ -27,9 +27,9 @@
       }
     },
     created () {
-      setTimeout(() => {
+      this.$nextTick(() => {
         this.loading = false
-      }, 1000)
+      })
     }
   }
 </script>
