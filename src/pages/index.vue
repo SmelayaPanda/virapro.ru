@@ -1,7 +1,7 @@
 <!-- NOTE:
 For render vuetify elements in first loading set delay after which its will be showed
 ( as loading flag in creation hook )
-DOMException: Failed to execute 'appendChild' on 'Node'-->
+nuxt: DOMException: Failed to execute 'appendChild' on 'Node'-->
 <template>
   <div class="container">
       <logo/>

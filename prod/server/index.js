@@ -16,7 +16,7 @@ const config = {
   ],
   buildDir: 'nuxt',
   build: {
-    vendor: ['element-ui', 'vuetify'],
+    vendor: ['element-ui', 'vuetify', 'firebase'],
     publicPath: '/assets/',
     presets: ['es2015', 'stage-0'],
   }

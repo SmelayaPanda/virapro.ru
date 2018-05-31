@@ -29,6 +29,9 @@ module.exports = {
   /*
    ** Customize the progress bar color
    */
+  router: {
+    middleware: 'router-auth'
+  },
   loading: {
     color: '#3B8070'
   },
@@ -54,7 +57,7 @@ module.exports = {
    */
   buildDir: '../prod/server/nuxt',
   build: {
-    vendor: ['element-ui', 'vuetify'],
+    vendor: ['element-ui', 'vuetify', 'firebase'],
     publicPath: '/assets/',
     extractCSS: true,
     babel: {

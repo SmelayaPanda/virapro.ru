@@ -10,6 +10,7 @@
     "debug": "^3.1.0",
     "es6-promise": "^4.1.1",
     "express": "^4.15.4",
+    "firebase": "4.5.0",
     "firebase-admin": "^5.0.1",
     "firebase-functions": "^0.6.1",
     "lodash": "^4.17.4",

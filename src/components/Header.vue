@@ -1,9 +1,9 @@
 <template>
   <header class="mui-appbar mui--z1">
-    <nav>
+    <nav class="mt-3">
       <nuxt-link to="/home">Home</nuxt-link>
-      <nuxt-link to="/page2">Page 2</nuxt-link>
-      <nuxt-link to="/page3">Page 3</nuxt-link>
+      <nuxt-link to="/login">Login</nuxt-link>
+      <nuxt-link to="/products">Products</nuxt-link>
     </nav>
   </header>
 </template>

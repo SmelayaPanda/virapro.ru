@@ -2,14 +2,16 @@
   <div v-if="!loading">
     <h1>Hello From Home</h1>
     <v-btn color="red">Hi</v-btn>
-    <v-divider></v-divider>
-    <v-btn id="hello_btn">Hello</v-btn>
     <v-chip id="chip" text-color="white">
       <v-avatar>
         <v-icon>account_circle</v-icon>
       </v-avatar>
       Ranee
     </v-chip>
+    <v-divider></v-divider>
+    <v-btn @click="sayHi" id="hello_btn">Say Hi</v-btn>
+    <br>
+    {{ this.$store.getters.greeting }}
   </div>
 </template>
 
@@ -18,12 +20,18 @@
     data: () => ({
       loading: true
     }),
+    // async fetch ({ store, params }) {
+    //   await store.dispatch('sayHi')
+    // },
     methods: {
       start () {
         this.loading = true
       },
       finish () {
         this.loading = false
+      },
+      sayHi () {
+        this.$store.dispatch('sayHi')
       }
     },
     created () {
