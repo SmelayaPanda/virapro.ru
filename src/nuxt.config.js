@@ -36,6 +36,7 @@ module.exports = {
     color: '#3B8070'
   },
   modules: [
+    '@nuxtjs/pwa',
     'nuxt-sass-resources-loader'
   ],
   sassResources: [
@@ -43,7 +44,8 @@ module.exports = {
   ],
   plugins: [
     '@/plugins/element-ui',
-    '@/plugins/vuetify'
+    '@/plugins/vuetify',
+    '@/plugins/fireauth.js'
   ],
   css: [
     {src: '@/assets/styles/main.css', lang: 'css'},
