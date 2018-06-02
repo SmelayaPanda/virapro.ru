@@ -11,8 +11,8 @@
     "pages/page2.14788a1951d2db64d1e1.js",
     "pages/products/index.bde30e8e4e5f16f2535d.js",
     "common.d1152a860a74af38c0dd.js",
-    "app.2271f27a373efcf98edf.js",
-    "manifest.b5a94e13b5dc4c6207e7.js",
+    "app.b7fa82ca70bd0be64a0e.js",
+    "manifest.bd9ed8791be4270979b9.js",
     "common.7ef4eae2a01b2e65c7c7b2cab08383f4.css",
     "LICENSES",
     "fonts/element-icons.6f0a763.ttf",
@@ -23,17 +23,17 @@
     "pages/page2.14788a1951d2db64d1e1.js.map",
     "pages/products/index.bde30e8e4e5f16f2535d.js.map",
     "common.d1152a860a74af38c0dd.js.map",
-    "app.2271f27a373efcf98edf.js.map",
+    "app.b7fa82ca70bd0be64a0e.js.map",
     "common.7ef4eae2a01b2e65c7c7b2cab08383f4.css.map",
-    "manifest.b5a94e13b5dc4c6207e7.js.map",
+    "manifest.bd9ed8791be4270979b9.js.map",
     "manifest.4efb58fb.json",
     "index.spa.html",
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.b5a94e13b5dc4c6207e7.js",
+    "manifest.bd9ed8791be4270979b9.js",
     "common.d1152a860a74af38c0dd.js",
-    "app.2271f27a373efcf98edf.js"
+    "app.b7fa82ca70bd0be64a0e.js"
   ],
   "async": [
     "layouts/default.5f6b07cadc52dfd5cacb.js",

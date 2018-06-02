@@ -15,6 +15,9 @@ module.exports = {
         hid: 'description',
         name: 'description',
         content: 'Nuxt.js project'
+      }, {
+        name: 'google-site-verification',
+        content: '25aGtsdrxiV5R2Q8Uc-e3j7KJjSH2EmjkdZ_JsOTYiU'
       }
     ],
     link: [

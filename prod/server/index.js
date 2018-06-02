@@ -6,15 +6,15 @@ const app = express();
 const config = {
     dev: false,
     debug: true,
-    plugins: [
-        '../../src/plugins/fireauth.js',
-        '../../src/plugins/element-ui',
-        '../../src/plugins/vuetify'
-    ],
-    css: [
-        {src: 'element-ui/lib/theme-chalk/index.css'},
-        {src: 'vuetify/dist/vuetify.min.css'}
-    ],
+    // plugins: [
+    //     '../../src/plugins/fireauth.js',
+    //     '../../src/plugins/element-ui',
+    //     '../../src/plugins/vuetify'
+    // ],
+    // css: [
+    //     {src: 'element-ui/lib/theme-chalk/index.css'},
+    //     {src: 'vuetify/dist/vuetify.min.css'}
+    // ],
     buildDir: 'nuxt',
     build: {
         vendor: ['element-ui', 'vuetify', 'firebase'],
