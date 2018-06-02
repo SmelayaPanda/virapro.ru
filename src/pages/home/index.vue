@@ -1,17 +1,17 @@
 <template>
-  <div v-if="!loading">
-    <h1>Hello From Home</h1>
-    <v-btn color="red">Hi</v-btn>
-    <v-chip id="chip" text-color="white">
-      <v-avatar>
-        <v-icon>account_circle</v-icon>
-      </v-avatar>
-      Ranee
-    </v-chip>
-    <v-divider></v-divider>
-    <v-btn @click="sayHi" id="hello_btn">Say Hi</v-btn>
+  <div>
+    <!--<h1>Hello From Home</h1>-->
+    <!--<v-btn color="red">Hi</v-btn>-->
+    <!--<v-chip id="chip" text-color="white">-->
+      <!--<v-avatar>-->
+        <!--<v-icon>account_circle</v-icon>-->
+      <!--</v-avatar>-->
+      <!--Ranee-->
+    <!--</v-chip>-->
+    <!--<v-divider></v-divider>-->
+    <!--<v-btn @click="sayHi" id="hello_btn">Say Hi</v-btn>-->
     <br>
-    {{ this.$store.getters.greeting }}
+    <h1>{{ this.$store.getters.greeting.welcome }}</h1>
   </div>
 </template>
 
@@ -20,16 +20,10 @@
     data: () => ({
       loading: true
     }),
-    // async fetch ({ store, params }) {
-    //   await store.dispatch('sayHi')
-    // },
+    async fetch ({ store, params }) {
+      await store.dispatch('sayHi')
+    },
     methods: {
-      start () {
-        this.loading = true
-      },
-      finish () {
-        this.loading = false
-      },
       sayHi () {
         this.$store.dispatch('sayHi')
       }
