@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Hi from Products</h1>
-    <nuxt-link to="/products/1">Product 1</nuxt-link>
-    <nuxt-link to="/products/2">Product 2</nuxt-link>
+    <h1>Shop Products</h1>
+    <nuxt-link to="/products/1"><el-button>Product 1</el-button></nuxt-link>
+    <nuxt-link to="/products/2"><el-button>Product 2</el-button></nuxt-link>
   </div>
 </template>

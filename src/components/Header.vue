@@ -28,7 +28,7 @@
     name: 'AppHeader',
     data() {
       return {
-        activeIndex: '/home'
+        activeIndex: '/'
       }
     }
   }

@@ -1,16 +1,7 @@
 <template>
-  <section class="container">
-    <div>
-      <h1 class="mui--text-display1">Home page</h1>
-      <h2 class="headline">Rendered From:<span class="render-result">{{renderSource}}</span></h2>
-      <button
-        id="reload-btn"
-        class="mui-btn mui-btn--primary"
-        @click="reloadPage">
-        Reload Page
-      </button>
-    </div>
-  </section>
+<div>
+  <h1>About Shop</h1>
+</div>
 </template>
 
 <script>
