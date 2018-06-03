@@ -4,7 +4,7 @@
     :default-active="activeIndex"
     class="el-menu-demo"
     mode="horizontal"
-    background-color="#409EFF"
+    background-color="#01579B"
     text-color="#fff"
     router
     active-text-color="#fff">
