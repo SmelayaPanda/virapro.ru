@@ -1,9 +1,9 @@
 export const mutations = {
   setUser(state, payload) {
-    state.user = payload
+    state.USER = payload
   },
   setAdmin(state, payload) {
-    state.isAdmin = payload
+    state.IS_ADMIN = payload
   },
   LOADING (state, payload) {
     state.LOADING = payload

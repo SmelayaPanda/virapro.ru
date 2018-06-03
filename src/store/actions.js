@@ -1,12 +1,15 @@
-import firebase, {auth, GoogleProvider} from "../services/fireinit";
+import firebase, {auth, GoogleProvider, fs} from "../services/fireinit";
+import {Message, Notification} from 'element-ui'
 
 export const actions = {
+
+  // USER DATA = full firebase auth.currentUser object + app data keeping in firestore db
   fetchUserData({commit, dispatch, getters}, payload) {
     commit('LOADING', true)
-    let user = {...payload} // auth object read only, copy them!
-    return firebase.firestore().collection('users').doc(user.uid).get()
+    let user = {...payload} // auth object read only, copy them
+    return fs.collection('users').doc(user.uid).get()
       .then(snap => {
-        commit('setUser', Object.assign(user, snap.data())) // add to auth user data own firestore
+        commit('setUser', Object.assign(user, snap.data()))
         return Promise.all([
           dispatch('setAdmin'),
           // dispatch('loadOwnProducts'),
@@ -15,7 +18,7 @@ export const actions = {
       })
       .then(() => {
         commit('LOADING', false)
-        console.log('Fetched: all user data')
+        console.log('>> Fetched: all user data')
       })
       .catch(err => dispatch('LOG', err))
   },
@@ -23,47 +26,46 @@ export const actions = {
   editPersonalInfo({commit, getters, dispatch}, payload) {
     commit('LOADING', true)
     let user = getters.user
-    firebase.firestore().collection('users').doc(user.uid).update(payload)
+    fs.collection('users').doc(user.uid).update(payload)
       .then(() => {
         commit('setUser', Object.assign(user, payload))
         commit('LOADING', false)
-        console.log('Personal info updated!')
+        console.log('>> Personal info updated!')
       })
       .catch(err => dispatch('LOG', err))
   },
 
-  signUserUp:
-    ({commit, dispatch}, payload) => {
-      commit('ERR', null)
-      commit('LOADING', true)
-      dispatch('upgradeAnonymousAccount', payload)
-        .then(() => {
-          Notification({
-            title: 'Поздравляем',
-            message: 'Аккаунт был успешно создан!',
-            type: 'success',
-            showClose: true,
-            duration: 10000,
-            offset: 50
-          })
-          // router.push('/account')
-          commit('LOADING', false)
+  signUserUp ({commit, dispatch, getters}, payload) {
+    commit('ERR', '')
+    commit('LOADING', true)
+    fs.collection('greeting').doc('hi').get()
+    return auth.createUserAndRetrieveDataWithEmailAndPassword(payload.email, payload.password)
+      .then((snap) => {
+        return fs.collection('users').doc(snap.user.uid).set({
+          uid: snap.user.uid,
+          firstname: payload.firstname,
+          lastname: payload.lastname,
+          email: payload.email
         })
-        .catch(err => dispatch('LOG', err))
-    },
+      })
+      .then(() => {
+        return auth.currentUser.sendEmailVerification()
+      })
+      .then(() => {
+        Notification({
+          title: 'Yhuu',
+          message: 'Account successfully created! Check email for verification.',
+          type: 'success',
+          showClose: true,
+          duration: 30000,
+          offset: 50
+        })
+        $nuxt.$router.push('/account')
+        commit('LOADING', false)
+      })
+      .catch(err => dispatch('LOG', err))
+  },
 
-  signUserIn:
-    ({commit, dispatch}, payload) => {
-      commit('ERR', null)
-      commit('LOADING', true)
-      firebase.auth.signInAndRetrieveDataWithEmailAndPassword(payload.email, payload.password)
-        .then(() => { // onAuthStateChanged works
-          console.log('Successful Login')
-          // router.push('/account')
-          commit('LOADING', false)
-        })
-        .catch(err => dispatch('LOG', err))
-    },
 
   signInWithGoogle({commit}) {
     return new Promise((resolve, reject) => {
@@ -72,29 +74,22 @@ export const actions = {
     })
   },
 
-  signInAnonymously:
-  // All users initially register as anonymous
-    ({commit, dispatch}) => {
-      commit('setUser', {cart: [], orders: []})
-      auth.signInAnonymouslyAndRetrieveData()
-        .then((data) => { // onAuthStateChanged works
-          return firebase.firestore().collection('users').doc(data.user.uid)
-            .set({ // initialize user for quick update
-              cart: [],
-              orders: [],
-              isAnonymous: data.user.isAnonymous
-            })
-        })
-        .then(() => {
-          console.log('You are sign in anonymously')
-        })
-        .catch(err => dispatch('LOG', err))
-    },
-
   signOut({commit}) {
     auth.signOut().then(() => {
       commit('setUser', null)
     }).catch(err => console.log(error))
+  },
+
+  signUserIn ({commit, dispatch}, payload) {
+    commit('ERR', '')
+    commit('LOADING', true)
+    auth.signInAndRetrieveDataWithEmailAndPassword(payload.email, payload.password)
+      .then(() => { // onAuthStateChanged works
+        console.log('>> Successful Login')
+        $nuxt.$router.push('/account')
+        commit('LOADING', false)
+      })
+      .catch(err => dispatch('LOG', err))
   },
 
   upgradeAnonymousAccount:
@@ -104,10 +99,10 @@ export const actions = {
         .then(user => {
           dispatch('fetchUserData', user)
           user.sendEmailVerification() // TODO: verification link may be expired, force resend
-          console.log('User register. Email verification sent.')
-          console.log('Anonymous account successfully upgraded', user)
+          console.log(' >> User register. Email verification sent.')
+          console.log(' >> Anonymous account successfully upgraded', user)
           return Promise.all([
-            firebase.firestore().collection('users').doc(user.uid)
+            fs.collection('users').doc(user.uid)
               .update({
                 email: user.email,
                 emailVerified: user.emailVerified,
@@ -121,20 +116,20 @@ export const actions = {
 
   updateEmailVerification:
     ({commit, dispatch}, payload) => {
-      firebase.firestore().collection('users').doc(payload.uid)
+      fs.collection('users').doc(payload.uid)
         .update({emailVerified: payload.emailVerified})
         .catch(err => dispatch('LOG', err))
     },
 
-  logout:
-    ({commit, dispatch}) => {
-      dispatch('signInAnonymously')
-        .then(() => {
-          // router.push('/')
-          commit('setChatMessages', [])
-        })
-        .catch(err => dispatch('LOG', err))
-    },
+  logout ({dispatch, commit}) {
+    auth.signOut()
+      .then(() => {
+        commit('setUser', '')
+        commit('ERR', '')
+        $nuxt.$router.push('/account')
+      })
+      .catch(err => dispatch('LOG', err))
+  },
 
   resetPassword:
     ({commit, dispatch}, payload) => {
@@ -187,7 +182,7 @@ export const actions = {
         productIds = Object.keys(user[subject])
       }
       commit('setUser', {...user}) // not good, but visual fast
-      firebase.firestore().collection('users').doc(user.uid).update({[subject]: productIds})
+      fs.collection('users').doc(user.uid).update({[subject]: productIds})
         .then(() => {
           commit('LOADING', false)
         })
@@ -198,7 +193,7 @@ export const actions = {
       let user = getters.user
       let cart = {}
       let loadProduct = function (pId, to) {
-        return firebase.firestore().collection('products').doc(pId).get()
+        return fs.collection('products').doc(pId).get()
           .then(snap => {
             if (to === 'cart' && snap.data()) { // !snap.data() === product removed
               cart[pId] = snap.data()
@@ -225,7 +220,7 @@ export const actions = {
     },
   async setAdmin({commit, getters}) {
     commit('setAdmin', await
-      getters.admins.indexOf(getters.user.email) !== -1
+      getters.ADMINS.indexOf(getters.USER.email) !== -1
     )
   },
   // APP

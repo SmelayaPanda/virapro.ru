@@ -1,52 +1,32 @@
 <template>
   <el-row type="flex" justify="center">
-    <el-col :xs="24" :sm="14" :md="12" :lg="10" :xl="8">
-      <el-card>
+    <el-col :xs="24" :sm="14" :md="10" :lg="8" :xl="8">
+      <el-card id="signin_card">
         <el-alert
           v-if="$store.state.ERR"
-          title="Error"
-          type="error"
           :description="$store.state.ERR.message"
-          show-icon>
+          title="Error" type="error" show-icon>
         </el-alert>
-        <h2>Вход</h2>
-        <el-form
-          :model="formRule"
-          status-icon
-          :rules="rules"
-          auto-complete="on"
-          ref="formRule">
+        <h2>Login</h2>
+        <el-form :model="form" status-icon :rules="rules" auto-complete="on" ref="form">
           <el-form-item label="Email" prop="email">
-            <el-input
-              type="email"
-              id="email"
-              :autofocus="true"
-              v-model="formRule.email"
-              auto-complete="on">
-            </el-input>
+            <el-input type="email" id="email" :autofocus="true" v-model="form.email" auto-complete="on"></el-input>
           </el-form-item>
-          <el-form-item label="Пароль" prop="password">
-            <el-input
-              type="password"
-              v-model="formRule.password"
-              auto-complete="off">
-            </el-input>
+          <el-form-item label="Password" prop="password">
+            <el-input type="password" v-model="form.password" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button
-              type="danger"
-              :disabled="$store.getters.LOADING"
-              @click="submitForm('formRule')">
-              Вперед!
+            <el-button type="danger" :disabled="$store.getters.LOADING" @click="submitForm('form')">
+              Go!
             </el-button>
           </el-form-item>
           <div v-if="submitCount > 1">
-            <span class="primary--text ml-3">Забыли пароль?</span>
-            <p>Ввведите свою почту в форме выше и нажмите:</p>
-            <el-button type="danger" @click="resetPassword">Сбросить пароль</el-button>
+            <span class="primary--text ml-3">Forgot a password?</span>
+            <p>Type the email in the field above and click:</p>
+            <el-button type="danger" @click="resetPassword">Reset password</el-button>
           </div>
-          <router-link to="/signup">
-            <el-button type="text">Нет аккаунта?</el-button>
+          <router-link to="/account/signup">
+            <el-button type="text">Haven't account?</el-button>
           </router-link>
         </el-form>
       </el-card>
@@ -60,11 +40,11 @@
     data() {
       let checkEmail = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('Укажите вашу электронную почту'))
+          return callback(new Error('Enter email please'))
         }
         setTimeout(() => {
           if (!this.isValidEmail(value)) {
-            callback(new Error('Введена некорректная почта'))
+            callback(new Error('Email is not correct'))
           } else {
             callback()
           }
@@ -72,16 +52,16 @@
       }
       let validatePass = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('Введите пароль'))
+          callback(new Error('Enter password'))
         } else {
-          if (this.formRule.checkPass !== '') {
-            this.$refs.formRule.validateField('checkPass')
+          if (this.form.checkPass !== '') {
+            this.$refs.form.validateField('checkPass')
           }
           callback()
         }
       }
       return {
-        formRule: {
+        form: {
           password: '',
           checkPass: '',
           email: ''
@@ -90,7 +70,7 @@
           password: [{validator: validatePass, trigger: 'blur'}],
           email: [{validator: checkEmail, trigger: 'blur'}]
         },
-        submitCount: 0
+        submitCount: 0 // for password reset
       }
     },
     methods: {
@@ -99,11 +79,11 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             this.$store.dispatch('signUserIn', {
-              email: this.formRule.email,
-              password: this.formRule.password
+              email: this.form.email,
+              password: this.form.password
             })
           } else {
-            return this.$store.dispatch('ERR', {message: 'Пожалуйста, заполните поля корректно!'})
+            return this.$store.dispatch('ERR', {message: 'Please, fill in the field correct!'})
           }
         })
       },
@@ -119,4 +99,7 @@
 </script>
 
 <style scoped>
+  #signin_card {
+    margin-top: 10px;
+  }
 </style>

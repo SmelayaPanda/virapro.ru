@@ -1,23 +1,29 @@
 <template>
-  <div>
-    <h1>Hello From Home</h1>
-    <br>
-    <h1>{{ $store.getters.greeting.welcome }}</h1>
-  </div>
+  <section class="container">
+    <div>
+      <h1 class="mui--text-display1">Home page</h1>
+      <h2 class="headline">Rendered From:<span class="render-result">{{renderSource}}</span></h2>
+      <button
+        id="reload-btn"
+        class="mui-btn mui-btn--primary"
+        @click="reloadPage">
+        Reload Page
+      </button>
+    </div>
+  </section>
 </template>
 
 <script>
-  export default {
-    async fetch ({ store, params }) {
-      await store.dispatch('sayHi')
-    },
-    methods: {
-      sayHi () {
-        this.$store.dispatch('sayHi')
-      }
+export default {
+  async asyncData () {
+    return {
+      renderSource: process.static ? 'static' : (process.server ? 'server' : 'client')
+    }
+  },
+  methods: {
+    reloadPage () {
+      window.location.reload()
     }
   }
+}
 </script>
-
-<style scoped lang="scss">
-</style>

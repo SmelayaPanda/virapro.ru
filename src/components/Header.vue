@@ -2,8 +2,8 @@
   <header class="mui-appbar mui--z1">
     <nav>
       <nuxt-link to="/home">Home</nuxt-link>
-      <nuxt-link to="/login">Login</nuxt-link>
       <nuxt-link to="/products">Products</nuxt-link>
+      <nuxt-link to="/account">Account</nuxt-link>
     </nav>
   </header>
 </template>
