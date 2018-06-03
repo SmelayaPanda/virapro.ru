@@ -31,6 +31,7 @@
               @click="submitForm('form')">
               Go!
             </el-button>
+            <el-button @click.native="googleSignUp">Google Sign In</el-button>
           </el-form-item>
         </el-form>
         <router-link to="/account/signin">
@@ -119,6 +120,13 @@
       },
       isValidEmail: function (email) {
         return /^\S+@\S+\.\S+$/.test(email)
+      },
+      googleSignUp() {
+        this.$store.dispatch('signInWithGoogle').then(() => {
+          console.log('inside then statement on login');
+        }).catch((e) => {
+          console.log(e.message);
+        })
       }
     },
     computed: {

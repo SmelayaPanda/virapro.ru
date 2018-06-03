@@ -2,7 +2,7 @@
   <footer>
     <div class="mui-container mui--text-center">
       <div class="footer-flex-item">
-        Made by
+        Made by SmelayaPanda
       </div>
       <div class="footer-flex-item">
       </div>
@@ -16,7 +16,7 @@
   }
 </script>
 
-<style lang="css">
+<style scoped lang="scss">
   footer {
     box-sizing: border-box;
     background-color: #eee;

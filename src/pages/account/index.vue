@@ -3,7 +3,7 @@
     <no-ssr>
     <div v-if="$store.getters.USER">
       <h1>User Data</h1>
-      <el-button @click="$store.dispatch('logout')">Logout</el-button>
+      <el-button type="success" @click="$store.dispatch('logout')">Logout</el-button>
       <br>
       <p>{{ $store.getters.USER.email }}</p>
       <p>{{ $store.getters.USER.firstname }}</p>

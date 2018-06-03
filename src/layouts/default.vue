@@ -22,10 +22,14 @@
   }
 </script>
 
-<style>
-  #app-wrapper {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+<style lang="scss">
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+  }
+
+  #content-wrapper {
+    margin: 0;
   }
 </style>

@@ -66,10 +66,10 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
-
   signInWithGoogle({commit}) {
     return new Promise((resolve, reject) => {
       auth.signInWithRedirect(GoogleProvider)
+      $nuxt.$router.push('/account')
       resolve()
     })
   },

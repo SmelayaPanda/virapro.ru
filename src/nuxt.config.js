@@ -4,38 +4,24 @@ module.exports = {
    */
   head: {
     title: 'Nuxtjs SSR Firebase Functions',
-    meta: [{
-        charset: 'utf-8'
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
-      },
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Nuxt.js project'
-      }, {
-        name: 'google-site-verification',
-        content: '25aGtsdrxiV5R2Q8Uc-e3j7KJjSH2EmjkdZ_JsOTYiU'
-      }
+    meta: [
+      {charset: 'utf-8'},
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {hid: 'description', name: 'description', content: 'Nuxt.js project'},
+      {name: 'google-site-verification', content: '25aGtsdrxiV5R2Q8Uc-e3j7KJjSH2EmjkdZ_JsOTYiU'}
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ]
   },
-  // PWA meta
-  manifest: {
-    name: 'My Awesome App',
-    short_name: 'Nuxt Shop'
+  manifest: {  // PWA meta
+    name: 'Your project name',
+    short_name: 'Short name'
   },
-  /*
-   ** Customize the progress bar color
-   */
   router: {
     middleware: 'router-auth'
   },
-  loading: {
+  loading: { // Customize the progress bar color
     color: '#3B8070'
   },
   modules: [
@@ -50,8 +36,8 @@ module.exports = {
     '@/plugins/fireauth.js'
   ],
   css: [
-    {src: '@/assets/styles/main.css', lang: 'css'},
     {src: 'element-ui/lib/theme-chalk/index.css'},
+    {src: '@/assets/styles/element-variables.scss', lang: 'sass'},
   ],
   /*
    ** Build configuration

@@ -1,30 +1,51 @@
 <template>
-  <header class="mui-appbar mui--z1">
-    <nav>
-      <nuxt-link to="/home">Home</nuxt-link>
-      <nuxt-link to="/products">Products</nuxt-link>
-      <nuxt-link to="/account">Account</nuxt-link>
-    </nav>
-  </header>
+  <el-menu
+    id="app_header"
+    :default-active="activeIndex"
+    class="el-menu-demo"
+    mode="horizontal"
+    background-color="#409EFF"
+    text-color="#fff"
+    router
+    active-text-color="#fff">
+    <el-menu-item index="/">
+      Home
+    </el-menu-item>
+    <el-menu-item index="/products">
+      Products
+    </el-menu-item>
+    <el-menu-item index="/about">
+      About
+    </el-menu-item>
+    <el-menu-item index="/account">
+      Account
+    </el-menu-item>
+  </el-menu>
 </template>
 
 <script>
   export default {
-    name: 'AppHeader'
+    name: 'AppHeader',
+    data() {
+      return {
+        activeIndex: '/home'
+      }
+    }
   }
 </script>
 
-<style lang="css">
-  footer {
-    box-sizing: border-box;
-    background-color: #eee;
-    border-top: 1px solid #e0e0e0;
-    padding: .5em 0;
+<style scoped lang="scss">
+  #app_header {
     display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     align-items: center;
+    justify-content: center;
   }
 
-  .footer-flex-item {
-    margin: .5em;
+  .el-menu-item {
+    font-size: 1.25em;
   }
 </style>

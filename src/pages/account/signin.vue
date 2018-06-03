@@ -19,6 +19,7 @@
             <el-button type="danger" :disabled="$store.getters.LOADING" @click="submitForm('form')">
               Go!
             </el-button>
+            <el-button @click.native="googleSignUp">Google Sign In</el-button>
           </el-form-item>
           <div v-if="submitCount > 1">
             <span class="primary--text ml-3">Forgot a password?</span>
@@ -89,6 +90,13 @@
       },
       isValidEmail(email) {
         return /^\S+@\S+\.\S+$/.test(email)
+      },
+      googleSignUp () {
+        this.$store.dispatch('signInWithGoogle').then(() => {
+          console.log('inside then statement on login');
+        }).catch((e) => {
+          console.log(e.message);
+        })
       },
       resetPassword() {
         let email = document.getElementById('email').value
