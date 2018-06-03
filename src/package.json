@@ -23,8 +23,7 @@
     "nuxt": "^1.0.0-rc11",
     "vue": "^2.5.3",
     "vue-server-renderer": "^2.5.3",
-    "vue-template-compiler": "^2.5.3",
-    "vuetify": "latest"
+    "vue-template-compiler": "^2.5.3"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

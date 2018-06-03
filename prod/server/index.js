@@ -17,7 +17,7 @@ const config = {
     // ],
     buildDir: 'nuxt',
     build: {
-        vendor: ['element-ui', 'vuetify', 'firebase'],
+        vendor: ['element-ui', 'firebase'],
         publicPath: '/assets/',
         presets: ['es2015', 'stage-0'],
     }
@@ -25,7 +25,9 @@ const config = {
 const nuxt = new Nuxt(config);
 
 function handleRequest(req, res) {
-    res.set('Cache-Control', 'public, max-age=150, s-maxage=150');
+    // TODO: max-age ~ 600sec
+    // TODO: add CPU power to this function
+    res.set('Cache-Control', 'public, max-age=120, s-maxage=120');
     return new Promise((resolve, reject) => {
         nuxt.render(req, res, promise => {
             promise.then(resolve).catch(reject)

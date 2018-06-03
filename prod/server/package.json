@@ -8,6 +8,7 @@
     "babel-runtime": "^6.23.0",
     "clone": "^2.1.1",
     "debug": "^3.1.0",
+    "element-ui": "latest",
     "es6-promise": "^4.1.1",
     "express": "^4.15.4",
     "firebase": "5.0.4",
@@ -17,12 +18,10 @@
     "nuxt": "1.0.0-rc11",
     "vue": "^2.5.0",
     "vue-meta": "^1.2.0",
+    "vue-router": "^3.0.1",
     "vue-server-renderer": "^2.5.3",
     "vue-template-compiler": "^2.5.3",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.0",
-    "element-ui": "latest",
-    "vuetify": "latest"
+    "vuex": "^3.0.0"
   },
   "private": true
 }

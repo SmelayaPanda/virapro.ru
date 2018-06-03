@@ -21,14 +21,14 @@ module.exports = {
       }
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
-      {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto'},
-      {rel: 'stylesheet', href: 'https://cdn.muicss.com/mui-0.9.35/css/mui.min.css'},
-      {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'}
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ]
   },
-
-// <script src="https://cdn.muicss.com/mui-0.9.35/js/mui.min.js"></script>
+  // PWA meta
+  manifest: {
+    name: 'My Awesome App',
+    short_name: 'Nuxt Shop'
+  },
   /*
    ** Customize the progress bar color
    */
@@ -47,22 +47,18 @@ module.exports = {
   ],
   plugins: [
     '@/plugins/element-ui',
-    '@/plugins/vuetify',
     '@/plugins/fireauth.js'
   ],
   css: [
-    {src: '@/assets/styles/main.css', lang: 'css'},
-    // {src: '@/assets/styles/global.scss'},
-    {src: 'element-ui/lib/theme-chalk/index.css'},
-    {src: 'vuetify/dist/vuetify.min.css'}
-
+    {src: '@/assets/styles/main.css', lang: 'css', body: true},
+    {src: 'element-ui/lib/theme-chalk/index.css', body: true},
   ],
   /*
    ** Build configuration
    */
   buildDir: '../prod/server/nuxt',
   build: {
-    vendor: ['element-ui', 'vuetify', 'firebase'],
+    vendor: ['element-ui', 'firebase'],
     publicPath: '/assets/',
     extractCSS: true,
     babel: {

@@ -20,7 +20,7 @@
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@firebase/auth-types/-/auth-types-0.3.3.tgz#950a68bdae1e1e37ece054ff69ee0082c5ecabab"
 
-"@firebase/auth@0.5.3":
+"@firebase/auth@0.5.3", "@firebase/auth@^0.5.3":
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.5.3.tgz#4f0d83cd5a7c173d3a7a06f904bb1084acd8a0c4"
   dependencies:
@@ -44,7 +44,7 @@
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@firebase/firestore-types/-/firestore-types-0.4.3.tgz#0baa4f68aa8889474f582320af577f1e9a78fab6"
 
-"@firebase/firestore@0.5.4":
+"@firebase/firestore@0.5.4", "@firebase/firestore@^0.5.4":
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-0.5.4.tgz#26f67fa038ffd74ef849019728c59d4a5590a324"
   dependencies:
@@ -6490,10 +6490,6 @@ vue@^2.5.3:
 vue@~2.4.2:
   version "2.4.4"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.4.4.tgz#ea9550b96a71465fd2b8b17b61673b3561861789"
-
-vuetify@latest:
-  version "1.0.18"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.0.18.tgz#56289ba7c6e5eee3d4ee4dacd5e7dded4aee4c08"
 
 vuex@^2.4.0:
   version "2.5.0"
