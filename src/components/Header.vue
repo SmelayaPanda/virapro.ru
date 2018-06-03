@@ -1,6 +1,6 @@
 <template>
   <header class="mui-appbar mui--z1">
-    <nav class="mt-3">
+    <nav>
       <nuxt-link to="/home">Home</nuxt-link>
       <nuxt-link to="/login">Login</nuxt-link>
       <nuxt-link to="/products">Products</nuxt-link>

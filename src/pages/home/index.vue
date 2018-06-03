@@ -2,7 +2,7 @@
   <div>
     <h1>Hello From Home</h1>
     <br>
-    <h1>{{ this.$store.getters.greeting.welcome }}</h1>
+    <h1>{{ $store.getters.greeting.welcome }}</h1>
   </div>
 </template>
 

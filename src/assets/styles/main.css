@@ -16,12 +16,11 @@
 nav {
   display: flex;
   flex-flow: row wrap;
-  max-width: 500px;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   align-items: center;
   height: 64px;
-  max-width: 450px;
   justify-content: center;
 }
 
@@ -52,16 +51,6 @@ nav a:hover, nav a:focus {
 }
 
 div#content-wrapper {
-
-  margin: 1em 0;
-  padding: 1.5em .5em 2.5em .5em;
-  display: flex;
-  flex: 1;
-}
-@media (max-width: 699px) {
-  div#content-wrapper {
-    padding: 1em 0 8em 0;
-  }
 }
 
 span.render-result {

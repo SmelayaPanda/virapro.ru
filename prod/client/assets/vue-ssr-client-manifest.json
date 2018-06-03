@@ -1,31 +1,31 @@
 {
   "publicPath": "/assets/",
   "all": [
-    "pages/products/_id.8c5ae697c198ae070276.js.map",
+    "pages/index.f6a56f3a20a2810ce481.js.map",
     "fonts/element-icons.2fad952.woff",
-    "layouts/default.12e7c0af590f04626dd8.js",
+    "layouts/default.22585140700ce8164f55.js",
     "pages/login.f75586fe162db7dacb15.js",
-    "pages/index.340c0356409aad9d2a85.js",
-    "pages/products/_id.8c5ae697c198ae070276.js",
-    "pages/home/index.264be2b814680c90b8f5.js",
+    "pages/products/_id.c900b98a87eec699747c.js",
+    "pages/index.f6a56f3a20a2810ce481.js",
+    "pages/home/index.0e6aa5eae060ae58c95f.js",
     "pages/page2.14788a1951d2db64d1e1.js",
     "pages/products/index.bde30e8e4e5f16f2535d.js",
     "common.7cc7dd81b6850faafa7f.js",
-    "app.6183d5721c67a87f5c87.js",
-    "manifest.b4bf6427a28e8fe65018.js",
+    "app.7bdc8cec242f3e1569e8.js",
+    "manifest.5298c063db4028826173.js",
     "common.822d6ed51cb0241a54e2526eca0a96df.css",
     "LICENSES",
-    "layouts/default.12e7c0af590f04626dd8.js.map",
+    "layouts/default.22585140700ce8164f55.js.map",
     "pages/login.f75586fe162db7dacb15.js.map",
-    "pages/index.340c0356409aad9d2a85.js.map",
+    "pages/products/_id.c900b98a87eec699747c.js.map",
     "fonts/element-icons.6f0a763.ttf",
-    "pages/home/index.264be2b814680c90b8f5.js.map",
+    "pages/home/index.0e6aa5eae060ae58c95f.js.map",
     "pages/page2.14788a1951d2db64d1e1.js.map",
     "pages/products/index.bde30e8e4e5f16f2535d.js.map",
     "common.7cc7dd81b6850faafa7f.js.map",
-    "app.6183d5721c67a87f5c87.js.map",
+    "app.7bdc8cec242f3e1569e8.js.map",
     "common.822d6ed51cb0241a54e2526eca0a96df.css.map",
-    "manifest.b4bf6427a28e8fe65018.js.map",
+    "manifest.5298c063db4028826173.js.map",
     "icons/icon_64.8HD18iheCtI.png",
     "icons/icon_120.8HD18iheCtI.png",
     "icons/icon_144.8HD18iheCtI.png",
@@ -38,16 +38,16 @@
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.b4bf6427a28e8fe65018.js",
+    "manifest.5298c063db4028826173.js",
     "common.7cc7dd81b6850faafa7f.js",
-    "app.6183d5721c67a87f5c87.js"
+    "app.7bdc8cec242f3e1569e8.js"
   ],
   "async": [
-    "layouts/default.12e7c0af590f04626dd8.js",
+    "layouts/default.22585140700ce8164f55.js",
     "pages/login.f75586fe162db7dacb15.js",
-    "pages/index.340c0356409aad9d2a85.js",
-    "pages/products/_id.8c5ae697c198ae070276.js",
-    "pages/home/index.264be2b814680c90b8f5.js",
+    "pages/products/_id.c900b98a87eec699747c.js",
+    "pages/index.f6a56f3a20a2810ce481.js",
+    "pages/home/index.0e6aa5eae060ae58c95f.js",
     "pages/page2.14788a1951d2db64d1e1.js",
     "pages/products/index.bde30e8e4e5f16f2535d.js"
   ],
@@ -115,8 +115,8 @@
       21
     ],
     "8e671466": [
-      4,
-      16
+      5,
+      0
     ],
     "47ff9cde": [
       9,
@@ -147,8 +147,8 @@
       21
     ],
     "c0a5f74e": [
-      5,
-      0
+      4,
+      16
     ],
     "f9d1ffd4": [
       9,
@@ -158,13 +158,9 @@
       3,
       15
     ],
-    "4c23e2aa": [
-      4,
-      16
-    ],
     "4d34b47a": [
-      4,
-      16
+      5,
+      0
     ],
     "5df7df46": [
       9,
@@ -216,10 +212,6 @@
       9,
       21
     ],
-    "e0a69d54": [
-      4,
-      16
-    ],
     "8817e982": [
       9,
       21
@@ -229,8 +221,8 @@
       14
     ],
     "577f8922": [
-      5,
-      0
+      4,
+      16
     ],
     "37896c0f": [
       9,
@@ -344,10 +336,6 @@
       6,
       18
     ],
-    "4d6ae551": [
-      4,
-      16
-    ],
     "c07e93e6": [
       9,
       21
@@ -385,8 +373,8 @@
       21
     ],
     "4d67b1c6": [
-      5,
-      0
+      4,
+      16
     ],
     "2e00110e": [
       9,
@@ -425,8 +413,8 @@
       21
     ],
     "6b30f9a2": [
-      4,
-      16
+      5,
+      0
     ],
     "9f5a6928": [
       9,
@@ -593,8 +581,8 @@
       21
     ],
     "58abe31e": [
-      5,
-      0
+      4,
+      16
     ],
     "617675de": [
       9,
@@ -1003,8 +991,8 @@
       21
     ],
     "7d40df54": [
-      4,
-      16
+      5,
+      0
     ],
     "3aefbda5": [
       9,
@@ -1069,8 +1057,8 @@
       21
     ],
     "d2586e38": [
-      5,
-      0
+      4,
+      16
     ],
     "19f70014": [
       9,
@@ -1111,8 +1099,8 @@
       21
     ],
     "a4359c56": [
-      4,
-      16
+      5,
+      0
     ],
     "7623deae": [
       9,
@@ -1218,14 +1206,6 @@
       22,
       23
     ],
-    "1b147bfe": [
-      7,
-      19
-    ],
-    "d009c7a2": [
-      9,
-      21
-    ],
     "ecf4e644": [
       9,
       21
@@ -1237,6 +1217,14 @@
     "839c8664": [
       2,
       14
+    ],
+    "83f0064c": [
+      2,
+      14
+    ],
+    "d009c7a2": [
+      9,
+      21
     ],
     "fa9f608e": [
       9,
@@ -1274,6 +1262,10 @@
       9,
       21
     ],
+    "1b147bfe": [
+      7,
+      19
+    ],
     "52ca3213": [
       10,
       12,
@@ -1296,10 +1288,6 @@
       9,
       21
     ],
-    "83f0064c": [
-      2,
-      14
-    ],
     "b55abcb4": [
       10,
       12,
@@ -1321,10 +1309,6 @@
     "6f2f04eb": [
       9,
       21
-    ],
-    "b6538292": [
-      4,
-      16
     ],
     "dbfacd9c": [
       9,
