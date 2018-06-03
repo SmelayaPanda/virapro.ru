@@ -16,17 +16,13 @@ nuxt: DOMException: Failed to execute 'appendChild' on 'Node'-->
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
   asyncData () {
     return {
       renderSource: process.static ? 'static' : (process.server ? 'server' : 'client')
     }
   },
-  components: {
-    Logo
-  },
+  components: {},
   methods: {
     reloadPage () {
       window.location.reload()

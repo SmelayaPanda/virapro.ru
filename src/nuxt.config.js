@@ -50,8 +50,8 @@ module.exports = {
     '@/plugins/fireauth.js'
   ],
   css: [
-    {src: '@/assets/styles/main.css', lang: 'css', body: true},
-    {src: 'element-ui/lib/theme-chalk/index.css', body: true},
+    {src: '@/assets/styles/main.css', lang: 'css'},
+    {src: 'element-ui/lib/theme-chalk/index.css'},
   ],
   /*
    ** Build configuration

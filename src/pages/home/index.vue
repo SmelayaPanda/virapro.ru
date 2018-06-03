@@ -20,11 +20,4 @@
 </script>
 
 <style scoped lang="scss">
-  #hello_btn {
-    color: #000;
-    background: $color-secondary;
-  }
-  #chip {
-    background: $color-primary;
-  }
 </style>
