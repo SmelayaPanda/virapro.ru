@@ -4,7 +4,7 @@
     :default-active="activeIndex"
     class="el-menu-demo"
     mode="horizontal"
-    background-color="#01579B"
+    background-color="#015ba2"
     text-color="#fff"
     router
     active-text-color="#fff">
@@ -19,6 +19,10 @@
     </el-menu-item>
     <el-menu-item index="/account">
       Account
+    </el-menu-item>
+    <el-menu-item index="/cart">
+      Cart
+      <el-badge :value="2" class="item"></el-badge>
     </el-menu-item>
   </el-menu>
 </template>
@@ -46,6 +50,12 @@
   }
 
   .el-menu-item {
-    font-size: 1.25em;
+    font-size: 1em;
+  }
+
+  .item {
+    position: absolute;
+    margin-top: -12px;
+    margin-left: 10px;
   }
 </style>

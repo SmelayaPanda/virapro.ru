@@ -1,12 +1,15 @@
 <template>
   <el-row type="flex" justify="center">
     <el-col :span="20">
-    <h1 class="mui--text-display1">Nuxt.js Firebase Functions</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quia suscipit voluptate. Beatae blanditiis deserunt
-      facilis rem repellendus totam! Consequatur culpa ex expedita ipsa ipsam minus rerum voluptatibus? Atque,
-      consectetur!</p>
-    <h2 class="headline">Rendered From:<span class="render-result">{{renderSource}}</span></h2>
-    <el-button @click="reloadPage">Reload Page</el-button>
+      <h1 class="mui--text-display1">Nuxt.js PWA Online-shop App example</h1>
+      <h2>Firebase Functions / Firebase Hosting / Firestore DB</h2>
+      <h3>Firebase Auth with Email & Google, Admin panel, Checkout with card</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quia suscipit voluptate. Beatae blanditiis
+        deserunt
+        facilis rem repellendus totam! Consequatur culpa ex expedita ipsa ipsam minus rerum voluptatibus? Atque,
+        consectetur!</p>
+      <p>Rendered from: <b>{{ renderSource }}</b></p>
+      <el-button @click="reloadPage">Reload Page</el-button>
     </el-col>
   </el-row>
 </template>

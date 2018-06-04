@@ -11,7 +11,8 @@ module.exports = {
       {name: 'google-site-verification', content: '25aGtsdrxiV5R2Q8Uc-e3j7KJjSH2EmjkdZ_JsOTYiU'}
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+      {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:400,500&amp;subset=cyrillic'}
     ]
   },
   manifest: {  // PWA meta
@@ -22,7 +23,7 @@ module.exports = {
     middleware: 'router-auth'
   },
   loading: { // Customize the progress bar color
-    color: '#3B8070'
+    color: '#01579B'
   },
   modules: [
     '@nuxtjs/pwa',

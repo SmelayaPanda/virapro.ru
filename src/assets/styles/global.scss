@@ -1,5 +1,5 @@
-$color-primary: #409EFF;
-$color-secondary: #262f3d;
+$color-primary: #015ba2;
+$color-secondary: #4a4a4a;
 $color-success: #67c23a;
 $color-warning: #e6a23c;
 $color-danger: #f56c6c;
@@ -7,6 +7,10 @@ $color-info: #909399;
 
 a {
   text-decoration: none;
+}
+
+.el-badge__content {
+  background: #3b3b3b !important;
 }
 
 @import "transitions";

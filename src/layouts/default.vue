@@ -13,12 +13,7 @@
   import AppHeader from '../components/Header'
 
   export default {
-    components: { AppHeader, AppFooter },
-    methods: {
-      reloadPage () {
-        window.location.reload()
-      }
-    }
+    components: { AppHeader, AppFooter }
   }
 </script>
 
@@ -27,6 +22,8 @@
     margin: 0;
     padding: 0;
     font-size: 16px;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
     color: $color-secondary;
   }
 
