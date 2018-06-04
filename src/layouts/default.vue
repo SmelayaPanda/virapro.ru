@@ -28,9 +28,6 @@
   }
 
   #content-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin: 0 0 80px;
   }
 </style>
