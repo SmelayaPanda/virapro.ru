@@ -1,6 +1,9 @@
 <template>
   <footer>
-    <p id="made_by">Made by SmelayaPanda</p>
+    <p id="made_by">Made by SmelayaPanda
+      <a href="https://github.com/smelayapanda" rel="noopener" target="_blank"
+       aria-label="Github profile">GitHub</a>
+    </p>
   </footer>
 </template>
 
