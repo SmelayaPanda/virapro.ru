@@ -15,6 +15,7 @@
 
 <style scoped lang="scss">
   footer {
+    position: fixed;
     box-sizing: border-box;
     color: white;
     background-color: $color-secondary;
@@ -22,7 +23,6 @@
     padding: .25em 0;
     display: flex;
     align-items: center;
-    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
