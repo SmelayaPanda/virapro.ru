@@ -16,7 +16,8 @@
 <style scoped lang="scss">
   footer {
     box-sizing: border-box;
-    background-color: #eee;
+    color: white;
+    background-color: $color-secondary;
     border-top: 1px solid #e0e0e0;
     padding: .25em 0;
     display: flex;
@@ -27,6 +28,11 @@
     right: 0;
     height: 60px;
     z-index: 99;
+  }
+
+  a {
+    color: white;
+    text-decoration: underline;
   }
 
   #made_by {

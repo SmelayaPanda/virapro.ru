@@ -1,9 +1,31 @@
-$color-primary: #015ba2;
-$color-secondary: #4a4a4a;
-$color-success: #67c23a;
-$color-warning: #e6a23c;
-$color-danger: #f56c6c;
-$color-info: #909399;
+// https://material.io/tools/color
+// Comments - LEGIBLE text color
+// Large text is defined as 14 point (typically 18.66px)
+// and bold or larger, or 18 point (typically 24px) or larger.
+// Normal text is below 18 point or below 14 point and bold.
+$color-primary-light: #63a4ff; // black
+$color-primary: #1976d2; // white, black
+$color-primary-dark: #004ba0; // white
+
+$color-secondary-dark: #102027; // white
+$color-secondary: #37474f; // white
+$color-secondary-light: #62727b; // white, black-large
+
+$color-success-light: #9cff57; // black
+$color-success: #67c23a; // black
+$color-success-dark: #1faa00; // black, large white
+
+$color-warning-light: #ffdd4b; // black
+$color-warning: #ffab00; // black
+$color-warning-dark: #c67c00; // black, large white
+
+$color-danger-light: #ff8a50; // black
+$color-danger: #ff5722; // black, large white
+$color-danger-dark: #c41c00; // white, large black
+
+$color-info-dark: #4b636e; // white, large black
+$color-info: #78909c; // black, large white
+$color-info-light: #a7c0cd; // black
 
 a {
   text-decoration: none;

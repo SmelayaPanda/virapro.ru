@@ -1,7 +1,7 @@
 <template>
   <el-row type="flex" justify="center">
     <el-col :span="20">
-      <h1 class="mui--text-display1">Nuxt.js PWA Online-shop App example</h1>
+      <h1 class="mui--text-display1">Nuxt.js PWA Online-shop Example</h1>
       <h2>Firebase Functions / Firebase Hosting / Firestore DB</h2>
       <h3>Firebase Auth with Email & Google, Admin panel, Checkout with card</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quia suscipit voluptate. Beatae blanditiis
