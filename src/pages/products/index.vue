@@ -1,6 +1,6 @@
 <template>
   <el-row id="shop_wrap">
-    <el-col :xs="23" :sm="23" :md="7" :lg="6" :xl="6">
+    <el-col :xs="24" :sm="24" :md="7" :lg="6" :xl="5">
       <div id="filter_category">
         <el-input
           placeholder="Filter keyword"
@@ -20,12 +20,28 @@
         accordion>
       </el-tree>
     </el-col>
-    <el-col :xs="23" :sm="23" :md="16" :lg="17" :xl="16">
+    <el-col :xs="24" :sm="24" :md="17" :lg="17" :xl="17">
       <el-row id="product_card_wrap">
-        <el-col :xs="23" :sm="12" :md="8" :lg="8" :xl="8"
+        <el-col>
+          <el-radio-group v-model="view" size="mini" id="view_type">
+            <el-radio-button label="list">
+              <img v-if="view === 'list'" src="~/assets/icons/view/list-white.svg" alt="View List">
+              <img v-else src="~/assets/icons/view/list-black.svg" alt="View List">
+            </el-radio-button>
+            <el-radio-button label="module">
+              <img v-if="view === 'module'" src="~/assets/icons/view/module-white.svg" alt="View Module">
+              <img v-else src="~/assets/icons/view/module-black.svg" alt="View Module">
+            </el-radio-button>
+          </el-radio-group>
+        </el-col>
+        <el-col :xs="24"
+                :sm="view === 'list' ? 23 : 12"
+                :md="view === 'list' ? 23 : 12"
+                :lg="view === 'list' ? 23 : 8"
+                :xl="view === 'list' ? 23 : 8"
                 v-for="i in 15" :key="i"
                 itemscope itemtype="http://schema.org/ItemList">
-          <product-card :id="i" itemprop="itemListElement" itemtype="http://schema.org/Product"/>
+          <product-card :id="i" :view="view" itemprop="itemListElement" itemtype="http://schema.org/Product"/>
         </el-col>
       </el-row>
     </el-col>
@@ -41,6 +57,7 @@
       return {
         filterText: '',
         treeKey: '1',
+        view: 'list',
         data: [{
           label: 'Berries',
           children: [
@@ -127,7 +144,7 @@
   #product_card_wrap {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: start;
   }
 
   #shop_wrap {
@@ -138,5 +155,15 @@
 
   #filter_category {
     padding: 10px;
+  }
+
+  #view_type {
+    padding: 10px;
+  }
+
+  @media only screen and (max-width: $xs-screen) {
+    #view_type {
+      display: none;
+    }
   }
 </style>

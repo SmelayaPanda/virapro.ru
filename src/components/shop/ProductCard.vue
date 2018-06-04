@@ -6,26 +6,42 @@
     @touchstart="hoveredCard = true" @touchend="hoveredCard = false"
     @mouseover="hoveredCard = true" @mouseleave="hoveredCard = false"
     itemscope itemtype="http://schema.org/Product">
-    <el-card class="card">
-      <div class="card_content">
-        <p itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-          <span itemprop="price" :content="id">{{ id }} </span>
-          <span itemprop="priceCurrency" content="RUB">RUB</span>
-        </p>
-        <p id="title" itemprop="name">
-          Some product name + {{ id }}
-        </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid consequuntur dignissimos earum eligendi est
-          fuga possimus quibusdam veritatis. Animi asperiores dolore laboriosam, laborum libero obcaecati quam qui quis
-          rem veritatis.</p>
-      </div>
+    <!-- LIST VIEW -->
+    <el-card
+      :body-style="{ padding: '0px' }"
+      :class="view === 'list' ? 'card list_card' : 'card module_card'">
+      <el-row class="card_content">
+        <el-col :xs=" 24"
+                :sm="view === 'list' ? 8 : 24"
+                :md="view === 'list' ? 8 : 24"
+                :lg="view === 'list' ? 7 : 24"
+                :xl="view === 'list' ? 6 : 24">
+          <div :class="view === 'list' ? 'list_product_image' : 'module_product_image'"></div>
+        </el-col>
+        <el-col class="product_description"
+                :xs="24"
+                :sm="view === 'list' ? 16 : 24"
+                :md="view === 'list' ? 16 : 24"
+                :lg="view === 'list' ? 17 : 24"
+                :xl="view === 'list' ? 18 : 24">
+          <p itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <span itemprop="price" :content="id">{{ id }} </span>
+            <span itemprop="priceCurrency" content="RUB">RUB</span>
+          </p>
+          <p itemprop="name">
+            Some product name + {{ id }}
+          </p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid consequuntur dignissimos earum
+            eligendi</p>
+        </el-col>
+      </el-row>
     </el-card>
   </div>
 </template>
 <script>
   export default {
     name: 'product-card',
-    props: ['id'],
+    props: ['id', 'view'],
     data() {
       return {
         hoveredCard: false
@@ -62,6 +78,11 @@
 </script>
 
 <style scoped lang="scss">
+  $list-height: 220px;
+  $list-width: 220px;
+  $module-height: 480px;
+  $module-img-height: 300px;
+
   .card_wrapper {
     transition: all .5s;
   }
@@ -69,14 +90,32 @@
   .card_wrapper:hover,
   .card_wrapper:active {
     cursor: pointer;
-    transform: scale(1.02);
+    transform: scale(1.01);
+  }
+
+  .list_card {
+    height: $list-height;
+  }
+
+  .module_card {
+    height: $module-height;
+  }
+
+  .list_product_image {
+    width: $list-width;
+    height: $list-height;
+    background: $color-info-light;
+  }
+
+  .module_product_image {
+    width: 100%;
+    height: $module-img-height;
+    background: $color-info-light;
   }
 
   .card {
-    @include aspect-ratio(1, 1);
     margin: 10px;
-    max-height: 100%;
-    padding: 0 0 10px;
+    padding: 0;
     border: 1px solid $color-info-light;
     transition: all .5s;
   }
@@ -87,7 +126,22 @@
   }
 
   .card_content {
-    position: absolute;
-    top: 0;
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+  }
+
+  .product_description {
+    padding: 10px;
+  }
+
+  @media only screen and (max-width: $xs-screen) {
+    .list_product_image {
+      width: 100%;
+      height: $module-img-height;
+    }
+    .list_card {
+      height: $module-height;
+    }
   }
 </style>
