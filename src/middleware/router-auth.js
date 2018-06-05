@@ -1,13 +1,13 @@
 export default function ({ store, redirect, route}) {
-  if (isAdminRoute(route)) {
-    if (store.state.USER && store.state.ADMINS.indexOf(store.state.USER.email) !== -1) {
-      return ''
-    } else {
-      redirect('/account/signin')
-    }
-  } else {
-    return ''
-  }
+  // if (isAdminRoute(route)) {
+  //   if (store.state.USER && store.state.ADMINS.indexOf(store.state.USER.email) !== -1) {
+  //     return ''
+  //   } else {
+  //     redirect('/account/signin')
+  //   }
+  // } else {
+  //   return ''
+  // }
 }
 
 function isAdminRoute(route) {
