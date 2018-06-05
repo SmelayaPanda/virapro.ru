@@ -2,7 +2,10 @@
   <footer>
     <p id="made_by">Made by SmelayaPanda
       <a href="https://github.com/smelayapanda" rel="noopener" target="_blank"
-       aria-label="Github profile">GitHub</a>
+         aria-label="Github profile">GitHub</a>
+    </p>
+    <p>
+      <nuxt-link to="/admin"> Go to admin panel</nuxt-link>
     </p>
   </footer>
 </template>
@@ -37,5 +40,6 @@
 
   #made_by {
     margin-left: 20px;
+    margin-right: 20px;
   }
 </style>

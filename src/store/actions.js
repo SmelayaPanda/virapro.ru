@@ -105,6 +105,7 @@ export const actions = {
             fs.collection('users').doc(user.uid)
               .update({
                 email: user.email,
+                role: 'guest',
                 emailVerified: user.emailVerified,
                 isAnonymous: false
               }),

@@ -45,6 +45,9 @@
       return {
         activeIndex: '/'
       }
+    },
+    created () {
+      this.activeIndex = this.$nuxt.$route.path
     }
   }
 </script>
