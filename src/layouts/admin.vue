@@ -4,7 +4,7 @@
     <el-header>
       <admin-header></admin-header>
     </el-header>
-    <el-container v-if="$store.getters.USER && $store.getters.ADMINS.indexOf($store.getters.USER.email) !== -1">
+    <el-container v-if="$store.getters.USER && $store.getters.IS_ADMIN">
       <el-aside width="200px">
         <admin-nav></admin-nav>
       </el-aside>

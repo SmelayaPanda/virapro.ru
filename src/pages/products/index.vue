@@ -12,7 +12,7 @@
         :key="treeKey"
         ref="productTree"
         empty-text="No data"
-        :data="data"
+        :data="$store.getters.PRODUCT_TREE"
         :props="defaultProps"
         @node-click="handleNodeClick"
         :filter-node-method="filterNode"
@@ -83,63 +83,10 @@
         treeKey: '1',
         view: 'list',
         activeNames: [], // ['1', '2']
-        data: [{
-          label: 'Berries',
-          children: [
-            {label: 'blackberries'},
-            {label: 'strawberries'},
-            {label: 'cranberries'},
-            {label: 'grapes'}
-          ]
-        }, {
-          label: 'Melons',
-          children: [
-            {label: 'honeydew'},
-            {label: 'watermelon'},
-            {label: 'muskmelon'},
-            {label: 'casaba'}
-          ]
-        }, {
-          label: 'Tropical',
-          children: [
-            {label: 'bananas'},
-            {label: 'pineapples'},
-            {label: 'avocados'},
-            {label: 'dates'},
-            {label: 'pomegranates'},
-            {label: 'papayas'},
-            {label: 'mangoes'}
-          ]
-        }, {
-          label: 'Citrus',
-          children: [
-            {label: 'oranges'},
-            {label: 'grapefruits'},
-            {label: 'tangerines'},
-            {label: 'lemons'},
-            {label: 'limes'},
-            {label: 'kumquats'},
-            {label: 'citrons'}
-          ]
-        }, {
-          label: 'Drupes',
-          children: [
-            {label: 'cherries'},
-            {label: 'plums'},
-            {label: 'nectarines'},
-            {label: 'apricots'}
-          ]
-        }, {
-          label: 'Pomes',
-          children: [
-            {label: 'apples'},
-            {label: 'pears'},
-            {label: 'kiwis'}
-          ]
-        }],
         defaultProps: {
           children: 'children',
-          label: 'label'
+          label: 'label',
+          disabled: false
         }
       };
     },
