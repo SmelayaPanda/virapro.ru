@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Products</h1>
     <el-cascader
       :options="$store.getters.PRODUCT_TREE"
       filterable
@@ -8,7 +7,7 @@
       v-model="productOption"
       @change="loadCategoryProducts">
     </el-cascader>
-    <el-button>
+    <el-button id="add_product">
       <i class="el-icon-plus"></i>
     </el-button>
   </div>
@@ -20,7 +19,7 @@
     layout: 'admin',
     data() {
       return {
-        productOption: ''
+        productOption: ['shutoff-and-control-valves', 'elevators']
       }
     },
     methods: {
@@ -31,5 +30,7 @@
 </script>
 
 <style scoped>
-
+  #add_product {
+    margin-left: 10px;
+  }
 </style>

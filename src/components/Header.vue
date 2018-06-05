@@ -2,7 +2,7 @@
   <div>
     <div id="contacts">
       <span id="phone">+777 2345 7885</span>
-      <i class="work_time">7 DAYS A WEEK FROM 10 AM TO 6 PM</i>
+      <i class="work_time">7 ДНЕЙ В НЕДЕЛЮ С 10 ДО 18 ЧАСОВ</i>
       <div>
         <img id="facebook" src="~/assets/icons/social/facebook-logo.svg" alt="Facebook">
         <img id="twitter" src="~/assets/icons/social/twitter-logo.svg" alt="Twitter">
@@ -19,19 +19,19 @@
       router
       active-text-color="#fff">
       <el-menu-item index="/">
-        Home
+        Главная
       </el-menu-item>
       <el-menu-item index="/shop">
-        Shop
+        Товары
       </el-menu-item>
       <el-menu-item index="/about">
-        About
+        О нас
       </el-menu-item>
       <el-menu-item index="/account">
-        Account
+        Аккаунт
       </el-menu-item>
       <el-menu-item index="/cart">
-        Cart
+        Корзина
         <el-badge :value="2" class="item"></el-badge>
       </el-menu-item>
     </el-menu>
