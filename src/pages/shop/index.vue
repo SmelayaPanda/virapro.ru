@@ -16,7 +16,7 @@
         :props="defaultProps"
         @node-click="handleNodeClick"
         :filter-node-method="filterNode"
-        :indent="8"
+        :indent="16"
         highlight-current
         accordion>
       </el-tree>

@@ -21,8 +21,8 @@
       <el-menu-item index="/">
         Home
       </el-menu-item>
-      <el-menu-item index="/products">
-        Products
+      <el-menu-item index="/shop">
+        Shop
       </el-menu-item>
       <el-menu-item index="/about">
         About
