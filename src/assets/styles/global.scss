@@ -42,5 +42,9 @@ a {
   background: #3b3b3b !important;
 }
 
+.el-radio-button__inner {
+  padding: 5.5px 15px !important;
+}
+
 @import "transitions";
 @import "mixins";

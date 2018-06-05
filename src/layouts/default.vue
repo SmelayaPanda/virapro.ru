@@ -1,9 +1,9 @@
 <template>
   <div id="app-wrapper">
     <app-header></app-header>
-    <div id="content-wrapper">
+    <main id="content-wrapper">
       <nuxt/>
-    </div>
+    </main>
     <app-footer></app-footer>
   </div>
 </template>
@@ -22,8 +22,7 @@
     margin: 0;
     padding: 0;
     font-size: 16px;
-    font-family: Roboto, sans-serif;
-    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
     color: $color-secondary;
   }
 

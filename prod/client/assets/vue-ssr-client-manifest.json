@@ -1,40 +1,40 @@
 {
   "publicPath": "/assets/",
   "all": [
-    "pages/products/_id.c900b98a87eec699747c.js.map",
+    "pages/login.50945afc83c2471b7dd6.js.map",
     "fonts/element-icons.2fad952.woff",
     "img/instagram-logo.58fec83.svg",
     "img/twitter-logo.447540e.svg",
     "img/facebook-logo.ea106d2.svg",
-    "layouts/default.6ff267958893ae1b674e.js",
-    "pages/login.7d0ad9597c5e3e14172a.js",
-    "pages/products/_id.c900b98a87eec699747c.js",
-    "pages/index.57bdd2e5d38ff0168ab0.js",
-    "pages/cart/index.51fb618dec89138bec56.js",
-    "pages/account/signup.180fc059c4c8256a187e.js",
-    "pages/account/signin.e3774b607d4b8ae1c771.js",
-    "pages/account/index.eeb588e1a823f8d1b7bd.js",
-    "pages/about/index.f90e9975abda6aa6c044.js",
-    "pages/products/index.f23e3b5562aec9a33590.js",
+    "layouts/default.37ed55af1cbdeb5503da.js",
+    "pages/products/index.8c010d293ac030dc7483.js",
+    "pages/login.50945afc83c2471b7dd6.js",
+    "pages/products/_id.8c5ae697c198ae070276.js",
+    "pages/index.6d4d346935b989b69b12.js",
+    "pages/cart/index.bc65c81dff37d7cbe9c6.js",
+    "pages/account/signup.6a9fb4381e92efe483e6.js",
+    "pages/account/signin.71c29ef75687d8f12517.js",
+    "pages/account/index.c4c9dbd023cdf089dddf.js",
+    "pages/about/index.2e33982109e4fd7a3942.js",
     "common.14b87c3c847973a0f92f.js",
-    "app.07f3c8c6a4a5dac829f9.js",
-    "manifest.68ee6fab33d432ec308f.js",
+    "app.7a47e84110f28f9abf82.js",
+    "manifest.19d83a2599203fd2e79b.js",
     "common.e7dbbbf9701172da2abd51e61db2c942.css",
     "LICENSES",
-    "layouts/default.6ff267958893ae1b674e.js.map",
-    "pages/login.7d0ad9597c5e3e14172a.js.map",
+    "layouts/default.37ed55af1cbdeb5503da.js.map",
+    "pages/products/index.8c010d293ac030dc7483.js.map",
     "fonts/element-icons.6f0a763.ttf",
-    "pages/index.57bdd2e5d38ff0168ab0.js.map",
-    "pages/cart/index.51fb618dec89138bec56.js.map",
-    "pages/account/signup.180fc059c4c8256a187e.js.map",
-    "pages/account/signin.e3774b607d4b8ae1c771.js.map",
-    "pages/account/index.eeb588e1a823f8d1b7bd.js.map",
-    "pages/about/index.f90e9975abda6aa6c044.js.map",
-    "pages/products/index.f23e3b5562aec9a33590.js.map",
+    "pages/products/_id.8c5ae697c198ae070276.js.map",
+    "pages/index.6d4d346935b989b69b12.js.map",
+    "pages/cart/index.bc65c81dff37d7cbe9c6.js.map",
+    "pages/account/signup.6a9fb4381e92efe483e6.js.map",
+    "pages/account/signin.71c29ef75687d8f12517.js.map",
+    "pages/account/index.c4c9dbd023cdf089dddf.js.map",
+    "pages/about/index.2e33982109e4fd7a3942.js.map",
     "common.14b87c3c847973a0f92f.js.map",
-    "app.07f3c8c6a4a5dac829f9.js.map",
+    "app.7a47e84110f28f9abf82.js.map",
     "common.e7dbbbf9701172da2abd51e61db2c942.css.map",
-    "manifest.68ee6fab33d432ec308f.js.map",
+    "manifest.19d83a2599203fd2e79b.js.map",
     "icons/icon_64.8HD18iheCtI.png",
     "icons/icon_120.8HD18iheCtI.png",
     "icons/icon_144.8HD18iheCtI.png",
@@ -47,21 +47,21 @@
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.68ee6fab33d432ec308f.js",
+    "manifest.19d83a2599203fd2e79b.js",
     "common.14b87c3c847973a0f92f.js",
-    "app.07f3c8c6a4a5dac829f9.js"
+    "app.7a47e84110f28f9abf82.js"
   ],
   "async": [
-    "layouts/default.6ff267958893ae1b674e.js",
-    "pages/login.7d0ad9597c5e3e14172a.js",
-    "pages/products/_id.c900b98a87eec699747c.js",
-    "pages/index.57bdd2e5d38ff0168ab0.js",
-    "pages/cart/index.51fb618dec89138bec56.js",
-    "pages/account/signup.180fc059c4c8256a187e.js",
-    "pages/account/signin.e3774b607d4b8ae1c771.js",
-    "pages/account/index.eeb588e1a823f8d1b7bd.js",
-    "pages/about/index.f90e9975abda6aa6c044.js",
-    "pages/products/index.f23e3b5562aec9a33590.js"
+    "layouts/default.37ed55af1cbdeb5503da.js",
+    "pages/products/index.8c010d293ac030dc7483.js",
+    "pages/login.50945afc83c2471b7dd6.js",
+    "pages/products/_id.8c5ae697c198ae070276.js",
+    "pages/index.6d4d346935b989b69b12.js",
+    "pages/cart/index.bc65c81dff37d7cbe9c6.js",
+    "pages/account/signup.6a9fb4381e92efe483e6.js",
+    "pages/account/signin.71c29ef75687d8f12517.js",
+    "pages/account/index.c4c9dbd023cdf089dddf.js",
+    "pages/about/index.2e33982109e4fd7a3942.js"
   ],
   "modules": {
     "11600408": [
@@ -69,8 +69,8 @@
       30
     ],
     "12062012": [
-      11,
-      26
+      12,
+      27
     ],
     "12960175": [
       16,
@@ -95,24 +95,28 @@
       30
     ],
     "42856659": [
-      11,
-      26
+      12,
+      27
     ],
     "49735587": [
       15,
       30
     ],
+    "56546159": [
+      6,
+      21
+    ],
     "74191708": [
-      12,
-      27
+      13,
+      28
     ],
     "83932396": [
       15,
       30
     ],
     "422ee67a": [
-      6,
-      21
+      7,
+      0
     ],
     "56d89f5c": [
       15,
@@ -139,12 +143,12 @@
       30
     ],
     "571bbccf": [
-      10,
-      25
+      11,
+      26
     ],
     "8e671466": [
-      8,
-      23
+      9,
+      24
     ],
     "47ff9cde": [
       15,
@@ -159,8 +163,8 @@
       30
     ],
     "6ffc4cb8": [
-      9,
-      24
+      10,
+      25
     ],
     "1c838950": [
       15,
@@ -175,28 +179,28 @@
       30
     ],
     "c0a5f74e": [
-      7,
-      0
+      8,
+      23
     ],
     "f9d1ffd4": [
       15,
       30
     ],
     "bf69b5fa": [
-      10,
-      25
-    ],
-    "52c13bb8": [
       11,
       26
     ],
+    "52c13bb8": [
+      12,
+      27
+    ],
     "299397ae": [
-      6,
-      21
+      7,
+      0
     ],
     "4d34b47a": [
-      8,
-      23
+      9,
+      24
     ],
     "5df7df46": [
       15,
@@ -219,8 +223,8 @@
       30
     ],
     "29948ecc": [
-      10,
-      25
+      11,
+      26
     ],
     "4df1a334": [
       15,
@@ -249,12 +253,12 @@
       30
     ],
     "db3b8ae6": [
-      9,
-      24
+      10,
+      25
     ],
     "50206e88": [
-      9,
-      24
+      10,
+      25
     ],
     "f8acd90a": [
       5,
@@ -267,9 +271,13 @@
       15,
       30
     ],
+    "7dd994cc": [
+      6,
+      21
+    ],
     "577f8922": [
-      7,
-      0
+      8,
+      23
     ],
     "37896c0f": [
       15,
@@ -290,8 +298,8 @@
       30
     ],
     "571c385e": [
-      6,
-      21
+      7,
+      0
     ],
     "4ecb5641": [
       15,
@@ -304,8 +312,8 @@
       32
     ],
     "6bf5f0a9": [
-      10,
-      25
+      11,
+      26
     ],
     "28004cca": [
       5,
@@ -315,8 +323,8 @@
       4
     ],
     "2812dc77": [
-      13,
-      28
+      14,
+      29
     ],
     "7917e4be": [
       15,
@@ -327,8 +335,8 @@
       30
     ],
     "b07004ce": [
-      6,
-      21
+      7,
+      0
     ],
     "a2e6c924": [
       15,
@@ -347,8 +355,8 @@
       30
     ],
     "6a8a9223": [
-      6,
-      21
+      7,
+      0
     ],
     "42d7468d": [
       15,
@@ -365,8 +373,8 @@
       32
     ],
     "741ad7c4": [
-      6,
-      21
+      7,
+      0
     ],
     "5b539a76": [
       15,
@@ -382,9 +390,13 @@
       15,
       30
     ],
-    "34d89cb9": [
+    "90480c04": [
       6,
       21
+    ],
+    "34d89cb9": [
+      7,
+      0
     ],
     "3d2c8004": [
       15,
@@ -412,8 +424,8 @@
       30
     ],
     "026e7bde": [
-      6,
-      21
+      7,
+      0
     ],
     "3e9ffebc": [
       15,
@@ -444,8 +456,8 @@
       30
     ],
     "4d67b1c6": [
-      7,
-      0
+      8,
+      23
     ],
     "2e00110e": [
       15,
@@ -484,12 +496,12 @@
       30
     ],
     "6b30f9a2": [
-      8,
-      23
+      9,
+      24
     ],
     "5c807c40": [
-      12,
-      27
+      13,
+      28
     ],
     "9f5a6928": [
       15,
@@ -518,8 +530,12 @@
       30
     ],
     "4305ac53": [
-      11,
-      26
+      12,
+      27
+    ],
+    "58363e22": [
+      6,
+      21
     ],
     "0368617c": [
       15,
@@ -546,6 +562,10 @@
       15,
       30
     ],
+    "b497e7c8": [
+      6,
+      21
+    ],
     "ee331e18": [
       15,
       30
@@ -557,6 +577,10 @@
     "765513b0": [
       15,
       30
+    ],
+    "4cbefbc5": [
+      6,
+      21
     ],
     "038f5194": [
       5,
@@ -585,6 +609,10 @@
       32
     ],
     "66bdb645": [
+      7,
+      0
+    ],
+    "0a3e26f8": [
       6,
       21
     ],
@@ -671,8 +699,8 @@
       30
     ],
     "58abe31e": [
-      7,
-      0
+      8,
+      23
     ],
     "617675de": [
       15,
@@ -699,8 +727,8 @@
       30
     ],
     "738f68c0": [
-      13,
-      28
+      14,
+      29
     ],
     "1758adb2": [
       16,
@@ -709,8 +737,8 @@
       32
     ],
     "838fab94": [
-      9,
-      24
+      10,
+      25
     ],
     "ba631d2c": [
       15,
@@ -767,6 +795,10 @@
     "e6d7dcda": [
       15,
       30
+    ],
+    "15efd972": [
+      6,
+      21
     ],
     "66adde28": [
       15,
@@ -827,8 +859,8 @@
       30
     ],
     "db2c33fa": [
-      9,
-      24
+      10,
+      25
     ],
     "7e183b9b": [
       15,
@@ -896,8 +928,8 @@
       30
     ],
     "63792a64": [
-      11,
-      26
+      12,
+      27
     ],
     "29aeb873": [
       16,
@@ -918,6 +950,10 @@
       30
     ],
     "fb17ce38": [
+      7,
+      0
+    ],
+    "2933b142": [
       6,
       21
     ],
@@ -1060,8 +1096,8 @@
       30
     ],
     "2742c52a": [
-      12,
-      27
+      13,
+      28
     ],
     "e9f58e3a": [
       15,
@@ -1120,16 +1156,16 @@
       4
     ],
     "60ee177c": [
-      14,
-      29
+      6,
+      21
     ],
     "672c01a4": [
       15,
       30
     ],
     "7d40df54": [
-      8,
-      23
+      9,
+      24
     ],
     "3aefbda5": [
       15,
@@ -1215,12 +1251,16 @@
       30
     ],
     "d2586e38": [
-      7,
-      0
+      8,
+      23
     ],
     "19f70014": [
       15,
       30
+    ],
+    "2bee1ec6": [
+      6,
+      21
     ],
     "d7e94a98": [
       15,
@@ -1257,8 +1297,8 @@
       30
     ],
     "a4359c56": [
-      8,
-      23
+      9,
+      24
     ],
     "7623deae": [
       15,
@@ -1279,8 +1319,8 @@
       32
     ],
     "3e8f9ba4": [
-      10,
-      25
+      11,
+      26
     ],
     "4e16b576": [
       15,
@@ -1299,6 +1339,14 @@
     "486ed321": [
       15,
       30
+    ],
+    "79e635f0": [
+      6,
+      21
+    ],
+    "181b3a6b": [
+      6,
+      21
     ],
     "c2d58c42": [
       15,
@@ -1373,6 +1421,10 @@
       3,
       4
     ],
+    "d009c7a2": [
+      15,
+      30
+    ],
     "ecf4e644": [
       15,
       30
@@ -1395,6 +1447,10 @@
       31,
       32
     ],
+    "e3e699d2": [
+      6,
+      21
+    ],
     "70f524ba": [
       16,
       18,
@@ -1413,14 +1469,6 @@
       15,
       30
     ],
-    "d382ac2a": [
-      15,
-      30
-    ],
-    "d009c7a2": [
-      15,
-      30
-    ],
     "52ca3213": [
       16,
       18,
@@ -1436,8 +1484,8 @@
       30
     ],
     "ca1a88ea": [
-      13,
-      28
+      14,
+      29
     ],
     "97bfc822": [
       15,
@@ -1460,9 +1508,9 @@
       15,
       30
     ],
-    "02a6cb14": [
-      14,
-      29
+    "d382ac2a": [
+      15,
+      30
     ],
     "6f2f04eb": [
       15,

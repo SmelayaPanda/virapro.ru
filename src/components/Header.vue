@@ -4,9 +4,9 @@
       <span id="phone">+777 2345 7885</span>
       <i class="work_time">7 DAYS A WEEK FROM 10 AM TO 6 PM</i>
       <div>
-        <img id="facebook" src="~/assets/icons/facebook-logo.svg" alt="Facebook">
-        <img id="twitter" src="~/assets/icons/twitter-logo.svg" alt="Twitter">
-        <img id="instagram" src="~/assets/icons/instagram-logo.svg" alt="Instagram">
+        <img id="facebook" src="~/assets/icons/social/facebook-logo.svg" alt="Facebook">
+        <img id="twitter" src="~/assets/icons/social/twitter-logo.svg" alt="Twitter">
+        <img id="instagram" src="~/assets/icons/social/instagram-logo.svg" alt="Instagram">
       </div>
     </div>
     <el-menu

@@ -3,27 +3,38 @@
     <el-col :xs="24" :sm="24" :md="7" :lg="6" :xl="5">
       <div id="filter_category">
         <el-input
-          placeholder="Filter keyword"
+          label="Category Filter"
+          placeholder="Find group"
           v-model="filterText">
         </el-input>
       </div>
       <el-tree
         :key="treeKey"
         ref="productTree"
+        empty-text="No data"
         :data="data"
         :props="defaultProps"
         @node-click="handleNodeClick"
         :filter-node-method="filterNode"
         :indent="8"
         highlight-current
-        :default-expand-all="false"
         accordion>
       </el-tree>
     </el-col>
     <el-col :xs="24" :sm="24" :md="17" :lg="17" :xl="17">
       <el-row id="product_card_wrap">
-        <el-col>
-          <el-radio-group v-model="view" size="mini" id="view_type">
+        <el-col :span="15">
+          <div id="algolia_search">
+            <el-input
+              label="Algolia Filter"
+              placeholder="Find product"
+              v-model="algoliaText">
+              <el-button slot="append" icon="el-icon-search"></el-button>
+            </el-input>
+          </div>
+        </el-col>
+        <el-col :span="9" align="right" id="view_type">
+          <el-radio-group v-model="view" size="mini" border>
             <el-radio-button label="list">
               <img v-if="view === 'list'" src="~/assets/icons/view/list-white.svg" alt="View List">
               <img v-else src="~/assets/icons/view/list-black.svg" alt="View List">
@@ -34,11 +45,23 @@
             </el-radio-button>
           </el-radio-group>
         </el-col>
+      </el-row>
+      <el-row id="product_filters">
+        <el-col :span="24">
+        <el-collapse v-model="activeNames">
+          <el-collapse-item title="Extend Filter" name="1">
+            <div>Consistent with real life: in line with the process and logic of real life, and comply with languages and habits that the users are used to;</div>
+            <div>Consistent within interface: all elements should be consistent, such as: design style, icons and texts, position of elements, etc.</div>
+          </el-collapse-item>
+        </el-collapse>
+        </el-col>
+      </el-row>
+      <el-row>
         <el-col :xs="24"
-                :sm="view === 'list' ? 23 : 12"
-                :md="view === 'list' ? 23 : 12"
-                :lg="view === 'list' ? 23 : 8"
-                :xl="view === 'list' ? 23 : 8"
+                :sm="view === 'list' ? 24 : 12"
+                :md="view === 'list' ? 24 : 12"
+                :lg="view === 'list' ? 24 : 8"
+                :xl="view === 'list' ? 24 : 8"
                 v-for="i in 15" :key="i"
                 itemscope itemtype="http://schema.org/ItemList">
           <product-card :id="i" :view="view" itemprop="itemListElement" itemtype="http://schema.org/Product"/>
@@ -56,8 +79,10 @@
     data() {
       return {
         filterText: '',
+        algoliaText: '',
         treeKey: '1',
         view: 'list',
+        activeNames: [], // ['1', '2']
         data: [{
           label: 'Berries',
           children: [
@@ -72,8 +97,7 @@
             {label: 'honeydew'},
             {label: 'watermelon'},
             {label: 'muskmelon'},
-            {label: 'casaba'},
-            {label: 'crenshaw'}
+            {label: 'casaba'}
           ]
         }, {
           label: 'Tropical',
@@ -95,7 +119,6 @@
             {label: 'lemons'},
             {label: 'limes'},
             {label: 'kumquats'},
-            {label: 'tengelows'},
             {label: 'citrons'}
           ]
         }, {
@@ -143,8 +166,10 @@
 <style scoped lang="scss">
   #product_card_wrap {
     display: flex;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     justify-content: start;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   #shop_wrap {
@@ -157,8 +182,19 @@
     padding: 10px;
   }
 
+  #algolia_search {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  #product_filters {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
   #view_type {
-    padding: 10px;
+    padding-top: 11px;
+    align-content: right;
   }
 
   @media only screen and (max-width: $xs-screen) {
