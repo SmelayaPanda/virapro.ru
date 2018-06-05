@@ -1,10 +1,14 @@
 <template>
-  <div id="admin_header">
-    <div id="panel">
-      <h2>Admin Panel</h2>
-      <!--<img id="home" src="~/assets/icons/admin/important_devices.svg" alt="Go Home">-->
-    </div>
-  </div>
+  <el-row type="flex">
+    <el-col>
+      <span id="admin_panel">Админ панель</span>
+    </el-col>
+    <el-col align="right">
+      <nuxt-link to="/">
+        <el-button id="to_home" size="small" type="success">На сайт</el-button>
+      </nuxt-link>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -14,17 +18,7 @@
 </script>
 
 <style scoped lang="scss">
-  #admin_header {
-    background: $color-primary;
-    color: White;
-  }
-
-  #panel {
-    margin-left: 20px;
-    line-height: 20px;
-  }
-
-  #home {
-    /*height: 15px;*/
+  #admin_panel {
+    font-size: 22px;
   }
 </style>

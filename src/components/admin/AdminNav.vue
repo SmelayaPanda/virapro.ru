@@ -8,31 +8,31 @@
         :router="true">
         <el-menu-item index="/admin">
           <img src="~/assets/icons/admin/assessment.svg" alt="">
-          <span>Dashboard</span>
+          <span>Статистика</span>
         </el-menu-item>
         <el-menu-item index="/admin/products">
           <img src="~/assets/icons/admin/playlist_add.svg" alt="">
-          <span>Products</span>
+          <span>Товары</span>
         </el-menu-item>
         <el-menu-item index="/admin/orders">
           <img src="~/assets/icons/admin/description.svg" alt="">
-          <span>Orders</span>
+          <span>Покупки</span>
         </el-menu-item>
         <el-menu-item index="/admin/files" disabled>
           <img src="~/assets/icons/admin/attach_file.svg" alt="">
-          <span>Files</span>
+          <span>Файлы</span>
         </el-menu-item>
         <el-menu-item index="/admin/dictionaries">
           <img src="~/assets/icons/admin/text_format.svg" alt="">
-          <span>Dictionaries</span>
+          <span>Словари</span>
         </el-menu-item>
         <el-menu-item index="/admin/reviews" disabled>
           <img src="~/assets/icons/admin/record_voice_over.svg" alt="">
-          <span>Reviews</span>
+          <span>Отзывы</span>
         </el-menu-item>
         <el-menu-item index="/admin/company">
           <img src="~/assets/icons/admin/account_balance.svg" alt="">
-          <span>Company</span>
+          <span>Компания</span>
         </el-menu-item>
       </el-menu>
   </nav>
