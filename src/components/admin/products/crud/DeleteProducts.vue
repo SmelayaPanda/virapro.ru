@@ -5,6 +5,7 @@
       <i class="el-icon-delete"></i>
     </el-button>
 
+    <!-- TODO: use el-popover with confirmation-->
     <el-dialog
       title="Удалить товар!"
       :visible.sync="dialogVisible"
