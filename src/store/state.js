@@ -1,12 +1,50 @@
 export const state = () => ({
-  // DYNAMIC DATA
+  // SYSTEM
+  IS_ADMIN: false,
+  LOADING: false,
+  ERR: null,
+
+  // DICTIONARIES
+  dictionaries: {
+    brands: [],
+    colors: [],
+    countries: [],
+    materials: [],
+    delivery: [],
+    courier: []
+  },
+
+
+  // USER
   USER: { // Cart and orders IDs array in database. Full products objects array in client side
     cart: [],
     orders: []
   },
-  IS_ADMIN: false,
-  LOADING: false,
-  ERR: null,
+
+
+  // PRODUCTS
+  products: {},
+  productStatistics: { // auto updated from cloud function
+    maxPrice: 1000000,
+    avgPrice: 0,
+    uniqueProductQty: 0,
+    totalProductQty: 0,
+    totalStoreCoast: 0
+  },
+  lastVisible: null, // value means load more button is available
+  productFilters: {
+    minPrice: 0,
+    maxPrice: 0,
+    group: '',
+    category: '',
+    country: '',
+    brand: '',
+    color: '',
+    material: '',
+    sortByPrice: 'desc',
+    limit: 15
+  },
+  algoliaSearchText: '',
   // CONSTANTS
   ADMINS: ['smelayapandagm@gmail.com'],
   PRODUCT_TREE: [{
