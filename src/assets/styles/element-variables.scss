@@ -27,6 +27,13 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 }
 
 .el-cascader-menu {
-  height: 540px;
+  height: 560px;
   width: 320px;
+}
+
+
+#update_product_dialog {
+  .el-form-item {
+    margin: 12px;
+  }
 }

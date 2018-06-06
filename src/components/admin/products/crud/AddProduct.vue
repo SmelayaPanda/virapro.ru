@@ -1,18 +1,19 @@
 <template>
   <div>
-    <el-button id="add_product" @click="dialogFormVisible = true">
+    <el-button id="add_product" @click="dialog = true">
       <i class="el-icon-plus"></i>
     </el-button>
 
     <el-dialog
+      id="update_product_dialog"
       :title="operation === 'add' ? 'Новый товар' : 'Редактировать товар'"
-      :visible.sync="dialogFormVisible"
+      :visible.sync="dialog"
       width="100%"
       :fullscreen="true">
       <el-row type="flex" justify="center">
         <el-col :span="20">
           <el-form ref="form" :model="product" :rules="rules" label-width="140px">
-            <el-form-item label="Категория/Группа" label-width="400px" prop="option">
+            <el-form-item label="Категория/Группа" prop="option">
               <el-cascader
                 :options="$store.getters.PRODUCT_TREE"
                 filterable
@@ -20,10 +21,10 @@
                 v-model="product.option">
               </el-cascader>
             </el-form-item>
-            <el-form-item label="Название" :label-width="labelWidth" prop="title">
+            <el-form-item label="Название" prop="title">
               <el-input v-model="product.title" placeholder="( < 128 символов )" :maxlength="128"></el-input>
             </el-form-item>
-            <el-form-item label="Описание" :label-width="labelWidth" prop="description">
+            <el-form-item label="Описание" prop="description">
               <el-input
                 v-model="product.description"
                 type="textarea"
@@ -89,7 +90,7 @@
                     <el-option v-for="val in dictionaries.countries" :key="val" :label="val" :value="val"></el-option>
                   </el-select>
                 </el-form-item>
-                <!--Matrial-->
+                <!--Material-->
                 <el-form-item label="Материал" prop="material">
                   <el-select
                     v-if="dictionaries.materials"
@@ -103,16 +104,13 @@
                 </el-form-item>
               </el-col>
             </el-form-item>
-            <!--BRAND-->
-            <!--<el-form-item label-width="0">-->
-
           </el-form>
           <el-row type="flex" justify="center" class="mt-3">
             <el-button @click="addNewProduct" type="success" :disabled="!isValidForm">
               Создать товар
             </el-button>
             <el-button type="warning" @click="resetForm">Очистить форму</el-button>
-            <el-button type="danger" @click="dialogFormVisible = false">Отмена</el-button>
+            <el-button type="danger" @click="dialog = false">Отмена</el-button>
           </el-row>
         </el-col>
       </el-row>
@@ -127,7 +125,7 @@
     props: ['operation', 'group', 'category'],
     data() {
       return {
-        dialogFormVisible: false,
+        dialog: false,
         product: {
           option: [this.group, this.category],
           title: '',
@@ -181,7 +179,7 @@
           creationDate: new Date()
         }
         console.log(data)
-        this.dialogFormVisible = false
+        this.dialog = false
         this.$store.dispatch('addNewProduct', data).then(() => {
             this.$refs.form.resetFields()
           })
@@ -207,5 +205,4 @@
   #add_product {
     margin-left: 6px;
   }
-
 </style>
