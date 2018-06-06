@@ -1,7 +1,7 @@
 <template>
   <div>
-    <el-button id="add_product" @click="dialog = true">
-      <i class="el-icon-plus"></i>
+    <el-button id="add_product" @click="openDialog">
+      <i :class="operation === 'add' ? 'el-icon-plus' : 'el-icon-edit'"></i>
     </el-button>
 
     <el-dialog
@@ -18,7 +18,7 @@
                 :options="$store.getters.PRODUCT_TREE"
                 filterable
                 placeholder="Выберите категорию"
-                v-model="product.option">
+                v-model="option">
               </el-cascader>
             </el-form-item>
             <el-form-item label="Название" prop="title">
@@ -106,8 +106,11 @@
             </el-form-item>
           </el-form>
           <el-row type="flex" justify="center" class="mt-3">
-            <el-button @click="addNewProduct" type="success" :disabled="!isValidForm">
+            <el-button v-if="operation === 'add'" @click="addNewProduct" type="success" :disabled="!isValidForm">
               Создать товар
+            </el-button>
+            <el-button v-else @click="editProduct" type="success" :disabled="!isValidForm">
+              Сохранить
             </el-button>
             <el-button type="warning" @click="resetForm">Очистить форму</el-button>
             <el-button type="danger" @click="dialog = false">Отмена</el-button>
@@ -122,12 +125,17 @@
 
   export default {
     name: 'AddProduct',
-    props: ['operation', 'group', 'category'],
+    props: {
+      operation: {type: String, required: true},
+      group: {type: String, required: true},
+      category: {type: String, required: true},
+      productId: {type: String}
+    },
     data() {
       return {
         dialog: false,
+        option: [this.group, this.category],
         product: {
-          option: [this.group, this.category],
           title: '',
           description: '',
           SKU: '',
@@ -159,11 +167,17 @@
       }
     },
     methods: {
+      editProduct() {
+        this.dialog = false
+        this.$store.dispatch('editProduct', {...this.product}).then(() => {
+          this.$refs.form.resetFields()
+        })
+      },
       addNewProduct() {
         let p = this.product;
         let data = {
-          group: p.option[0],
-          category: p.option[1],
+          group: this.option[0],
+          category: this.option[1],
           title: p.title,
           description: p.description,
           SKU: p.SKU,
@@ -186,6 +200,12 @@
       },
       resetForm() {
         this.$refs.form.resetFields();
+      },
+      openDialog () {
+        this.dialog = true
+        if (this.operation === 'edit') {
+          this.product = this.$store.getters.products[this.productId]
+        }
       }
     },
     computed: {

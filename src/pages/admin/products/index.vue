@@ -9,11 +9,7 @@
         @change="loadCategoryProducts">
       </el-cascader>
       <el-col class="left" style="width: 100px;">
-        <add-product
-          operation="add"
-          :group="productOption[0]"
-          :category="productOption[1]">
-        </add-product>
+        <AddEditProduct operation="add" :group="productOption[0]" :category="productOption[1]"></AddEditProduct>
       </el-col>
     </el-row>
     <div id="products_table">
@@ -27,7 +23,7 @@
         <el-col style="width: 177px">Операции</el-col>
       </el-row>
       <el-card v-for="p in products" :key="p.productId" id="product_card">
-        <ProductRow :delete-popover="deletePopover" :p="p"/>
+        <ProductRow :key="p.productId" :p="p"/>
       </el-card>
     </div>
     <div v-if="totalProductCount" id="pagination">
@@ -46,26 +42,16 @@
 </template>
 
 <script>
-  import AddProduct from '@/components/admin/products/crud/AddProduct'
-  import ProductRow from "@/components/admin/products/ProductRow";
-  // import EditProduct from '@/components/admin/products//crud/EditProduct'
-  // import EditProductImage from '@/components/admin/products//crud/EditProductImage'
-  // import DeleteProduct from '@/components/admin/products//crud/DeleteProducts'
+  import AddEditProduct from '@/components/admin/products/crud/AddEditProduct'
+  import ProductRow from "@/components/admin/products/ProductRow"
 
   export default {
     name: 'index',
     layout: 'admin',
-    components: {
-      ProductRow,
-      // EditProductImage,
-      // EditProduct,
-      AddProduct
-      // DeleteProduct
-    },
+    components: {ProductRow, AddEditProduct},
     data() {
       return {
         productOption: ['', ''],
-        deletePopover: false,
         curPage: 1,
         pageSize: 6
       }

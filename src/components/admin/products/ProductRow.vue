@@ -14,25 +14,11 @@
       <el-col :span="10" class="product_title">{{ p.title }}</el-col>
       <el-col :span="2">{{ p.price }} &nbsp;&#8381</el-col>
       <el-col :span="2">{{ p.totalQty }}</el-col>
-      <el-col style="width: 57px">
-        <el-button icon="el-icon-edit"></el-button>
-      </el-col>
+      <AddEditProduct operation="edit" :group="p.group" :category="p.category" :productId="p.productId"></AddEditProduct>
       <el-col style="width: 58px">
         <el-button icon="el-icon-picture-outline"></el-button>
       </el-col>
-      <el-col style="width: 57px">
-        <el-popover
-          placement="top"
-          width="160"
-          v-model="deletePopover">
-          <p style="text-align:left;">Вы действительно хотите удалить продукт?</p>
-          <div style="text-align: right; margin: 0">
-            <el-button size="mini" type="text" @click="deletePopover = false">cancel</el-button>
-            <el-button type="primary" size="mini" @click="deletePopover = false">confirm</el-button>
-          </div>
-          <el-button slot="reference" icon="el-icon-delete"></el-button>
-        </el-popover>
-      </el-col>
+      <DeleteProduct :id="p.productId"/>
     </el-row>
     <el-row v-if="openInfo" id="expand_description">
       <p>ИД:
@@ -45,11 +31,14 @@
   </div>
 </template>
 <script>
+  import DeleteProduct from "./crud/DeleteProduct";
+  import AddEditProduct from "./crud/AddEditProduct";
+
   export default {
     name: 'ProductRow',
+    components: {AddEditProduct, DeleteProduct},
     props: {
-      deletePopover: {},
-      p: {}
+      p: {type: Object, required: true}
     },
     data() {
       return {

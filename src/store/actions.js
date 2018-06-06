@@ -176,17 +176,19 @@ export const actions = {
       })
       .catch(err => dispatch('LOG', err))
   },
+
   editProduct({commit, getters, dispatch}, payload) {
     commit('LOADING', true)
     let products = getters.products
     firebase.firestore().collection('products').doc(payload.productId).update(payload)
       .then(() => {
-        products[payload.productId] = Object.assign(products[payload.productId], payload)
+        products[payload.productId] = payload
         commit('setProducts', {...products})
         commit('LOADING', false)
       })
       .catch(err => dispatch('LOG', err))
   },
+
   editProductImage({commit, dispatch}, payload) {
     commit('LOADING', true)
     dispatch('subscribeToSubImagesCreation', payload.productId)
