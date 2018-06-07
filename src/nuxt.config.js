@@ -33,7 +33,8 @@ module.exports = {
   ],
   plugins: [
     '@/plugins/element-ui',
-    '@/plugins/fireauth.js'
+    '@/plugins/fireauth.js',
+    '@/plugins/filters.js',
   ],
   css: [
     {src: 'element-ui/lib/theme-chalk/index.css'},

@@ -105,7 +105,6 @@
   .list_product_image {
     width: $list-width;
     height: $list-height;
-    background: $color-info-light;
     img {
       width: $list-width;
       height: 100%;
@@ -116,7 +115,6 @@
   .module_product_image {
     width: 100%;
     height: $module-img-height;
-    background: $color-info-light;
     img {
       height: $module-img-height;
       width: 100%;

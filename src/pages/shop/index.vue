@@ -125,7 +125,6 @@
 <style scoped lang="scss">
   #product_card_wrap {
     display: flex;
-    /*flex-wrap: wrap;*/
     justify-content: start;
     padding-left: 10px;
     padding-right: 10px;

@@ -1,13 +1,13 @@
 <template>
   <div id="product_row_wrap">
     <el-row id="product_row">
-      <el-col style="width: 80px">
+      <el-col style="width: 64px">
         <el-button
           :icon="openInfo ? 'el-icon-arrow-down' : 'el-icon-arrow-right'"
           circle plain @click="openInfo = !openInfo">
         </el-button>
       </el-col>
-      <el-col style="width: 60px"><img :src="p.img_0.thumbnail" height="40px" width="auto"></el-col>
+      <el-col style="width: 74px"><img :src="p.img_0.thumbnail" height="40px" width="auto"></el-col>
       <el-col style="width: 100px">
         <el-tag size="small" type="success">{{ p.SKU }}</el-tag>
       </el-col>
