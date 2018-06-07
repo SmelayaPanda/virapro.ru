@@ -96,7 +96,14 @@
     },
     methods: {
       handleNodeClick(data) {
-        console.log(data);
+        console.log(data)
+        // TODO: check repeated click, block loading
+        let filter = {
+          [data.type]: data.value,
+          sortByPrice: 'desc'
+        }
+        this.$store.dispatch('setLastVisible', null)
+        this.$store.dispatch('productFilters', filter).then(() => this.$store.dispatch('fetchProducts'))
       },
       filterNode(value, data) {
         if (!value) {
@@ -111,7 +118,7 @@
         return this.$store.getters.products ? this.$store.getters.products : {}
       }
     },
-    created () {
+    created() {
       this.$store.dispatch('fetchProducts')
     },
     watch: {
