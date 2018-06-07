@@ -1,20 +1,18 @@
+// TO SWITCH prod/dev:
+// $ firebase use prod/dev
+
+// *******************
+// SSR FUNCTION
+// *******************
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 const {Nuxt} = require('nuxt');
 const express = require('express');
 const app = express();
-
+admin.initializeApp();
 const config = {
     dev: false,
     debug: true,
-    // plugins: [
-    //     '../../src/plugins/fireauth.js',
-    //     '../../src/plugins/element-ui',
-    //     '../../src/plugins/vuetify'
-    // ],
-    // css: [
-    //     {src: 'element-ui/lib/theme-chalk/index.css'},
-    //     {src: 'vuetify/dist/vuetify.min.css'}
-    // ],
     buildDir: 'nuxt',
     build: {
         vendor: ['element-ui', 'firebase'],
@@ -37,3 +35,41 @@ function handleRequest(req, res) {
 
 app.use(handleRequest);
 exports.nuxtssr = functions.https.onRequest(app);
+
+// *******************
+// ALL CLOUD FUNCTIONS
+// *******************
+// STORAGE
+const createProductSubImages = require('./src/storage/createProductSubImages')
+// GLOBAL CONST
+global.CONST = require('./src/common/constants')
+// firebase functions:config:set app.production="1/0"
+// firebase functions:config:set algolia.app_id="<YOUR-ALGOLIA-APP-ID>"
+// firebase functions:config:set algolia.api_key="<YOUR-ALGOLIA-ADMIN-KEY>"
+// firebase functions:config:set algolia.product_idx="<YOUR-ALGOLIA-PRODUCT-IDX-NAME>" // 'prod_santech', "dev_santech"
+
+// firebase functions:config:set admin.email="SmelayaPandaGM@gmail.com"
+// firebase functions:config:set admin.password="***"
+// firebase functions:config:set developer.email="SmelayaPandaGM@gmail.com"
+// firebase functions:config:set developer.password="***"
+global.IS_PRODUCTION = Number(functions.config().app.production) // 1 - true (prod), 0 - false (dev)
+global.ADMIN_EMAIL = functions.config().admin.email
+global.ADMIN_PASS = functions.config().admin.password
+global.DEVELOPER_EMAIL = functions.config().developer.email
+global.DEVELOPER_PASS = functions.config().developer.password
+
+let nodemailer = require('nodemailer')
+// Can be only one transporter instance
+let mailTransporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: ADMIN_EMAIL,
+        pass: ADMIN_PASS
+    }
+});
+// STORAGE
+exports.createProductSubImages = functions
+    .storage.object()
+    .onFinalize((object, context) => {
+        return createProductSubImages.handler(object, context, admin)
+    })

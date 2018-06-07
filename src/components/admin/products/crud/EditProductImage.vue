@@ -1,8 +1,8 @@
 <template>
   <div>
-    <el-button @click="dialogFormVisible = true">
-      <i class="el-icon-picture-outline"></i>
-    </el-button>
+    <el-col style="width: 56px">
+      <el-button @click="dialogFormVisible = true" icon="el-icon-picture-outline"></el-button>
+    </el-col>
     <!--Image-->
     <el-dialog title="Фото продукта" :visible.sync="dialogFormVisible" width="100%" :fullscreen="true" center>
       <el-row type="flex" justify="center" class="mb-3" style="flex-wrap: wrap">
@@ -33,7 +33,9 @@ import UploadProductImage from './UploadProductImage'
 export default {
   name: 'EditProductImage',
   components: {UploadProductImage},
-  props: ['id'],
+  props: {
+    productId: {type: String, required: true}
+  },
   data () {
     return {
       dialogFormVisible: false,
@@ -48,7 +50,7 @@ export default {
     },
     edit () {
       let editObj = {
-        productId: this.id,
+        productId: this.productId,
         images: this.images
       }
       this.dialogFormVisible = false
@@ -64,7 +66,7 @@ export default {
       return true
     },
     product () {
-      return this.$store.getters.products[this.id]
+      return this.$store.getters.products[this.productId]
     }
   }
 }

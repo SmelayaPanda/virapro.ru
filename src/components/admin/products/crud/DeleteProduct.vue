@@ -1,5 +1,5 @@
 <template>
-  <el-col style="width: 57px">
+  <el-col style="width: 55px">
     <el-popover
       placement="top"
       width="160"
@@ -17,7 +17,7 @@
   export default {
     name: 'DeleteProduct',
     props: {
-      id: {type: String, required: true}
+      productId: {type: String, required: true}
     },
     data() {
       return {
@@ -26,7 +26,7 @@
     },
     methods: {
       deleteProduct() {
-        this.$store.dispatch('deleteProduct', this.id)
+        this.$store.dispatch('deleteProduct', this.productId)
       }
     }
   }

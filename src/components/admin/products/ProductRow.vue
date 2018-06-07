@@ -14,11 +14,9 @@
       <el-col :span="10" class="product_title">{{ p.title }}</el-col>
       <el-col :span="2">{{ p.price }} &nbsp;&#8381</el-col>
       <el-col :span="2">{{ p.totalQty }}</el-col>
-      <AddEditProduct operation="edit" :group="p.group" :category="p.category" :productId="p.productId"></AddEditProduct>
-      <el-col style="width: 58px">
-        <el-button icon="el-icon-picture-outline"></el-button>
-      </el-col>
-      <DeleteProduct :id="p.productId"/>
+      <AddEditProduct :productId="p.productId" operation="edit" :group="p.group" :category="p.category"/>
+      <EditProductImage :productId="p.productId"/>
+      <DeleteProduct :productId="p.productId"/>
     </el-row>
     <el-row v-if="openInfo" id="expand_description">
       <p>ИД:
@@ -33,10 +31,11 @@
 <script>
   import DeleteProduct from "./crud/DeleteProduct";
   import AddEditProduct from "./crud/AddEditProduct";
+  import EditProductImage from "./crud/EditProductImage";
 
   export default {
     name: 'ProductRow',
-    components: {AddEditProduct, DeleteProduct},
+    components: {EditProductImage, AddEditProduct, DeleteProduct},
     props: {
       p: {type: Object, required: true}
     },
