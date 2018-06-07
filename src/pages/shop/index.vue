@@ -48,12 +48,16 @@
       </el-row>
       <el-row id="product_filters">
         <el-col :span="24">
-        <el-collapse v-model="activeNames">
-          <el-collapse-item title="Extend Filter" name="1">
-            <div>Consistent with real life: in line with the process and logic of real life, and comply with languages and habits that the users are used to;</div>
-            <div>Consistent within interface: all elements should be consistent, such as: design style, icons and texts, position of elements, etc.</div>
-          </el-collapse-item>
-        </el-collapse>
+          <el-collapse v-model="activeNames">
+            <el-collapse-item title="Extend Filter" name="1">
+              <div>Consistent with real life: in line with the process and logic of real life, and comply with languages
+                and habits that the users are used to;
+              </div>
+              <div>Consistent within interface: all elements should be consistent, such as: design style, icons and
+                texts, position of elements, etc.
+              </div>
+            </el-collapse-item>
+          </el-collapse>
         </el-col>
       </el-row>
       <el-row>
@@ -62,9 +66,9 @@
                 :md="view === 'list' ? 24 : 12"
                 :lg="view === 'list' ? 24 : 8"
                 :xl="view === 'list' ? 24 : 8"
-                v-for="i in 15" :key="i"
+                v-for="p in products" :key="p.productId"
                 itemscope itemtype="http://schema.org/ItemList">
-          <product-card :id="i" :view="view" itemprop="itemListElement" itemtype="http://schema.org/Product"/>
+          <ProductCard :id="p.productId" :view="view" itemprop="itemListElement" itemtype="http://schema.org/Product"/>
         </el-col>
       </el-row>
     </el-col>
@@ -101,6 +105,14 @@
         }
         return data.label.indexOf(value) !== -1;
       }
+    },
+    computed: {
+      products() {
+        return this.$store.getters.products ? this.$store.getters.products : {}
+      }
+    },
+    created () {
+      this.$store.dispatch('fetchProducts')
     },
     watch: {
       filterText(val) {

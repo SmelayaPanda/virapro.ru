@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <h1> Router id: {{ $route.params.id }}</h1>
-  </div>
+  <el-button @click="$router.push('/shop')">В Магазин</el-button>
 </template>
 
 <script>
   export default {
-    name: "Product"
+    name: "index"
   }
 </script>
 

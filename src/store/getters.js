@@ -4,6 +4,7 @@ export const getters = {
 
   // PRODUCTS
   products: state => state.products,
+  singleProduct: state => state.singleProduct,
   lastVisible: state => state.lastVisible,
   productFilters: state => state.productFilters,
   algoliaSearchText: state => state.algoliaSearchText,

@@ -26,6 +26,9 @@ export const mutations = {
   setProducts(state, payload) {
     state.products = payload
   },
+  setSingleProduct(state, payload) {
+    state.singleProduct = payload
+  },
   setLastVisible(state, payload) {
     state.lastVisible = payload
   },

@@ -5,11 +5,9 @@ export const actions = {
 
   // PRODUCTS
   loadSingleProduct({commit, getters, dispatch}, payload) {
-    let products = getters.products ? getters.products : {}
-    return firebase.firestore().collection('products').doc(payload).get()
+    return fs.collection('products').doc(payload).get()
       .then(snap => {
-        products[snap.id] = snap.data()
-        commit('setProducts', {...products})
+        commit('setSingleProduct', {...snap.data()})
         console.log('Single product loaded')
       })
       .catch(err => dispatch('LOG', err))

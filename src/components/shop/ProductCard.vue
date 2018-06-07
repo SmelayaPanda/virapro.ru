@@ -16,7 +16,9 @@
                 :md="view === 'list' ? 8 : 24"
                 :lg="view === 'list' ? 7 : 24"
                 :xl="view === 'list' ? 6 : 24">
-          <div :class="view === 'list' ? 'list_product_image' : 'module_product_image'"></div>
+          <div :class="view === 'list' ? 'list_product_image' : 'module_product_image'">
+            <img class="product_img" :src="product.img_0.card" alt="">
+          </div>
         </el-col>
         <el-col class="product_description"
                 :xs="24"
@@ -25,14 +27,12 @@
                 :lg="view === 'list' ? 17 : 24"
                 :xl="view === 'list' ? 18 : 24">
           <p itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-            <span itemprop="price" :content="id">{{ id }} </span>
+            <span itemprop="price" :content="product.price">{{ product.price }} </span>
             <span itemprop="priceCurrency" content="RUB">RUB</span>
           </p>
           <p itemprop="name">
-            Some product name + {{ id }}
+            {{ product.title }}
           </p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid consequuntur dignissimos earum
-            eligendi</p>
         </el-col>
       </el-row>
     </el-card>
@@ -61,8 +61,10 @@
         })
       },
       viewProduct() {
-        this.$store.dispatch('USER_EVENT', `Просмотр: ${this.product.title}`)
-        this.$router.push('/products/' + this.id)
+        // this.$store.dispatch('USER_EVENT', `Просмотр: ${this.product.title}`)
+        this.$router.push({
+          path: `/shop/${this.product.group}/${this.product.category}/${this.id}`,
+        })
       }
     },
     computed: {
@@ -70,16 +72,15 @@
         return this.$store.getters.USER
       },
       product() {
-        return true
-        // return this.$store.getters.products[this.id]
+        return this.$store.getters.products[this.id]
       }
     }
   }
 </script>
 
 <style scoped lang="scss">
-  $list-height: 220px;
-  $list-width: 220px;
+  $list-height: 140px;
+  $list-width: 140px;
   $module-height: 480px;
   $module-img-height: 300px;
 
@@ -105,16 +106,26 @@
     width: $list-width;
     height: $list-height;
     background: $color-info-light;
+    img {
+      width: $list-width;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   .module_product_image {
     width: 100%;
     height: $module-img-height;
     background: $color-info-light;
+    img {
+      height: $module-img-height;
+      width: 100%;
+      object-fit: cover;
+    }
   }
 
   .card {
-    margin: 10px;
+    margin: 4px;
     padding: 0;
     border: 1px solid $color-info-light;
     transition: all .5s;

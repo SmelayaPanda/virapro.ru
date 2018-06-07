@@ -24,6 +24,7 @@ export const state = () => ({
 
   // PRODUCTS
   products: {},
+  singleProduct: {},
   productStatistics: { // auto updated from cloud function
     maxPrice: 1000000,
     avgPrice: 0,
