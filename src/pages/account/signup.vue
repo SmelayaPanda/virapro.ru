@@ -107,7 +107,7 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$store.dispatch('signUserUp', {
+            this.$store.dispatch('signUpWithEmailAndPassword', {
               email: this.form.email,
               password: this.form.password,
               firstname: this.form.firstname,

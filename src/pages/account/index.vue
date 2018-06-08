@@ -1,26 +1,24 @@
 <template>
-  <el-row type="flex" justify="start">
-    <el-col :span="20">
-      <no-ssr>
-        <div v-if="$store.getters.USER">
+  <no-ssr>
+    <el-row type="flex" justify="start">
+      <el-col :span="20">
+        <div v-if="$store.getters.USER && $store.getters.USER.isAnonymous">
+          <AnonymousAccount/>
+        </div>
+        <div v-if="$store.getters.USER && !$store.getters.USER.isAnonymous">
           <h1>User Data</h1>
           <p>{{ $store.getters.USER.email }}</p>
           <p>{{ $store.getters.USER.firstname }} {{ $store.getters.USER.lastname }}</p>
           <el-button type="success" @click="$store.dispatch('logout')">Logout</el-button>
         </div>
-        <div v-else>
-          <nuxt-link to="/account/signin">
-            <el-button>Signin</el-button>
-          </nuxt-link>
-          <nuxt-link to="/account/signup">
-            <el-button>Signup</el-button>
-          </nuxt-link>
-        </div>
-      </no-ssr>
-    </el-col>
-  </el-row>
+      </el-col>
+    </el-row>
+  </no-ssr>
 </template>
 
 <script>
-  export default {}
+  import AnonymousAccount from "@/components/account/AnonymousAccount";
+  export default {
+    components: {AnonymousAccount}
+  }
 </script>

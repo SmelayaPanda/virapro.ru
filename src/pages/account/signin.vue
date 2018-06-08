@@ -79,7 +79,7 @@
         this.submitCount++
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$store.dispatch('signUserIn', {
+            this.$store.dispatch('signInWithEmailAndPassword', {
               email: this.form.email,
               password: this.form.password
             })

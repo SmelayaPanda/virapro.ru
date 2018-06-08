@@ -1,4 +1,4 @@
-import firebase, {auth, fs, GoogleProvider} from "../services/fireinit";
+import firebase, {auth, db, fs, GoogleProvider} from "../services/fireinit";
 import {Message, Notification} from 'element-ui'
 
 export const actions = {
@@ -281,29 +281,17 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
-  signUserUp({commit, dispatch, getters}, payload) {
-    commit('ERR', '')
+  signUpWithEmailAndPassword({commit, dispatch}, payload) {
+    commit('ERR', null)
     commit('LOADING', true)
-    fs.collection('greeting').doc('hi').get()
-    return auth.createUserAndRetrieveDataWithEmailAndPassword(payload.email, payload.password)
-      .then((snap) => {
-        return fs.collection('users').doc(snap.user.uid).set({
-          uid: snap.user.uid,
-          firstname: payload.firstname,
-          lastname: payload.lastname,
-          email: payload.email
-        })
-      })
-      .then(() => {
-        return auth.currentUser.sendEmailVerification()
-      })
+    dispatch('upgradeAnonymousAccount', payload)
       .then(() => {
         Notification({
-          title: 'Yhuu',
-          message: 'Account successfully created! Check email for verification.',
+          title: 'Поздравляем',
+          message: 'Аккаунт был успешно создан!',
           type: 'success',
           showClose: true,
-          duration: 30000,
+          duration: 10000,
           offset: 50
         })
         $nuxt.$router.push('/account')
@@ -311,6 +299,30 @@ export const actions = {
       })
       .catch(err => dispatch('LOG', err))
   },
+
+  upgradeAnonymousAccount({commit, dispatch}, payload) {
+    let credential = firebase.auth.EmailAuthProvider.credential(payload.email, payload.password)
+    auth.currentUser.linkWithCredential(credential)
+      .then(user => {
+        dispatch('fetchUserData', user)
+        user.sendEmailVerification() // TODO: verification link may be expired, force resend
+        console.log('User register. Email verification sent.')
+        console.log('Anonymous account successfully upgraded', user)
+        return Promise.all([
+          fs.collection('users').doc(user.uid)
+            .update({
+              email: payload.email,
+              firstname: payload.firstname,
+              lastname: payload.lastname,
+              emailVerified: user.emailVerified,
+              isAnonymous: false
+            }),
+          db.ref(`liveChats/${user.uid}/props`).update({userEmail: user.email})
+        ])
+      })
+      .catch(err => dispatch('LOG', err))
+  },
+
 
   signInWithGoogle({commit}) {
     return new Promise((resolve, reject) => {
@@ -323,10 +335,10 @@ export const actions = {
   signOut({commit}) {
     auth.signOut().then(() => {
       commit('setUser', null)
-    }).catch(err => console.log(error))
+    }).catch(err => console.log(err))
   },
 
-  signUserIn({commit, dispatch}, payload) {
+  signInWithEmailAndPassword({commit, dispatch}, payload) {
     commit('ERR', '')
     commit('LOADING', true)
     auth.signInAndRetrieveDataWithEmailAndPassword(payload.email, payload.password)
@@ -338,25 +350,22 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
-  upgradeAnonymousAccount:
-    ({commit, dispatch}, payload) => {
-      let credential = firebase.auth.EmailAuthProvider.credential(payload.email, payload.password)
-      auth.currentUser.linkWithCredential(credential)
-        .then(user => {
-          dispatch('fetchUserData', user)
-          user.sendEmailVerification() // TODO: verification link may be expired, force resend
-          console.log(' >> User register. Email verification sent.')
-          console.log(' >> Anonymous account successfully upgraded', user)
-          return Promise.all([
-            fs.collection('users').doc(user.uid)
-              .update({
-                email: user.email,
-                role: 'guest',
-                emailVerified: user.emailVerified,
-                isAnonymous: false
-              }),
-            firebase.database().ref(`liveChats/${user.uid}/props`).update({userEmail: user.email})
-          ])
+  signInAnonymously:
+  // All users initially register as anonymous
+    ({commit, dispatch}) => {
+      commit('setUser', {cart: [], orders: []})
+      firebase.auth().signInAnonymouslyAndRetrieveData()
+        .then((data) => { // onAuthStateChanged works
+          return firebase.firestore().collection('users').doc(data.user.uid)
+            .set({ // initialize user for quick update
+              role: 'guest',
+              cart: [],
+              orders: [],
+              favorites: []
+            })
+        })
+        .then(() => {
+          console.log('>> You are sign in anonymously')
         })
         .catch(err => dispatch('LOG', err))
     },
