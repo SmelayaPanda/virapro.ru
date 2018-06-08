@@ -67,7 +67,6 @@ export const actions = {
         snap.docs.forEach(doc => {
           products[doc.id] = doc.data()
         })
-        console.log(products)
         commit('setProducts', {...products})
         commit('LOADING', false)
       })
