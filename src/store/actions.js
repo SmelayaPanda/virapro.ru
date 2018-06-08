@@ -482,7 +482,7 @@ export const actions = {
   // All users initially register as anonymous
     ({commit, dispatch}) => {
       commit('setUser', {cart: [], orders: []})
-      firebase.auth().signInAnonymouslyAndRetrieveData()
+      firebase.auth().signInAnonymouslyAndRetrieveData() // TODO: deprecated - replace by signInAnonymously()
         .then((data) => { // onAuthStateChanged works
           return fs.collection('users').doc(data.user.uid)
             .set({ // initialize user for quick update

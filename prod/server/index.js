@@ -41,6 +41,10 @@ exports.nuxtssr = functions.https.onRequest(app);
 // *******************
 // STORAGE
 const createProductSubImages = require('./src/storage/createProductSubImages')
+// DATABASE
+const updateProductStatistics = require('./src/db/products/updateProductStatistics')
+const updateAlgoliaIndex = require('./src/db/products/updateAlgoliaIndex')
+const deleteAlgoliaIndex = require('./src/db/products/deleteAlgoliaIndex')
 // GLOBAL CONST
 global.CONST = require('./src/common/constants')
 // firebase functions:config:set app.production="1/0"
@@ -57,6 +61,9 @@ global.ADMIN_EMAIL = functions.config().admin.email
 global.ADMIN_PASS = functions.config().admin.password
 global.DEVELOPER_EMAIL = functions.config().developer.email
 global.DEVELOPER_PASS = functions.config().developer.password
+global.ALGOLIA_ID = functions.config().algolia.app_id;
+global.ALGOLIA_ADMIN_KEY = functions.config().algolia.api_key;
+global.ALGOLIA_INDEX_NAME = functions.config().algolia.product_idx;
 
 let nodemailer = require('nodemailer')
 // Can be only one transporter instance
@@ -72,4 +79,20 @@ exports.createProductSubImages = functions
     .storage.object()
     .onFinalize((object, context) => {
         return createProductSubImages.handler(object, context, admin)
+    })
+
+// DATABASE
+// Now, product updated after insertion (.onWrite not necessary)
+exports.onUpdateProduct = functions.firestore
+    .document('products/{productId}')
+    .onUpdate((change, context) => {
+        return Promise.all([
+            updateProductStatistics.handler(change, context, admin),
+            updateAlgoliaIndex.handler(change, context, functions)
+        ])
+    })
+exports.onDeleteProduct = functions.firestore
+    .document('products/{productId}')
+    .onDelete((change, context) => {
+        return deleteAlgoliaIndex.handler(change, context, functions)
     })

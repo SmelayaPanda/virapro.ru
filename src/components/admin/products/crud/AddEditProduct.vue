@@ -112,7 +112,7 @@
             <el-button v-else @click="editProduct" type="success" :disabled="!isValidForm">
               Сохранить
             </el-button>
-            <el-button type="warning" @click="resetForm">Очистить форму</el-button>
+            <el-button v-if="operation === 'add'" type="warning" @click="resetForm">Очистить форму</el-button>
             <el-button type="danger" @click="dialog = false">Отмена</el-button>
           </el-row>
         </el-col>
