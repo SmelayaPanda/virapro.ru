@@ -21,6 +21,26 @@ export const state = () => ({
     orders: []
   },
 
+  // ORDERS
+  orders: {},
+  orderStatistics: {
+    payPending: 0,
+    sentPending: 0,
+    sent: 0,
+    delivered: 0,
+    refused: 0,
+    totalOrders: 0
+  },
+  confirmationObj: {orderId: '', url: ''},
+
+  // REVIEWS
+  reviews: {},
+  reviewStatistics: {
+    created: 0,
+    published: 0,
+    archived: 0,
+    totalReviews: 0
+  },
 
   // COMPANY INFO
   companyInfo: {

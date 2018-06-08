@@ -7,6 +7,16 @@ export const mutations = {
     state.IS_ADMIN = payload
   },
 
+  // ORDERS
+  setOrders(state, payload) {
+    state.orders = payload
+  },
+  orderStatistics(state, payload) {
+    state.orderStatistics = payload
+  },
+  setConfirmationObj(state, payload) {
+    state.confirmationObj = payload
+  },
 
   // SYSTEM
   LOADING(state, payload) {
@@ -19,6 +29,14 @@ export const mutations = {
   // DICTIONARIES
   setDictionary(state, payload) {
     state.dictionaries[payload.name] = payload.data
+  },
+
+  // REVIEWS
+  setReviews(state, payload) {
+    state.reviews = payload
+  },
+  reviewStatistics(state, payload) {
+    state.reviewStatistics = payload
   },
 
 

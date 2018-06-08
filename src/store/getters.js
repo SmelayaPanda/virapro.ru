@@ -11,8 +11,17 @@ export const getters = {
   productStatistics: state => state.productStatistics,
   PRODUCT_TREE: state => state.PRODUCT_TREE,
 
+  // ORDERS
+  orders: state => state.orders,
+  orderStatistics: state => state.orderStatistics,
+  confirmationObj: state => state.confirmationObj,
+
   // COMPANY INFO
   companyInfo: state => state.companyInfo,
+
+  // REVIEWS
+  reviews: state => state.reviews,
+  reviewStatistics: state => state.reviewStatistics,
 
   // DICTIONARIES
   dictionaries: state => state.dictionaries,

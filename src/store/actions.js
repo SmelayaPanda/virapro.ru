@@ -247,6 +247,135 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
+
+
+
+
+
+
+  // ORDERS
+  fetchOrders:
+    ({commit, getters, dispatch}, payload) => {
+      commit('LOADING', true)
+      let query = fs.collection('orders')
+      if (payload.userId) {
+        query = query.where('buyer.userId', '==', payload.userId)
+      }
+      if (payload.status) {
+        query = query.where('status', '==', payload.status)
+      }
+      let orders = {}
+      query.orderBy('history.created', 'desc').get()
+        .then(snap => {
+          snap.docs.forEach(doc => {
+            orders[doc.id] = doc.data()
+            orders[doc.id].id = doc.id
+            orders[doc.id].showDetails = false // for collapse details
+          })
+          commit('setOrders', {...orders})
+          commit('LOADING', false)
+        })
+        .catch(err => dispatch('LOG', err))
+    },
+
+
+  subscribeToOrderModification:
+    ({commit, getters, dispatch}, payload) => {
+      let orders = getters.orders ? getters.orders : {}
+      return fs.collection('orders').doc(payload)
+        .onSnapshot(function (doc) {
+          console.log('Order changed')
+          let order = doc.data()
+          order.id = doc.id
+          orders[doc.id] = order
+          commit('setOrders', {...orders})
+        })
+    },
+
+
+  checkout:
+    ({commit, getters, dispatch}, payload) => {
+      commit('LOADING', true)
+      let user = getters.user
+      let orders = getters.orders ? getters.orders : {}
+      fs.collection('orders').add(payload)
+        .then((docRef) => {
+          payload.id = docRef.id
+          orders[docRef.id] = payload
+          let actions = []
+          // 1. Decrease totalQty of each products
+          let decreaseQty = function (id, totalQty) {
+            return fs.collection('products').doc(id).update({totalQty: totalQty})
+          }
+          let productQty = 0
+          payload.products.forEach(el => {
+            productQty = user.cart[el.id].totalQty
+            delete user.cart[el.id]
+            actions.push(decreaseQty(el.id, productQty - el.qty > 0 ? productQty - el.qty : 0))
+          })
+          // 2. Update user data
+          let orderIds = Object.keys(orders)
+          let cartProductIds = user.cart ? Object.keys(user.cart) : []
+          let updateUserData = function (cart, ordersIds) {
+            return fs.collection('users').doc(user.uid).update({cart: cart, orders: ordersIds})
+          }
+          actions.push(updateUserData(cartProductIds, orderIds))
+          return Promise.all(actions)
+        })
+        .then(() => {
+          commit('setOrders', {...orders})
+          commit('setUser', {...user})
+          commit('LOADING', false)
+          Notification({
+            title: 'Поздравляем!',
+            message:
+            'Заказ совершен! ' +
+            'Мы свяжемся с Вами в ближайшее время для подтверждения покупки.',
+            type: 'success',
+            showClose: true,
+            duration: 30000,
+            offset: 50
+          })
+          router.push('/cart')
+        })
+        .catch(err => dispatch('LOG', err))
+    },
+
+
+  updateOrder:
+    ({commit, getters, dispatch}, payload) => {
+      commit('LOADING', true)
+      let orders = getters.orders
+      fs.collection('orders').doc(payload.id).update(payload.updateData)
+        .then(() => {
+          if (payload.type === 'payment_success') {
+            orders[payload.id].payment.status = 'succeeded'
+          } else {
+            delete orders[payload.id]
+          }
+          console.log('Order updated')
+          commit('setOrders', {...orders})
+          commit('LOADING', false)
+        })
+        .catch(err => dispatch('LOG', err))
+    },
+  fetchOrderStatistics:
+    ({commit, dispatch}) => {
+      fs.collection('statistics').doc('orders').get()
+        .then(snapshot => {
+          console.log('Statistics: for orders')
+          commit('orderStatistics', snapshot.data())
+        })
+        .catch(err => dispatch('LOG', err))
+    },
+  setConfirmationObj ({commit}, payload) {
+    commit('setConfirmationObj', payload)
+  },
+
+
+
+
+
   // USER
   // USER DATA = full firebase auth.currentUser object + app data keeping in firestore db
   fetchUserData({commit, dispatch, getters}, payload) {
@@ -540,6 +669,71 @@ export const actions = {
           console.log('Company info updated')
           commit('setCompanyInfo', {...companyInfo})
           commit('LOADING', false)
+        })
+        .catch(err => dispatch('LOG', err))
+    },
+
+
+
+
+
+  // REVIEWS
+  fetchReviews:
+    ({commit, dispatch}, payload) => {
+      commit('LOADING', true)
+      let query = fs.collection('reviews')
+      if (payload.status) {
+        query = query.where('status', '==', payload.status)
+      }
+      query.get()
+        .then(snapshot => {
+          let reviews = {}
+          snapshot.docs.forEach(doc => {
+            reviews[doc.id] = doc.data()
+            reviews[doc.id].id = doc.id
+          })
+          commit('setReviews', {...reviews})
+          commit('LOADING', false)
+          console.log('Fetched: reviews')
+        })
+        .catch(err => dispatch('LOG', err))
+    },
+  addReview:
+    ({commit, getters, dispatch}, payload) => {
+      commit('LOADING', true)
+      payload.userId = getters.user.uid
+      fs.collection('reviews').add(payload)
+        .then(() => {
+          commit('LOADING', false)
+          console.log('Review added')
+          Notification({
+            title: 'Спасибо',
+            message: 'Ваш отзыв будет опубликован после проходения модерации!',
+            type: 'success',
+            showClose: true,
+            duration: 10000,
+            offset: 50
+          })
+        })
+        .catch(err => dispatch('LOG', err))
+    },
+  updateReview:
+    ({commit, dispatch}, payload) => {
+      commit('LOADING', true)
+      fs.collection('reviews').doc(payload.reviewId).update(payload.updateData)
+        .then(() => {
+          dispatch('fetchReviews', {status: payload.oldStatus})
+          commit('LOADING', false)
+          console.log('Review updated')
+        })
+        .catch(err => dispatch('LOG', err))
+    },
+  fetchReviewStatistics:
+    ({commit, dispatch}) => {
+      fs.collection('statistics').doc('reviews').get()
+        .then(snapshot => {
+          console.log('Statistics: for reviews')
+          commit('reviewStatistics', snapshot.data())
         })
         .catch(err => dispatch('LOG', err))
     },
