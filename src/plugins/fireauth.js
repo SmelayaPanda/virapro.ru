@@ -21,6 +21,8 @@ export default (context) => {
       } else {
         store.dispatch('signInAnonymously')
       }
+      // ALWAYS
+      store.dispatch('fetchCompanyInfo') // for footer
       resolve()
     })
   })

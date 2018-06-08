@@ -1,5 +1,5 @@
 <template>
-  <div class="ml-5">
+  <div>
     <h2>{{ title }}</h2>
     <el-button @click="addDialog = true" type="success">
       <i class="el-icon-plus"></i>
@@ -21,8 +21,7 @@
     </el-dialog>
 
     <el-select filterable value="" v-model="item" :placeholder="title" v-if="dictionary">
-      <el-option v-for="val in dictionary" :key="val" :label="val" :value="val">
-      </el-option>
+      <el-option v-for="val in dictionary" :key="val" :label="val" :value="val"></el-option>
     </el-select>
 
     <el-button type="danger" @click="deleteDialog = true" :disabled="!item">

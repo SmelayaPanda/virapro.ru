@@ -40,5 +40,10 @@ export const mutations = {
   },
   productStatistics(state, payload) {
     state.productStatistics = payload
+  },
+
+  // COMPANY INFO
+  setCompanyInfo(state, payload) {
+    state.companyInfo = payload
   }
 }

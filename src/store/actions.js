@@ -19,7 +19,7 @@ export const actions = {
       return // product -> shop (old result)
     }
     let filter = getters.productFilters
-    let query = firebase.firestore().collection('products')
+    let query = fs.collection('products')
     if (filter.maxPrice) {
       query = query
         .where('price', '>=', filter.minPrice)
@@ -109,7 +109,7 @@ export const actions = {
         let resp = responses.hits
         let actions = []
         let fetchProduct = function (id) {
-          return firebase.firestore().collection('products').doc(id).get()
+          return fs.collection('products').doc(id).get()
         }
         for (let product in resp) {
           if (resp.hasOwnProperty(product)) {
@@ -151,7 +151,7 @@ export const actions = {
     commit('LOADING', true)
     let products = getters.products ? getters.products : {}
     let updateData
-    firebase.firestore().collection('products').add(payload)
+    fs.collection('products').add(payload)
       .then(snap => {
         updateData = {
           // add productId field for quick access anywhere
@@ -165,7 +165,7 @@ export const actions = {
         }
         let newProduct = {[snap.id]: Object.assign(updateData, payload)}
         products = Object.assign(newProduct, products)
-        return firebase.firestore().collection('products').doc(snap.id).update(updateData)
+        return fs.collection('products').doc(snap.id).update(updateData)
       })
       .then(() => {
         commit('setProducts', {...products})
@@ -177,7 +177,7 @@ export const actions = {
   editProduct({commit, getters, dispatch}, payload) {
     commit('LOADING', true)
     let products = getters.products
-    firebase.firestore().collection('products').doc(payload.productId).update(payload)
+    fs.collection('products').doc(payload.productId).update(payload)
       .then(() => {
         products[payload.productId] = payload
         commit('setProducts', {...products})
@@ -205,7 +205,7 @@ export const actions = {
   },
   subscribeToSubImagesCreation({commit, getters}, payload) { // realtime change images
     let products = getters.products
-    firebase.firestore().collection('products').doc(payload)
+    fs.collection('products').doc(payload)
       .onSnapshot(doc => {
         products[doc.id] = doc.data()
         commit('setProducts', {...products})
@@ -214,7 +214,7 @@ export const actions = {
   deleteProduct({commit, getters, dispatch}, payload) {
     commit('LOADING', true)
     let products = getters.products
-    firebase.firestore().collection('products').doc(payload).delete()
+    fs.collection('products').doc(payload).delete()
       .then(() => {
         let product = products[payload]
         let images = [] // images names
@@ -239,7 +239,7 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
   fetchProductStatistics({commit, dispatch}) {
-    firebase.firestore().collection('statistics').doc('products').get()
+    fs.collection('statistics').doc('products').get()
       .then(snapshot => {
         console.log('Statistics: for products')
         commit('productStatistics', snapshot.data())
@@ -355,7 +355,7 @@ export const actions = {
       commit('setUser', {cart: [], orders: []})
       firebase.auth().signInAnonymouslyAndRetrieveData()
         .then((data) => { // onAuthStateChanged works
-          return firebase.firestore().collection('users').doc(data.user.uid)
+          return fs.collection('users').doc(data.user.uid)
             .set({ // initialize user for quick update
               role: 'guest',
               cart: [],
@@ -481,9 +481,10 @@ export const actions = {
 
 
   // DICTIONARIES
-  fetchDictionaries({commit, dispatch}) {
+  fetchDictionaries:
+    ({commit, dispatch}) =>{
     commit('LOADING', true)
-    firebase.firestore().collection('dictionaries').get()
+    fs.collection('dictionaries').get()
       .then(snapshot => {
         let docs = snapshot.docs
         docs.forEach(doc => {
@@ -495,11 +496,13 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
-  uploadDictionary({commit, getters, dispatch}, payload) {
+
+  uploadDictionary:
+    ({commit, getters, dispatch}, payload) => {
     let name = payload.name
     delete payload.dictionary
     commit('LOADING', true)
-    firebase.firestore().collection('dictionaries').doc(name).set({all: payload.data})
+    fs.collection('dictionaries').doc(name).set({all: payload.data})
       .then(() => {
         commit('setDictionary', {name: payload.name, data: payload.data})
         commit('LOADING', false)
@@ -507,6 +510,40 @@ export const actions = {
       })
       .catch(err => dispatch('LOG', err))
   },
+
+  // COMPANY INFO
+  fetchCompanyInfo:
+    ({commit, dispatch}) => {
+      commit('LOADING', true)
+      fs.collection('companyInfo').get()
+        .then(snap => {
+          let companyInfo = {}
+          snap.docs.forEach(doc => {
+            companyInfo[doc.id] = doc.data()
+          })
+          commit('setCompanyInfo', {...companyInfo})
+          console.log('Fetched: company info')
+          commit('LOADING', false)
+        })
+        .catch(err => dispatch('LOG', err))
+    },
+
+
+  updateCompanyInfo:
+    ({commit, getters, dispatch}, payload) => {
+      commit('LOADING', true)
+      let companyInfo = getters.companyInfo
+      fs.collection('companyInfo').doc(payload.document)
+        .update({[payload.field]: payload.value})
+        .then(() => {
+          companyInfo[payload.document][payload.field] = payload.value
+          console.log('Company info updated')
+          commit('setCompanyInfo', {...companyInfo})
+          commit('LOADING', false)
+        })
+        .catch(err => dispatch('LOG', err))
+    },
+
 
   // APP
   ERR({commit}, payload) {

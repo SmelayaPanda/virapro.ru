@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <h1>Company</h1>
-  </div>
+  <CompanyInfo/>
 </template>
 
 <script>
+  import CompanyInfo from "@/components/admin/company_info/CompanyInfo";
   export default {
     name: "index",
+    components: {CompanyInfo},
     layout: 'admin'
   }
 </script>

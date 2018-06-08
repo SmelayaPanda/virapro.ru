@@ -22,6 +22,27 @@ export const state = () => ({
   },
 
 
+  // COMPANY INFO
+  companyInfo: {
+    contacts: {
+      phone: '',
+      mobilePhone: '',
+      email: ''
+    },
+    address: {
+      country: '',
+      city: '',
+      street: '',
+      build: '',
+      house: '',
+      postCode: ''
+    },
+    main: {
+      INN: '',
+      name: ''
+    }
+  },
+
   // PRODUCTS
   products: {},
   singleProduct: {},

@@ -11,11 +11,15 @@ export const getters = {
   productStatistics: state => state.productStatistics,
   PRODUCT_TREE: state => state.PRODUCT_TREE,
 
+  // COMPANY INFO
+  companyInfo: state => state.companyInfo,
+
+  // DICTIONARIES
+  dictionaries: state => state.dictionaries,
+
   // SYSTEM
   IS_ADMIN: state => state.IS_ADMIN, // (Boolean) current user is admin?
   ADMINS: state => state.ADMINS, // (Array) list of admin emails
   LOADING: state => state.LOADING, // (Boolean) global loading flag
-  ERR: state => state.ERR, // (Object) global error object
-  // DICTIONARIES
-  dictionaries: state => state.dictionaries
+  ERR: state => state.ERR // (Object) global error object
 }
