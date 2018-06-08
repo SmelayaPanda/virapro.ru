@@ -27,8 +27,10 @@
           <div id="algolia_search">
             <el-input
               label="Algolia Filter"
+              @change="algoliaSearch"
+              @keyup.enter.exact="algoliaSearch"
               placeholder="Find product"
-              v-model="algoliaText">
+              v-model="algoliaSearchText">
               <el-button slot="append" icon="el-icon-search"></el-button>
             </el-input>
           </div>
@@ -76,14 +78,15 @@
 </template>
 
 <script>
-  import ProductCard from "../../components/shop/ProductCard";
+  import ProductCard from "@/components/shop/ProductCard";
 
   export default {
     components: {ProductCard},
     data() {
+      let filter = this.$store.getters.productFilters
       return {
         filterText: '',
-        algoliaText: '',
+        algoliaSearchText: '',
         treeKey: '1',
         view: 'list',
         activeNames: [], // ['1', '2']
@@ -91,7 +94,27 @@
           children: 'children',
           label: 'label',
           disabled: false
-        }
+        },
+        hoverOnCard: false,
+        sortByPrice: filter.sortByPrice,
+        sliderValues: [
+          filter.minPrice,
+          filter.maxPrice
+            ? filter.maxPrice
+            : this.$store.getters.productStatistics.maxPrice
+        ],
+        selectedCountry: filter.country,
+        selectedBrand: filter.brand,
+        selectedColor: filter.color,
+        selectedMaterial: filter.material,
+        selectedGroup: filter.group,
+        selectedCategory: filter.category,
+        isCollapsed: false,
+        activeName:
+          !filter.brand &&
+          !filter.color &&
+          !filter.minPrice &&
+          !filter.maxPrice ? '0' : '1'
       };
     },
     methods: {
@@ -111,11 +134,131 @@
           this.$forceUpdate()
         }
         return data.label.indexOf(value) !== -1;
+      },
+      changeSortByPrice () {
+        if (this.sortByPrice === 'asc') {
+          this.sortByPrice = 'desc'
+          // this.$store.dispatch('USER_EVENT', `Сортировка по цене: убывание`)
+        } else {
+          this.sortByPrice = 'asc'
+          // this.$store.dispatch('USER_EVENT', `Сортировка по цене: возрастание`)
+        }
+        this.filterProducts()
+      },
+      filterProducts () {
+        this.$store.dispatch('setLastVisible', null)
+        this.filter()
+      },
+      loadMore () {
+        // this.$store.dispatch('USER_EVENT', 'Загрузить больше')
+        this.filter()
+      },
+      filter () {
+        // this.logFilterEvents()
+        this.$store.dispatch('productFilters', {
+          limit: 15,
+          sortByPrice: this.sortByPrice,
+          minPrice: this.sliderValues[0],
+          maxPrice: this.sliderValues[1],
+          category: this.selectedCategory,
+          group: this.selectedGroup,
+          country: this.selectedCountry,
+          brand: this.selectedBrand,
+          color: this.selectedColor,
+          material: this.selectedMaterial
+        })
+          .then(() => {
+            if (this.algoliaSearchText) {
+              return this.$store.dispatch('algoliaSearch', this.algoliaSearchText)
+            } else {
+              this.$store.dispatch('setAlgoliaSearchText', null)
+              return this.$store.dispatch('fetchProducts')
+            }
+          })
+      },
+      changeCategory (key) {
+        let groupList = ['sexToy', 'bdsm', 'baa', 'condom', 'eroticLingerie', 'cosmetic', 'gifts']
+        if (groupList.indexOf(key) !== -1) {
+          this.selectedGroup = key
+          this.selectedCategory = null
+        } else {
+          this.selectedCategory = key
+          this.selectedGroup = null
+        }
+        // this.$store.dispatch('USER_EVENT', `Категория: ${this.searchGroup.split(':')[0]}`)
+      },
+      algoliaSearch () {
+        if (!this.algoliaSearchText) {
+          this.$store.dispatch('setAlgoliaSearchText', null)
+          return this.filterProducts()
+        }
+        if (this.algoliaSearchText !== this.$store.getters.algoliaSearchText) { // because input have 2 events
+          this.$store.dispatch('algoliaSearch', this.algoliaSearchText)
+          // this.$store.dispatch('USER_EVENT', `Поиск по слову: "${this.algoliaSearchText}"`)
+        }
+      },
+      logFilterEvents () {
+        let lastFilter = this.$store.getters.productFilters
+        if (lastFilter.brand !== this.selectedBrand) {
+          this.$store.dispatch('USER_EVENT', `Фильтр - бренд: ${this.selectedBrand}`)
+        }
+        if (lastFilter.country !== this.selectedCountry) {
+          this.$store.dispatch('USER_EVENT', `Фильтр - страна: ${this.selectedCountry}`)
+        }
+        if (lastFilter.color !== this.selectedColor) {
+          this.$store.dispatch('USER_EVENT', `Фильтр - цвет: ${this.selectedColor}`)
+        }
+        if (lastFilter.material !== this.selectedMaterial) {
+          this.$store.dispatch('USER_EVENT', `Фильтр - материал: ${this.selectedMaterial}`)
+        }
+        if (lastFilter.minPrice !== this.sliderValues[0] ||
+          (lastFilter.maxPrice !== this.sliderValues[1] &&
+            this.sliderValues[1] !== this.$store.getters.productStatistics.maxPrice)) {
+          this.$store.dispatch('USER_EVENT', `Фильтр - цена: [${this.sliderValues[0]}, ${this.sliderValues[1]}]`)
+        }
       }
     },
     computed: {
       products() {
         return this.$store.getters.products ? this.$store.getters.products : {}
+      },
+      maxPrice () {
+        let max = 0
+        for (let p in this.products) {
+          if (Number(this.products[p].price) > max) {
+            max = Number(this.products[p].price)
+          }
+        }
+        return max
+      },
+      dictionaries () {
+        return this.$store.getters.dictionaries
+      },
+      // searchGroup () { // TODO: may be improve it?)
+      //   let searchGroup = ''
+      //   if (this.selectedCategory) {
+      //     for (let group of this.PRODUCT_CLASSIFICATION) {
+      //       let categories = group.children
+      //       for (let category in categories) {
+      //         if (categories.hasOwnProperty(category) &&
+      //           categories[category].value === this.selectedCategory) {
+      //           searchGroup = categories[category].label
+      //         }
+      //       }
+      //     }
+      //   } else if (this.selectedGroup) {
+      //     for (let group of this.PRODUCT_CLASSIFICATION) {
+      //       if (group.value === this.selectedGroup) {
+      //         searchGroup = group.label
+      //       }
+      //     }
+      //   } else {
+      //     searchGroup = 'Все'
+      //   }
+      //   return searchGroup + ' : '
+      // },
+      user () {
+        return this.$store.getters.USER
       }
     },
     created() {

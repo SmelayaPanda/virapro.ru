@@ -1,5 +1,6 @@
 import firebase, {auth, db, fs, GoogleProvider} from "../services/fireinit";
 import {Message, Notification} from 'element-ui'
+import algoliasearch from 'algoliasearch'
 
 export const actions = {
 
@@ -80,14 +81,14 @@ export const actions = {
   algoliaSearch({commit, getters, dispatch}, payload) {
     commit('LOADING', true)
     let filter = getters.productFilters
-    const ALGOLIA_APP_ID = '2CVO44WQ94'
-    const ALGOLIA_SEARCH_KEY = '68d8a98b0c136d3dbd0a799949007e8d'
+    const ALGOLIA_APP_ID = '895KFYHFNM'
+    const ALGOLIA_SEARCH_KEY = '743fdead3dcea56354ccfbf001d370ca'
     const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
     let index
     if (process.env.NODE_ENV === 'production') {
-      index = client.initIndex('MISTERIO-PROD-PRODUCTS')
+      index = client.initIndex('DEV_SANTEHNIKA')
     } else if (process.env.NODE_ENV === 'development') {
-      index = client.initIndex('e_store_products')
+      index = client.initIndex('DEV_SANTEHNIKA')
     }
     let facetFilters = []
     let numericFilters = []

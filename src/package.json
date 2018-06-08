@@ -9,6 +9,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "algoliasearch": "^3.27.1",
     "@firebase/app": "^0.3.3",
     "@firebase/auth": "^0.5.3",
     "@firebase/database": "^0.3.3",
