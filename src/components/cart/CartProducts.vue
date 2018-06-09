@@ -80,7 +80,7 @@
             </el-col>
             <el-col :xs="8" :sm="3" :md="3" :lg="3" :xl="3" align="center">
               <p class="price mb-0">
-                {{ parseFloat(product.qty * product.price).toFixed(2) }}<span v-html="RUB"></span>
+                {{ parseFloat(product.qty * product.price).toFixed(2) }} RUB
               </p>
             </el-col>
             <el-col id="remove_from_cart" :xs="8" :sm="2" :md="2" :lg="2" :xl="2" align="center">
@@ -222,14 +222,12 @@ export default {
 
   .count_control:hover {
     cursor: pointer;
-    color: white;
   }
 
   .product_count {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    color: white;
     font-size: 18px;
     font-weight: 500;
     width: 30px;
