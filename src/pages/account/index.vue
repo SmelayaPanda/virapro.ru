@@ -2,13 +2,13 @@
   <no-ssr>
     <el-row type="flex" justify="start">
       <el-col :span="20">
-        <div v-if="$store.getters.USER && $store.getters.USER.isAnonymous">
+        <div v-if="$store.getters.user && $store.getters.user.isAnonymous">
           <AnonymousAccount/>
         </div>
-        <div v-if="$store.getters.USER && !$store.getters.USER.isAnonymous">
+        <div v-if="$store.getters.user && !$store.getters.user.isAnonymous">
           <h1>User Data</h1>
-          <p>{{ $store.getters.USER.email }}</p>
-          <p>{{ $store.getters.USER.firstname }} {{ $store.getters.USER.lastname }}</p>
+          <p>{{ $store.getters.user.email }}</p>
+          <p>{{ $store.getters.user.firstname }} {{ $store.getters.user.lastname }}</p>
           <el-button type="success" @click="$store.dispatch('logout')">Logout</el-button>
         </div>
       </el-col>

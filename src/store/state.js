@@ -15,8 +15,8 @@ export const state = () => ({
   },
 
 
-  // USER
-  USER: { // Cart and orders IDs array in database. Full products objects array in client side
+  // user
+  user: { // Cart and orders IDs array in database. Full products objects array in client side
     cart: [],
     orders: []
   },
@@ -89,6 +89,46 @@ export const state = () => ({
   algoliaSearchText: '',
   // CONSTANTS
   ADMINS: ['smelayapandagm@gmail.com'],
+  PAYMENT_METHODS: {
+    cash: {value: 'cash', label: 'Наличные'},
+    bank_card: {value: 'bank_card', label: 'Банковская карта'}
+  },
+  PAYMENT_TYPES: {
+    receipt: {value: 'receipt', label: 'При получении'},
+    online: {value: 'online', label: 'На сайте'}
+  },
+  DELIVERY_METHODS: {
+    kit: {value: 'kit', label: 'КИТ'},
+    dellin: {value: 'dellin', label: 'Деловые Линии'},
+    courier: {value: 'courier', label: 'Курьер'},
+    yourself: {value: 'yourself', label: 'Самовывоз'}
+  },
+  PAYMENT_STATUSES: {
+    none: {value: 'none', label: 'Не оплачено'},
+    pending: {value: 'pending', label: 'Платеж создан (ожидает вашего подтверждения)'},
+    waiting_for_capture: {value: 'waiting_for_capture', label: 'Оплачено (ожидает подтверждения магазином)'},
+    succeeded: {value: 'succeeded', label: 'Оплачено'},
+    canceled: {value: 'canceled', label: 'Отменено'}
+  },
+  ORDER_STATUSES: {
+    created: {value: 'created', label: 'Оформлено'},
+    pending: {value: 'pending', label: 'Ожидает отправки'},
+    sent: {value: 'sent', label: 'Отправлено'},
+    delivered: {value: 'delivered', label: 'Доставлено'},
+    refused: {value: 'refused', label: 'Отклонено'}
+  },
+  REVIEW_STATUSES: {
+    created: {value: 'created', label: 'Новые'},
+    published: {value: 'published', label: 'Опубликовано'},
+    archived: {value: 'archived', label: 'Архив'}
+  },
+  DISCOUNT_TYPES: {
+    online: {
+      value: 3,
+      type: 'online',
+      dim: 'percent'
+    }
+  },
   PRODUCT_TREE: [{
     label: 'Запорная и регулирующая арматура',
     value: 'shutoff-and-control-valves',

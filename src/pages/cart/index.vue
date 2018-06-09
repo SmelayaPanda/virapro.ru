@@ -1,10 +1,14 @@
 <template>
-  <h1>Your cart</h1>
+  <div>
+    <cart-products/>
+  </div>
 </template>
 
 <script>
+  import CartProducts from "../../components/cart/CartProducts";
   export default {
-    name: "index"
+    name: "index",
+    components: {CartProducts}
   }
 </script>
 

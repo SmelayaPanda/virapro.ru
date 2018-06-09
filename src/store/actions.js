@@ -9,7 +9,7 @@ export const actions = {
     return fs.collection('products').doc(payload).get()
       .then(snap => {
         commit('setSingleProduct', {...snap.data()})
-        console.log('Single product loaded')
+        console.log('(i) Single product loaded')
       })
       .catch(err => dispatch('LOG', err))
   },
@@ -242,7 +242,7 @@ export const actions = {
   fetchProductStatistics({commit, dispatch}) {
     fs.collection('statistics').doc('products').get()
       .then(snapshot => {
-        console.log('Statistics: for products')
+        console.log('(i) Statistics: for products')
         commit('productStatistics', snapshot.data())
       })
       .catch(err => dispatch('LOG', err))
@@ -285,7 +285,7 @@ export const actions = {
       let orders = getters.orders ? getters.orders : {}
       return fs.collection('orders').doc(payload)
         .onSnapshot(function (doc) {
-          console.log('Order changed')
+          console.log('(i) Order changed')
           let order = doc.data()
           order.id = doc.id
           orders[doc.id] = order
@@ -354,7 +354,7 @@ export const actions = {
           } else {
             delete orders[payload.id]
           }
-          console.log('Order updated')
+          console.log('(i) Order updated')
           commit('setOrders', {...orders})
           commit('LOADING', false)
         })
@@ -364,7 +364,7 @@ export const actions = {
     ({commit, dispatch}) => {
       fs.collection('statistics').doc('orders').get()
         .then(snapshot => {
-          console.log('Statistics: for orders')
+          console.log('(i) Statistics: for orders')
           commit('orderStatistics', snapshot.data())
         })
         .catch(err => dispatch('LOG', err))
@@ -377,8 +377,8 @@ export const actions = {
 
 
 
-  // USER
-  // USER DATA = full firebase auth.currentUser object + app data keeping in firestore db
+  // user
+  // user DATA = full firebase auth.currentUser object + app data keeping in firestore db
   fetchUserData({commit, dispatch, getters}, payload) {
     commit('LOADING', true)
     let user = {...payload} // auth object read only, copy them
@@ -387,13 +387,13 @@ export const actions = {
         commit('setUser', Object.assign(user, snap.data()))
         return Promise.all([
           dispatch('setAdmin'),
-          // dispatch('loadOwnProducts'),
+          dispatch('loadOwnProducts'),
           // dispatch('fetchOrders', {userId: user.uid})
         ])
       })
       .then(() => {
         commit('LOADING', false)
-        console.log('>> Fetched: all user data')
+        console.log('(i) Fetched: all user data')
       })
       .catch(err => dispatch('LOG', err))
   },
@@ -405,7 +405,7 @@ export const actions = {
       .then(() => {
         commit('setUser', Object.assign(user, payload))
         commit('LOADING', false)
-        console.log('>> Personal info updated!')
+        console.log('(i) Personal info updated!')
       })
       .catch(err => dispatch('LOG', err))
   },
@@ -435,8 +435,8 @@ export const actions = {
       .then(user => {
         dispatch('fetchUserData', user)
         user.sendEmailVerification() // TODO: verification link may be expired, force resend
-        console.log('User register. Email verification sent.')
-        console.log('Anonymous account successfully upgraded', user)
+        console.log('(i) User register. Email verification sent.')
+        console.log('(i) Anonymous account successfully upgraded', user)
         return Promise.all([
           fs.collection('users').doc(user.uid)
             .update({
@@ -472,7 +472,7 @@ export const actions = {
     commit('LOADING', true)
     auth.signInAndRetrieveDataWithEmailAndPassword(payload.email, payload.password)
       .then(() => { // onAuthStateChanged works
-        console.log('>> Successful Login')
+        console.log('(i) >> Successful Login')
         $nuxt.$router.push('/account')
         commit('LOADING', false)
       })
@@ -494,7 +494,7 @@ export const actions = {
             })
         })
         .then(() => {
-          console.log('>> You are sign in anonymously')
+          console.log('(i) >> You are sign in anonymously')
         })
         .catch(err => dispatch('LOG', err))
     },
@@ -577,6 +577,7 @@ export const actions = {
     ({commit, getters, dispatch}) => {
       let user = getters.user
       let cart = {}
+      let favorites = {}
       let loadProduct = function (pId, to) {
         return fs.collection('products').doc(pId).get()
           .then(snap => {
@@ -599,13 +600,13 @@ export const actions = {
           user.cart = cart
           user.favorites = favorites
           commit('setUser', {...user})
-          console.log('Fetched: user cart products')
+          console.log('(i) Fetched: user cart products')
         })
         .catch(err => dispatch('LOG', err))
     },
   async setAdmin({commit, getters}) {
     commit('setAdmin', await
-      getters.ADMINS.indexOf(getters.USER.email) !== -1
+      getters.ADMINS.indexOf(getters.user.email) !== -1
     )
   },
 
@@ -620,7 +621,7 @@ export const actions = {
         docs.forEach(doc => {
           commit('setDictionary', {name: doc.id, data: doc.data().all})
         })
-        console.log('Fetched: dictionaries')
+        console.log('(i) Fetched: dictionaries')
         commit('LOADING', false)
       })
       .catch(err => dispatch('LOG', err))
@@ -636,7 +637,7 @@ export const actions = {
       .then(() => {
         commit('setDictionary', {name: payload.name, data: payload.data})
         commit('LOADING', false)
-        console.log('Dictionary updated')
+        console.log('(i) Dictionary updated')
       })
       .catch(err => dispatch('LOG', err))
   },
@@ -652,7 +653,7 @@ export const actions = {
             companyInfo[doc.id] = doc.data()
           })
           commit('setCompanyInfo', {...companyInfo})
-          console.log('Fetched: company info')
+          console.log('(i) Fetched: company info')
           commit('LOADING', false)
         })
         .catch(err => dispatch('LOG', err))
@@ -667,7 +668,7 @@ export const actions = {
         .update({[payload.field]: payload.value})
         .then(() => {
           companyInfo[payload.document][payload.field] = payload.value
-          console.log('Company info updated')
+          console.log('(i) Company info updated')
           commit('setCompanyInfo', {...companyInfo})
           commit('LOADING', false)
         })
@@ -695,7 +696,7 @@ export const actions = {
           })
           commit('setReviews', {...reviews})
           commit('LOADING', false)
-          console.log('Fetched: reviews')
+          console.log('(i) Fetched: reviews')
         })
         .catch(err => dispatch('LOG', err))
     },
@@ -706,7 +707,7 @@ export const actions = {
       fs.collection('reviews').add(payload)
         .then(() => {
           commit('LOADING', false)
-          console.log('Review added')
+          console.log('(i) Review added')
           Notification({
             title: 'Спасибо',
             message: 'Ваш отзыв будет опубликован после проходения модерации!',
@@ -725,7 +726,7 @@ export const actions = {
         .then(() => {
           dispatch('fetchReviews', {status: payload.oldStatus})
           commit('LOADING', false)
-          console.log('Review updated')
+          console.log('(i) Review updated')
         })
         .catch(err => dispatch('LOG', err))
     },
@@ -733,7 +734,7 @@ export const actions = {
     ({commit, dispatch}) => {
       fs.collection('statistics').doc('reviews').get()
         .then(snapshot => {
-          console.log('Statistics: for reviews')
+          console.log('(i) Statistics: for reviews')
           commit('reviewStatistics', snapshot.data())
         })
         .catch(err => dispatch('LOG', err))

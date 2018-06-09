@@ -7,7 +7,7 @@ export default (context) => {
     auth.onAuthStateChanged(user => {
       store.commit('setUser', user)
       if (user) {
-        console.log(user)
+        // console.log(user)
         store.dispatch('fetchUserData', user)
           .then(() => {
             // if (this.$nuxt.$route.path.includes('admin')

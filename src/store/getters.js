@@ -1,6 +1,6 @@
 export const getters = {
-  // USER
-  USER: state => state.USER, // (Object) all user data
+  // user
+  user: state => state.user, // (Object) all user data
 
   // PRODUCTS
   products: state => state.products,
@@ -15,6 +15,12 @@ export const getters = {
   orders: state => state.orders,
   orderStatistics: state => state.orderStatistics,
   confirmationObj: state => state.confirmationObj,
+  ORDER_STATUSES: state => state.ORDER_STATUSES,
+  PAYMENT_METHODS: state => state.PAYMENT_METHODS,
+  PAYMENT_STATUSES: state => state.PAYMENT_STATUSES,
+  PAYMENT_TYPES: state => state.PAYMENT_TYPES,
+  DELIVERY_METHODS: state => state.DELIVERY_METHODS,
+  DISCOUNT_TYPES: state => state.DISCOUNT_TYPES,
 
   // COMPANY INFO
   companyInfo: state => state.companyInfo,
@@ -22,6 +28,7 @@ export const getters = {
   // REVIEWS
   reviews: state => state.reviews,
   reviewStatistics: state => state.reviewStatistics,
+  REVIEW_STATUSES: state => state.REVIEW_STATUSES,
 
   // DICTIONARIES
   dictionaries: state => state.dictionaries,

@@ -69,7 +69,7 @@
     },
     computed: {
       user() {
-        return this.$store.getters.USER
+        return this.$store.getters.user
       },
       product() {
         return this.$store.getters.products[this.id]

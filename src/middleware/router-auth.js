@@ -1,6 +1,6 @@
 export default function ({ store, redirect, route}) {
   // if (isAdminRoute(route)) {
-  //   if (store.state.USER && store.state.ADMINS.indexOf(store.state.USER.email) !== -1) {
+  //   if (store.state.user && store.state.ADMINS.indexOf(store.state.user.email) !== -1) {
   //     return ''
   //   } else {
   //     redirect('/account/signin')

@@ -258,7 +258,7 @@
       //   return searchGroup + ' : '
       // },
       user () {
-        return this.$store.getters.USER
+        return this.$store.getters.user
       }
     },
     created() {
