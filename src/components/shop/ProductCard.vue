@@ -17,7 +17,7 @@
                 :lg="view === 'list' ? 7 : 24"
                 :xl="view === 'list' ? 6 : 24">
           <div :class="view === 'list' ? 'list_product_image' : 'module_product_image'">
-            <img class="product_img" :src="product.img_0.card" alt="">
+            <img v-if="product.img_0" class="product_img" :src="product.img_0.card" alt="">
           </div>
         </el-col>
         <el-col class="product_description"

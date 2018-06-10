@@ -4,6 +4,11 @@ import algoliasearch from 'algoliasearch'
 
 export const actions = {
 
+  // nuxtServerInit ({ dispatch }, { req }) {
+  //   return Promise.all([
+  //     // dispatch('loadSingleProduct', 'yUHgunWESW5E5aUybki8')
+  //   ])
+  // },
   // PRODUCTS
   loadSingleProduct({commit, getters, dispatch}, payload) {
     return fs.collection('products').doc(payload).get()
@@ -381,10 +386,19 @@ export const actions = {
   // user DATA = full firebase auth.currentUser object + app data keeping in firestore db
   fetchUserData({commit, dispatch, getters}, payload) {
     commit('LOADING', true)
-    let user = {...payload} // auth object read only, copy them
-    return fs.collection('users').doc(user.uid).get()
+    let user = {} // auth object read only, copy them
+    return fs.collection('users').doc(payload.uid).get()
       .then(snap => {
-        commit('setUser', Object.assign(user, snap.data()))
+        user.uid = payload.uid
+        user.email = payload.email
+        user.isAnonymous = payload.isAnonymous
+        user.emailVerified = payload.emailVerified
+        user.favorites = snap.data().favorites
+        user.orders = snap.data().orders
+        user.cart = snap.data().cart
+        user.role = snap.data().role
+        commit('setUser', user)
+        console.log(user)
         return Promise.all([
           dispatch('setAdmin'),
           dispatch('loadOwnProducts'),

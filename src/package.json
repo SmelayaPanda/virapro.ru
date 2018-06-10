@@ -10,10 +10,6 @@
   },
   "dependencies": {
     "algoliasearch": "^3.27.1",
-    "@firebase/app": "^0.3.3",
-    "@firebase/auth": "^0.5.3",
-    "@firebase/database": "^0.3.3",
-    "@firebase/firestore": "^0.5.4",
     "@nuxtjs/pwa": "^2.0.8",
     "babel-plugin-module-resolver": "^2.7.1",
     "babel-plugin-transform-runtime": "^6.23.0",

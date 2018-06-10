@@ -6,7 +6,7 @@
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@firebase/app-types/-/app-types-0.3.2.tgz#a92dc544290e2893bd8c02a81e684dae3d8e7c85"
 
-"@firebase/app@0.3.3", "@firebase/app@^0.3.3":
+"@firebase/app@0.3.3":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@firebase/app/-/app-0.3.3.tgz#cb8df89495e4409e92ab30c0068b9e0641a6db81"
   dependencies:
@@ -20,7 +20,7 @@
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@firebase/auth-types/-/auth-types-0.3.3.tgz#950a68bdae1e1e37ece054ff69ee0082c5ecabab"
 
-"@firebase/auth@0.5.3", "@firebase/auth@^0.5.3":
+"@firebase/auth@0.5.3":
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.5.3.tgz#4f0d83cd5a7c173d3a7a06f904bb1084acd8a0c4"
   dependencies:
@@ -30,7 +30,7 @@
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@firebase/database-types/-/database-types-0.3.2.tgz#70611a64dd460e0e253c7427f860d56a1afd86fe"
 
-"@firebase/database@0.3.3", "@firebase/database@^0.3.3":
+"@firebase/database@0.3.3":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@firebase/database/-/database-0.3.3.tgz#01123d4e0f8cb020e685ead27d795ef8794b2991"
   dependencies:
@@ -44,7 +44,7 @@
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@firebase/firestore-types/-/firestore-types-0.4.3.tgz#0baa4f68aa8889474f582320af577f1e9a78fab6"
 
-"@firebase/firestore@0.5.4", "@firebase/firestore@^0.5.4":
+"@firebase/firestore@0.5.4":
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-0.5.4.tgz#26f67fa038ffd74ef849019728c59d4a5590a324"
   dependencies:

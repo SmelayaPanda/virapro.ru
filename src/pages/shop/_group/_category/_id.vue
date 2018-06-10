@@ -170,7 +170,6 @@
 </template>
 
 <script>
-  import {fs} from "~/services/fireinit";
   import ZoomOnHover from "~/components/shop/ZoomOnHover";
 
   export default {
