@@ -394,11 +394,12 @@ export const actions = {
         user.isAnonymous = payload.isAnonymous
         user.emailVerified = payload.emailVerified
         user.favorites = snap.data().favorites
+        user.firstname = snap.data().firstname
+        user.lastname = snap.data().lastname
         user.orders = snap.data().orders
         user.cart = snap.data().cart
         user.role = snap.data().role
         commit('setUser', user)
-        console.log(user)
         return Promise.all([
           dispatch('setAdmin'),
           dispatch('loadOwnProducts'),
