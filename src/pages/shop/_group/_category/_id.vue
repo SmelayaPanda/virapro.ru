@@ -112,17 +112,18 @@
                   <span itemprop="priceCurrency" content="RUB">RUB</span>
                 </p>
               </div>
-              <!--!$store.getters.user.cart[$store.getters.singleProduct]-->
-              <el-button
-                v-if="true"
-                id="into_cart_btn"
-                :disabled="$store.getters.singleProduct.totalQty < 1"
-                @click="updateOwnProduct($store.getters.singleProduct, 'cart', 'add')">
+              <hr>
+              <no-ssr v-if="!isAlreadyAddedProduct">
+                <el-button
+                  id="into_cart_btn"
+                  :disabled="$store.getters.singleProduct.totalQty < 1"
+                  @click="updateOwnProduct($store.getters.singleProduct, 'cart', 'add')">
                   <span>
                     В корзину
                   </span>
-                <i class="el-icon-goods ml-2" style="transform: scale(1.5)"></i>
-              </el-button>
+                  <i class="el-icon-goods ml-2" style="transform: scale(1.5)"></i>
+                </el-button>
+              </no-ssr>
               <!--ALREADY IN CART-->
               <div v-else>
                 <el-tooltip
@@ -218,6 +219,12 @@
           operation: operation,
           product: product
         })
+      }
+    },
+    computed: {
+      isAlreadyAddedProduct() {
+        return this.$store.getters.user.cart &&
+          this.$store.getters.user.cart[this.$store.getters.singleProduct.productId]
       }
     }
   }

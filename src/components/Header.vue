@@ -32,7 +32,9 @@
       </el-menu-item>
       <el-menu-item index="/cart">
         Корзина
-        <el-badge :value="2" class="item"></el-badge>
+        <no-ssr>
+          <el-badge :value="cartProductCount" class="item"></el-badge>
+        </no-ssr>
       </el-menu-item>
     </el-menu>
   </div>
@@ -46,8 +48,19 @@
         activeIndex: '/'
       }
     },
-    created () {
+    created() {
       this.activeIndex = this.$nuxt.$route.path
+    },
+    computed: {
+      cartProductCount() {
+        if (this.$store.getters.user.cart &&
+          !Array.isArray(this.$store.getters.user.cart) &&
+          Object.keys(this.$store.getters.user.cart).length) {
+          return Object.keys(this.$store.getters.user.cart).length
+        } else {
+          return 0
+        }
+      }
     }
   }
 </script>

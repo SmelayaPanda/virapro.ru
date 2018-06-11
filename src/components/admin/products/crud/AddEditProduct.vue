@@ -134,7 +134,7 @@
     data() {
       return {
         dialog: false,
-        option: [this.group, this.category],
+        option: ['', ''],
         product: {
           title: '',
           description: '',
@@ -205,6 +205,9 @@
         this.dialog = true
         if (this.operation === 'edit') {
           this.product = this.$store.getters.products[this.productId]
+        }
+        if (this.operation === 'add') {
+          this.option = [this.group, this.category]
         }
       }
     },
