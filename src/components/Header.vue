@@ -21,7 +21,7 @@
       <el-menu-item index="/">
         Главная
       </el-menu-item>
-      <el-menu-item index="/shop">
+      <el-menu-item index="/catalog">
         Товары
       </el-menu-item>
       <el-menu-item index="/about">
@@ -53,9 +53,7 @@
     },
     computed: {
       cartProductCount() {
-        if (this.$store.getters.user.cart &&
-          !Array.isArray(this.$store.getters.user.cart) &&
-          Object.keys(this.$store.getters.user.cart).length) {
+        if (this.$store.getters.user.cart && !Array.isArray(this.$store.getters.user.cart)) {
           return Object.keys(this.$store.getters.user.cart).length
         } else {
           return 0

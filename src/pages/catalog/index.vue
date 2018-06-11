@@ -85,6 +85,7 @@
     data() {
       let filter = this.$store.getters.productFilters
       return {
+        catalog: [],
         filterText: '',
         algoliaSearchText: '',
         treeKey: '1',
@@ -127,6 +128,10 @@
         }
         this.$store.dispatch('setLastVisible', null)
         this.$store.dispatch('productFilters', filter).then(() => this.$store.dispatch('fetchProducts'))
+        if (data.value === 'all') {
+          this.treeKey = new Date().getTime()
+          this.$forceUpdate()
+        }
       },
       filterNode(value, data) {
         if (!value) {
@@ -135,7 +140,7 @@
         }
         return data.label.indexOf(value) !== -1;
       },
-      changeSortByPrice () {
+      changeSortByPrice() {
         if (this.sortByPrice === 'asc') {
           this.sortByPrice = 'desc'
           // this.$store.dispatch('USER_EVENT', `Сортировка по цене: убывание`)
@@ -145,15 +150,15 @@
         }
         this.filterProducts()
       },
-      filterProducts () {
+      filterProducts() {
         this.$store.dispatch('setLastVisible', null)
         this.filter()
       },
-      loadMore () {
+      loadMore() {
         // this.$store.dispatch('USER_EVENT', 'Загрузить больше')
         this.filter()
       },
-      filter () {
+      filter() {
         // this.logFilterEvents()
         this.$store.dispatch('productFilters', {
           limit: 15,
@@ -176,7 +181,7 @@
             }
           })
       },
-      changeCategory (key) {
+      changeCategory(key) {
         let groupList = ['sexToy', 'bdsm', 'baa', 'condom', 'eroticLingerie', 'cosmetic', 'gifts']
         if (groupList.indexOf(key) !== -1) {
           this.selectedGroup = key
@@ -187,7 +192,7 @@
         }
         // this.$store.dispatch('USER_EVENT', `Категория: ${this.searchGroup.split(':')[0]}`)
       },
-      algoliaSearch () {
+      algoliaSearch() {
         if (!this.algoliaSearchText) {
           this.$store.dispatch('setAlgoliaSearchText', null)
           return this.filterProducts()
@@ -197,7 +202,7 @@
           // this.$store.dispatch('USER_EVENT', `Поиск по слову: "${this.algoliaSearchText}"`)
         }
       },
-      logFilterEvents () {
+      logFilterEvents() {
         let lastFilter = this.$store.getters.productFilters
         if (lastFilter.brand !== this.selectedBrand) {
           this.$store.dispatch('USER_EVENT', `Фильтр - бренд: ${this.selectedBrand}`)
@@ -222,7 +227,7 @@
       products() {
         return this.$store.getters.products ? this.$store.getters.products : {}
       },
-      maxPrice () {
+      maxPrice() {
         let max = 0
         for (let p in this.products) {
           if (Number(this.products[p].price) > max) {
@@ -231,7 +236,7 @@
         }
         return max
       },
-      dictionaries () {
+      dictionaries() {
         return this.$store.getters.dictionaries
       },
       // searchGroup () { // TODO: may be improve it?)
@@ -257,7 +262,7 @@
       //   }
       //   return searchGroup + ' : '
       // },
-      user () {
+      user() {
         return this.$store.getters.user
       }
     },

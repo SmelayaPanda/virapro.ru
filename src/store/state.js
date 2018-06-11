@@ -130,6 +130,10 @@ export const state = () => ({
     }
   },
   PRODUCT_TREE: [{
+    label: 'Вся продукция',
+    value: 'all-products',
+    disabled: true
+  }, {
     label: 'Запорная и регулирующая арматура',
     value: 'shutoff-and-control-valves',
     type: 'group',
@@ -272,7 +276,7 @@ export const state = () => ({
       {value: 'polyethylene-systems-fitting-png', label: 'полиэтиленовые системы (пнд)', type: 'category'}
     ]
   }, {
-    label: 'Светильники и комплектующиен',
+    label: 'Светильники и комплектующие',
     value: 'fixtures-and-accessories',
     type: 'group',
     children: [
