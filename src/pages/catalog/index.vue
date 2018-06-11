@@ -4,7 +4,7 @@
       <div id="filter_category">
         <el-input
           label="Category Filter"
-          placeholder="Find group"
+          placeholder="Поиск каталога"
           v-model="filterText">
         </el-input>
       </div>
@@ -23,19 +23,22 @@
     </el-col>
     <el-col :xs="24" :sm="24" :md="17" :lg="17" :xl="17">
       <el-row id="product_card_wrap">
-        <el-col :span="15">
+        <el-col :span="24">
           <div id="algolia_search">
             <el-input
               label="Algolia Filter"
               @change="algoliaSearch"
               @keyup.enter.exact="algoliaSearch"
-              placeholder="Find product"
+              placeholder="введите поисковый запрос"
               v-model="algoliaSearchText">
+              <template slot="prepend">{{ searchPrefix }}</template>
               <el-button slot="append" icon="el-icon-search"></el-button>
             </el-input>
           </div>
         </el-col>
-        <el-col :span="9" align="right" id="view_type">
+      </el-row>
+      <el-row>
+        <el-col :span="24" align="right" id="view_type">
           <el-radio-group v-model="view" size="mini" border>
             <el-radio-button label="list">
               <img v-if="view === 'list'" src="~/assets/icons/view/list-white.svg" alt="View List">
@@ -88,6 +91,7 @@
         catalog: [],
         filterText: '',
         algoliaSearchText: '',
+        searchPrefix: 'Вся продукция',
         treeKey: '1',
         view: 'list',
         activeNames: [], // ['1', '2']
@@ -126,6 +130,7 @@
         } else if (data.type === 'category') {
           this.selectedCategory = data.value
         }
+        this.searchPrefix = data.label
         let filter = {
           [data.type]: data.value,
           sortByPrice: 'desc'
@@ -233,29 +238,6 @@
       dictionaries() {
         return this.$store.getters.dictionaries
       },
-      // searchGroup () { // TODO: may be improve it?)
-      //   let searchGroup = ''
-      //   if (this.selectedCategory) {
-      //     for (let group of this.PRODUCT_CLASSIFICATION) {
-      //       let categories = group.children
-      //       for (let category in categories) {
-      //         if (categories.hasOwnProperty(category) &&
-      //           categories[category].value === this.selectedCategory) {
-      //           searchGroup = categories[category].label
-      //         }
-      //       }
-      //     }
-      //   } else if (this.selectedGroup) {
-      //     for (let group of this.PRODUCT_CLASSIFICATION) {
-      //       if (group.value === this.selectedGroup) {
-      //         searchGroup = group.label
-      //       }
-      //     }
-      //   } else {
-      //     searchGroup = 'Все'
-      //   }
-      //   return searchGroup + ' : '
-      // },
       user() {
         return this.$store.getters.user
       }
@@ -300,7 +282,8 @@
   }
 
   #view_type {
-    padding-top: 11px;
+    margin-bottom: 10px;
+    padding-right: 10px;
     align-content: right;
   }
 
