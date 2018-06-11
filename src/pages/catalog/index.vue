@@ -10,7 +10,7 @@
       </div>
       <el-tree
         :key="treeKey"
-        ref="productTree"
+        ref="catalog"
         empty-text="No data"
         :data="$store.getters.PRODUCT_TREE"
         :props="defaultProps"
@@ -120,15 +120,20 @@
     },
     methods: {
       handleNodeClick(data) {
-        console.log(data)
         // TODO: check repeated click, block loading
+        if (data.type === 'group') {
+          this.selectedGroup = data.value
+        } else if (data.type === 'category') {
+          this.selectedCategory = data.value
+        }
         let filter = {
           [data.type]: data.value,
           sortByPrice: 'desc'
         }
+        // this.$store.dispatch('USER_EVENT', `Категория/Группа`)
         this.$store.dispatch('setLastVisible', null)
         this.$store.dispatch('productFilters', filter).then(() => this.$store.dispatch('fetchProducts'))
-        if (data.value === 'all') {
+        if (data.value === 'all-products') {
           this.treeKey = new Date().getTime()
           this.$forceUpdate()
         }
@@ -180,17 +185,6 @@
               return this.$store.dispatch('fetchProducts')
             }
           })
-      },
-      changeCategory(key) {
-        let groupList = ['sexToy', 'bdsm', 'baa', 'condom', 'eroticLingerie', 'cosmetic', 'gifts']
-        if (groupList.indexOf(key) !== -1) {
-          this.selectedGroup = key
-          this.selectedCategory = null
-        } else {
-          this.selectedCategory = key
-          this.selectedGroup = null
-        }
-        // this.$store.dispatch('USER_EVENT', `Категория: ${this.searchGroup.split(':')[0]}`)
       },
       algoliaSearch() {
         if (!this.algoliaSearchText) {
@@ -271,7 +265,7 @@
     },
     watch: {
       filterText(val) {
-        this.$refs.productTree.filter(val);
+        this.$refs.catalog.filter(val);
       }
     },
   }
