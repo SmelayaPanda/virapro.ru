@@ -78,13 +78,22 @@
             </el-form-item>
             <el-form-item>
               <hr>
-              <i>Динамические свойства:</i>
+              <i id="additional_props">Дополнительные свойства указанной категории товара:</i>
             </el-form-item>
             <!--SKU-->
-            <p>{{dynamicFilters}}</p>
+            <!--<p>{{dynamicFilters}}</p>-->
             <el-form-item label-width="0">
-              <el-col :span="12" v-for="filter in dynamicFilters" :key="filter">
-                <el-form-item :label="$store.getters.DYNAMIC_PROPS[filter].label" :prop="filter" label-width="240px">
+              <div :span="24" v-for="filter in dynamicFilters" :key="filter">
+                <el-form-item
+                  v-if="$store.getters.DYNAMIC_PROPS[filter].type === 'Number'"
+                  :label="$store.getters.DYNAMIC_PROPS[filter].label"
+                  :prop="filter" label-width="400px">
+                  <el-input-number v-model="product[filter]" :min="0" :max="1000000"></el-input-number>
+                </el-form-item>
+                <el-form-item
+                  v-else-if="$store.getters.DYNAMIC_PROPS[filter].type === 'String'"
+                  :label="$store.getters.DYNAMIC_PROPS[filter].label"
+                  :prop="filter" label-width="400px">
                   <el-select
                     v-model="product[filter]"
                     value=""
@@ -95,7 +104,7 @@
                     <el-option v-for="val in dictionaries[filter]" :key="val" :label="val" :value="val"></el-option>
                   </el-select>
                 </el-form-item>
-              </el-col>
+              </div>
             </el-form-item>
           </el-form>
           <el-row type="flex" justify="center" class="mt-3">
@@ -174,11 +183,8 @@
           ],
           description: [{required: true, message: 'Заполните описание', trigger: 'blur'}],
           SKU: [{required: true, message: 'Укажите артикул', trigger: 'change'}],
-          // size: [{ required: true, message: 'Укажите размер', trigger: 'change' }],
           brand: [{required: true, message: 'Укажите брэнд', trigger: 'change'}],
-          color: [{required: true, message: 'Укажите цвет', trigger: 'change'}],
           originCountry: [{required: true, message: 'Укажите страну', trigger: 'change'}],
-          material: [{required: true, message: 'Укажите материал', trigger: 'change'}],
           price: [{required: true, message: 'Укажите цену', trigger: 'change'}],
           totalQty: [{required: true, message: 'Укажите количество', trigger: 'change'}],
         },
@@ -231,7 +237,7 @@
       dictionaries() {
         return this.$store.getters.dictionaries
       },
-      dynamicFilters () {
+      dynamicFilters() {
         if (this.option[0]) {
           let filters
           this.$store.getters.PRODUCT_TREE.forEach(el => {
@@ -255,5 +261,10 @@
 <style scoped lang="scss">
   #add_product {
     margin-left: 6px;
+  }
+
+  #additional_props {
+    color: darkgrey;
+    font-size: 12px;
   }
 </style>

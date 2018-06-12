@@ -131,8 +131,6 @@ export const state = () => ({
   },
   DYNAMIC_PROPS: {
     // DON'T FORGET ADD NEW PROPERTIES TO ADD/EDIT PRODUCT OPERATION
-    // country: {label: 'Страна-производитель', type: 'String'},
-    // brand: {label: 'Производитель', type: 'String'},
     corpus_material: {label: 'Материал корпуса', type: 'String'},
     corpus_diameter: {label: 'Диаметр корпуса, мм', type: 'Number'},
     product_type: {label: 'Тип товара', type: 'String'},
@@ -176,7 +174,10 @@ export const state = () => ({
         type: 'category',
         filters: ['rated_load', 'pump_type', 'coating', 'heat_one_section'],
       },
-      {value: 'filters', label: 'фильтры', type: 'category'},
+      {
+        value: 'filters', label: 'фильтры', type: 'category',
+        filters: ['center_spacing', 'section_depth', 'thread_diameter', 'symbol'],
+      },
       {value: 'shut-off-valves', label: 'клапаны запорные', type: 'category'},
       {value: 'inverse-valves', label: 'клапаны обратные', type: 'category'},
       {value: 'latches', label: 'задвижки', type: 'category'},

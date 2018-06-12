@@ -630,7 +630,7 @@ export const actions = {
   fetchDictionaries:
     ({commit, dispatch}) =>{
     commit('LOADING', true)
-    fs.collection('dictionaries').get()
+    return fs.collection('dictionaries').get()
       .then(snapshot => {
         let docs = snapshot.docs
         docs.forEach(doc => {

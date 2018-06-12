@@ -1,10 +1,11 @@
 <template>
-  <div align="left">
-    <p id="dictionary_info">* Статические, расширяемые, общие для всей системы данные</p>
-    <dictionary-subject title="Бренд" name="brands" key="brands"/>
-    <dictionary-subject title="Цвет" name="colors" key="colors"/>
-    <dictionary-subject title="Страна" name="countries" key="countries"/>
-    <dictionary-subject title="Материал" name="materials" key="materials"/>
+  <div align="left" :key="dictinaryKey">
+    <p id="dictionary_info">* Статические данные общие для всей системы</p>
+    <dictionary-subject title="Страна-производитель" name="countries" key="countries" type="String"/>
+    <dictionary-subject title="Производитель" name="brands" key="brands" type="String"/>
+    <div v-for="(prop, idx) in $store.getters.DYNAMIC_PROPS" :key="idx">
+      <dictionary-subject :title="prop.label" :name="idx" :key="idx" :type="prop.type"/>
+    </div>
   </div>
 </template>
 
@@ -14,8 +15,15 @@
     name: "index",
     components: {DictionarySubject},
     layout: 'admin',
+    data () {
+      return {
+        dictinaryKey: '1'
+      }
+    },
     created () {
-      this.$store.dispatch('fetchDictionaries')
+      this.$store.dispatch('fetchDictionaries').then(() => {
+        this.dictinaryKey = new Date().getTime()
+      })
     }
   }
 </script>
