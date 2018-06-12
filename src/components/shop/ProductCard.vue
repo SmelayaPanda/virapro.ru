@@ -7,25 +7,15 @@
     @mouseover="hoveredCard = true" @mouseleave="hoveredCard = false"
     itemscope itemtype="http://schema.org/Product">
     <!-- LIST VIEW -->
-    <el-card
-      :body-style="{ padding: '0px' }"
-      :class="view === 'list' ? 'card list_card' : 'card module_card'">
+    <el-card :body-style="{ padding: '0px' }" class="card">
       <el-row class="card_content">
-        <el-col :xs=" 24"
-                :sm="view === 'list' ? 8 : 24"
-                :md="view === 'list' ? 8 : 24"
-                :lg="view === 'list' ? 7 : 24"
-                :xl="view === 'list' ? 6 : 24">
-          <div :class="view === 'list' ? 'list_product_image' : 'module_product_image'">
-            <img v-if="product.img_0" class="product_img" :src="product.img_0.card" alt="">
+        <el-col :xs=" 24" :sm="8" :md="8" :lg="7" :xl="6">
+          <div class="product_image">
+            <img v-if="product.img_0" :src="product.img_0.card" :alt="`Фото: ${product.title}`">
           </div>
         </el-col>
         <el-col class="product_description"
-                :xs="24"
-                :sm="view === 'list' ? 16 : 24"
-                :md="view === 'list' ? 16 : 24"
-                :lg="view === 'list' ? 17 : 24"
-                :xl="view === 'list' ? 18 : 24">
+                :xs="24" :sm="16" :md="16" :lg="17" :xl="18">
           <p itemprop="offers" itemscope itemtype="http://schema.org/Offer">
             <span itemprop="price" :content="product.price">{{ product.price }} </span>
             <span itemprop="priceCurrency" content="RUB">RUB</span>
@@ -41,7 +31,7 @@
 <script>
   export default {
     name: 'product-card',
-    props: ['id', 'view'],
+    props: {id: {type: String, required: true}},
     data() {
       return {
         hoveredCard: false
@@ -79,11 +69,6 @@
 </script>
 
 <style scoped lang="scss">
-  $list-height: 140px;
-  $list-width: 140px;
-  $module-height: 480px;
-  $module-img-height: 300px;
-
   .card_wrapper {
     transition: all .5s;
   }
@@ -94,39 +79,14 @@
     transform: scale(1.01);
   }
 
-  .list_card {
-    height: $list-height;
-  }
-
-  .module_card {
-    height: $module-height;
-  }
-
-  .list_product_image {
-    width: $list-width;
-    height: $list-height;
-    img {
-      width: $list-width;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  .module_product_image {
-    width: 100%;
-    height: $module-img-height;
-    img {
-      height: $module-img-height;
-      width: 100%;
-      object-fit: cover;
-    }
-  }
-
   .card {
-    margin: 4px;
-    padding: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 8px;
+    padding: 5px;
     border: 1px solid $color-info-light;
     transition: all .5s;
+    height: 120px;
   }
 
   .card:hover,
@@ -140,17 +100,20 @@
     flex-wrap: wrap;
   }
 
+  .product_image {
+    width: 120px;
+    height: 120px;
+    img {
+      width: 120px;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
   .product_description {
     padding: 10px;
   }
 
   @media only screen and (max-width: $xs-screen) {
-    .list_product_image {
-      width: 100%;
-      height: $module-img-height;
-    }
-    .list_card {
-      height: $module-height;
-    }
   }
 </style>

@@ -1,11 +1,8 @@
 <template>
-  <el-row id="shop_wrap">
-    <el-col :xs="24" :sm="24" :md="7" :lg="6" :xl="5">
+  <div id="shop_wrap">
+    <div id="nav_menu">
       <div id="filter_category">
-        <el-input
-          label="Category Filter"
-          placeholder="Поиск каталога"
-          v-model="filterText">
+        <el-input label="Category Filter" placeholder="Поиск каталога" v-model="filterText">
           <el-button slot="prepend" icon="el-icon-search"></el-button>
         </el-input>
       </div>
@@ -21,8 +18,8 @@
         highlight-current
         accordion>
       </el-tree>
-    </el-col>
-    <el-col :xs="24" :sm="24" :md="17" :lg="17" :xl="17">
+    </div>
+    <div id="central_view">
       <el-row id="product_card_wrap">
         <el-col :span="24">
           <div id="algolia_search">
@@ -46,47 +43,38 @@
         </el-col>
       </el-row>
       <el-row>
-        <el-col :span="24" align="right" id="view_type">
-          <el-radio-group v-model="view" size="mini" border>
-            <el-radio-button label="list">
-              <img v-if="view === 'list'" src="~/assets/icons/view/list-white.svg" alt="View List">
-              <img v-else src="~/assets/icons/view/list-black.svg" alt="View List">
-            </el-radio-button>
-            <el-radio-button label="module">
-              <img v-if="view === 'module'" src="~/assets/icons/view/module-white.svg" alt="View Module">
-              <img v-else src="~/assets/icons/view/module-black.svg" alt="View Module">
-            </el-radio-button>
-          </el-radio-group>
-        </el-col>
-      </el-row>
-      <el-row id="product_filters">
-
-        <!--<el-col :span="24">-->
-          <!--<el-collapse v-model="activeNames">-->
-            <!--<el-collapse-item title="Extend Filter" name="1">-->
-              <!--<div>Consistent with real life: in line with the process and logic of real life, and comply with languages-->
-                <!--and habits that the users are used to;-->
-              <!--</div>-->
-              <!--<div>Consistent within interface: all elements should be consistent, such as: design style, icons and-->
-                <!--texts, position of elements, etc.-->
-              <!--</div>-->
-            <!--</el-collapse-item>-->
-          <!--</el-collapse>-->
-        <!--</el-col>-->
       </el-row>
       <el-row>
-        <el-col :xs="24"
-                :sm="view === 'list' ? 24 : 12"
-                :md="view === 'list' ? 24 : 12"
-                :lg="view === 'list' ? 24 : 8"
-                :xl="view === 'list' ? 24 : 8"
+        <el-col :span="24"
                 v-for="p in products" :key="p.productId"
                 itemscope itemtype="http://schema.org/ItemList">
-          <ProductCard :id="p.productId" :view="view" itemprop="itemListElement" itemtype="http://schema.org/Product"/>
+          <ProductCard :id="p.productId" itemprop="itemListElement" itemtype="http://schema.org/Product"/>
         </el-col>
       </el-row>
-    </el-col>
-  </el-row>
+    </div>
+    <div id="filters">
+      <el-row id="filter_title">
+        <el-col :span="19">
+          Фильтр
+        </el-col>
+        <el-col :span="5" id="clear_filter">
+          <i class="el-icon-close"></i>
+        </el-col>
+      </el-row>
+      <div v-if="filtersTree.length">
+        <el-tree
+          :data="filtersTree"
+          ref="filtersTree"
+          @check="getCheckedNodes"
+          show-checkbox
+          node-key="value"
+          :props="defaultProps">
+        </el-tree>
+      </div>
+      <!--{{checkedNodes}}-->
+      <p v-else align="middle">Нет фильтров</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -102,7 +90,6 @@
         algoliaSearchText: '',
         searchPrefix: 'Вся продукция',
         treeKey: '1',
-        view: 'list',
         activeNames: [], // ['1', '2']
         defaultProps: {
           children: 'children',
@@ -117,6 +104,7 @@
             ? filter.maxPrice
             : this.$store.getters.productStatistics.maxPrice
         ],
+        selectedNode: '',
         selectedCountry: filter.country,
         selectedBrand: filter.brand,
         selectedColor: filter.color,
@@ -134,6 +122,7 @@
     methods: {
       handleNodeClick(data) {
         // TODO: check repeated click, block loading
+        this.selectedNode = data
         if (data.type === 'group') {
           this.selectedGroup = data.value
         } else if (data.type === 'category') {
@@ -158,6 +147,11 @@
           this.$forceUpdate()
         }
         return data.label.indexOf(value) !== -1;
+      },
+      getCheckedNodes(data) {
+        console.log(data)
+        console.log(this.$refs.filtersTree.getCheckedNodes())
+      //   TODO: add to filters parameters
       },
       changeSortByPrice() {
         if (this.sortByPrice === 'asc') {
@@ -249,10 +243,31 @@
       },
       user() {
         return this.$store.getters.user
+      },
+      filtersTree() {
+        if (!this.$store.getters.dictionaries || !this.selectedNode || !this.selectedNode.filters) {
+          return []
+        }
+        let tree = []
+        let treeNode = {}
+        this.selectedNode.filters.forEach(el => {
+          treeNode.value = this.$store.getters.DYNAMIC_PROPS[el].value
+          treeNode.label = this.$store.getters.DYNAMIC_PROPS[el].label
+          treeNode.children = []
+          if (this.$store.getters.dictionaries[el]) {
+            this.$store.getters.dictionaries[el].forEach(item => {
+              treeNode.children.push({value: item, label: item})
+            })
+          }
+          tree.push(treeNode)
+          treeNode = {}
+        })
+        return tree
       }
     },
     created() {
       this.$store.dispatch('fetchProducts')
+      this.$store.dispatch('fetchDictionaries')
     },
     watch: {
       filterText(val) {
@@ -263,17 +278,57 @@
 </script>
 
 <style scoped lang="scss">
+  #shop_wrap {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+  }
+
+  #nav_menu {
+    flex: 0 0 320px;
+  }
+
+  #central_view {
+    /*min-width: 600px;*/
+    flex: 1;
+  }
+
+  #filters {
+    margin-top: 10px;
+    flex: 0 0 300px;
+  }
+
+  #filter_title {
+    display: flex;
+    justify-content: start;
+    padding-left: 18px;
+    align-items: center;
+    height: 40px;
+    color: #909399;
+    background: #f5f7fa;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    margin-right: 10px;
+    width: 290px;
+  }
+
+  #clear_filter {
+    background: #1A7CDD;
+    padding: 9px 9px 9px 18px;
+    color: white;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  #clear_filter:hover {
+    cursor: pointer;
+  }
+
   #product_card_wrap {
     display: flex;
     justify-content: start;
     padding-left: 10px;
     padding-right: 10px;
-  }
-
-  #shop_wrap {
-    display: flex;
-    justify-content: start;
-    flex-wrap: wrap;
   }
 
   #filter_category {
@@ -283,17 +338,6 @@
   #algolia_search {
     padding-top: 10px;
     padding-bottom: 10px;
-  }
-
-  #product_filters {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  #view_type {
-    margin-bottom: 10px;
-    padding-right: 10px;
-    align-content: right;
   }
 
   #search_loading {
@@ -306,10 +350,12 @@
     height: 28px;
   }
 
-  @media only screen and (max-width: $xs-screen) {
-    #view_type {
+  @media only screen and (max-width: $sm-screen) {
+    #nav_menu {
+      flex: 0 0 100%;
+    }
+    #filters {
       display: none;
     }
   }
-
 </style>
