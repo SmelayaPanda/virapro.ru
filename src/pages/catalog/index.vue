@@ -39,7 +39,7 @@
               <img
                 v-else
                 slot="append"
-                src="~/assets/icons/algolia-mark-blue.svg"
+                src="~/assets/icons/algolia/algolia-mark-blue.svg"
                 id="algolia_icon" alt="Algolia Search">
               <!--<el-button v-else slot="append" icon="el-icon-search"></el-button>-->
             </el-input>
