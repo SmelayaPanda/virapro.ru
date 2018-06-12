@@ -6,6 +6,7 @@
           label="Category Filter"
           placeholder="Поиск каталога"
           v-model="filterText">
+          <el-button slot="prepend" icon="el-icon-search"></el-button>
         </el-input>
       </div>
       <el-tree
@@ -32,7 +33,15 @@
               placeholder="введите поисковый запрос"
               v-model="algoliaSearchText">
               <template slot="prepend">{{ searchPrefix }}</template>
-              <el-button slot="append" icon="el-icon-search"></el-button>
+              <i v-if="$store.getters.LOADING"
+                 slot="append"
+                 class="el-icon-loading" id="search_loading"></i>
+              <img
+                v-else
+                slot="append"
+                src="~/assets/icons/algolia-mark-blue.svg"
+                id="algolia_icon" alt="Algolia Search">
+              <!--<el-button v-else slot="append" icon="el-icon-search"></el-button>-->
             </el-input>
           </div>
         </el-col>
@@ -287,9 +296,20 @@
     align-content: right;
   }
 
+  #search_loading {
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+
+  #algolia_icon {
+    padding-top: 5px;
+    height: 28px;
+  }
+
   @media only screen and (max-width: $xs-screen) {
     #view_type {
       display: none;
     }
   }
+
 </style>
