@@ -10,6 +10,7 @@ export const getters = {
   algoliaSearchText: state => state.algoliaSearchText,
   productStatistics: state => state.productStatistics,
   PRODUCT_TREE: state => state.PRODUCT_TREE,
+  DYNAMIC_PROPS: state => state.DYNAMIC_PROPS,
 
   // ORDERS
   orders: state => state.orders,

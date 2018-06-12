@@ -15,6 +15,7 @@
           <el-form ref="form" :model="product" :rules="rules" label-width="140px">
             <el-form-item label="Категория/Группа" prop="option">
               <el-cascader
+                ref="catalog"
                 :options="$store.getters.PRODUCT_TREE"
                 filterable
                 placeholder="Выберите категорию"
@@ -33,52 +34,20 @@
                 :maxlength="1024">
               </el-input>
             </el-form-item>
-            <!--SKU-->
+            <el-form-item label="Артикул" prop="SKU">
+              <el-input v-model="product.SKU" placeholder="( < 32 символов )" :maxlength="32"></el-input>
+            </el-form-item>
             <el-form-item label-width="0">
               <el-col :span="12">
-                <el-form-item label="Артикул" prop="SKU">
-                  <el-input v-model="product.SKU" placeholder="( < 32 символов )" :maxlength="32"></el-input>
-                </el-form-item>
-                <el-form-item label="Размер" prop="size">
-                  <el-input v-model="product.size" placeholder="( < 32 символов )" :maxlength="32">
-                  </el-input>
-                </el-form-item>
-                <!--PRICE-->
                 <el-form-item label="Цена" prop="price">
                   <el-input-number v-model="product.price" :min="0" :max="1000000"></el-input-number>
-                  <b> RUB</b>
+                  <i> RUB</i>
                 </el-form-item>
                 <el-form-item label="Количество" prop="totalQty">
                   <el-input-number v-model="product.totalQty" :min="0" :max="1000000"></el-input-number>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="Бренд" prop="brand">
-                  <el-col type="flex" style="flex-wrap: wrap">
-                    <el-select
-                      value=""
-                      filterable
-                      no-match-text="Бренд отсутствует"
-                      v-model="product.brand"
-                      placeholder="Выберите бренд"
-                      v-if="dictionaries.brands">
-                      <el-option v-for="val in dictionaries.brands" :key="val" :label="val" :value="val"></el-option>
-                    </el-select>
-                  </el-col>
-                </el-form-item>
-                <!--COLOR-->
-                <el-form-item label="Цвет" prop="color">
-                  <el-select
-                    value=""
-                    filterable
-                    no-match-text="Цвет отсутствует"
-                    v-model="product.color"
-                    placeholder="Выберите цвет"
-                    v-if="dictionaries.colors">
-                    <el-option v-for="val in dictionaries.colors" :key="val" :label="val" :value="val"></el-option>
-                  </el-select>
-                </el-form-item>
-                <!--Origin Country-->
                 <el-form-item label="Страна" prop="originCountry">
                   <el-select
                     value=""
@@ -90,16 +59,40 @@
                     <el-option v-for="val in dictionaries.countries" :key="val" :label="val" :value="val"></el-option>
                   </el-select>
                 </el-form-item>
-                <!--Material-->
-                <el-form-item label="Материал" prop="material">
+                <el-form-item label="Бренд" prop="brand">
+                  <el-col type="flex" style="flex-wrap: wrap">
+                    <el-select
+                      value=""
+                      filterable
+                      allow-create
+                      default-first-option
+                      no-match-text="Бренд отсутствует"
+                      v-model="product.brand"
+                      placeholder="Выберите бренд"
+                      v-if="dictionaries.brands">
+                      <el-option v-for="val in dictionaries.brands" :key="val" :label="val" :value="val"></el-option>
+                    </el-select>
+                  </el-col>
+                </el-form-item>
+              </el-col>
+            </el-form-item>
+            <el-form-item>
+              <hr>
+              <i>Динамические свойства:</i>
+            </el-form-item>
+            <!--SKU-->
+            <p>{{dynamicFilters}}</p>
+            <el-form-item label-width="0">
+              <el-col :span="12" v-for="filter in dynamicFilters" :key="filter">
+                <el-form-item :label="$store.getters.DYNAMIC_PROPS[filter].label" :prop="filter" label-width="240px">
                   <el-select
-                    v-if="dictionaries.materials"
-                    v-model="product.material"
+                    v-model="product[filter]"
                     value=""
-                    filterable clearable
-                    no-match-text="Материал отсутствует"
-                    placeholder="Выберите материал">
-                    <el-option v-for="val in dictionaries.materials" :key="val" :label="val" :value="val"></el-option>
+                    filterable
+                    allow-create
+                    default-first-option
+                    placeholder="Выбрать">
+                    <el-option v-for="val in dictionaries[filter]" :key="val" :label="val" :value="val"></el-option>
                   </el-select>
                 </el-form-item>
               </el-col>
@@ -140,13 +133,39 @@
           description: '',
           SKU: '',
           originCountry: '',
-          material: '',
-          size: '',
           brand: '',
-          currency: 'RUB',
           price: 100,
+          currency: 'RUB',
           totalQty: 50,
-          color: ''
+          qty: 1, // for user cart
+          // DYNAMIC PROPERTIES
+          corpus_material: '',
+          corpus_diameter: '',
+          product_type: '',
+          conditional_diameter: '',
+          inner_diameter: '',
+          outer_diameter: '',
+          symbol: '',
+          drive: '',
+          pressure: '',
+          handle_type: '',
+          thread_diameter: '',
+          thread_type: '',
+          thickness: '',
+          wall_thickness: '',
+          angle_of_bending: '',
+          length: '',
+          series: '',
+          volume: '',
+          connecting_size: '',
+          locks: '',
+          rated_load: '',
+          pump_type: '',
+          section_number: '',
+          section_depth: '',
+          center_spacing: '',
+          heat_one_section: '',
+          coating: ''
         },
         rules: {
           title: [
@@ -174,34 +193,27 @@
         })
       },
       addNewProduct() {
-        let p = this.product;
-        let data = {
-          group: this.option[0],
-          category: this.option[1],
-          title: p.title,
-          description: p.description,
-          SKU: p.SKU,
-          originCountry: p.originCountry,
-          material: p.material ? p.material : '',
-          size: p.size ? p.size : '',
-          brand: p.brand,
-          price: parseFloat(p.price),
-          currency: p.currency,
-          qty: 1, // for user cart
-          totalQty: p.totalQty,
-          color: p.color,
-          creationDate: new Date()
+        console.log(this.product)
+        let data = {}
+        for (let prop in this.product) {
+          if (this.product[prop]) {
+            data[prop] = this.product[prop]
+          }
         }
+        data.group = this.option[0]
+        data.category = this.option[1]
+        data.price = parseFloat(this.product.price)
+        data.creationDate = new Date().getTime()
         console.log(data)
         this.dialog = false
         this.$store.dispatch('addNewProduct', data).then(() => {
-            this.$refs.form.resetFields()
-          })
+          this.$refs.form.resetFields()
+        })
       },
       resetForm() {
         this.$refs.form.resetFields();
       },
-      openDialog () {
+      openDialog() {
         this.dialog = true
         if (this.operation === 'edit') {
           this.product = this.$store.getters.products[this.productId]
@@ -214,11 +226,27 @@
     computed: {
       isValidForm() {
         return this.product.title && this.product.description &&
-          this.product.color && this.product.SKU && this.product.brand &&
-          this.product.originCountry
+          this.product.SKU && this.product.brand && this.product.originCountry
       },
       dictionaries() {
         return this.$store.getters.dictionaries
+      },
+      dynamicFilters () {
+        if (this.option[0]) {
+          let filters
+          this.$store.getters.PRODUCT_TREE.forEach(el => {
+            if (el.value === this.option[0]) {
+              el.children.forEach(item => {
+                if (item.value === this.option[1]) {
+                  filters = item.filters
+                }
+              })
+            }
+          })
+          return filters
+        } else {
+          return ''
+        }
       }
     }
   }

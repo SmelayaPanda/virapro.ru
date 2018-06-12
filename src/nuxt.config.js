@@ -22,7 +22,7 @@ module.exports = {
     middleware: 'router-auth'
   },
   loading: { // Customize the progress bar color
-    color: '#01579B'
+    color: '#1faa00'
   },
   modules: [
     '@nuxtjs/pwa',
