@@ -8,6 +8,7 @@ export const getters = {
   lastVisible: state => state.lastVisible,
   productCommonFilters: state => state.productCommonFilters,
   productDynamicFilters: state => state.productDynamicFilters,
+  algoliaSQLFilter: state => state.algoliaSQLFilter,
   algoliaSearchText: state => state.algoliaSearchText,
   productStatistics: state => state.productStatistics,
   PRODUCT_TREE: state => state.PRODUCT_TREE,

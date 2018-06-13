@@ -88,6 +88,7 @@ export const state = () => ({
     originCountry: '',
     brand: '' // ...
   },
+  algoliaSQLFilter: '',
   algoliaSearchText: '',
   // CONSTANTS
   ADMINS: ['smelayapandagm@gmail.com'],

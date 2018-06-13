@@ -189,7 +189,7 @@
         if (query) {
           query += ')'
         }
-        this.$store.dispatch('setProductDynamicFilters', query)
+        this.$store.dispatch('setAlgoliaSQLFilter', query)
           .then(() => {
             this.filterProducts()
           })

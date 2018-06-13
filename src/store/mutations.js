@@ -56,6 +56,9 @@ export const mutations = {
   setProductDynamicFilters(state, payload) {
     state.productDynamicFilters = payload
   },
+  setAlgoliaSQLFilter(state, payload) {
+    state.algoliaSQLFilter = payload
+  },
   algoliaSearchText(state, payload) {
     state.algoliaSearchText = payload
   },

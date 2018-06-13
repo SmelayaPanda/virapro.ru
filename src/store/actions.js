@@ -87,12 +87,16 @@ export const actions = {
     commit('setProductDynamicFilters', await payload)
   },
 
+  async setAlgoliaSQLFilter({commit, getters}, payload) {
+    commit('setAlgoliaSQLFilter', await payload)
+  },
+
   algoliaSearch({commit, getters, dispatch}, payload) {
     commit('LOADING', true)
     commit('algoliaSearchText', payload)
     commit('setLastVisible', null)
     let comFilter = getters.productCommonFilters
-    let dynFilter = getters.productDynamicFilters
+    let dynFilter = getters.algoliaSQLFilter
     const ALGOLIA_APP_ID = '895KFYHFNM'
     const ALGOLIA_SEARCH_KEY = '743fdead3dcea56354ccfbf001d370ca'
     const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
