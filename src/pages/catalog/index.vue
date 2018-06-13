@@ -42,8 +42,26 @@
           </div>
         </el-col>
       </el-row>
-      <el-row>
-      </el-row>
+      <no-ssr >
+        <el-row id="price_filter">
+          <el-col id="price_sort">
+            <el-tooltip content="Нажми для сортировки" placement="top">
+              <div @click="changeSortByPrice" type="text">
+                <el-button type="text">Цена</el-button>
+                <i v-if="sortByPrice === 'asc'" class="el-icon-sort-up sort_icon"></i>
+                <i v-else class="el-icon-sort-down sort_icon"></i>
+              </div>
+            </el-tooltip>
+          </el-col>
+          <el-col id="price_slider_wrap">
+            <el-slider
+              if="price_slider"
+              v-model="sliderValues" @change="filterProducts" range
+              :step="100" :min="0" :max="$store.getters.productStatistics.maxPrice">
+            </el-slider>
+          </el-col>
+        </el-row>
+      </no-ssr>
       <el-row>
         <el-col :span="24"
                 v-for="p in products" :key="p.productId"
@@ -151,7 +169,7 @@
       getCheckedNodes(data) {
         console.log(data)
         console.log(this.$refs.filtersTree.getCheckedNodes())
-      //   TODO: add to filters parameters
+        //   TODO: add to filters parameters
       },
       changeSortByPrice() {
         if (this.sortByPrice === 'asc') {
@@ -266,6 +284,7 @@
       }
     },
     created() {
+      this.$store.dispatch('fetchProductStatistics')
       this.$store.dispatch('fetchProducts')
       this.$store.dispatch('fetchDictionaries')
     },
@@ -293,9 +312,36 @@
     flex: 1;
   }
 
+  #price_filter {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    background: #f5f7fa;
+    border: 1px solid #dcdfe6;
+    height: 40px;
+    border-radius: 4px;
+  }
+
+  #price_slider_wrap {
+    padding-right: 24px;
+    padding-left: 10px;
+  }
+
+  #price_sort {
+    flex: 0 0 80px;
+    padding-left: 7px;
+  }
+
   #filters {
     margin-top: 10px;
     flex: 0 0 300px;
+  }
+
+  .sort_icon {
+    color: $color-primary;
   }
 
   #filter_title {
@@ -314,7 +360,7 @@
 
   #clear_filter {
     background: #1A7CDD;
-    padding: 9px 9px 9px 18px;
+    padding: 9px 9px 9px 20px;
     color: white;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
