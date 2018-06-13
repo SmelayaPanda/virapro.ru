@@ -89,6 +89,8 @@ export const actions = {
 
   algoliaSearch({commit, getters, dispatch}, payload) {
     commit('LOADING', true)
+    commit('algoliaSearchText', payload)
+    commit('setLastVisible', null)
     let comFilter = getters.productCommonFilters
     let dynFilter = getters.productDynamicFilters
     const ALGOLIA_APP_ID = '895KFYHFNM'
@@ -106,18 +108,17 @@ export const actions = {
     if (comFilter.category) facetFilters.push(`category:${comFilter.category}`)
     if (comFilter.maxPrice) numericFilters.push(`price <= ${comFilter.maxPrice}`)
     if (comFilter.minPrice) numericFilters.push(`price >= ${comFilter.minPrice}`)
-    // console.log(payload)
-    // console.log(facetFilters.concat(dynFilter).toString())
-    // console.log(numericFilters);
+    let search = {
+      query: payload,
+      facetFilters: facetFilters,
+      numericFilters: numericFilters
+    }
+    if (dynFilter.length) search.filters = dynFilter
+
     index
-      .search({
-        query: payload,
-        facetFilters: facetFilters.concat(dynFilter),
-        numericFilters: numericFilters
-      })
+      .search(search)
       .then(responses => {
         let resp = responses.hits
-        // console.log(resp)
         let actions = []
         let fetchProduct = function (id) {
           return fs.collection('products').doc(id).get()
@@ -147,8 +148,6 @@ export const actions = {
         }
         commit('setProducts', {...products})
         commit('LOADING', false)
-        commit('algoliaSearchText', payload)
-        commit('setLastVisible', null)
       })
       .catch(err => dispatch('LOG', err))
   },
@@ -257,11 +256,6 @@ export const actions = {
       })
       .catch(err => dispatch('LOG', err))
   },
-
-
-
-
-
 
 
   // ORDERS
@@ -379,12 +373,9 @@ export const actions = {
         })
         .catch(err => dispatch('LOG', err))
     },
-  setConfirmationObj ({commit}, payload) {
+  setConfirmationObj({commit}, payload) {
     commit('setConfirmationObj', payload)
   },
-
-
-
 
 
   // user
@@ -633,34 +624,34 @@ export const actions = {
 
   // DICTIONARIES
   fetchDictionaries:
-    ({commit, dispatch}) =>{
-    commit('LOADING', true)
-    return fs.collection('dictionaries').get()
-      .then(snapshot => {
-        let docs = snapshot.docs
-        docs.forEach(doc => {
-          commit('setDictionary', {name: doc.id, data: doc.data().all})
+    ({commit, dispatch}) => {
+      commit('LOADING', true)
+      return fs.collection('dictionaries').get()
+        .then(snapshot => {
+          let docs = snapshot.docs
+          docs.forEach(doc => {
+            commit('setDictionary', {name: doc.id, data: doc.data().all})
+          })
+          console.log('(i) Fetched: dictionaries')
+          commit('LOADING', false)
         })
-        console.log('(i) Fetched: dictionaries')
-        commit('LOADING', false)
-      })
-      .catch(err => dispatch('LOG', err))
-  },
+        .catch(err => dispatch('LOG', err))
+    },
 
 
   uploadDictionary:
     ({commit, getters, dispatch}, payload) => {
-    let name = payload.name
-    delete payload.dictionary
-    commit('LOADING', true)
-    fs.collection('dictionaries').doc(name).set({all: payload.data})
-      .then(() => {
-        commit('setDictionary', {name: payload.name, data: payload.data})
-        commit('LOADING', false)
-        console.log('(i) Dictionary updated')
-      })
-      .catch(err => dispatch('LOG', err))
-  },
+      let name = payload.name
+      delete payload.dictionary
+      commit('LOADING', true)
+      fs.collection('dictionaries').doc(name).set({all: payload.data})
+        .then(() => {
+          commit('setDictionary', {name: payload.name, data: payload.data})
+          commit('LOADING', false)
+          console.log('(i) Dictionary updated')
+        })
+        .catch(err => dispatch('LOG', err))
+    },
 
   // COMPANY INFO
   fetchCompanyInfo:
@@ -694,9 +685,6 @@ export const actions = {
         })
         .catch(err => dispatch('LOG', err))
     },
-
-
-
 
 
   // REVIEWS

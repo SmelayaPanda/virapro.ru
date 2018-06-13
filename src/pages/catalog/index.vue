@@ -25,8 +25,8 @@
           <div id="algolia_search">
             <el-input
               label="Algolia Filter"
-              @change="algoliaSearch"
-              @keyup.enter.exact="algoliaSearch"
+              @change="findProducts"
+              @keyup.enter.exact="findProducts"
               placeholder="введите поисковый запрос"
               v-model="algoliaSearchText">
               <template slot="prepend">{{ searchPrefix }}</template>
@@ -172,13 +172,27 @@
 
 
       getCheckedFilterNodes(data, tree) { // active dynamic filters
-        let arr = [] // clear prev
+        let query = ''
+        let prevNodeProp
         tree.checkedNodes.forEach(node => {
-          if (!node.children) { // only checked leafs
-            arr.push(`${node.prop}:${node.value}`)
+          if (!node.children) {
+            if (!prevNodeProp) {
+              query += `(${node.prop}:${node.value}`
+            } else if (prevNodeProp === node.prop) {
+              query += ` OR ${node.prop}:${node.value}`
+            } else {
+              query += `) AND (${node.prop}:${node.value}`
+            }
+            prevNodeProp = node.prop
           }
         })
-        this.$store.dispatch('setProductDynamicFilters', arr)
+        if (query) {
+          query += ')'
+        }
+        this.$store.dispatch('setProductDynamicFilters', query)
+          .then(() => {
+            this.filterProducts()
+          })
       },
 
 
@@ -235,15 +249,15 @@
       },
 
 
-      algoliaSearch() {
+      findProducts() {
         if (!this.algoliaSearchText) {
           this.$store.dispatch('setAlgoliaSearchText', null)
           return this.filterProducts()
         }
-        // if (this.algoliaSearchText !== this.$store.getters.algoliaSearchText) { // because input have 2 events
-        this.$store.dispatch('algoliaSearch', this.algoliaSearchText)
-        // this.$store.dispatch('USER_EVENT', `Поиск по слову: "${this.algoliaSearchText}"`)
-        // }
+        if (this.algoliaSearchText !== this.$store.getters.algoliaSearchText) { // because input have 2 events
+          this.$store.dispatch('algoliaSearch', this.algoliaSearchText)
+          // this.$store.dispatch('USER_EVENT', `Поиск по слову: "${this.algoliaSearchText}"`)
+        }
       },
 
 
