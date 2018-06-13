@@ -132,7 +132,8 @@ export const state = () => ({
     }
   },
   DYNAMIC_PROPS: {
-    // DON'T FORGET ADD NEW PROPERTIES TO ADD/EDIT PRODUCT OPERATION
+    // DON'T FORGET ADD NEW PROPERTIES TO ADD/EDIT PRODUCT OPERATION!
+    // DON'T FORGET UPDATE ALGOLIA QUERY AND FACETING SETTINGS!
     corpus_material: {label: 'Материал корпуса', type: 'String'},
     corpus_diameter: {label: 'Диаметр корпуса, мм', type: 'Number'},
     product_type: {label: 'Тип товара', type: 'String'},

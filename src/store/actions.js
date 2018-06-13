@@ -79,17 +79,18 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
-  setProductCommonFilters({commit, getters}, payload) {
-    commit('setProductCommonFilters', payload)
+  async setProductCommonFilters({commit, getters}, payload) {
+    commit('setProductCommonFilters', await payload)
   },
 
-  setProductDynamicFilters({commit, getters}, payload) {
-    commit('setProductDynamicFilters', payload)
+  async setProductDynamicFilters({commit, getters}, payload) {
+    commit('setProductDynamicFilters', await payload)
   },
 
   algoliaSearch({commit, getters, dispatch}, payload) {
     commit('LOADING', true)
-    let filter = getters.productCommonFilters
+    let comFilter = getters.productCommonFilters
+    let dynFilter = getters.productDynamicFilters
     const ALGOLIA_APP_ID = '895KFYHFNM'
     const ALGOLIA_SEARCH_KEY = '743fdead3dcea56354ccfbf001d370ca'
     const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
@@ -101,18 +102,14 @@ export const actions = {
     }
     let facetFilters = []
     let numericFilters = []
-    if (filter.group) facetFilters.push(`group:${filter.group}`)
-    if (filter.category) facetFilters.push(`category:${filter.category}`)
-    if (filter.country) facetFilters.push(`country:${filter.country}`)
-    if (filter.brand) facetFilters.push(`brand:${filter.brand}`)
-    if (filter.color) facetFilters.push(`color:${filter.color}`)
-    if (filter.material) facetFilters.push(`material:${filter.material}`)
-    if (filter.maxPrice) numericFilters.push(`price <= ${filter.maxPrice}`)
-    if (filter.minPrice) numericFilters.push(`price >= ${filter.minPrice}`)
+    if (comFilter.group) facetFilters.push(`group:${comFilter.group}`)
+    if (comFilter.category) facetFilters.push(`category:${comFilter.category}`)
+    if (comFilter.maxPrice) numericFilters.push(`price <= ${comFilter.maxPrice}`)
+    if (comFilter.minPrice) numericFilters.push(`price >= ${comFilter.minPrice}`)
     index
       .search({
         query: payload,
-        facetFilters: facetFilters,
+        facetFilters: facetFilters.concat(dynFilter),
         numericFilters: numericFilters
       })
       .then(responses => {
@@ -135,7 +132,7 @@ export const actions = {
           // because client key not allow to switch algolia sort
           let arr = []
           snap.forEach(doc => arr.push(doc.data()))
-          if (filter.sortByPrice === 'asc') {
+          if (comFilter.sortByPrice === 'asc') {
             arr.sort((a, b) => a.price - b.price)
           } else {
             arr.sort((a, b) => b.price - a.price)

@@ -99,10 +99,11 @@
   export default {
     components: {ProductCard},
     data() {
-      let filter = this.$store.getters.productCommonFilters
+      let comFilter = this.$store.getters.productCommonFilters
       return {
         catalog: [],
         filterText: '',
+        dynamicFilters: [],
         algoliaSearchText: '',
         searchPrefix: 'Вся продукция',
         treeKey: '1',
@@ -114,26 +115,26 @@
           disabled: false
         },
         hoverOnCard: false,
-        sortByPrice: filter.sortByPrice,
+        sortByPrice: comFilter.sortByPrice,
         sliderValues: [
-          filter.minPrice,
-          filter.maxPrice
-            ? filter.maxPrice
+          comFilter.minPrice,
+          comFilter.maxPrice
+            ? comFilter.maxPrice
             : this.$store.getters.productStatistics.maxPrice
         ],
         selectedNode: '',
-        selectedCountry: filter.country,
-        selectedBrand: filter.brand,
-        selectedColor: filter.color,
-        selectedMaterial: filter.material,
-        selectedGroup: filter.group,
-        selectedCategory: filter.category,
+        selectedCountry: comFilter.country,
+        selectedBrand: comFilter.brand,
+        selectedColor: comFilter.color,
+        selectedMaterial: comFilter.material,
+        selectedGroup: comFilter.group,
+        selectedCategory: comFilter.category,
         isCollapsed: false,
         activeName:
-          !filter.brand &&
-          !filter.color &&
-          !filter.minPrice &&
-          !filter.maxPrice ? '0' : '1'
+          !comFilter.brand &&
+          !comFilter.color &&
+          !comFilter.minPrice &&
+          !comFilter.maxPrice ? '0' : '1'
       };
     },
     methods: {
@@ -166,12 +167,14 @@
         return data.label.indexOf(value) !== -1;
       },
       getCheckedNodes(data, tree) {
+        let arr = [] // clear prev
         tree.checkedNodes.forEach(node => {
           if (!node.children) { // only checked leafs
-            console.log(node)
+            arr.push(`${node.prop}:${node.value}`)
           }
         })
-        //   TODO: add to filters parameters
+        this.dynamicFilters = arr
+        this.$store.dispatch('setProductDynamicFilters', arr)
       },
       changeSortByPrice() {
         if (this.sortByPrice === 'asc') {
@@ -199,11 +202,7 @@
           minPrice: this.sliderValues[0],
           maxPrice: this.sliderValues[1],
           category: this.selectedCategory,
-          group: this.selectedGroup,
-          country: this.selectedCountry,
-          brand: this.selectedBrand,
-          color: this.selectedColor,
-          material: this.selectedMaterial
+          group: this.selectedGroup
         })
           .then(() => {
             if (this.algoliaSearchText) {
