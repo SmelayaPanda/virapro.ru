@@ -95,8 +95,7 @@ export const actions = {
     commit('LOADING', true)
     commit('algoliaSearchText', payload)
     commit('setLastVisible', null)
-    let comFilter = getters.productCommonFilters
-    let dynFilter = getters.algoliaSQLFilter
+    let f = getters.productCommonFilters
     const ALGOLIA_APP_ID = '895KFYHFNM'
     const ALGOLIA_SEARCH_KEY = '743fdead3dcea56354ccfbf001d370ca'
     const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
@@ -108,16 +107,16 @@ export const actions = {
     }
     let facetFilters = []
     let numericFilters = []
-    if (comFilter.group) facetFilters.push(`group:${comFilter.group}`)
-    if (comFilter.category) facetFilters.push(`category:${comFilter.category}`)
-    if (comFilter.maxPrice) numericFilters.push(`price <= ${comFilter.maxPrice}`)
-    if (comFilter.minPrice) numericFilters.push(`price >= ${comFilter.minPrice}`)
+    if (f.group) facetFilters.push(`group:${f.group}`)
+    if (f.category) facetFilters.push(`category:${f.category}`)
+    if (f.maxPrice) numericFilters.push(`price <= ${f.maxPrice}`)
+    if (f.minPrice) numericFilters.push(`price >= ${f.minPrice}`)
     let search = {
       query: payload,
       facetFilters: facetFilters,
       numericFilters: numericFilters
     }
-    if (dynFilter.length) search.filters = dynFilter
+    if (getters.algoliaSQLFilter.length) search.filters = getters.algoliaSQLFilter
 
     index
       .search(search)
@@ -141,7 +140,7 @@ export const actions = {
           // because client key not allow to switch algolia sort
           let arr = []
           snap.forEach(doc => arr.push(doc.data()))
-          if (comFilter.sortByPrice === 'asc') {
+          if (f.sortByPrice === 'asc') {
             arr.sort((a, b) => a.price - b.price)
           } else {
             arr.sort((a, b) => b.price - a.price)
