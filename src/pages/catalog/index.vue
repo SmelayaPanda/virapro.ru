@@ -61,18 +61,16 @@
         </el-col>
       </el-row>
       <el-row>
-        <el-col :span="24"
-                v-for="p in products" :key="p.productId"
-                itemscope itemtype="http://schema.org/ItemList">
+        <el-col
+          :span="24" v-for="p in products" :key="p.productId"
+          itemscope itemtype="http://schema.org/ItemList">
           <ProductCard :id="p.productId" itemprop="itemListElement" itemtype="http://schema.org/Product"/>
         </el-col>
       </el-row>
     </div>
     <div id="filters">
       <el-row id="filter_title">
-        <el-col :span="19">
-          Фильтр
-        </el-col>
+        <el-col :span="19">Фильтр</el-col>
         <el-col v-if="dynamicFilters.length" :span="5">
           <div id="clear_filter" @click="clearCheckedFilters">
             <i class="el-icon-close"></i>
@@ -84,7 +82,7 @@
           ref="filtersTree"
           :data="filtersTree"
           :props="defaultProps"
-          @check="getCheckedNodes"
+          @check="getCheckedFilterNodes"
           node-key="value"
           show-checkbox>
         </el-tree>
@@ -105,7 +103,6 @@
       return {
         catalog: [],
         filterText: '',
-        dynamicFilters: [],
         algoliaSearchText: '',
         searchPrefix: 'Вся продукция',
         treeKey: '1',
@@ -125,10 +122,6 @@
             : this.$store.getters.productStatistics.maxPrice
         ],
         selectedNode: '',
-        selectedCountry: comFilter.country,
-        selectedBrand: comFilter.brand,
-        selectedColor: comFilter.color,
-        selectedMaterial: comFilter.material,
         selectedGroup: comFilter.group,
         selectedCategory: comFilter.category,
         isCollapsed: false,
@@ -140,8 +133,14 @@
       };
     },
     methods: {
-      handleNodeClick(data) {
+
+      handleNodeClick(data) { // смена выбраной группы/категории товара
         // TODO: check repeated click, block loading
+        if ((data.type && this.selectedGroup === data.value) ||
+          (data.type === 'category' && this.selectedCategory === data.value)) {
+          return
+        }
+        this.clearCheckedFilters()
         this.selectedNode = data
         if (data.type === 'group') {
           this.selectedGroup = data.value
@@ -161,27 +160,36 @@
           this.$forceUpdate()
         }
       },
-      filterNode(value, data) {
+
+
+      filterNode(value, data) { // text search of catalog name
         if (!value) {
           this.treeKey = new Date().getTime()
           this.$forceUpdate()
         }
         return data.label.indexOf(value) !== -1;
       },
-      getCheckedNodes(data, tree) {
+
+
+      getCheckedFilterNodes(data, tree) { // active dynamic filters
         let arr = [] // clear prev
         tree.checkedNodes.forEach(node => {
           if (!node.children) { // only checked leafs
             arr.push(`${node.prop}:${node.value}`)
           }
         })
-        this.dynamicFilters = arr
         this.$store.dispatch('setProductDynamicFilters', arr)
       },
-      clearCheckedFilters () {
-        this.$refs.filtersTree.setCheckedNodes([])
-        this.dynamicFilters = []
+
+
+      clearCheckedFilters() {
+        if (this.$refs.filtersTree) {
+          this.$refs.filtersTree.setCheckedNodes([])
+        }
+        this.$store.dispatch('setProductDynamicFilters', [])
       },
+
+
       changeSortByPrice() {
         if (this.sortByPrice === 'asc') {
           this.sortByPrice = 'desc'
@@ -192,14 +200,20 @@
         }
         this.filterProducts()
       },
+
+
       filterProducts() {
         this.$store.dispatch('setLastVisible', null)
         this.filter()
       },
+
+
       loadMore() {
         // this.$store.dispatch('USER_EVENT', 'Загрузить больше')
         this.filter()
       },
+
+
       filter() {
         // this.logFilterEvents()
         this.$store.dispatch('setProductCommonFilters', {
@@ -219,16 +233,20 @@
             }
           })
       },
+
+
       algoliaSearch() {
         if (!this.algoliaSearchText) {
           this.$store.dispatch('setAlgoliaSearchText', null)
           return this.filterProducts()
         }
-        if (this.algoliaSearchText !== this.$store.getters.algoliaSearchText) { // because input have 2 events
-          this.$store.dispatch('algoliaSearch', this.algoliaSearchText)
-          // this.$store.dispatch('USER_EVENT', `Поиск по слову: "${this.algoliaSearchText}"`)
-        }
+        // if (this.algoliaSearchText !== this.$store.getters.algoliaSearchText) { // because input have 2 events
+        this.$store.dispatch('algoliaSearch', this.algoliaSearchText)
+        // this.$store.dispatch('USER_EVENT', `Поиск по слову: "${this.algoliaSearchText}"`)
+        // }
       },
+
+
       logFilterEvents() {
         let lastFilter = this.$store.getters.productCommonFilters
         if (lastFilter.brand !== this.selectedBrand) {
@@ -268,6 +286,9 @@
       },
       user() {
         return this.$store.getters.user
+      },
+      dynamicFilters() {
+        return this.$store.getters.productDynamicFilters
       },
       filtersTree() {
         if (!this.$store.getters.dictionaries || !this.selectedNode || !this.selectedNode.filters) {

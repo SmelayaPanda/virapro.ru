@@ -106,6 +106,9 @@ export const actions = {
     if (comFilter.category) facetFilters.push(`category:${comFilter.category}`)
     if (comFilter.maxPrice) numericFilters.push(`price <= ${comFilter.maxPrice}`)
     if (comFilter.minPrice) numericFilters.push(`price >= ${comFilter.minPrice}`)
+    // console.log(payload)
+    // console.log(facetFilters.concat(dynFilter).toString())
+    // console.log(numericFilters);
     index
       .search({
         query: payload,
@@ -114,6 +117,7 @@ export const actions = {
       })
       .then(responses => {
         let resp = responses.hits
+        // console.log(resp)
         let actions = []
         let fetchProduct = function (id) {
           return fs.collection('products').doc(id).get()
