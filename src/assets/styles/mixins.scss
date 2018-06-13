@@ -14,3 +14,19 @@
     bottom: 0;
   }
 }
+
+@mixin rotate($val, $addTransform) {
+  -webkit-transform: rotate($val) $addTransform;
+  -moz-transform: rotate($val) $addTransform;
+  -ms-transform: rotate($val) $addTransform;
+  -o-transform: rotate($val) $addTransform;
+  transform: rotate($val) $addTransform;
+}
+
+@mixin translateX($val) {
+  -webkit-transform: translateX($val);
+  -moz-transform: translateX($val);
+  -ms-transform: translateX($val);
+  -o-transform: translateX($val);
+  transform: translateX($val);
+}

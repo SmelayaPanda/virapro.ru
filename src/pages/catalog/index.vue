@@ -73,18 +73,20 @@
         <el-col :span="19">
           Фильтр
         </el-col>
-        <el-col :span="5" id="clear_filter">
-          <i class="el-icon-close"></i>
+        <el-col v-if="dynamicFilters.length" :span="5">
+          <div id="clear_filter" @click="clearCheckedFilters">
+            <i class="el-icon-close"></i>
+          </div>
         </el-col>
       </el-row>
       <div v-if="filtersTree.length">
         <el-tree
-          :data="filtersTree"
           ref="filtersTree"
+          :data="filtersTree"
+          :props="defaultProps"
           @check="getCheckedNodes"
-          show-checkbox
           node-key="value"
-          :props="defaultProps">
+          show-checkbox>
         </el-tree>
       </div>
       <!--{{checkedNodes}}-->
@@ -175,6 +177,10 @@
         })
         this.dynamicFilters = arr
         this.$store.dispatch('setProductDynamicFilters', arr)
+      },
+      clearCheckedFilters () {
+        this.$refs.filtersTree.setCheckedNodes([])
+        this.dynamicFilters = []
       },
       changeSortByPrice() {
         if (this.sortByPrice === 'asc') {
@@ -369,6 +375,14 @@
 
   #clear_filter:hover {
     cursor: pointer;
+  }
+
+  .el-icon-close {
+    transition: all .3s;
+  }
+
+  .el-icon-close:hover {
+    @include rotate(90deg, scale(1.4))
   }
 
   #product_card_wrap {
