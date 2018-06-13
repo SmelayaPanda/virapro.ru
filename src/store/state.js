@@ -74,17 +74,19 @@ export const state = () => ({
     totalStoreCoast: 0
   },
   lastVisible: null, // value means load more button is available
-  productFilters: {
+  productCommonFilters: {
     minPrice: 0,
     maxPrice: 0,
     group: '',
     category: '',
-    country: '',
-    brand: '',
-    color: '',
-    material: '',
     sortByPrice: 'desc',
     limit: 15
+  },
+  productDynamicFilters: {
+    // adds as facets filters with algolia search
+    // and as client side if firebase full category load
+    originCountry: '',
+    brand: '' // ...
   },
   algoliaSearchText: '',
   // CONSTANTS

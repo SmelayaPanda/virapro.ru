@@ -59,7 +59,7 @@
     methods: {
       loadCategoryProducts() {
         this.$store.dispatch('setLastVisible', null)
-        this.$store.dispatch('productFilters', {
+        this.$store.dispatch('setProductCommonFilters', {
           limit: null, // all
           sortByPrice: 'desc',
           category: this.productOption[1],

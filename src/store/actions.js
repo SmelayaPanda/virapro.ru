@@ -24,7 +24,7 @@ export const actions = {
     if (getters.algoliaSearchText) {
       return // product -> shop (old result)
     }
-    let filter = getters.productFilters
+    let filter = getters.productCommonFilters
     let query = fs.collection('products')
     if (filter.maxPrice) {
       query = query
@@ -37,18 +37,18 @@ export const actions = {
     if (filter.category) {
       query = query.where('category', '==', filter.category)
     }
-    if (filter.country) {
-      query = query.where('originCountry', '==', filter.country)
-    }
-    if (filter.brand) {
-      query = query.where('brand', '==', filter.brand)
-    }
-    if (filter.color) {
-      query = query.where('color', '==', filter.color)
-    }
-    if (filter.material) {
-      query = query.where('material', '==', filter.material)
-    }
+    // if (filter.country) {
+    //   query = query.where('originCountry', '==', filter.country)
+    // }
+    // if (filter.brand) {
+    //   query = query.where('brand', '==', filter.brand)
+    // }
+    // if (filter.color) {
+    //   query = query.where('color', '==', filter.color)
+    // }
+    // if (filter.material) {
+    //   query = query.where('material', '==', filter.material)
+    // }
     query = query.orderBy('price', filter.sortByPrice)
     if (getters.lastVisible) {
       query = query.startAfter(getters.lastVisible)
@@ -79,13 +79,17 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
-  productFilters({commit, getters}, payload) {
-    commit('productFilters', payload)
+  setProductCommonFilters({commit, getters}, payload) {
+    commit('setProductCommonFilters', payload)
+  },
+
+  setProductDynamicFilters({commit, getters}, payload) {
+    commit('setProductDynamicFilters', payload)
   },
 
   algoliaSearch({commit, getters, dispatch}, payload) {
     commit('LOADING', true)
-    let filter = getters.productFilters
+    let filter = getters.productCommonFilters
     const ALGOLIA_APP_ID = '895KFYHFNM'
     const ALGOLIA_SEARCH_KEY = '743fdead3dcea56354ccfbf001d370ca'
     const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)

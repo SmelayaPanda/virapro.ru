@@ -42,26 +42,24 @@
           </div>
         </el-col>
       </el-row>
-      <no-ssr >
-        <el-row id="price_filter">
-          <el-col id="price_sort">
-            <el-tooltip content="Нажми для сортировки" placement="top">
-              <div @click="changeSortByPrice" type="text">
-                <el-button type="text">Цена</el-button>
-                <i v-if="sortByPrice === 'asc'" class="el-icon-sort-up sort_icon"></i>
-                <i v-else class="el-icon-sort-down sort_icon"></i>
-              </div>
-            </el-tooltip>
-          </el-col>
-          <el-col id="price_slider_wrap">
-            <el-slider
-              if="price_slider"
-              v-model="sliderValues" @change="filterProducts" range
-              :step="100" :min="0" :max="$store.getters.productStatistics.maxPrice">
-            </el-slider>
-          </el-col>
-        </el-row>
-      </no-ssr>
+      <el-row id="price_filter">
+        <el-col id="price_sort">
+          <el-tooltip content="Нажми для сортировки" placement="top">
+            <div @click="changeSortByPrice" type="text">
+              <el-button type="text">Цена</el-button>
+              <i v-if="sortByPrice === 'asc'" class="el-icon-sort-up sort_icon"></i>
+              <i v-else class="el-icon-sort-down sort_icon"></i>
+            </div>
+          </el-tooltip>
+        </el-col>
+        <el-col id="price_slider_wrap">
+          <el-slider
+            if="price_slider"
+            v-model="sliderValues" @change="filterProducts" range
+            :step="100" :min="0" :max="$store.getters.productStatistics.maxPrice">
+          </el-slider>
+        </el-col>
+      </el-row>
       <el-row>
         <el-col :span="24"
                 v-for="p in products" :key="p.productId"
@@ -101,7 +99,7 @@
   export default {
     components: {ProductCard},
     data() {
-      let filter = this.$store.getters.productFilters
+      let filter = this.$store.getters.productCommonFilters
       return {
         catalog: [],
         filterText: '',
@@ -111,6 +109,7 @@
         activeNames: [], // ['1', '2']
         defaultProps: {
           children: 'children',
+          value: 'value',
           label: 'label',
           disabled: false
         },
@@ -153,7 +152,7 @@
         }
         // this.$store.dispatch('USER_EVENT', `Категория/Группа`)
         this.$store.dispatch('setLastVisible', null)
-        this.$store.dispatch('productFilters', filter).then(() => this.$store.dispatch('fetchProducts'))
+        this.$store.dispatch('setProductCommonFilters', filter).then(() => this.$store.dispatch('fetchProducts'))
         if (data.value === 'all-products') {
           this.treeKey = new Date().getTime()
           this.$forceUpdate()
@@ -166,9 +165,12 @@
         }
         return data.label.indexOf(value) !== -1;
       },
-      getCheckedNodes(data) {
-        console.log(data)
-        console.log(this.$refs.filtersTree.getCheckedNodes())
+      getCheckedNodes(data, tree) {
+        tree.checkedNodes.forEach(node => {
+          if (!node.children) { // only checked leafs
+            console.log(node)
+          }
+        })
         //   TODO: add to filters parameters
       },
       changeSortByPrice() {
@@ -191,7 +193,7 @@
       },
       filter() {
         // this.logFilterEvents()
-        this.$store.dispatch('productFilters', {
+        this.$store.dispatch('setProductCommonFilters', {
           limit: 15,
           sortByPrice: this.sortByPrice,
           minPrice: this.sliderValues[0],
@@ -223,7 +225,7 @@
         }
       },
       logFilterEvents() {
-        let lastFilter = this.$store.getters.productFilters
+        let lastFilter = this.$store.getters.productCommonFilters
         if (lastFilter.brand !== this.selectedBrand) {
           this.$store.dispatch('USER_EVENT', `Фильтр - бренд: ${this.selectedBrand}`)
         }
@@ -274,7 +276,7 @@
           treeNode.children = []
           if (this.$store.getters.dictionaries[el]) {
             this.$store.getters.dictionaries[el].forEach(item => {
-              treeNode.children.push({value: item, label: item})
+              treeNode.children.push({value: item, label: item, prop: el})
             })
           }
           tree.push(treeNode)

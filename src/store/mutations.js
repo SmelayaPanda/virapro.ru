@@ -50,8 +50,11 @@ export const mutations = {
   setLastVisible(state, payload) {
     state.lastVisible = payload
   },
-  productFilters(state, payload) {
-    state.productFilters = payload
+  setProductCommonFilters(state, payload) {
+    state.productCommonFilters = payload
+  },
+  setProductDynamicFilters(state, payload) {
+    state.productDynamicFilters = payload
   },
   algoliaSearchText(state, payload) {
     state.algoliaSearchText = payload
