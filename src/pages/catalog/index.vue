@@ -183,13 +183,13 @@
           node.value = this.$store.getters.DYNAMIC_PROPS[prop].value
           node.label = this.$store.getters.DYNAMIC_PROPS[prop].label
           node.children = []
-          let uniquePropVal = []
+          let unique = []
           for (let p in this.products) {
-            if (this.products[p][prop] && uniquePropVal.indexOf(this.products[p][prop]) === -1) {
-              uniquePropVal.push(this.products[p][prop])
+            if (this.products[p][prop] && unique.indexOf(this.products[p][prop]) === -1) {
+              unique.push(this.products[p][prop])
             }
           }
-          uniquePropVal.forEach(el => {
+          unique.forEach(el => {
             node.children.push({value: el, label: el, prop: prop})
           })
           if (node.children.length) {
