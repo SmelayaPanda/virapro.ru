@@ -1,8 +1,6 @@
 <template>
   <div align="left" :key="dictinaryKey">
     <p id="dictionary_info">* Статические данные общие для всей системы</p>
-    <dictionary-subject title="Страна-производитель" name="countries" key="countries" type="String"/>
-    <dictionary-subject title="Производитель" name="brands" key="brands" type="String"/>
     <div v-for="(prop, idx) in $store.getters.DYNAMIC_PROPS" :key="idx">
       <dictionary-subject :title="prop.label" :name="idx" :key="idx" :type="prop.type"/>
     </div>

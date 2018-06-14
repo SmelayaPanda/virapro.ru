@@ -131,9 +131,11 @@ export const state = () => ({
     }
   },
   DYNAMIC_PROPS: {
-    // DON'T FORGET ADD NEW PROPERTIES TO ADD/EDIT PRODUCT OPERATION!
-    // DON'T FORGET UPDATE ALGOLIA QUERY AND FACETING SETTINGS!
-    // originCountry, brand
+    // 1. DON'T FORGET ADD NEW PROPERTIES TO ADD/EDIT PRODUCT OPERATION!
+    // 2. DON'T FORGET UPDATE ALGOLIA FILTERING SETTINGS!
+    // 3. DON'T FORGET CREATE NEW DICTIONARY
+    country: {label: 'Страна-производитель', type: 'String'},
+    brand: {label: 'Производитель', type: 'String'},
     corpus_material: {label: 'Материал корпуса', type: 'String'},
     corpus_diameter: {label: 'Диаметр корпуса, мм', type: 'Number'},
     product_type: {label: 'Тип товара', type: 'String'},
@@ -144,6 +146,7 @@ export const state = () => ({
     drive: {label: 'Привод', type: 'String'},
     pressure: {label: 'Рабочее давление, МПа', type: 'Number'},
     handle_type: {label: 'Тип рукояти', type: 'String'},
+    connection_type: {label: 'Тип соединения', type: 'String'},
     thread_diameter: {label: 'Номин. диаметр резьбы', type: 'String'},
     thread_type: {label: 'Тип резьбы', type: 'String'},
     thickness: {label: 'Толщина, мм', type: 'Number'},
@@ -152,8 +155,11 @@ export const state = () => ({
     length: {label: 'Длина, м', type: 'Number'},
     series: {label: 'Серия', type: 'String'},
     volume: {label: 'Объем, л', type: 'Number'},
+    control: {label: 'Управление', type: 'String'},
+    installation: {label: 'Установка', type: 'String'},
+    mixer_type: {label: 'Тип смесителя', type: 'String'},
     connecting_size: {label: 'Присоединительный размер', type: 'Number'},
-    locks: {label: 'Наличие замков', type: 'Boolean'},
+    locks: {label: 'Наличие замков', type: 'String'},
     rated_load: {label: 'Номинальная нагрузка, кН', type: 'Number'},
     pump_type: {label: 'Тип насоса', type: 'String'},
     section_number: {label: 'Количество секций', type: 'String'},
@@ -171,40 +177,47 @@ export const state = () => ({
     value: 'shutoff-and-control-valves',
     type: 'group',
     children: [
-      {
-        value: 'elevators',
-        label: 'элеваторы',
-        type: 'category',
-        filters: ['rated_load', 'pump_type', 'coating', 'heat_one_section'],
-      },
+      {value: 'elevators', label: 'элеваторы', type: 'category'},
       {
         value: 'filters', label: 'фильтры', type: 'category',
-        filters: ['center_spacing', 'section_depth', 'thread_diameter', 'symbol'],
+        filters: ['product_type', 'corpus_material', 'conditional_diameter'],
       },
-      {value: 'shut-off-valves', label: 'клапаны запорные', type: 'category'},
-      {value: 'inverse-valves', label: 'клапаны обратные', type: 'category'},
-      {value: 'latches', label: 'задвижки', type: 'category'},
-      {value: 'shutters', label: 'затворы', type: 'category'},
-      {value: 'cranes', label: 'краны', type: 'category'}
+      {
+        value: 'shut-off-valves', label: 'клапаны запорные', type: 'category',
+        filters: ['symbol', 'corpus_material', 'conditional_diameter', 'country']
+      },
+      {
+        value: 'inverse-valves', label: 'клапаны обратные', type: 'category',
+        filters: ['corpus_material', 'conditional_diameter']
+      },
+      {value: 'latches', label: 'задвижки', type: 'category', filters: ['drive', 'conditional_diameter']},
+      {
+        value: 'shutters', label: 'затворы', type: 'category',
+        filters: ['symbol', 'brand', 'corpus_material', 'conditional_diameter']
+      },
+      {
+        value: 'cranes', label: 'краны', type: 'category',
+        filters: ['product_type', 'corpus_material', 'pressure', 'connection_type', 'handle_type', 'conditional_diameter', 'country', 'thread_diameter', 'series', 'symbol']
+      }
     ]
   }, {
     label: 'Измерительные приборы',
     value: 'measuring-instruments',
     type: 'group',
     children: [
-      {value: 'water-meters', label: 'счетчики воды', type: 'category'},
+      {value: 'water-meters', label: 'счетчики воды', type: 'category', filters: ['product_type']},
       {value: 'gas-meters', label: 'счетчики газа', type: 'category'},
-      {value: 'thermometers', label: 'термометры', type: 'category'},
-      {value: 'manometers', label: 'манометры', type: 'category'}
+      {value: 'thermometers', label: 'термометры', type: 'category', filters: ['product_type']},
+      {value: 'manometers', label: 'манометры', type: 'category',  filters: ['product_type', 'thread_type']}
     ]
   }, {
     label: 'Изоляция, расходники, инструмент',
     value: 'insulation-consumables-tools',
     type: 'group',
     children: [
-      {value: 'isolation', label: 'изоляция', type: 'category'},
+      {value: 'isolation', label: 'изоляция', type: 'category', filters: ['product_type', 'inner_diameter', 'thickness']},
       {value: 'hardware', label: 'метизы', type: 'category'},
-      {value: 'yokes', label: 'хомуты', type: 'category'},
+      {value: 'yokes', label: 'хомуты', type: 'category', filters: ['product_type']},
       {value: 'gaskets-and-repair-kits', label: 'прокладки и ремонтные комплекты', type: 'category'},
       {value: 'sealing-materials', label: 'уплотнительные материалы', type: 'category'},
       {value: 'tool', label: 'инструмент', type: 'category'}
@@ -214,9 +227,15 @@ export const state = () => ({
     value: 'sewage-systems',
     type: 'group',
     children: [
-      {value: 'internal-sewerage-polypropylene', label: 'внутренняя канализация полипропилен', type: 'category'},
-      {value: 'external-sewerage-polypropylene', label: 'наружная канализация полипропилен', type: 'category'},
-      {value: 'fire-clutches', label: 'чугунная канализация', type: 'category'},
+      {
+        value: 'internal-sewerage-polypropylene', label: 'внутренняя канализация полипропилен', type: 'category',
+        filters: ['product_type', 'angle_of_bending', 'outer_diameter', 'wall_thickness', 'length']
+      },
+      {
+        value: 'external-sewerage-polypropylene', label: 'наружная канализация полипропилен', type: 'category',
+        filters: ['product_type', 'angle_of_bending', 'outer_diameter', 'wall_thickness', 'length']
+      },
+      {value: 'fire-clutches', label: 'чугунная канализация', type: 'category', filters: ['product_type']},
       {value: 'fire-extinguishing-couplings', label: 'противопожарные муфты', type: 'category'}
     ]
   }, {
@@ -225,36 +244,54 @@ export const state = () => ({
     type: 'group',
     children: [
       {value: 'boilers', label: 'котлы', type: 'category'},
-      {value: 'water-heaters', label: 'водонагреватели', type: 'category'},
-      {value: 'bellows-for-gas-supply', label: 'подводка сильфонная для газа', type: 'category'}
+      {
+        value: 'water-heaters', label: 'водонагреватели', type: 'category',
+        filters: ['product_type', 'brand', 'control', 'installation', 'series', 'volume']
+      },
+      {
+        value: 'bellows-for-gas-supply', label: 'подводка сильфонная для газа', type: 'category',
+        filters: ['product_type', 'connection_type', 'length', 'connecting_size']
+      }
     ]
   }, {
     label: 'Люки и дождеприемники',
     value: 'hatches-and-rainwater-receivers',
     type: 'group',
     children: [
-      {value: 'polymer-hatches', label: 'Полимерные люки', type: 'category'},
-      {value: 'cast-iron-manholes', label: 'Чугунные люки', type: 'category'},
-      {value: 'sprinklers', label: 'Дождеприемники', type: 'category'}
+      {value: 'polymer-hatches', label: 'Полимерные люки', type: 'category', filters: ['product_type', 'corpus_material', 'locks', 'rated_load']},
+      {value: 'cast-iron-manholes', label: 'Чугунные люки', type: 'category', filters: ['product_type', 'corpus_material', 'locks', 'rated_load']},
+      {value: 'sprinklers', label: 'Дождеприемники', type: 'category', filters: ['product_type', 'corpus_material', 'locks', 'rated_load']}
     ]
   }, {
     label: 'Насосное оборудование',
     value: 'pumping-equipment',
     type: 'group',
     children: [
-      {value: 'pumps', label: 'насосы', type: 'category'},
-      {value: 'wellheads', label: 'Оголовки скважинные', type: 'category'},
-      {value: 'accessories', label: 'Комплектующие', type: 'category'}
+      {value: 'pumps', label: 'насосы', type: 'category', filters: ['pump_type', 'brand']},
+      {value: 'wellheads', label: 'Оголовки скважинные', type: 'category', filters: ['product_type']},
+      {value: 'accessories', label: 'Комплектующие', type: 'category', filters: ['product_type']}
     ]
   }, {
     label: 'Радиаторы и комплектующие',
     value: 'radiators-and-accessories',
     type: 'group',
     children: [
-      {value: 'aluminum-radiators-sti', label: 'алюминиевые радиаторы STI', type: 'category'},
-      {value: 'bimetallic-radiators-sti', label: 'биметаллические радиаторы STI', type: 'category'},
-      {value: 'steel-panel-radiators-sti', label: 'стальные панельные радиаторы STI', type: 'category'},
-      {value: 'cast-iron-radiators', label: 'чугунные радиаторы', type: 'category'},
+      {
+        value: 'aluminum-radiators-sti', label: 'алюминиевые радиаторы STI', type: 'category',
+        filters: ['product_type', 'brand', 'country', 'section_number', 'section_depth', 'center_spacing', 'heat_one_section']
+      },
+      {
+        value: 'bimetallic-radiators-sti', label: 'биметаллические радиаторы STI', type: 'category',
+        filters: ['product_type', 'brand', 'country', 'section_number', 'section_depth', 'center_spacing', 'heat_one_section']
+      },
+      {
+        value: 'steel-panel-radiators-sti', label: 'стальные панельные радиаторы STI', type: 'category',
+        filters: ['product_type', 'brand', 'country', 'section_number', 'section_depth', 'center_spacing', 'heat_one_section']
+      },
+      {
+        value: 'cast-iron-radiators', label: 'чугунные радиаторы', type: 'category',
+        filters: ['product_type', 'connection_type']
+      },
       {value: 'thermoregulating-armature', label: 'терморегулирующая арматура', type: 'category'}
     ]
   }, {
@@ -262,11 +299,11 @@ export const state = () => ({
     value: 'expansion-tanks',
     type: 'group',
     children: [
-      {value: 'expansion-tanks-for-heating', label: 'расширительные баки для отопления', type: 'category'},
-      {value: 'accumulators', label: 'гидроаккумуляторы', type: 'category'},
-      {value: 'cast-iron-radiators', label: 'чугунные радиаторы', type: 'category'},
-      {value: 'steel-panel-radiators-sti', label: 'стальные панельные радиаторы STI', type: 'category'},
-      {value: 'thermoregulating-reinforcement', label: 'терморегулирующая арматура', type: 'category'}
+      {value: 'expansion-tanks-for-heating', label: 'расширительные баки для отопления', type: 'category', filters: ['volume']},
+      {value: 'accumulators', label: 'гидроаккумуляторы', type: 'category', filters: ['volume']},
+      {value: 'cast-iron-radiators', label: 'чугунные радиаторы', type: 'category', filters: ['volume']},
+      {value: 'steel-panel-radiators-sti', label: 'стальные панельные радиаторы STI', type: 'category', filters: ['volume']},
+      {value: 'thermoregulating-reinforcement', label: 'терморегулирующая арматура', type: 'category', filters: ['volume']}
     ]
   }, {
     label: 'Сантехника',
@@ -275,9 +312,9 @@ export const state = () => ({
     children: [
       {value: 'armature', label: 'арматура', type: 'category'},
       {value: 'siphons', label: 'сифоны', type: 'category'},
-      {value: 'mixers-and-showers', label: 'смесители и душ', type: 'category'},
+      {value: 'mixers-and-showers', label: 'смесители и душ', type: 'category', filters:['brand', 'mixer_type']},
       {value: 'heated-towel-rails', label: 'полотенцесушители', type: 'category'},
-      {value: 'flexible-padding', label: 'гибкая подводка', type: 'category'}
+      {value: 'flexible-padding', label: 'гибкая подводка', type: 'category', filters: ['product_type', 'length', 'connection_type']}
     ]
   }, {
     label: 'Теплый пол',
@@ -295,12 +332,12 @@ export const state = () => ({
     value: 'pipes-and-connecting-parts',
     type: 'group',
     children: [
-      {value: 'metal-plastic-systems', label: 'металлопластиковые системы', type: 'category'},
-      {value: 'polypropylene-system', label: 'полипропиленовые системы', type: 'category'},
-      {value: 'steel-systems', label: 'стальные системы', type: 'category'},
-      {value: 'pipes', label: 'трубы', type: 'category'},
-      {value: 'taps', label: 'отводы', type: 'category'},
-      {value: 'pipe-blank', label: 'трубная заготовка', type: 'category'},
+      {value: 'metal-plastic-systems', label: 'металлопластиковые системы', type: 'category', filters: ['product_type']},
+      {value: 'polypropylene-system', label: 'полипропиленовые системы', type: 'category', filters: ['product_type', 'corpus_diameter', 'pressure']},
+      {value: 'steel-systems', label: 'стальные системы', type: 'category', filters: ['product_type', 'country', 'conditional_diameter', 'pressure']},
+      {value: 'pipes', label: 'трубы', type: 'category', filters: ['inner_diameter', 'outer_diameter']},
+      {value: 'taps', label: 'отводы', type: 'category', filters: ['inner_diameter', 'outer_diameter']},
+      {value: 'pipe-blank', label: 'трубная заготовка', type: 'category', filters: ['inner_diameter', 'outer_diameter']},
       {value: 'polyethylene-systems-pnd', label: 'полиэтиленовые системы (ПНД)', type: 'category'}
     ]
   }, {
@@ -308,12 +345,12 @@ export const state = () => ({
     value: 'fittings',
     type: 'group',
     children: [
-      {value: 'steel-fittings', label: 'фитинги стальные', type: 'category'},
+      {value: 'steel-fittings', label: 'фитинги стальные', type: 'category', filters: ['product_type', 'conditional_diameter', 'thread_diameter', 'coating']},
+      {value: 'cast-iron-fittings', label: 'фитинги чугунные', type: 'category', filters: ['product_type', 'conditional_diameter', 'thread_diameter', 'coating']},
+      {value: 'brass-fittings', label: 'фитинги латунные', type: 'category', filters: ['product_type', 'conditional_diameter', 'thread_diameter', 'coating']},
       {value: 'polypropylene-systems', label: 'полипропиленовые системы', type: 'category'},
-      {value: 'cast-iron-fittings', label: 'фитинги чугунные', type: 'category'},
-      {value: 'brass-fittings', label: 'фитинги латунные', type: 'category'},
       {value: 'taps-fittings', label: 'отводы', type: 'category'},
-      {value: 'pipe-blank', label: 'трубная заготовка', type: 'category'},
+      {value: 'fitting-pipe-blank', label: 'трубная заготовка', type: 'category', filters: ['product_type', 'conditional_diameter', 'coating']},
       {value: 'polyethylene-systems-fitting-png', label: 'полиэтиленовые системы (пнд)', type: 'category'}
     ]
   }, {

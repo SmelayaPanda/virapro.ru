@@ -37,51 +37,17 @@
             <el-form-item label="Артикул" prop="SKU">
               <el-input v-model="product.SKU" placeholder="( < 32 символов )" :maxlength="32"></el-input>
             </el-form-item>
-            <el-form-item label-width="0">
-              <el-col :span="12">
-                <el-form-item label="Цена" prop="price">
-                  <el-input-number v-model="product.price" :min="0" :max="1000000"></el-input-number>
-                  <i> RUB</i>
-                </el-form-item>
-                <el-form-item label="Количество" prop="totalQty">
-                  <el-input-number v-model="product.totalQty" :min="0" :max="1000000"></el-input-number>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="Страна" prop="originCountry">
-                  <el-select
-                    value=""
-                    filterable
-                    no-match-text="Страна отсутствует"
-                    v-model="product.originCountry"
-                    placeholder="Выберите страну"
-                    v-if="dictionaries.countries">
-                    <el-option v-for="val in dictionaries.countries" :key="val" :label="val" :value="val"></el-option>
-                  </el-select>
-                </el-form-item>
-                <el-form-item label="Бренд" prop="brand">
-                  <el-col type="flex" style="flex-wrap: wrap">
-                    <el-select
-                      value=""
-                      filterable
-                      allow-create
-                      default-first-option
-                      no-match-text="Бренд отсутствует"
-                      v-model="product.brand"
-                      placeholder="Выберите бренд"
-                      v-if="dictionaries.brands">
-                      <el-option v-for="val in dictionaries.brands" :key="val" :label="val" :value="val"></el-option>
-                    </el-select>
-                  </el-col>
-                </el-form-item>
-              </el-col>
+            <el-form-item label="Цена" prop="price">
+              <el-input-number v-model="product.price" :min="0" :max="1000000"></el-input-number>
+              <i> RUB</i>
+            </el-form-item>
+            <el-form-item label="Количество" prop="totalQty">
+              <el-input-number v-model="product.totalQty" :min="0" :max="1000000"></el-input-number>
             </el-form-item>
             <el-form-item>
               <hr>
               <i id="additional_props">Дополнительные свойства указанной категории товара:</i>
             </el-form-item>
-            <!--SKU-->
-            <!--<p>{{dynamicFilters}}</p>-->
             <el-form-item label-width="0">
               <div :span="24" v-for="filter in dynamicFilters" :key="filter">
                 <el-form-item
@@ -96,11 +62,8 @@
                   :prop="filter" label-width="400px">
                   <el-select
                     v-model="product[filter]"
-                    value=""
-                    filterable
-                    allow-create
-                    default-first-option
-                    placeholder="Выбрать">
+                    value="" filterable allow-create
+                    default-first-option placeholder="Выбрать">
                     <el-option v-for="val in dictionaries[filter]" :key="val" :label="val" :value="val"></el-option>
                   </el-select>
                 </el-form-item>
@@ -141,13 +104,13 @@
           title: '',
           description: '',
           SKU: '',
-          originCountry: '',
-          brand: '',
           price: 100,
           currency: 'RUB',
           totalQty: 50,
           qty: 1, // for user cart
           // DYNAMIC PROPERTIES
+          country: '',
+          brand: '',
           corpus_material: '',
           corpus_diameter: '',
           product_type: '',
@@ -167,6 +130,10 @@
           series: '',
           volume: '',
           connecting_size: '',
+          connection_type: '',
+          control: '',
+          installation: '',
+          mixer_type: '',
           locks: '',
           rated_load: '',
           pump_type: '',
@@ -183,8 +150,6 @@
           ],
           description: [{required: true, message: 'Заполните описание', trigger: 'blur'}],
           SKU: [{required: true, message: 'Укажите артикул', trigger: 'change'}],
-          brand: [{required: true, message: 'Укажите брэнд', trigger: 'change'}],
-          originCountry: [{required: true, message: 'Укажите страну', trigger: 'change'}],
           price: [{required: true, message: 'Укажите цену', trigger: 'change'}],
           totalQty: [{required: true, message: 'Укажите количество', trigger: 'change'}],
         },
@@ -231,8 +196,7 @@
     },
     computed: {
       isValidForm() {
-        return this.product.title && this.product.description &&
-          this.product.SKU && this.product.brand && this.product.originCountry
+        return this.product.title && this.product.description && this.product.SKU && this.product.price
       },
       dictionaries() {
         return this.$store.getters.dictionaries

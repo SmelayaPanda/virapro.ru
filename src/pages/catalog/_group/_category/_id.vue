@@ -90,9 +90,9 @@
                     </p>
                   </el-col>
                   <el-col :span="12" align="left" class="pl-3">
-                    <p v-if="$store.getters.singleProduct.originCountry">
+                    <p v-if="$store.getters.singleProduct.country">
                       <img class="property_icon" src="~/assets/icons/product/country.svg" width="20px" alt="">
-                      {{ $store.getters.singleProduct.originCountry }}</p>
+                      {{ $store.getters.singleProduct.country }}</p>
                     <p v-if="$store.getters.singleProduct.material">
                       <img class="property_icon" src="~/assets/icons/product/material.svg" width="20px" alt="">
                       {{ $store.getters.singleProduct.material }}</p>
