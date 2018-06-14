@@ -6,8 +6,7 @@
       </el-button>
       <!--ADD-->
       <el-dialog :title="`Добавить: ${title}`" :visible.sync="addDialog" width="50%">
-        <el-input v-if="type === 'String'" v-model="item"></el-input>
-        <el-input-number v-else-if="type === 'Number'" v-model="item"></el-input-number>
+        <el-input v-model="item"></el-input>
         <span slot="footer" class="dialog-footer">
         <el-button @click="addDialog = false">Отмена</el-button>
         <el-button @click="addDictionaryItem" type="success">Добавить</el-button>
@@ -38,8 +37,7 @@
     name: 'DictionarySubject',
     props: {
       title: {type: String, required: true},
-      name: {type: String, required: true},
-      type: {type: String, required: true},
+      name: {type: String, required: true}
     },
     data() {
       return {
