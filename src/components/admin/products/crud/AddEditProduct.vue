@@ -188,6 +188,7 @@
         this.dialog = true
         if (this.operation === 'edit') {
           this.product = this.$store.getters.products[this.productId]
+          this.option = [this.product.group, this.product.category]
         }
         if (this.operation === 'add') {
           this.option = [this.group, this.category]
