@@ -37,18 +37,6 @@ export const actions = {
     if (filter.category) {
       query = query.where('category', '==', filter.category)
     }
-    // if (filter.country) {
-    //   query = query.where('originCountry', '==', filter.country)
-    // }
-    // if (filter.brand) {
-    //   query = query.where('brand', '==', filter.brand)
-    // }
-    // if (filter.color) {
-    //   query = query.where('color', '==', filter.color)
-    // }
-    // if (filter.material) {
-    //   query = query.where('material', '==', filter.material)
-    // }
     query = query.orderBy('price', filter.sortByPrice)
     if (getters.lastVisible) {
       query = query.startAfter(getters.lastVisible)
@@ -70,8 +58,22 @@ export const actions = {
         } else {
           commit('setLastVisible', null)
         }
+
+        let dynFilter = getters.productDynamicFilters
         snap.docs.forEach(doc => {
-          products[doc.id] = doc.data()
+          if (!Object.keys(dynFilter).length) {
+            products[doc.id] = doc.data()
+          } else { // DYNAMIC FILTERING
+            let i = 0
+            for (let prop in dynFilter) {
+              if (dynFilter[prop].indexOf(doc.data()[prop]) !== -1) {
+                i++
+              }
+            }
+            if (Object.keys(dynFilter).length === i) { // all props exists
+              products[doc.id] = doc.data()
+            }
+          }
         })
         commit('setProducts', {...products})
         commit('LOADING', false)

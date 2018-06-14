@@ -83,10 +83,8 @@ export const state = () => ({
     limit: 15
   },
   productDynamicFilters: {
-    // adds as facets filters with algolia search
-    // and as client side if firebase full category load
-    originCountry: '',
-    brand: '' // ...
+    // adds as filters with algolia search
+    // and as client side filter if firebase full category load
   },
   algoliaSQLFilter: '',
   algoliaSearchText: '',
@@ -135,6 +133,7 @@ export const state = () => ({
   DYNAMIC_PROPS: {
     // DON'T FORGET ADD NEW PROPERTIES TO ADD/EDIT PRODUCT OPERATION!
     // DON'T FORGET UPDATE ALGOLIA QUERY AND FACETING SETTINGS!
+    // originCountry, brand
     corpus_material: {label: 'Материал корпуса', type: 'String'},
     corpus_diameter: {label: 'Диаметр корпуса, мм', type: 'Number'},
     product_type: {label: 'Тип товара', type: 'String'},

@@ -172,24 +172,29 @@
 
 
       getCheckedFilterNodes(data, tree) { // active dynamic filters
-        let query = ''
+        let sqlQuery = ''
+        let filterObj = {} // { color: [red, green], size: [big, small] }
         let prevNodeProp
         tree.checkedNodes.forEach(node => {
           if (!node.children) {
             if (!prevNodeProp) {
-              query += `(${node.prop}:${node.value}`
+              sqlQuery += `(${node.prop}:${node.value}`
+              filterObj[node.prop] = [node.value]
             } else if (prevNodeProp === node.prop) {
-              query += ` OR ${node.prop}:${node.value}`
+              sqlQuery += ` OR ${node.prop}:${node.value}`
+              filterObj[node.prop].push(node.value)
             } else {
-              query += `) AND (${node.prop}:${node.value}`
+              sqlQuery += `) AND (${node.prop}:${node.value}`
+              filterObj[node.prop] = [node.value]
             }
             prevNodeProp = node.prop
           }
         })
-        if (query) {
-          query += ')'
-        }
-        this.$store.dispatch('setAlgoliaSQLFilter', query)
+        if (sqlQuery) sqlQuery += ')'
+        Promise.all([
+          this.$store.dispatch('setProductDynamicFilters', filterObj),
+          this.$store.dispatch('setAlgoliaSQLFilter', sqlQuery)
+        ])
           .then(() => {
             this.filterProducts()
           })
