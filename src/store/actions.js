@@ -19,12 +19,12 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
-  fetchProducts({commit, getters, dispatch}) {
+  async fetchProducts({commit, getters, dispatch}) {
     commit('LOADING', true)
     if (getters.algoliaSearchText) {
       return // product -> shop (old result)
     }
-    let filter = getters.productCommonFilters
+    let filter = await getters.productCommonFilters
     let query = fs.collection('products')
     if (filter.maxPrice) {
       query = query
@@ -45,7 +45,7 @@ export const actions = {
       query = query.limit(filter.limit)
     }
 
-    query.get()
+    await query.get()
       .then((snap) => {
         let products
         if (getters.lastVisible) {
@@ -93,11 +93,11 @@ export const actions = {
     commit('setAlgoliaSQLFilter', await payload)
   },
 
-  algoliaSearch({commit, getters, dispatch}, payload) {
+  async algoliaSearch({commit, getters, dispatch}, payload) {
     commit('LOADING', true)
     commit('algoliaSearchText', payload)
     commit('setLastVisible', null)
-    let f = getters.productCommonFilters
+    let f = await getters.productCommonFilters
     const ALGOLIA_APP_ID = '895KFYHFNM'
     const ALGOLIA_SEARCH_KEY = '743fdead3dcea56354ccfbf001d370ca'
     const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
@@ -118,9 +118,9 @@ export const actions = {
       facetFilters: facetFilters,
       numericFilters: numericFilters
     }
-    if (getters.algoliaSQLFilter.length) search.filters = getters.algoliaSQLFilter
+    if (getters.algoliaSQLFilter.length) search.filters = await getters.algoliaSQLFilter
 
-    index
+    await index
       .search(search)
       .then(responses => {
         let resp = responses.hits
@@ -156,11 +156,11 @@ export const actions = {
       })
       .catch(err => dispatch('LOG', err))
   },
-  setLastVisible({commit}, payload) {
-    commit('setLastVisible', payload)
+  async setLastVisible({commit}, payload) {
+    await commit('setLastVisible', payload)
   },
-  setAlgoliaSearchText({commit}, payload) {
-    commit('algoliaSearchText', payload)
+  async setAlgoliaSearchText({commit}, payload) {
+    await commit('algoliaSearchText', payload)
   },
   addNewProduct({commit, getters, dispatch}, payload) {
     commit('LOADING', true)

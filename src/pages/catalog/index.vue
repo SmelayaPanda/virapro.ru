@@ -121,6 +121,7 @@
             ? comFilter.maxPrice
             : this.$store.getters.productStatistics.maxPrice
         ],
+        filtersTree: '',
         selectedNode: '',
         selectedGroup: comFilter.group,
         selectedCategory: comFilter.category,
@@ -134,7 +135,7 @@
     },
     methods: {
 
-      handleNodeClick(data) { // смена выбраной группы/категории товара
+      async handleNodeClick(data) { // смена выбраной группы/категории товара
         // TODO: check repeated click, block loading
         if ((data.type && this.selectedGroup === data.value) ||
           (data.type === 'category' && this.selectedCategory === data.value)) {
@@ -153,8 +154,10 @@
           sortByPrice: 'desc'
         }
         // this.$store.dispatch('USER_EVENT', `Категория/Группа`)
-        this.$store.dispatch('setLastVisible', null)
-        this.$store.dispatch('setProductCommonFilters', filter).then(() => this.$store.dispatch('fetchProducts'))
+        await this.$store.dispatch('setLastVisible', null)
+        await this.$store.dispatch('setProductCommonFilters', filter)
+        await this.$store.dispatch('fetchProducts')
+        await this.createFiltersTree()
         if (data.value === 'all-products') {
           this.treeKey = new Date().getTime()
           this.$forceUpdate()
@@ -168,6 +171,33 @@
           this.$forceUpdate()
         }
         return data.label.indexOf(value) !== -1;
+      },
+
+      createFiltersTree() { // get unique values of fetched products by every dynamic props
+        if (!this.selectedNode || !this.selectedNode.filters) {
+          return []
+        }
+        let tree = []
+        let node = {}
+        this.selectedNode.filters.forEach(prop => {
+          node.value = this.$store.getters.DYNAMIC_PROPS[prop].value
+          node.label = this.$store.getters.DYNAMIC_PROPS[prop].label
+          node.children = []
+          let uniquePropVal = []
+          for (let p in this.products) {
+            if (this.products[p][prop] && uniquePropVal.indexOf(this.products[p][prop]) === -1) {
+              uniquePropVal.push(this.products[p][prop])
+            }
+          }
+          uniquePropVal.forEach(el => {
+            node.children.push({value: el, label: el, prop: prop})
+          })
+          if (node.children.length) {
+            tree.push(node)
+          }
+          node = {}
+        })
+        this.filtersTree = tree
       },
 
 
@@ -201,11 +231,11 @@
       },
 
 
-      clearCheckedFilters() {
+      async clearCheckedFilters() {
         if (this.$refs.filtersTree) {
           this.$refs.filtersTree.setCheckedNodes([])
         }
-        this.$store.dispatch('setProductDynamicFilters', [])
+        await this.$store.dispatch('setProductDynamicFilters', [])
       },
 
 
@@ -308,26 +338,6 @@
       },
       dynamicFilters() {
         return this.$store.getters.productDynamicFilters
-      },
-      filtersTree() {
-        if (!this.$store.getters.dictionaries || !this.selectedNode || !this.selectedNode.filters) {
-          return []
-        }
-        let tree = []
-        let treeNode = {}
-        this.selectedNode.filters.forEach(el => {
-          treeNode.value = this.$store.getters.DYNAMIC_PROPS[el].value
-          treeNode.label = this.$store.getters.DYNAMIC_PROPS[el].label
-          treeNode.children = []
-          if (this.$store.getters.dictionaries[el]) {
-            this.$store.getters.dictionaries[el].forEach(item => {
-              treeNode.children.push({value: item, label: item, prop: el})
-            })
-          }
-          tree.push(treeNode)
-          treeNode = {}
-        })
-        return tree
       }
     },
     created() {
