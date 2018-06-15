@@ -26,13 +26,12 @@
               <el-input v-model="product.title" placeholder="( < 128 символов )" :maxlength="128"></el-input>
             </el-form-item>
             <el-form-item label="Описание" prop="description">
-              <el-input
-                v-model="product.description"
-                type="textarea"
-                placeholder="( < 1024 символов )"
-                :autosize="{ minRows: 3, maxRows: 10}"
-                :maxlength="1024">
-              </el-input>
+              <section class="container">
+                <div class="quill-editor"
+                     v-model="product.description"
+                     v-quill:myQuillEditor="editorOption">
+                </div>
+              </section>
             </el-form-item>
             <el-form-item label="Артикул" prop="SKU">
               <el-input v-model="product.SKU" placeholder="( < 32 символов )" :maxlength="32"></el-input>
@@ -99,6 +98,27 @@
     data() {
       return {
         dialog: false,
+        editorOption: {
+          // some quill options
+          modules: {
+            toolbar: [
+              ['bold', 'italic', 'underline', 'strike'],
+              ['blockquote', 'code-block'],
+              [{ 'header': 1 }, { 'header': 2 }],
+              [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+              [{ 'script': 'sub' }, { 'script': 'super' }],
+              [{ 'indent': '-1' }, { 'indent': '+1' }],
+              [{ 'direction': 'rtl' }],
+              [{ 'size': ['small', false, 'large', 'huge'] }],
+              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+              [{ 'font': [] }],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'align': [] }],
+              ['clean'],
+              ['link', 'image', 'video']
+            ]
+          }
+        },
         option: ['', ''],
         product: {
           title: '',
@@ -250,4 +270,15 @@
     color: darkgrey;
     font-size: 12px;
   }
+
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    .quill-editor {
+      min-height: 200px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+  }
+
 </style>

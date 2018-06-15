@@ -22,12 +22,12 @@
       <p><span class="prop_name">ИД: </span>
         <el-tag type="success" size="small">{{ p.productId }}</el-tag>
       </p>
-      <p><span class="prop_name">Описание: </span> {{ p.description }}</p>
       <div v-for="(val, prop) in p">
         <p v-if="$store.getters.DYNAMIC_PROPS[prop]">
           <span class="prop_name">{{ $store.getters.DYNAMIC_PROPS[prop].label }}: </span> {{ val }}
         </p>
       </div>
+      <p><span class="prop_name">Описание: </span> <p v-html="p.description"></p></p>
       <p><span class="prop_name">Добавлен:</span> {{ new Date(p.creationDate).toLocaleString() }}</p>
     </el-row>
   </div>

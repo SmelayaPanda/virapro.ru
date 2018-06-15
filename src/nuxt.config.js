@@ -35,10 +35,14 @@ module.exports = {
     '@/plugins/element-ui',
     '@/plugins/fireauth.js',
     '@/plugins/filters.js',
+    {src: '@/plugins/quill-editor.js', ssr: false}
   ],
   css: [
     {src: 'element-ui/lib/theme-chalk/index.css'},
     {src: '@/assets/styles/element-variables.scss', lang: 'sass'},
+    'quill/dist/quill.snow.css',
+    'quill/dist/quill.bubble.css',
+    'quill/dist/quill.core.css'
   ],
   /*
    ** Build configuration

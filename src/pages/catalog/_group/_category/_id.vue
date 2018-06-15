@@ -102,7 +102,7 @@
                   </el-col>
                 </el-row>
                 <div id="product_descr_wrapper">
-                  <p itemprop="description">{{ $store.getters.singleProduct.description }} </p>
+                  <p itemprop="description" v-html="$store.getters.singleProduct.description"></p>
                 </div>
               </div>
               <hr>
