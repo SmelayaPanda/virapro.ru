@@ -111,7 +111,7 @@
           children: 'children',
           value: 'value',
           label: 'label',
-          disabled: false
+          disabled: 'disabled'
         },
         hoverOnCard: false,
         sortByPrice: comFilter.sortByPrice,

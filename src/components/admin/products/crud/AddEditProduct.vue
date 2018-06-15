@@ -77,6 +77,16 @@
               Сохранить
             </el-button>
             <el-button v-if="operation === 'add'" type="warning" @click="resetForm">Очистить форму</el-button>
+            <el-tooltip placement="top">
+              <div slot="content">Операция создает новый товар!<br/>
+                Изображения у созданного клона будут ссылаться на изображения родителя (будут общие),<br>
+                так что при смене изображений родителя они так же поменяется у всех клонов. <br>
+                Обратное неверно: при смене изображения клона изображение родителя останется прежним.</div>
+              <el-button v-if="operation === 'edit'" type="info" @click="addNewProduct('clone')">
+                Клонировать товар
+                <img id="clone" src="~/assets/icons/admin/flip.svg" alt="">
+              </el-button>
+            </el-tooltip>
             <el-button type="danger" @click="dialog = false">Отмена</el-button>
           </el-row>
         </el-col>
@@ -104,18 +114,14 @@
             toolbar: [
               ['bold', 'italic', 'underline', 'strike'],
               ['blockquote', 'code-block'],
-              [{ 'header': 1 }, { 'header': 2 }],
               [{ 'list': 'ordered' }, { 'list': 'bullet' }],
               [{ 'script': 'sub' }, { 'script': 'super' }],
               [{ 'indent': '-1' }, { 'indent': '+1' }],
-              [{ 'direction': 'rtl' }],
-              [{ 'size': ['small', false, 'large', 'huge'] }],
-              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-              [{ 'font': [] }],
-              [{ 'color': [] }, { 'background': [] }],
-              [{ 'align': [] }],
               ['clean'],
-              ['link', 'image', 'video']
+              ['link'],
+              [{ 'align': [] }],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'header': [2, 3, 4, 5, 6, false] }]
             ]
           }
         },
@@ -200,7 +206,7 @@
           this.$refs.form.resetFields()
         })
       },
-      addNewProduct() {
+      addNewProduct(operation) {
         console.log(this.product)
         let data = {}
         for (let prop in this.product) {
@@ -212,6 +218,9 @@
         data.category = this.option[1]
         data.price = parseFloat(this.product.price)
         data.creationDate = new Date().getTime()
+        if (operation === 'clone') {
+          delete data.productId
+        }
         console.log(data)
         this.dialog = false
         this.$store.dispatch('addNewProduct', data).then(() => {
@@ -281,4 +290,8 @@
     }
   }
 
+  #clone {
+    height: 16px;
+    margin-bottom: -4px;
+  }
 </style>

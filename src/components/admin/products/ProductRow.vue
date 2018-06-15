@@ -27,8 +27,8 @@
           <span class="prop_name">{{ $store.getters.DYNAMIC_PROPS[prop].label }}: </span> {{ val }}
         </p>
       </div>
-      <p><span class="prop_name">Описание: </span> <p v-html="p.description"></p></p>
-      <p><span class="prop_name">Добавлен:</span> {{ new Date(p.creationDate).toLocaleString() }}</p>
+      <p><span class="prop_name">Описание: </span> <p v-html="p.description"></p>
+      <p><span class="prop_name">Добавлен: </span> {{ new Date(p.creationDate).toLocaleString() }}</p>
     </el-row>
   </div>
 </template>
