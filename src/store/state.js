@@ -154,7 +154,7 @@ export const state = () => ({
     connection_type: {label: 'Тип соединения', type: 'String'},
     corpus_material: {label: 'Материал корпуса', type: 'String'},
     seal_material: {label: 'Материал уплотнения', type: 'String'},
-    symbol: {label: 'Усл. обозн. в таблице фигур', type: 'String'},
+    symbol: {label: 'Усл. обозн. в табл. фигур', type: 'String'},
     thread_diameter: {label: 'Номин. диаметр резьбы', type: 'String'},
 
     // NUMBER PROPS HAVEN'T DB DICTIONARY!
@@ -184,7 +184,7 @@ export const state = () => ({
     construction_length: {label: 'Строительная длина L, мм', type: 'Number'},
     heat_one_section: {label: 'Теплоотдача одной секции, Вт', type: 'Number'},
     max_temp_work_env: {label: 'Макс. темп. рабочей среды, С°', type: 'Number'},
-    guarantee_period: {label: 'Срок гарантии производителя, лет', type: 'Number'}
+    guarantee_period: {label: 'Срок гарантии произв., лет', type: 'Number'}
   },
   PRODUCT_TREE: [{
     label: 'Вся продукция',
@@ -230,8 +230,8 @@ export const state = () => ({
     value: 'sewage-systems',
     type: 'group',
     children: [
-      {value: 'internal-sewerage-polypropylene', label: 'внутренняя канализация полипропилен', type: 'category', filters: ['product_type', 'angle_of_bending', 'outer_diameter', 'wall_thickness', 'length']},
-      {value: 'external-sewerage-polypropylene', label: 'наружная канализация полипропилен', type: 'category', filters: ['product_type', 'angle_of_bending', 'outer_diameter', 'wall_thickness', 'length']},
+      {value: 'internal-sewerage-polypropylene', label: 'внутр. канализация полипропилен', type: 'category', filters: ['product_type', 'angle_of_bending', 'outer_diameter', 'wall_thickness', 'length']},
+      {value: 'external-sewerage-polypropylene', label: 'наруж. канализация полипропилен', type: 'category', filters: ['product_type', 'angle_of_bending', 'outer_diameter', 'wall_thickness', 'length']},
       {value: 'fire-clutches', label: 'чугунная канализация', type: 'category', filters: ['product_type', 'weight']},
       {value: 'fire-extinguishing-couplings', label: 'противопожарные муфты', type: 'category'}
     ]
@@ -366,7 +366,7 @@ export const state = () => ({
     children: [
       {value: 'hives-ppu', label: 'Ульи ППУ', type: 'category'},
       {value: 'ir-dryers-for-vegetables', label: 'Сушилки ИК (для овощей)', type: 'category'},
-      {value: 'repellers-and-traps-of-moles-mice', label: 'Отпугиватели и ловушки кротов, мышей', type: 'category'},
+      {value: 'repellers-and-traps-of-moles-mice', label: 'Отпугиватели/ловушки кротов, мышей', type: 'category'},
       {value: 'repellers-and-traps-of-mosquitoes-flies', label: 'От комаров и мух', type: 'category'},
       {value: 'goods-for-summer-residents-and-tourists', label: 'Товары для дачников и туристов', type: 'category'},
       {value: 'mosquito-lamps-and-traps', label: 'Антимоскитные лампы и ловушки', type: 'category'},
@@ -380,7 +380,7 @@ export const state = () => ({
     children: [
       {value: 'drop-and-sprinkler-tape', label: 'Капельные и дождевальные лента', type: 'category'},
       {value: 'irrigated-sleeves', label: 'Поливные рукава', type: 'category'},
-      {value: 'mesh-gravel-disk-filters', label: 'Фильтры сетчатые, гравийные, дисковые', type: 'category'},
+      {value: 'mesh-gravel-disk-filters', label: 'Фильтры сетчатые/гравийные/дисковые', type: 'category'},
       {value: 'containers-for-applying-fertilizers', label: 'Емкости для внесения удобрений', type: 'category'},
       {value: 'watering-timers', label: 'Таймеры полива', type: 'category'},
       {value: 'solenoid-valves', label: 'Электромагнитные клапана', type: 'category'},

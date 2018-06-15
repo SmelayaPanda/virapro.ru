@@ -361,7 +361,7 @@
   }
 
   #nav_menu {
-    flex: 0 0 320px;
+    flex: 0 0 340px;
   }
 
   #central_view {

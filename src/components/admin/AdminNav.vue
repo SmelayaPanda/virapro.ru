@@ -34,6 +34,10 @@
           <img src="~/assets/icons/admin/account_balance.svg" alt="">
           <span>Компания</span>
         </el-menu-item>
+        <el-menu-item index="/admin/system">
+          <img src="~/assets/icons/admin/settings.svg" alt="">
+          <span>Система</span>
+        </el-menu-item>
       </el-menu>
   </nav>
 </template>
