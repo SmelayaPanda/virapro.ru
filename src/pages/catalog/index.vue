@@ -138,7 +138,7 @@
         if (data.type === 'category' && this.selectedCategory === data.value) {
           return
         }
-        this.clearCheckedFilters()
+        await this.clearCheckedFilters()
         this.selectedNode = data
         if (data.type === 'group') {
           this.selectedGroup = data.value
@@ -159,7 +159,7 @@
         await this.$store.dispatch('setLastVisible', null)
         await this.$store.dispatch('setProductCommonFilters', filter)
         await this.filterProducts()
-        await this.createFiltersTree()
+        this.createFiltersTree()
         if (data.value === 'all-products') {
           this.treeKey = new Date().getTime()
           this.$forceUpdate()
@@ -286,13 +286,13 @@
       },
 
 
-      findProducts() {
+      async findProducts() {
         if (!this.algoliaSearchText) {
-          this.$store.dispatch('setAlgoliaSearchText', null)
+          await this.$store.dispatch('setAlgoliaSearchText', null)
           return this.filterProducts()
         }
         if (this.algoliaSearchText !== this.$store.getters.algoliaSearchText) { // because input have 2 events
-          this.$store.dispatch('algoliaSearch', this.algoliaSearchText)
+          await this.$store.dispatch('algoliaSearch', this.algoliaSearchText)
           // this.$store.dispatch('USER_EVENT', `Поиск по слову: "${this.algoliaSearchText}"`)
         }
       },
