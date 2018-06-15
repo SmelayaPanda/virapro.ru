@@ -12,7 +12,7 @@
       :fullscreen="true">
       <el-row type="flex" justify="center">
         <el-col :span="20">
-          <el-form ref="form" :model="product" :rules="rules" label-width="140px">
+          <el-form ref="form" :model="product" :rules="rules" label-width="150px">
             <el-form-item label="Категория/Группа" prop="option">
               <el-cascader
                 ref="catalog"
@@ -106,49 +106,66 @@
           SKU: '',
           price: 100,
           currency: 'RUB',
-          totalQty: 50,
+          totalQty: 10,
           qty: 1, // for user cart
           // DYNAMIC PROPERTIES
-          country: '',
-          brand: '',
-          corpus_material: '',
-          corpus_diameter: '',
-          product_type: '',
-          conditional_diameter: '',
-          inner_diameter: '',
-          outer_diameter: '',
-          symbol: '',
-          drive: '',
-          pressure: '',
-          handle_type: '',
-          thread_diameter: '',
-          thread_type: '',
-          thickness: '',
-          wall_thickness: '',
-          angle_of_bending: '',
-          length: '',
+          // String props:
           series: '',
-          volume: '',
-          connecting_size: '',
-          connection_type: '',
+          drive: '',
+          coating: '',
+          material: '',
           control: '',
-          installation: '',
-          mixer_type: '',
+          brand: '',
           locks: '',
-          rated_load: '',
           pump_type: '',
-          section_number: '',
+          thread_type: '',
+          installation: '',
+          handle_type: '',
+          product_type: '',
+          mixer_type: '',
+          protection: '',
+          reinforcement: '',
+          country: '',
+          connection_type: '',
+          corpus_material: '',
+          seal_material: '',
+          symbol: '',
+          thread_diameter: '',
+          // Number props:
+          length: '',
+          volume: '',
+          weight: '',
+          power: '',
+          thickness: '',
+          consumption: '',
+          service_live: '',
+          accuracy_class: '',
+          angle_of_bending: '',
+          pressure: '',
           section_depth: '',
+          section_number: '',
+          wall_thickness: '',
+          outer_diameter: '',
+          avg_resource: '',
+          corpus_diameter: '',
+          rated_load: '',
+          inner_diameter: '',
           center_spacing: '',
+          connecting_size: '',
+          nominal_diameter: '',
+          conditional_diameter: '',
+          nominal_pressure: '',
+          construction_length: '',
           heat_one_section: '',
-          coating: ''
+          max_temp_work_env: '',
+          guarantee_period: ''
         },
         rules: {
           title: [
             {required: true, message: 'Укажите название', trigger: 'blur'},
             {min: 4, max: 128, message: '(от 4 до 128 символов)', trigger: 'blur'}
           ],
-          description: [{required: true, message: 'Заполните описание', trigger: 'blur'}],
+          option: [{required: true, message: 'Выберите категорию', trigger: 'blur'}],
           SKU: [{required: true, message: 'Укажите артикул', trigger: 'change'}],
           price: [{required: true, message: 'Укажите цену', trigger: 'change'}],
           totalQty: [{required: true, message: 'Укажите количество', trigger: 'change'}],
@@ -197,7 +214,7 @@
     },
     computed: {
       isValidForm() {
-        return this.product.title && this.product.description && this.product.SKU && this.product.price
+        return this.option[0] && this.option[1] && this.product.title && this.product.SKU && this.product.price
       },
       dictionaries() {
         return this.$store.getters.dictionaries
@@ -226,6 +243,7 @@
 <style scoped lang="scss">
   #add_product {
     margin-left: 6px;
+    width: 55px;
   }
 
   #additional_props {

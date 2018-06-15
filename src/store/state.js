@@ -195,7 +195,7 @@ export const state = () => ({
     value: 'shutoff-and-control-valves',
     type: 'group',
     children: [
-      {value: 'elevators', label: 'элеваторы', type: 'category', filters: ['service_live', 'length', 'max_temp_work_env']},
+      {value: 'elevators', label: 'элеваторы', type: 'category', filters: ['service_live', 'construction_length', 'max_temp_work_env']},
       {value: 'filters', label: 'фильтры', type: 'category', filters: ['product_type', 'corpus_material', 'conditional_diameter', 'max_temp_work_env', 'weight', 'construction_length', 'guarantee_period', 'nominal_pressure', 'connection_type'],},
       {value: 'shut-off-valves', label: 'клапаны запорные', type: 'category', filters: ['symbol', 'corpus_material', 'conditional_diameter', 'country', 'max_temp_work_env', 'construction_length', 'nominal_pressure']},
       {value: 'inverse-valves', label: 'клапаны обратные', type: 'category', filters: ['corpus_material', 'conditional_diameter', 'construction_length', 'nominal_pressure', 'max_temp_work_env', 'seal_material']},

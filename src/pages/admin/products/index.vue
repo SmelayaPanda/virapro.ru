@@ -14,13 +14,13 @@
     </el-row>
     <div id="products_table">
       <el-row id="header">
-        <el-col style="width: 80px">Инфо</el-col>
-        <el-col style="width: 60px">Фото</el-col>
-        <el-col style="width: 100px">Артикул</el-col>
+        <el-col style="width: 64px">Инфо</el-col>
+        <el-col style="width: 74px">Фото</el-col>
+        <el-col style="width: 114px">Артикул</el-col>
         <el-col :span="10">Название</el-col>
-        <el-col :span="2">Цена</el-col>
-        <el-col :span="2">Количество</el-col>
-        <el-col style="width: 177px">Операции</el-col>
+        <el-col :span="3">Цена</el-col>
+        <el-col :span="2">Кол-во</el-col>
+        <el-col style="width: 166px">Операции</el-col>
       </el-row>
       <el-card v-for="p in products" :key="p.productId" id="product_card">
         <ProductRow :key="p.productId" :p="p"/>
@@ -116,9 +116,9 @@
     justify-content: start;
     font-size: 12px;
     color: $color-info;
-    margin-left: 15px;
-    margin-right: 15px;
     margin-bottom: 4px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
 </style>
