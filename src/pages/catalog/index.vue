@@ -71,7 +71,7 @@
     <div id="filters">
       <el-row id="filter_title">
         <el-col :span="19">Фильтр</el-col>
-        <el-col v-if="dynamicFilters.length" :span="5">
+        <el-col v-if="Object.keys(dynamicFilters).length" :span="5">
           <div id="clear_filter" @click="clearCheckedFilters">
             <i class="el-icon-close"></i>
           </div>
@@ -156,7 +156,7 @@
         // this.$store.dispatch('USER_EVENT', `Категория/Группа`)
         await this.$store.dispatch('setLastVisible', null)
         await this.$store.dispatch('setProductCommonFilters', filter)
-        await this.$store.dispatch('fetchProducts')
+        await this.filterProducts()
         await this.createFiltersTree()
         if (data.value === 'all-products') {
           this.treeKey = new Date().getTime()
@@ -251,9 +251,9 @@
       },
 
 
-      filterProducts() {
-        this.$store.dispatch('setLastVisible', null)
-        this.filter()
+      async filterProducts() {
+        await this.$store.dispatch('setLastVisible', null)
+        await this.filter()
       },
 
 
@@ -263,9 +263,9 @@
       },
 
 
-      filter() {
+      async filter() {
         // this.logFilterEvents()
-        this.$store.dispatch('setProductCommonFilters', {
+        await this.$store.dispatch('setProductCommonFilters', {
           limit: 15,
           sortByPrice: this.sortByPrice,
           minPrice: this.sliderValues[0],

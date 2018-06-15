@@ -51,7 +51,7 @@
     components: {ProductRow, AddEditProduct},
     data() {
       return {
-        productOption: ['', ''],
+        productOption: ['shutoff-and-control-valves', 'elevators'],
         curPage: 1,
         pageSize: 6
       }
