@@ -110,8 +110,7 @@
         defaultProps: {
           children: 'children',
           value: 'value',
-          label: 'label',
-          disabled: 'disabled'
+          label: 'label'
         },
         hoverOnCard: false,
         sortByPrice: comFilter.sortByPrice,
@@ -136,15 +135,14 @@
     methods: {
 
       async handleNodeClick(data) { // смена выбраной группы/категории товара
-        // TODO: check repeated click, block loading
-        if ((data.type && this.selectedGroup === data.value) ||
-          (data.type === 'category' && this.selectedCategory === data.value)) {
+        if (data.type === 'category' && this.selectedCategory === data.value) {
           return
         }
         this.clearCheckedFilters()
         this.selectedNode = data
         if (data.type === 'group') {
           this.selectedGroup = data.value
+          this.selectedCategory = ''
         } else if (data.type === 'category') {
           this.selectedCategory = data.value
         }
@@ -154,6 +152,10 @@
           sortByPrice: 'desc'
         }
         // this.$store.dispatch('USER_EVENT', `Категория/Группа`)
+        if (data.value === 'all-products') {
+          this.selectedGroup = ''
+          this.selectedCategory = ''
+        }
         await this.$store.dispatch('setLastVisible', null)
         await this.$store.dispatch('setProductCommonFilters', filter)
         await this.filterProducts()
