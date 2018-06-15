@@ -13,7 +13,7 @@
       </el-main>
     </el-container>
     <el-container v-else id="is_not_admin">
-      <h1>Sign in as Admin</h1>
+      <h1>Необходимо зайти как администратор</h1>
     </el-container>
   </el-container>
   </no-ssr>
