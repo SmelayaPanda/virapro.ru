@@ -38,5 +38,10 @@ a {
   text-decoration: none;
 }
 
+.algolia-highlight {
+  color: #409eff !important;
+  font-weight: 700;
+}
+
 @import "transitions";
 @import "mixins";

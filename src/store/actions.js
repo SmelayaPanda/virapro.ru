@@ -1,6 +1,9 @@
 import firebase, {auth, db, fs, GoogleProvider} from "../services/fireinit";
 import {Message, Notification} from 'element-ui'
 import algoliasearch from 'algoliasearch'
+const ALGOLIA_APP_ID = '895KFYHFNM'
+const ALGOLIA_SEARCH_KEY = '743fdead3dcea56354ccfbf001d370ca'
+const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
 
 export const actions = {
 
@@ -156,6 +159,16 @@ export const actions = {
       })
       .catch(err => dispatch('LOG', err))
   },
+  runAlgoliaSearch({commit}, payload) {
+    let index
+    if (process.env.NODE_ENV === 'production') {
+      index = client.initIndex('DEV_SANTEHNIKA')
+    } else if (process.env.NODE_ENV === 'development') {
+      index = client.initIndex('DEV_SANTEHNIKA')
+    }
+    return index.search({query: payload}).then(resp => resp.hits)
+  },
+
   async setLastVisible({commit}, payload) {
     await commit('setLastVisible', payload)
   },
