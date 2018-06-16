@@ -25,8 +25,8 @@
           <div id="algolia_search">
             <el-input
               label="Algolia Filter"
-              @change="findProducts"
-              @keyup.enter.exact="findProducts"
+              @change="runAlgoliaSearch"
+              @keyup.enter.exact="runAlgoliaSearch"
               placeholder="введите поисковый запрос"
               v-model="algoliaSearchText">
               <template slot="prepend">{{ searchPrefix }}</template>
@@ -276,7 +276,7 @@
           group: this.selectedGroup
         })
           .then(() => {
-            if (this.algoliaSearchText) {
+            if (this.algoliaSearchText) { // not runAlgoliaSearch because may be same search word but category will be switched
               return this.$store.dispatch('algoliaSearch', this.algoliaSearchText)
             } else {
               this.$store.dispatch('setAlgoliaSearchText', null)
@@ -286,7 +286,7 @@
       },
 
 
-      async findProducts() {
+      async runAlgoliaSearch() {
         if (!this.algoliaSearchText) {
           await this.$store.dispatch('setAlgoliaSearchText', null)
           return this.filterProducts()
@@ -344,8 +344,10 @@
     },
     created() {
       this.$store.dispatch('fetchProductStatistics')
-      this.$store.dispatch('fetchProducts')
       this.$store.dispatch('fetchDictionaries')
+      if (!Object.keys(this.$store.getters.products).length) { // not load if go from single product or another router
+        this.$store.dispatch('fetchProducts')
+      }
     },
     watch: {
       filterText(val) {
