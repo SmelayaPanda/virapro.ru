@@ -15,7 +15,7 @@
         width="400"
         trigger="click"
         v-model="showResult">
-        <div v-if="algoliaSearchText && result.length">
+        <div id="search_result" v-if="algoliaSearchText && result.length">
           <div v-for="res in result" :key="res.SKU"
                @click="$nuxt.$router.push(`/catalog/${res.group}/${res.category}/${res.productId}`)"
                class="search_row">
@@ -184,6 +184,13 @@
     color: white;
   }
 
+  #search_result {
+    overflow: scroll;
+    height: 440px;
+    margin-top: 5px;
+    margin-bottom: 40px;
+  }
+
   .search_row {
     margin: 0;
     padding: 0;
@@ -230,6 +237,10 @@
   }
 
   #algolia_icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
     text-align: right;
     background: #e4e7ed;
     height: 40px;
