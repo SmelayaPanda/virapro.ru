@@ -21,12 +21,12 @@ const path = require('path');
 const os = require('os');
 const fs = require('fs');
 
-const THUMB_MAX_HEIGHT = 200; // px
-const THUMB_MAX_WIDTH = 200;
+const THUMB_MAX_HEIGHT = 160; // px
+const THUMB_MAX_WIDTH = 160;
 const THUMB_PREFIX = 'thumb_';
 
-const CARD_MAX_HEIGHT = 800; // px
-const CARD_MAX_WIDTH = 800;
+const CARD_MAX_HEIGHT = 400; // px
+const CARD_MAX_WIDTH = 400;
 const CARD_PREFIX = 'card_';
 
 
@@ -125,7 +125,7 @@ exports.handler = function (object, context, admin) {
       const originalFileUrl = originalResult[0];
       // originalFilePath = products/OIe9aAx6sceVylH8ozrH/main
       const productId = originalFilePath.split('/')[1]
-      console.log('$*****---> Product id = ' + productId)
+      console.log('>> Product id = ' + productId)
       // Add the URLs to the Database
       let updateData = {
         [originalFileName]: { // img_0, ..., img_4
@@ -136,7 +136,7 @@ exports.handler = function (object, context, admin) {
       }
       return admin.firestore().collection('products').doc(productId).update(updateData);
     }).then(() => {
-      console.log('Thumbnail URLs saved to database.');
+      console.log('>> Thumbnail URLs saved to database.');
       return true;
     })
 };

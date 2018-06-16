@@ -1,7 +1,7 @@
 <template>
   <div class="zoom-on-hover" @mousemove="move" @mouseenter="zoom" @mouseleave="unzoom">
     <img class="normal" ref="normal" :src="imgNormal"/>
-    <img class="zoom" ref="zoom" :src="imgZoom || imgNormal" height="950px" width="auto"/>
+    <img class="zoom" ref="zoom" :src="imgZoom || imgNormal" height="700px" width="auto"/>
   </div>
 </template>
 
@@ -68,8 +68,8 @@ export default {
   }
 
   .zoom-on-hover .normal {
-    width: 100%;
-    height: 527px;
+    width: 400px;
+    height: 400px;
     object-fit: cover;
   }
 

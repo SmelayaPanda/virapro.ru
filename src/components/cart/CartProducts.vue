@@ -51,7 +51,7 @@
             </el-col>
             <el-col :xs="18" :sm="8" :md="8" :lg="8" :xl="8" align="left" class="pr-2">
               <!--TODO: link not working if product not loaded-->
-              <router-link :to="`/shop/${product.group}/${product.category}/${product.productId}`">
+              <router-link :to="`/catalog/${product.group}/${product.category}/${product.productId}`">
                 <p id="cart_product_descr" class="white--text">
                   {{ product.title }} <br>
                   <span class="cart_sub_text">

@@ -105,7 +105,7 @@
 </template>
 
 <script>
-  import ProductCard from "@/components/shop/ProductCard";
+  import ProductCard from "@/components/catalog/ProductCard";
 
   export default {
     components: {ProductCard},

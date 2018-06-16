@@ -186,7 +186,7 @@
 
   #search_result {
     overflow: scroll;
-    height: 440px;
+    max-height: 440px;
     margin-top: 5px;
     margin-bottom: 40px;
   }

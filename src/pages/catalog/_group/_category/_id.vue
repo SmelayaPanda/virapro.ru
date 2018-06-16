@@ -2,7 +2,7 @@
   <div>
     <el-row el-row type="flex" justify="center" v-if="$store.getters.singleProduct" id="product_card_wrap">
       <el-col :xs="24" :sm="20" :md="21" :lg="18" :xl="16" type="flex" align="middle">
-        <el-card id="product_card" itemscope itemtype="http://schema.org/Product">
+        <div id="product_card" itemscope itemtype="http://schema.org/Product">
           <el-row type="flex" style="flex-wrap: wrap">
             <el-col :xs="24" :sm="4" :md="3" :lg="3" :xl="3" id="product_thumbnails_desctop">
               <img v-if="$store.getters.singleProduct.img_0.thumbnail"
@@ -44,65 +44,17 @@
                      :src="$store.getters.singleProduct.img_4.thumbnail" @click="loadOriginal(4)"
                      ref="m_img_4" class="thumb_img" itemprop="image"/>
               </el-row>
-              <el-row>
-                <p id="misterio_shop">
-                  <i class="el-icon-minus"></i>
-                  Сантехника
-                  <i class="el-icon-minus"></i>
-                </p>
-              </el-row>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
               <p id="product_title">
                 <span itemprop="name">{{ $store.getters.singleProduct.title }}</span>
-                <!--<span>-->
-                <!--<v-icon-->
-                <!--v-if="$store.getters.user.favorites[$store.getters.singleProduct.productId]"-->
-                <!--@click.stop="updateOwnProduct($store.getters.singleProduct, 'favorites', 'remove')"-->
-                <!--class="own_product_icon secondary&#45;&#45;text">favorite</v-icon>-->
-                <!--<v-icon-->
-                <!--v-else-->
-                <!--@click.stop="updateOwnProduct($store.getters.singleProduct, 'favorites', 'add')"-->
-                <!--class="own_product_icon primary&#45;&#45;text">favorite_border</v-icon>-->
-                <!--</span>-->
               </p>
               <hr>
               <div class="product_info">
                 <p class="info--text">Арт. :<span itemprop="sku">{{ $store.getters.singleProduct.SKU }}</span></p>
-                <el-row type="flex">
-                  <el-col :span="12" align="left">
-                    <p>
-                      <img class="property_icon" src="~/assets/icons/product/brand.svg" width="21px" alt="">
-                      <span itemprop="brand">{{ $store.getters.singleProduct.brand }}</span>
-                    </p>
-                    <p>
-                      <img class="property_icon" src="~/assets/icons/product/color.svg" width="20px" alt="">
-                      <span itemprop="color">{{ $store.getters.singleProduct.color }}</span>
-                    </p>
-                    <p>
-                      <img class="property_icon" src="~/assets/icons/product/qty.svg" width="20px" alt="">
-                      <span v-if="$store.getters.singleProduct.totalQty < 1" class="error--text">
-                          Нет в наличии
-                        </span>
-                      <span v-else>
-                          {{ $store.getters.singleProduct.totalQty }}
-                        </span>
-                    </p>
-                  </el-col>
-                  <el-col :span="12" align="left" class="pl-3">
-                    <p v-if="$store.getters.singleProduct.country">
-                      <img class="property_icon" src="~/assets/icons/product/country.svg" width="20px" alt="">
-                      {{ $store.getters.singleProduct.country }}</p>
-                    <p v-if="$store.getters.singleProduct.material">
-                      <img class="property_icon" src="~/assets/icons/product/material.svg" width="20px" alt="">
-                      {{ $store.getters.singleProduct.material }}</p>
-                    <p v-if="$store.getters.singleProduct.size">
-                      <img class="property_icon" src="~/assets/icons/product/size.svg" width="16px" alt="">
-                      {{ $store.getters.singleProduct.size }}</p>
-                  </el-col>
-                </el-row>
-                <div id="product_descr_wrapper">
-                  <p itemprop="description" v-html="$store.getters.singleProduct.description"></p>
+                <div v-for="(val, key) in $store.getters.singleProduct" :key="key"
+                     v-if="$store.getters.DYNAMIC_PROPS[key]">
+                  <p>{{ $store.getters.DYNAMIC_PROPS[key].label }}: <span> {{ val }}</span></p>
                 </div>
               </div>
               <hr>
@@ -126,52 +78,42 @@
               </no-ssr>
               <!--ALREADY IN CART-->
               <div v-else>
-                <el-tooltip
-                  class="item"
-                  effect="dark"
-                  placement="top-end"
-                  content="Продолжить покупки">
-                  <router-link to="/shop">
+                <el-tooltip class="item" effect="dark" placement="top-end" content="Продолжить покупки">
+                  <nuxt-link to="/catalog">
                     <el-button class="already_added_btn">
                       <i class="el-icon-d-arrow-left"></i>
                       В каталог
                     </el-button>
-                  </router-link>
+                  </nuxt-link>
                 </el-tooltip>
-                <el-tooltip
-                  class="item"
-                  effect="dark"
-                  placement="top-end"
-                  content="Оформить покупку">
-                  <router-link to="/cart">
+                <el-tooltip class="item" effect="dark" placement="top-end" content="Оформить покупку">
+                  <nuxt-link to="/cart">
                     <el-button class="already_added_btn already_added_btn_xs_fix">
                       Оформить
                       <i class="el-icon-d-arrow-right"></i>
                     </el-button>
-                  </router-link>
+                  </nuxt-link>
                 </el-tooltip>
                 <br>
-                <el-tooltip
-                  class="item"
-                  effect="dark"
-                  content="Удалить из корзины">
-                  <el-button
-                    @click="updateOwnProduct($store.getters.singleProduct, 'cart', 'remove')"
-                    size="mini">
+                <el-tooltip class="item" effect="dark" content="Удалить из корзины">
+                  <el-button @click="updateOwnProduct($store.getters.singleProduct, 'cart', 'remove')" size="mini">
                     <i class="el-icon-delete"></i>
                   </el-button>
                 </el-tooltip>
               </div>
             </el-col>
           </el-row>
-        </el-card>
+        </div>
+        <div id="product_descr_wrapper">
+          <p itemprop="description" v-html="$store.getters.singleProduct.description"></p>
+        </div>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-  import ZoomOnHover from "~/components/shop/ZoomOnHover";
+  import ZoomOnHover from "~/components/catalog/ZoomOnHover";
 
   export default {
     name: "Product",
@@ -237,13 +179,13 @@
   }
 
   .main_img {
-    width: 100%;
-    height: 527px;
+    width: 400px;
+    height: 400px;
     object-fit: cover;
   }
 
   .thumb_img {
-    height: 100px;
+    height: 75px;
     width: 75px;
     object-fit: cover;
     margin-right: 1px;
@@ -274,8 +216,7 @@
 
   #product_descr_wrapper {
     width: 100%;
-    height: 170px;
-    overflow: scroll;
+    text-align: left;
     margin-bottom: 10px;
   }
 
