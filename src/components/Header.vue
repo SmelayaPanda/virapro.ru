@@ -17,7 +17,7 @@
         v-model="showResult">
         <div id="search_result" v-if="algoliaSearchText && result.length">
           <div v-for="res in result" :key="res.SKU"
-               @click="$nuxt.$router.push(`/catalog/${res.group}/${res.category}/${res.productId}`)"
+               @click="toProduct(res.group, res.category, res.productId)"
                class="search_row">
             <p class="snippet_title" v-html="res.title"></p>
             <p class="snippet_description" v-html="res.description + '...'"></p>
@@ -105,7 +105,6 @@
         }
         this.$store.dispatch('runAlgoliaSearch', this.algoliaSearchText)
           .then(hits => {
-            console.log(hits)
             hits.forEach(el => {
               data.push({
                 title: el._snippetResult.title ? el._snippetResult.title.value : '',
@@ -121,6 +120,10 @@
             this.showResult = true
             this.isSearching = false
           })
+      },
+      toProduct (group, category, productId) {
+        this.$nuxt.$router.push(`/catalog/${group}/${category}/${productId}`)
+        this.showResult = false
       }
     },
     created() {

@@ -20,28 +20,6 @@
       </el-tree>
     </div>
     <div id="central_view">
-      <el-row id="product_card_wrap">
-        <el-col :span="24">
-          <div id="algolia_search">
-            <el-input
-              label="Algolia Filter"
-              @change="runAlgoliaSearch"
-              @keyup.enter.exact="runAlgoliaSearch"
-              placeholder="введите поисковый запрос"
-              v-model="algoliaSearchText">
-              <template slot="prepend">{{ searchPrefix }}</template>
-              <i v-if="$store.getters.LOADING"
-                 slot="append"
-                 class="el-icon-loading" id="search_loading"></i>
-              <img
-                v-else
-                slot="append"
-                src="~/assets/icons/algolia/algolia-mark-blue.svg"
-                id="algolia_icon" alt="Algolia Search">
-            </el-input>
-          </div>
-        </el-col>
-      </el-row>
       <el-row id="price_filter">
         <el-col id="price_sort">
           <el-tooltip content="Нажми для сортировки" placement="top">
@@ -114,8 +92,6 @@
       return {
         catalog: [],
         filterText: '',
-        algoliaSearchText: '',
-        searchPrefix: 'Вся продукция',
         treeKey: '1',
         defaultProps: {children: 'children', value: 'value', label: 'label'},
         hoverOnCard: false,
@@ -204,32 +180,23 @@
 
 
       getCheckedFilterNodes(data, tree) { // active dynamic filters
-        let sqlQuery = ''
         let filterObj = {} // { color: [red, green], size: [big, small] }
         let prevNodeProp
         tree.checkedNodes.forEach(node => {
           if (!node.children) {
             if (!prevNodeProp) {
-              sqlQuery += `(${node.prop}:${node.value}`
               filterObj[node.prop] = [node.value]
             } else if (prevNodeProp === node.prop) {
-              sqlQuery += ` OR ${node.prop}:${node.value}`
               filterObj[node.prop].push(node.value)
             } else {
-              sqlQuery += `) AND (${node.prop}:${node.value}`
               filterObj[node.prop] = [node.value]
             }
             prevNodeProp = node.prop
           }
         })
-        if (sqlQuery) sqlQuery += ')'
-        Promise.all([
-          this.$store.dispatch('setProductDynamicFilters', filterObj),
-          this.$store.dispatch('setAlgoliaSQLFilter', sqlQuery)
-        ])
-          .then(() => {
-            this.filterProducts()
-          })
+        this.$store.dispatch('setProductDynamicFilters', filterObj).then(() => {
+          this.filterProducts()
+        })
       },
 
 
@@ -275,26 +242,7 @@
           category: this.selectedCategory,
           group: this.selectedGroup
         })
-          .then(() => {
-            if (this.algoliaSearchText) { // not runAlgoliaSearch because may be same search word but category will be switched
-              return this.$store.dispatch('algoliaSearch', this.algoliaSearchText)
-            } else {
-              this.$store.dispatch('setAlgoliaSearchText', null)
-              return this.$store.dispatch('fetchProducts')
-            }
-          })
-      },
-
-
-      async runAlgoliaSearch() {
-        if (!this.algoliaSearchText) {
-          await this.$store.dispatch('setAlgoliaSearchText', null)
-          return this.filterProducts()
-        }
-        if (this.algoliaSearchText !== this.$store.getters.algoliaSearchText) { // because input have 2 events
-          await this.$store.dispatch('algoliaSearch', this.algoliaSearchText)
-          // this.$store.dispatch('USER_EVENT', `Поиск по слову: "${this.algoliaSearchText}"`)
-        }
+        await this.$store.dispatch('fetchProducts')
       },
 
 
@@ -377,9 +325,7 @@
     display: flex;
     align-items: center;
     padding: 0 10px;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-bottom: 10px;
+    margin: 10px;
     background: #f5f7fa;
     border: 1px solid #dcdfe6;
     height: 40px;
@@ -439,30 +385,8 @@
     @include rotate(90deg, scale(1.4))
   }
 
-  #product_card_wrap {
-    display: flex;
-    justify-content: start;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
   #filter_category {
     padding: 10px;
-  }
-
-  #algolia_search {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-
-  #search_loading {
-    padding-right: 7px;
-    padding-left: 7px;
-  }
-
-  #algolia_icon {
-    padding-top: 5px;
-    height: 28px;
   }
 
   #load_more {
