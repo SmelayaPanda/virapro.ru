@@ -80,7 +80,7 @@ export const state = () => ({
     group: '',
     category: '',
     sortByPrice: 'desc',
-    limit: 15
+    limit: 4
   },
   productDynamicFilters: {
     // adds as filters with algolia search

@@ -67,6 +67,17 @@
           <ProductCard :id="p.productId" itemprop="itemListElement" itemtype="http://schema.org/Product"/>
         </el-col>
       </el-row>
+      <el-row id="load_more">
+        <div class="mb-4 mt-3">
+          <el-button
+            v-if="$store.getters.lastVisible"
+            type="text"
+            @click="loadMore"
+            :disabled="$store.getters.LOADING">
+            Загрузить больше
+          </el-button>
+        </div>
+      </el-row>
     </div>
     <div id="filters">
       <el-row id="filter_title">
@@ -106,12 +117,7 @@
         algoliaSearchText: '',
         searchPrefix: 'Вся продукция',
         treeKey: '1',
-        activeNames: [], // ['1', '2']
-        defaultProps: {
-          children: 'children',
-          value: 'value',
-          label: 'label'
-        },
+        defaultProps: {children: 'children', value: 'value', label: 'label'},
         hoverOnCard: false,
         sortByPrice: comFilter.sortByPrice,
         sliderValues: [
@@ -124,12 +130,6 @@
         selectedNode: '',
         selectedGroup: comFilter.group,
         selectedCategory: comFilter.category,
-        isCollapsed: false,
-        activeName:
-          !comFilter.brand &&
-          !comFilter.color &&
-          !comFilter.minPrice &&
-          !comFilter.maxPrice ? '0' : '1'
       };
     },
     methods: {
@@ -268,7 +268,7 @@
       async filter() {
         // this.logFilterEvents()
         await this.$store.dispatch('setProductCommonFilters', {
-          limit: 15,
+          limit: 4,
           sortByPrice: this.sortByPrice,
           minPrice: this.sliderValues[0],
           maxPrice: this.sliderValues[1],
@@ -461,6 +461,12 @@
   #algolia_icon {
     padding-top: 5px;
     height: 28px;
+  }
+
+  #load_more {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
   }
 
   @media only screen and (max-width: $sm-screen) {
