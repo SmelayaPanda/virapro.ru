@@ -20,7 +20,6 @@
       if (!Object.keys(store.getters.productStatistics.avgPrice).length) {
         await store.dispatch('fetchProductStatistics')
       }
-      console.log(params)
       await store.dispatch('updateProductCommonFilter', {field: 'group', value: params.group})
       await store.dispatch('updateProductCommonFilter', {field: 'category', value: params.category})
     },
