@@ -5,15 +5,7 @@ export const state = () => ({
   ERR: null,
 
   // DICTIONARIES
-  dictionaries: {
-    brands: [],
-    colors: [],
-    countries: [],
-    materials: [],
-    delivery: [],
-    courier: []
-  },
-
+  dictionaries: {},
 
   // user
   user: { // Cart and orders IDs array in database. Full products objects array in client side

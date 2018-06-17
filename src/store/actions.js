@@ -1,6 +1,7 @@
 import firebase, {auth, db, fs, GoogleProvider} from "../services/fireinit";
 import {Message, Notification} from 'element-ui'
 import algoliasearch from 'algoliasearch'
+
 const ALGOLIA_APP_ID = '895KFYHFNM'
 const ALGOLIA_SEARCH_KEY = '743fdead3dcea56354ccfbf001d370ca'
 const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
@@ -47,17 +48,11 @@ export const actions = {
 
     await query.get()
       .then((snap) => {
-        let products
+        let products = {}
         if (getters.lastVisible) {
           products = getters.products ? getters.products : {}
-        } else {
-          products = {}
         }
-        if (snap.size === filter.limit) {
-          commit('setLastVisible', snap.docs[snap.docs.length - 1])
-        } else {
-          commit('setLastVisible', null)
-        }
+        commit('setLastVisible', snap.size === filter.limit ? snap.docs[snap.docs.length - 1] : null)
 
         let dynFilter = getters.productDynamicFilters
         snap.docs.forEach(doc => {
@@ -200,11 +195,13 @@ export const actions = {
       })
       .catch(err => dispatch('LOG', err))
   },
-  fetchProductStatistics({commit, dispatch}) {
-    fs.collection('statistics').doc('products').get()
-      .then(snapshot => {
+
+
+  async fetchProductStatistics({commit, dispatch}) {
+    await fs.collection('statistics').doc('products').get()
+      .then(snap => {
         console.log('(i) Statistics: for products')
-        commit('productStatistics', snapshot.data())
+        commit('productStatistics', snap.data())
       })
       .catch(err => dispatch('LOG', err))
   },
@@ -575,20 +572,19 @@ export const actions = {
 
 
   // DICTIONARIES
-  fetchDictionaries:
-    ({commit, dispatch}) => {
-      commit('LOADING', true)
-      return fs.collection('dictionaries').get()
-        .then(snapshot => {
-          let docs = snapshot.docs
-          docs.forEach(doc => {
-            commit('setDictionary', {name: doc.id, data: doc.data().all})
-          })
-          console.log('(i) Fetched: dictionaries')
-          commit('LOADING', false)
+  async fetchDictionaries({commit, dispatch}) {
+    commit('LOADING', true)
+    await fs.collection('dictionaries').get()
+      .then(snapshot => {
+        let docs = snapshot.docs
+        docs.forEach(doc => {
+          commit('setDictionary', {name: doc.id, data: doc.data().all})
         })
-        .catch(err => dispatch('LOG', err))
-    },
+        console.log('(i) Fetched: dictionaries')
+        commit('LOADING', false)
+      })
+      .catch(err => dispatch('LOG', err))
+  },
 
 
   uploadDictionary:

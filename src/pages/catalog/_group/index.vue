@@ -68,6 +68,15 @@
   import CatalogNavMenu from "@/components/catalog/CatalogNavMenu";
   export default {
     components: {CatalogNavMenu, ProductCard},
+    async fetch({store, params}) {
+      if (!Object.keys(store.getters.dictionaries).length) {
+        await store.dispatch('fetchDictionaries')
+      }
+      if (!Object.keys(store.getters.productStatistics.avgPrice).length) {
+        await store.dispatch('fetchProductStatistics')
+      }
+      await store.dispatch('updateProductCommonFilter', {field: 'group', value: params.group})
+    },
     data() {
       let filter = this.$store.getters.productCommonFilters
       return {
@@ -229,14 +238,7 @@
       }
     },
     created() {
-      this.$store.dispatch('fetchProductStatistics')
-      this.$store.dispatch('fetchDictionaries')
-      this.$store.dispatch('updateProductCommonFilter', {
-        field: 'group',
-        value: this.$nuxt.$route.params.group
-      }).then(() => {
-        this.$store.dispatch('fetchProducts')
-      })
+      this.$store.dispatch('fetchProducts') // not in the fetch method because lastVisible object - circular
     }
   }
 </script>
