@@ -23,20 +23,22 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
+  // TODO: make new method for admin product fetch
   async fetchProducts({commit, getters, dispatch}) {
     commit('LOADING', true)
-    let filter = await getters.productCommonFilters
+    let params = $nuxt.$route.params
+    let filter = getters.productCommonFilters
     let query = fs.collection('products')
     if (filter.maxPrice) {
       query = query
         .where('price', '>=', filter.minPrice)
         .where('price', '<=', filter.maxPrice)
     }
-    if (filter.group) {
+    if (params.group) {
       query = query.where('group', '==', filter.group)
     }
-    if (filter.category) {
-      query = query.where('category', '==', filter.category)
+    if (params.category) {
+      query = query.where('category', '==', params.category)
     }
     query = query.orderBy('price', filter.sortByPrice)
     if (getters.lastVisible) {
@@ -49,10 +51,14 @@ export const actions = {
     await query.get()
       .then((snap) => {
         let products = {}
-        if (getters.lastVisible) {
+        if (getters.lastVisible && !params.category) {
           products = getters.products ? getters.products : {}
         }
-        commit('setLastVisible', snap.size === filter.limit ? snap.docs[snap.docs.length - 1] : null)
+        if (params.category) { // group only have load more
+          commit('setLastVisible', null)
+        } else {
+          commit('setLastVisible', snap.size === filter.limit ? snap.docs[snap.docs.length - 1] : null)
+        }
 
         let dynFilter = getters.productDynamicFilters
         snap.docs.forEach(doc => {
@@ -71,6 +77,8 @@ export const actions = {
           }
         })
         commit('setProducts', {...products})
+        commit('updateProductCommonFilter', {field: 'group', value: params.group})
+        commit('updateProductCommonFilter', {field: 'category', value: params.category})
         commit('LOADING', false)
       })
       .catch(err => dispatch('LOG', err))

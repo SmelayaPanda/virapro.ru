@@ -6,7 +6,6 @@
     @touchstart="hoveredCard = true" @touchend="hoveredCard = false"
     @mouseover="hoveredCard = true" @mouseleave="hoveredCard = false"
     itemscope itemtype="http://schema.org/Product">
-    <!-- LIST VIEW -->
     <el-card :body-style="{ padding: '0px' }" class="card">
       <el-row class="card_content">
         <el-col :xs=" 24" :sm="8" :md="8" :lg="7" :xl="6">

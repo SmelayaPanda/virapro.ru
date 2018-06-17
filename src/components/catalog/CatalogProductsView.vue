@@ -34,25 +34,9 @@
       }
     },
     methods: {
-      loadMore() {
+      async loadMore() {
         // this.$store.dispatch('USER_EVENT', 'Загрузить больше')
-        this.filter()
-      },
-      async filter() {
-        // this.logFilterEvents()
-        await this.$store.dispatch('setProductCommonFilters', {
-          limit: 4,
-          // sortByPrice: this.sortByPrice,
-          // minPrice: this.sliderValues[0],
-          // maxPrice: this.sliderValues[1],
-          category: this.selectedCategory,
-          group: this.selectedGroup
-        })
         await this.$store.dispatch('fetchProducts')
-      },
-      async filterProducts() {
-        await this.$store.dispatch('setLastVisible', null)
-        await this.filter()
       }
     },
     computed: {

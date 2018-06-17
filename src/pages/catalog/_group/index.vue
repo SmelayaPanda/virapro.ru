@@ -20,12 +20,10 @@
       if (!Object.keys(store.getters.productStatistics.avgPrice).length) {
         await store.dispatch('fetchProductStatistics')
       }
-      await store.dispatch('updateProductCommonFilter', {field: 'group', value: params.group})
-      await store.dispatch('updateProductCommonFilter', {field: 'category', value: null})
     },
     methods: {},
     created() {
-      this.$store.dispatch('fetchProducts') // Problem: not in the fetch method because lastVisible object - circular
+      this.$store.dispatch('fetchProducts') // TODO: not in the fetch method because lastVisible object - circular
     }
   }
 </script>
