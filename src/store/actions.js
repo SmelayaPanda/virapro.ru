@@ -24,9 +24,6 @@ export const actions = {
 
   async fetchProducts({commit, getters, dispatch}) {
     commit('LOADING', true)
-    if (getters.algoliaSearchText) {
-      return // product -> shop (old result)
-    }
     let filter = await getters.productCommonFilters
     let query = fs.collection('products')
     if (filter.maxPrice) {
@@ -86,6 +83,10 @@ export const actions = {
 
   async setProductCommonFilters({commit, getters}, payload) {
     commit('setProductCommonFilters', await payload)
+  },
+
+  async updateProductCommonFilter({commit, getters}, payload) {
+    commit('updateProductCommonFilter', await payload)
   },
 
   async setProductDynamicFilters({commit, getters}, payload) {

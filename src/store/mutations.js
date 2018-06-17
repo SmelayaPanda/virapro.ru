@@ -53,6 +53,9 @@ export const mutations = {
   setProductCommonFilters(state, payload) {
     state.productCommonFilters = payload
   },
+  updateProductCommonFilter(state, payload) {
+    state.productCommonFilters[payload.field] = payload.value
+  },
   setProductDynamicFilters(state, payload) {
     state.productDynamicFilters = payload
   },

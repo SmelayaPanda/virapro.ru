@@ -28,7 +28,7 @@
         </el-col>
       </el-row>
       <el-row id="load_more">
-        <div class="mb-4 mt-3">
+        <div>
           <el-button
             v-if="$store.getters.lastVisible"
             type="text"
@@ -57,7 +57,6 @@
             show-checkbox>
           </el-tree>
         </div>
-        <!--{{checkedNodes}}-->
         <p v-else align="middle">Нет фильтров</p>
       </div>
     </div>
@@ -70,22 +69,22 @@
   export default {
     components: {CatalogNavMenu, ProductCard},
     data() {
-      let comFilter = this.$store.getters.productCommonFilters
+      let filter = this.$store.getters.productCommonFilters
       return {
         treeKey: '1',
         defaultProps: {children: 'children', value: 'value', label: 'label'},
         hoverOnCard: false,
-        sortByPrice: comFilter.sortByPrice,
+        sortByPrice: filter.sortByPrice,
         sliderValues: [
-          comFilter.minPrice,
-          comFilter.maxPrice
-            ? comFilter.maxPrice
+          filter.minPrice,
+          filter.maxPrice
+            ? filter.maxPrice
             : this.$store.getters.productStatistics.maxPrice
         ],
         filtersTree: '',
         selectedNode: '',
-        selectedGroup: comFilter.group,
-        selectedCategory: comFilter.category,
+        selectedGroup: filter.group,
+        selectedCategory: filter.category,
       };
     },
     methods: {
@@ -232,9 +231,12 @@
     created() {
       this.$store.dispatch('fetchProductStatistics')
       this.$store.dispatch('fetchDictionaries')
-      if (!Object.keys(this.$store.getters.products).length) { // not load if go from single product or another router
+      this.$store.dispatch('updateProductCommonFilter', {
+        field: 'group',
+        value: this.$nuxt.$route.params.group
+      }).then(() => {
         this.$store.dispatch('fetchProducts')
-      }
+      })
     }
   }
 </script>

@@ -3,7 +3,7 @@
     <el-col
       :span="8"
       v-for="group in $store.getters.PRODUCT_TREE" :key="group.value"
-      v-if="!group.value !== 'all-products'">
+      v-if="group.value !== 'all-products'">
       <el-card class="group_card">
         <nuxt-link :to="`/catalog/${group.value}`">{{ group.label }}</nuxt-link>
       </el-card>
