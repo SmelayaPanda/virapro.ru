@@ -180,7 +180,7 @@ export const state = () => ({
     connecting_size: {label: 'Присоединительный размер', type: 'Number'},
     nominal_diameter: {label: 'Номинальный диаметр DN, мм', type: 'Number'},
     conditional_diameter: {label: 'Диаметр условный DN, мм', type: 'Number'},
-    nominal_pressure: {label: 'Номинальное давление PN,МПа', type: 'Number'},
+    nominal_pressure: {label: 'Номинальное давление PN, МПа', type: 'Number'},
     construction_length: {label: 'Строительная длина L, мм', type: 'Number'},
     heat_one_section: {label: 'Теплоотдача одной секции, Вт', type: 'Number'},
     max_temp_work_env: {label: 'Макс. темп. рабочей среды, С°', type: 'Number'},
