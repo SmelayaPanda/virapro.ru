@@ -35,7 +35,7 @@ export const actions = {
         .where('price', '<=', filter.maxPrice)
     }
     if (params.group) {
-      query = query.where('group', '==', filter.group)
+      query = query.where('group', '==', params.group)
     }
     if (params.category) {
       query = query.where('category', '==', params.category)
@@ -51,7 +51,7 @@ export const actions = {
     await query.get()
       .then((snap) => {
         let products = {}
-        if (getters.lastVisible && !params.category) {
+        if (getters.lastVisible && !params.category && params.group === filter.group) {
           products = getters.products ? getters.products : {}
         }
         if (params.category) { // group only have load more
