@@ -35,6 +35,7 @@ module.exports = {
     '@/plugins/element-ui',
     '@/plugins/fireauth.js',
     '@/plugins/filters.js',
+    '@/plugins/event-bus.js',
     {src: '@/plugins/quill-editor.js', ssr: false}
   ],
   css: [

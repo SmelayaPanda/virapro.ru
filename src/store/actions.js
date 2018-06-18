@@ -44,7 +44,7 @@ export const actions = {
     if (getters.lastVisible) {
       query = query.startAfter(getters.lastVisible)
     }
-    if (filter.limit) {
+    if (filter.limit && !params.category) {
       query = query.limit(filter.limit)
     }
 
@@ -60,28 +60,36 @@ export const actions = {
           commit('setLastVisible', snap.size === filter.limit ? snap.docs[snap.docs.length - 1] : null)
         }
 
-        let dynFilter = getters.productDynamicFilters
         snap.docs.forEach(doc => {
-          if (!Object.keys(dynFilter).length) {
-            products[doc.id] = doc.data()
-          } else { // DYNAMIC FILTERING
-            let i = 0
-            for (let prop in dynFilter) {
-              if (dynFilter[prop].indexOf(doc.data()[prop]) !== -1) {
-                i++
-              }
-            }
-            if (Object.keys(dynFilter).length === i) { // all props exists
-              products[doc.id] = doc.data()
-            }
-          }
+          products[doc.id] = doc.data()
         })
         commit('setProducts', {...products})
+        commit('setProductDynamicFilters', '') // dynamic filters work in client side
+        commit('setDynamicFilteredProductsIds', '') // dynamic filters work in client side
         commit('updateProductCommonFilter', {field: 'group', value: params.group})
         commit('updateProductCommonFilter', {field: 'category', value: params.category})
         commit('LOADING', false)
       })
       .catch(err => dispatch('LOG', err))
+  },
+
+
+  createDynamicFilteredProductIds ({commit, getters}) { // client
+    let products = getters.products ? getters.products : {}
+    let dynFilter = getters.productDynamicFilters
+    let filteredProductIds = []
+    for (let pId in products) {
+      let i = 0
+      for (let prop in dynFilter) {
+        if (dynFilter[prop].indexOf(products[pId][prop]) !== -1) {
+          i++
+        }
+      }
+      if (Object.keys(dynFilter).length === i) { // all props exists
+        filteredProductIds.push(pId)
+      }
+    }
+    commit('setDynamicFilteredProductsIds', filteredProductIds)
   },
 
   async setProductCommonFilters({commit, getters}, payload) {
@@ -92,8 +100,16 @@ export const actions = {
     commit('updateProductCommonFilter', await payload)
   },
 
+  async setSelectedCatalogNode({commit, getters}, payload) {
+    commit('setSelectedCatalogNode', await payload)
+  },
+
   async setProductDynamicFilters({commit, getters}, payload) {
     commit('setProductDynamicFilters', await payload)
+  },
+
+  async setDynamicFilteredProductsIds({commit, getters}, payload) {
+    commit('setDynamicFilteredProductsIds', await payload)
   },
 
   runAlgoliaSearch({commit}, payload) {

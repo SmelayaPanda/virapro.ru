@@ -59,6 +59,12 @@ export const mutations = {
   setProductDynamicFilters(state, payload) {
     state.productDynamicFilters = payload
   },
+  setDynamicFilteredProductsIds(state, payload) {
+    state.dynamicFilteredProductsIds = payload
+  },
+  setSelectedCatalogNode(state, payload) {
+    state.selectedCatalogNode = payload
+  },
   setAlgoliaSQLFilter(state, payload) {
     state.algoliaSQLFilter = payload
   },

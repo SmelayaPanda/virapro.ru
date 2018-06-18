@@ -5,7 +5,10 @@
       <el-col
         :span="24" v-for="p in products" :key="p.productId"
         itemscope itemtype="http://schema.org/ItemList">
-        <ProductCard :id="p.productId" itemprop="itemListElement" itemtype="http://schema.org/Product"/>
+        <ProductCard
+          v-if="!$store.getters.productDynamicFilters || ($store.getters.productDynamicFilters &&
+           $store.getters.dynamicFilteredProductsIds.indexOf(p.productId) !== -1)"
+          :id="p.productId" itemprop="itemListElement" itemtype="http://schema.org/Product"/>
       </el-col>
     </el-row>
     <el-row id="load_more">

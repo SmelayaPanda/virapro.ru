@@ -31,7 +31,6 @@
         defaultExpandedKeys: [],
         treeKey: '1',
         filterText: '',
-        selectedNode: '',
         defaultProps: {children: 'children', value: 'value', label: 'label'},
       }
     },
@@ -49,7 +48,8 @@
           (data.type === 'group' && filter.group === data.value && !this.$nuxt.$route.params.category)) {
           return
         }
-        await this.$store.dispatch('setLastVisible', null)
+        await this.$store.dispatch('setSelectedCatalogNode', data)
+        await this.$store.dispatch('setLastVisible', '')
         if (data.value === 'all-products') {
           return this.$nuxt.$router.push('/catalog/')
         }

@@ -74,10 +74,9 @@ export const state = () => ({
     sortByPrice: 'desc',
     limit: 4
   },
-  productDynamicFilters: {
-    // adds as filters with algolia search
-    // and as client side filter if firebase full category load
-  },
+  selectedCatalogNode: '',
+  dynamicFilteredProductsIds: [],
+  productDynamicFilters: '',
   algoliaSQLFilter: '',
   algoliaSearchText: '',
   // CONSTANTS

@@ -36,7 +36,7 @@
         if (this.$refs.filtersTree) {
           this.$refs.filtersTree.setCheckedNodes([])
         }
-        await this.$store.dispatch('setProductDynamicFilters', [])
+        await this.$store.dispatch('setProductDynamicFilters', '')
       },
 
 
@@ -56,25 +56,27 @@
           }
         })
         this.$store.dispatch('setProductDynamicFilters', filterObj).then(() => {
-          this.filterProducts()
+          this.$store.dispatch('createDynamicFilteredProductIds')
         })
       },
 
 
       createFiltersTree() { // get unique values of fetched products by every dynamic props
-        if (!this.selectedNode || !this.selectedNode.filters) {
-          return []
+        let selectedNode = this.$store.getters.selectedCatalogNode
+        if (!selectedNode && selectedNode.type !== 'category') {
+          return
         }
         let tree = []
         let node = {}
-        this.selectedNode.filters.forEach(prop => {
+        selectedNode.filters.forEach(prop => {
           node.value = this.$store.getters.DYNAMIC_PROPS[prop].value
           node.label = this.$store.getters.DYNAMIC_PROPS[prop].label
           node.children = []
           let unique = []
-          for (let p in this.products) {
-            if (this.products[p][prop] && unique.indexOf(this.products[p][prop]) === -1) {
-              unique.push(this.products[p][prop])
+          let products = this.$store.getters.products
+          for (let p in products) {
+            if (products[p][prop] && unique.indexOf(products[p][prop]) === -1) {
+              unique.push(products[p][prop])
             }
           }
           unique.forEach(el => {
@@ -91,6 +93,17 @@
     computed: {
       dynamicFilters() {
         return this.$store.getters.productDynamicFilters
+      },
+      selectedCatalogNode () {
+        return this.$store.getters.selectedCatalogNode
+      },
+      products () {
+        return this.$store.getters.products
+      }
+    },
+    watch: {
+      products() {
+        this.createFiltersTree()
       }
     }
   }
