@@ -11,9 +11,9 @@
     </el-col>
     <el-col id="price_slider_wrap">
       <el-slider
-        if="price_slider"
+        id="price_slider"
         v-model="sliderValues" @change="changePriceRange" range
-        :step="1" :min="0" :max="$store.getters.productStatistics.maxPrice">
+        :step="100" :min="0" :max="$store.getters.productStatistics.maxPrice + 100">
       </el-slider>
     </el-col>
   </el-row>
@@ -43,15 +43,14 @@
           this.sortByPrice = 'asc'
           // this.$store.dispatch('USER_EVENT', `Сортировка по цене: возрастание`)
         }
+        await this.$store.dispatch('setLastVisible', null)
         await this.$store.dispatch('updateProductCommonFilter', {field: 'sortByPrice', value: this.sortByPrice})
-        await this.loadProducts()
+        await this.$store.dispatch('fetchProducts')
       },
       async changePriceRange () {
+        await this.$store.dispatch('setLastVisible', null)
         await this.$store.dispatch('updateProductCommonFilter', {field: 'minPrice', value: this.sliderValues[0]})
         await this.$store.dispatch('updateProductCommonFilter', {field: 'maxPrice', value: this.sliderValues[1]})
-        await this.loadProducts()
-      },
-      async loadProducts () {
         await this.$store.dispatch('fetchProducts')
       }
     }
