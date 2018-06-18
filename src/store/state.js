@@ -59,7 +59,7 @@ export const state = () => ({
   products: {},
   singleProduct: {},
   productStatistics: { // auto updated from cloud function
-    maxPrice: 1000000,
+    maxPrice: 100000,
     avgPrice: 0,
     uniqueProductQty: 0,
     totalProductQty: 0,
@@ -68,7 +68,7 @@ export const state = () => ({
   lastVisible: null, // value means load more button is available
   productCommonFilters: {
     minPrice: 0,
-    maxPrice: 1000000,
+    maxPrice: 100000,
     group: '',
     category: '',
     sortByPrice: 'asc',

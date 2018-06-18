@@ -1,7 +1,7 @@
 <template>
   <el-row id="price_filter">
     <el-col id="price_title">Цена</el-col>
-    <el-col class="price_interval">{{ sliderValues[0] }}</el-col>
+    <el-col id="price_min">{{ sliderValues[0] }}</el-col>
     <el-col id="price_slider_wrap">
       <el-slider
         id="price_slider"
@@ -9,7 +9,7 @@
         :step="100" :min="0" :max="$store.getters.productStatistics.maxPrice + 100">
       </el-slider>
     </el-col>
-    <el-col class="price_interval">{{ sliderValues[1] }}</el-col>
+    <el-col id="price_max">{{ sliderValues[1] }} &#8381</el-col>
   </el-row>
 </template>
 <script>
@@ -74,12 +74,17 @@
     color: #909399;
   }
 
-  .price_interval {
-    flex: 0 0 24px;
+  #price_max,
+  #price_min{
     color: $color-success;
     font-size: 14px;
   }
-
+  #price_min {
+    flex: 0 0 20px;
+  }
+  #price_max {
+    flex: 0 0 60px;
+  }
 
   @media only screen and (max-width: $sm-screen) {
   }

@@ -61,7 +61,7 @@
 
       createFiltersTree() { // get unique values of fetched products by every dynamic props
         let selectedNode = this.$store.getters.selectedCatalogNode
-        if (!selectedNode && selectedNode.type !== 'category') {
+        if (!selectedNode && selectedNode.type !== 'category' || !selectedNode.filters) {
           return
         }
         let tree = []

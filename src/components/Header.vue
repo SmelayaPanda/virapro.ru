@@ -16,7 +16,7 @@
         trigger="click"
         v-model="showResult">
         <div id="search_result" v-if="algoliaSearchText && result.length">
-          <div v-for="res in result" :key="res.SKU"
+          <div v-for="res in result" :key="res.productId"
                @click="toProduct(res.group, res.category, res.productId)"
                class="search_row">
             <p class="snippet_title" v-html="res.title"></p>
@@ -52,20 +52,22 @@
         </el-input>
       </el-popover>
     </no-ssr>
-    <el-breadcrumb v-if="$nuxt.$route.path.includes('/catalog')" separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="'/catalog'">Каталог</el-breadcrumb-item>
-      <el-breadcrumb-item v-if="$nuxt.$route.params.group" :to="`/catalog/${$nuxt.$route.params.group}`">
-        {{ loadedGroup.label }}
-      </el-breadcrumb-item>
-      <el-breadcrumb-item
-        v-if="$nuxt.$route.params.category"
-        :to="`/catalog/${$nuxt.$route.params.group}/${$nuxt.$route.params.category}`">
-        {{ loadedCategory.label }}
-      </el-breadcrumb-item>
-      <el-breadcrumb-item v-if="$nuxt.$route.params.id">
-        {{ $store.getters.products[$nuxt.$route.params.id].SKU }}
-      </el-breadcrumb-item>
-    </el-breadcrumb>
+    <no-ssr>
+      <el-breadcrumb v-if="$nuxt.$route.path.includes('/catalog')" separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="'/catalog'">Каталог</el-breadcrumb-item>
+        <el-breadcrumb-item v-if="$nuxt.$route.params.group" :to="`/catalog/${$nuxt.$route.params.group}`">
+          {{ loadedGroup.label }}
+        </el-breadcrumb-item>
+        <el-breadcrumb-item
+          v-if="$nuxt.$route.params.category"
+          :to="`/catalog/${$nuxt.$route.params.group}/${$nuxt.$route.params.category}`">
+          {{ loadedCategory.label }}
+        </el-breadcrumb-item>
+        <el-breadcrumb-item v-if="$nuxt.$route.params.id && $store.getters.singleProduct">
+          Арт.: {{ $store.getters.singleProduct.SKU }}
+        </el-breadcrumb-item>
+      </el-breadcrumb>
+    </no-ssr>
     <el-menu
       id="app_header"
       :default-active="activeIndex"
@@ -135,7 +137,7 @@
             this.isSearching = false
           })
       },
-      toProduct (group, category, productId) {
+      toProduct(group, category, productId) {
         this.$nuxt.$router.push(`/catalog/${group}/${category}/${productId}`)
         this.showResult = false
       }
@@ -151,14 +153,14 @@
           return 0
         }
       },
-      loadedGroup () {
+      loadedGroup() {
         for (let group in this.$store.getters.PRODUCT_TREE) {
           if (this.$store.getters.PRODUCT_TREE[group].value === this.$nuxt.$route.params.group) {
             return this.$store.getters.PRODUCT_TREE[group]
           }
         }
       },
-      loadedCategory () {
+      loadedCategory() {
         for (let child in this.loadedGroup.children) {
           if (this.loadedGroup.children[child].value === this.$nuxt.$route.params.category) {
             return this.loadedGroup.children[child]
@@ -282,7 +284,7 @@
   }
 
   #no_algolia_match,
-  #found_something{
+  #found_something {
     padding: 20px;
     text-align: center;
   }
