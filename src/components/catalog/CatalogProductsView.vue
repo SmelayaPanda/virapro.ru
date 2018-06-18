@@ -6,9 +6,8 @@
         :span="24" v-for="p in products" :key="p.productId"
         itemscope itemtype="http://schema.org/ItemList">
         <ProductCard
-          v-if="!$store.getters.productDynamicFilters || ($store.getters.productDynamicFilters &&
-           $store.getters.dynamicFilteredProductsIds.indexOf(p.productId) !== -1)"
-          :id="p.productId" itemprop="itemListElement" itemtype="http://schema.org/Product"/>
+          v-if="showProduct(p)" :id="p.productId"
+          itemprop="itemListElement" itemtype="http://schema.org/Product"/>
       </el-col>
     </el-row>
     <el-row id="load_more">
@@ -40,20 +39,18 @@
       async loadMore() {
         // this.$store.dispatch('USER_EVENT', 'Загрузить больше')
         await this.$store.dispatch('fetchProducts')
+      },
+      showProduct(p) {
+        return (!this.$store.getters.productDynamicFilters ||
+          (this.$store.getters.productDynamicFilters &&
+            this.$store.getters.dynamicFilteredProductsIds.indexOf(p.productId) !== -1)) &&
+          (p.price > this.$store.getters.productCommonFilters.minPrice &&
+            p.price < this.$store.getters.productCommonFilters.maxPrice)
       }
     },
     computed: {
       products() {
         return this.$store.getters.products ? this.$store.getters.products : {}
-      },
-      maxPrice() {
-        let max = 0
-        for (let p in this.products) {
-          if (Number(this.products[p].price) > max) {
-            max = Number(this.products[p].price)
-          }
-        }
-        return max
       },
       dictionaries() {
         return this.$store.getters.dictionaries

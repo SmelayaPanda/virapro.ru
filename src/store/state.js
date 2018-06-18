@@ -68,10 +68,10 @@ export const state = () => ({
   lastVisible: null, // value means load more button is available
   productCommonFilters: {
     minPrice: 0,
-    maxPrice: 0,
+    maxPrice: 1000000,
     group: '',
     category: '',
-    sortByPrice: 'desc',
+    sortByPrice: 'asc',
     limit: 4
   },
   selectedCatalogNode: '',

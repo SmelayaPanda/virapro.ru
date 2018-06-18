@@ -45,9 +45,7 @@
         let prevNodeProp
         tree.checkedNodes.forEach(node => {
           if (!node.children) {
-            if (!prevNodeProp) {
-              filterObj[node.prop] = [node.value]
-            } else if (prevNodeProp === node.prop) {
+            if (prevNodeProp === node.prop) {
               filterObj[node.prop].push(node.value)
             } else {
               filterObj[node.prop] = [node.value]

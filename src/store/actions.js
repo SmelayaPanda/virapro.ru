@@ -29,7 +29,7 @@ export const actions = {
     let params = $nuxt.$route.params
     let filter = getters.productCommonFilters
     let query = fs.collection('products')
-    if (filter.maxPrice) {
+    if (filter.maxPrice && !filter.category) { // all if category
       query = query
         .where('price', '>=', filter.minPrice)
         .where('price', '<=', filter.maxPrice)
@@ -40,7 +40,7 @@ export const actions = {
     if (params.category) {
       query = query.where('category', '==', params.category)
     }
-    query = query.orderBy('price', filter.sortByPrice)
+    query = query.orderBy('price', 'asc')
     if (getters.lastVisible) {
       query = query.startAfter(getters.lastVisible)
     }
@@ -64,8 +64,8 @@ export const actions = {
           products[doc.id] = doc.data()
         })
         commit('setProducts', {...products})
-        commit('setProductDynamicFilters', '') // dynamic filters work in client side
-        commit('setDynamicFilteredProductsIds', '') // dynamic filters work in client side
+        commit('setProductDynamicFilters', '') // dynamic filters work in client side only for categories
+        commit('setDynamicFilteredProductsIds', '') // dynamic filters work in client side only for categories
         commit('updateProductCommonFilter', {field: 'group', value: params.group})
         commit('updateProductCommonFilter', {field: 'category', value: params.category})
         commit('LOADING', false)
