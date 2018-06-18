@@ -63,7 +63,7 @@
         {{ loadedCategory.label }}
       </el-breadcrumb-item>
       <el-breadcrumb-item v-if="$nuxt.$route.params.id">
-        {{ $store.getters.products[$nuxt.$route.params.id].title }}
+        {{ $store.getters.products[$nuxt.$route.params.id].SKU }}
       </el-breadcrumb-item>
     </el-breadcrumb>
     <el-menu
