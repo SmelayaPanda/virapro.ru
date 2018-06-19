@@ -7,6 +7,7 @@
         </div>
         <div v-if="$store.getters.user && !$store.getters.user.isAnonymous">
           <h1>User Data</h1>
+          <p>{{ $store.getters.user.uid }}</p> <br>
           <p>{{ $store.getters.user.email }}</p>
           <p>{{ $store.getters.user.firstname }} {{ $store.getters.user.lastname }}</p>
           <el-button type="success" @click="$store.dispatch('logout')">Logout</el-button>

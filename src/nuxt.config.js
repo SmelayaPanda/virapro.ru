@@ -36,6 +36,7 @@ module.exports = {
     '@/plugins/fireauth.js',
     '@/plugins/filters.js',
     '@/plugins/event-bus.js',
+    {src: '@/plugins/masked-input.js', ssr: false},
     {src: '@/plugins/quill-editor.js', ssr: false}
   ],
   css: [

@@ -1,14 +1,14 @@
 {
   "publicPath": "/assets/",
   "all": [
-    "pages/admin/products/index.45498348626ff8ba717d.js.map",
+    "pages/admin/products/index.704022f4e4b157af7336.js.map",
     "fonts/element-icons.2fad952.woff",
     "img/facebook-logo.ea106d2.svg",
     "img/instagram-logo.58fec83.svg",
     "img/twitter-logo.447540e.svg",
     "img/search_by_algolia.786d358.svg",
     "pages/admin/system/index.3bd044ddc141873c7b1f.js",
-    "pages/admin/products/index.45498348626ff8ba717d.js",
+    "pages/admin/products/index.704022f4e4b157af7336.js",
     "pages/catalog/_group/_category/index.33af143931a107a374e5.js",
     "pages/catalog/_group/index.356ff32398367dacbd5c.js",
     "layouts/admin.0fc434106e845be00358.js",
@@ -27,8 +27,8 @@
     "pages/account/signin.6dd1017b071c47baf658.js",
     "pages/about/index.6fd61665bd4407e976f8.js",
     "common.2be32529fade40200728.js",
-    "app.4b2ef1dbe3e9e0007b2e.js",
-    "manifest.2dc82e5d630ccddd1513.js",
+    "app.885a6642de5d14b89ad8.js",
+    "manifest.d56d152fc6fd56664a15.js",
     "common.fca6a385b997f28b0d8371b5d3b06c7f.css",
     "LICENSES",
     "pages/admin/system/index.3bd044ddc141873c7b1f.js.map",
@@ -51,9 +51,9 @@
     "pages/account/signin.6dd1017b071c47baf658.js.map",
     "pages/about/index.6fd61665bd4407e976f8.js.map",
     "common.2be32529fade40200728.js.map",
-    "app.4b2ef1dbe3e9e0007b2e.js.map",
+    "app.885a6642de5d14b89ad8.js.map",
     "common.fca6a385b997f28b0d8371b5d3b06c7f.css.map",
-    "manifest.2dc82e5d630ccddd1513.js.map",
+    "manifest.d56d152fc6fd56664a15.js.map",
     "icons/icon_64.8HD18iheCtI.png",
     "icons/icon_120.8HD18iheCtI.png",
     "icons/icon_144.8HD18iheCtI.png",
@@ -66,13 +66,13 @@
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.2dc82e5d630ccddd1513.js",
+    "manifest.d56d152fc6fd56664a15.js",
     "common.2be32529fade40200728.js",
-    "app.4b2ef1dbe3e9e0007b2e.js"
+    "app.885a6642de5d14b89ad8.js"
   ],
   "async": [
     "pages/admin/system/index.3bd044ddc141873c7b1f.js",
-    "pages/admin/products/index.45498348626ff8ba717d.js",
+    "pages/admin/products/index.704022f4e4b157af7336.js",
     "pages/catalog/_group/_category/index.33af143931a107a374e5.js",
     "pages/catalog/_group/index.356ff32398367dacbd5c.js",
     "layouts/admin.0fc434106e845be00358.js",

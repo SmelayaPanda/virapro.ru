@@ -80,19 +80,19 @@
             </el-col>
             <el-col :xs="8" :sm="3" :md="3" :lg="3" :xl="3" align="center">
               <p class="price mb-0">
-                {{ parseFloat(product.qty * product.price).toFixed(2) }} RUB
+                {{ parseFloat(product.qty * product.price).toFixed(2) }} р.
               </p>
             </el-col>
-            <el-col id="remove_from_cart" :xs="8" :sm="2" :md="2" :lg="2" :xl="2" align="center">
+            <el-col id="remove_from_cart" :xs="8" :sm="2" :md="3" :lg="2" :xl="2" align="center">
               <i @click="removeFromCart(product)"
                  class="el-icon-close remove_product secondary--text">
               </i>
             </el-col>
             <el-col :xs="8" :sm="3" :md="3" :lg="3" :xl="3" align="right">
-              <!--<checkout-->
-                <!--type="single"-->
-                <!--:checkout-obj="[{productId: product.productId, qty: product.qty}]">-->
-              <!--</checkout>-->
+              <Checkout
+                type="single"
+                :checkout-obj="[{productId: product.productId, qty: product.qty}]">
+              </Checkout>
             </el-col>
           </el-row>
           <hr>
@@ -102,7 +102,7 @@
             <nuxt-link to="/shop" exact>
               <el-button>ПРОДОЛЖИТЬ ПОКУПКИ</el-button>
             </nuxt-link>
-            <!--<checkout type="all" :checkout-obj="totalOrder.items"></checkout>-->
+            <checkout type="all" :checkout-obj="totalOrder.items"></checkout>
             <el-col>
               <p id="total_price">
                 ИТОГО: {{ parseFloat(totalOrder.price).toFixed(2) }} RUB
@@ -115,11 +115,11 @@
   </el-row>
 </template>
 <script>
-// import Checkout from '@/components/shop/Checkout'
+import Checkout from "./Checkout";
 
 export default {
   name: 'CartProducts',
-  // components: {Checkout},
+  components: {Checkout},
   props: {},
   methods: {
     removeFromCart (product) {
@@ -178,7 +178,6 @@ export default {
   }
 
   .price {
-    color: white;
     font-weight: 500;
   }
 

@@ -288,12 +288,11 @@ export const actions = {
     },
 
 
-  checkout:
-    ({commit, getters, dispatch}, payload) => {
+  async checkout ({commit, getters, dispatch}, payload) {
       commit('LOADING', true)
       let user = getters.user
       let orders = getters.orders ? getters.orders : {}
-      fs.collection('orders').add(payload)
+      await fs.collection('orders').add(payload)
         .then((docRef) => {
           payload.id = docRef.id
           orders[docRef.id] = payload
@@ -311,15 +310,16 @@ export const actions = {
           // 2. Update user data
           let orderIds = Object.keys(orders)
           let cartProductIds = user.cart ? Object.keys(user.cart) : []
-          let updateUserData = function (cart, ordersIds) {
-            return fs.collection('users').doc(user.uid).update({cart: cart, orders: ordersIds})
+          let updateUserData = function (cart, orderIds) {
+            return fs.collection('users').doc(user.uid).update({cart: cart, orders: orderIds})
           }
           actions.push(updateUserData(cartProductIds, orderIds))
           return Promise.all(actions)
         })
         .then(() => {
           commit('setOrders', {...orders})
-          commit('setUser', {...user})
+          // user.orders = {...orders}s
+          // commit('setUser', {...user})
           commit('LOADING', false)
           Notification({
             title: 'Поздравляем!',
@@ -331,7 +331,7 @@ export const actions = {
             duration: 30000,
             offset: 50
           })
-          router.push('/cart')
+          $nuxt.$router.push('/cart')
         })
         .catch(err => dispatch('LOG', err))
     },
