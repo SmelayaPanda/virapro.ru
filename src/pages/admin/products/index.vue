@@ -57,14 +57,11 @@
       }
     },
     methods: {
-      loadCategoryProducts() {
-        this.$store.dispatch('setLastVisible', null)
-        this.$store.dispatch('setProductCommonFilters', {
-          limit: null, // all
-          sortByPrice: 'desc',
-          category: this.productOption[1],
-          group: this.productOption[1] ? null : this.productOption[0]
-        }).then(() => this.$store.dispatch('fetchProducts'))
+      async loadCategoryProducts() {
+        await this.$store.dispatch('fetchAdminProducts', {
+          group: this.productOption[0],
+          category: this.productOption[1]
+        })
       },
       changeCurPage(curPage) {
         this.curPage = curPage

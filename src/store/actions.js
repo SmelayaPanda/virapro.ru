@@ -23,7 +23,6 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
-  // TODO: make new method for admin product fetch
   async fetchProducts({commit, getters, dispatch}) {
     commit('LOADING', true)
     let params = $nuxt.$route.params
@@ -68,6 +67,24 @@ export const actions = {
         commit('setDynamicFilteredProductsIds', '') // dynamic filters work in client side only for categories
         commit('updateProductCommonFilter', {field: 'group', value: params.group})
         commit('updateProductCommonFilter', {field: 'category', value: params.category})
+        commit('LOADING', false)
+      })
+      .catch(err => dispatch('LOG', err))
+  },
+
+  async fetchAdminProducts({commit, getters, dispatch}, payload) {
+    commit('LOADING', true)
+    await fs.collection('products')
+      .where('group', '==', payload.group)
+      .where('category', '==', payload.category)
+      .orderBy('price', 'asc')
+      .get()
+      .then(snap => {
+        let products = {}
+        snap.docs.forEach(doc => {
+          products[doc.id] = doc.data()
+        })
+        commit('setProducts', {...products})
         commit('LOADING', false)
       })
       .catch(err => dispatch('LOG', err))

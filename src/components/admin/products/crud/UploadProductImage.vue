@@ -2,9 +2,7 @@
   <div style="margin: 10px;">
     <el-row type="flex" justify="center" align="middle" class="mb-2">
       <el-button @click="onPickFile">
-        <p>
-          {{ this.imgBtnName }}
-        </p>
+        <p>{{ this.imgBtnName }}</p>
         <i class="el-icon-picture-outline ml-2" style="transform: scale(1.7)"></i>
       </el-button>
     </el-row>
@@ -12,12 +10,7 @@
       <img :src="curImg" height="40px" width="auto" style="border-radius: 20px">
       <p v-if="curImg"><i class="el-icon-download"></i></p>
     </el-row>
-    <input
-      type="file"
-      style="display: none;"
-      ref="fileInput"
-      accept="image/*"
-      @change="onFilePicked">
+    <input type="file" style="display: none;" ref="fileInput" accept="image/*" @change="onFilePicked">
     <el-row>
       <img :src="imageUrl" :width="150">
     </el-row>

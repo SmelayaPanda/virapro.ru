@@ -12,7 +12,7 @@
         <upload-product-image @fileUploaded="loadFileData" img-name="img_1" img-btn-name="Доп. 1" :cur-img="product.img_1.thumbnail"/>
         <upload-product-image @fileUploaded="loadFileData" img-name="img_2" img-btn-name="Доп. 2" :cur-img="product.img_2.thumbnail"/>
         <upload-product-image @fileUploaded="loadFileData" img-name="img_3" img-btn-name="Доп. 3" :cur-img="product.img_3.thumbnail"/>
-        <upload-product-image @fileUploaded="loadFileData" img-name="img_4" img-btn-name="Доп. 4" :cur-img="product.img_4.thumbnail"/>
+        <!--<upload-product-image @fileUploaded="loadFileData" img-name="img_4" img-btn-name="Доп. 4" :cur-img="product.img_4.thumbnail"/>-->
       </el-row>
       <el-row type="flex" justify="center">
         <el-button
@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     loadFileData (val) {
-      // val.imgName="img_0 ... 4"
+      // val.imgName="img_0 ... 3"
       this.images[val.imgName] = val.image
     },
     edit () {
