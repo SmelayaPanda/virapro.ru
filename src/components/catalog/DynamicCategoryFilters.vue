@@ -2,7 +2,7 @@
   <div id="filters">
     <el-row id="filter_title">
       <el-col :span="19">Фильтр</el-col>
-      <el-col v-if="Object.keys(dynamicFilters).length" :span="5">
+      <el-col v-if="dynamicFilters && Object.keys(dynamicFilters).length" :span="5">
         <div id="clear_filter" @click="clearCheckedFilters">
           <i class="el-icon-close"></i>
         </div>

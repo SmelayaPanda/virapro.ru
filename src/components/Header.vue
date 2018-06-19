@@ -9,13 +9,13 @@
         <img id="instagram" src="~/assets/icons/social/instagram-logo.svg" alt="Instagram">
       </div>
     </div>
-    <no-ssr id="algolia_search">
+    <div id="algolia_search">
       <el-popover
         placement="bottom-start"
         width="400"
         trigger="click"
         v-model="showResult">
-        <div id="search_result" v-if="algoliaSearchText && result.length">
+        <div id="search_result" v-if="algoliaSearchText && result && result.length">
           <div v-for="res in result" :key="res.productId"
                @click="toProduct(res.group, res.category, res.productId)"
                class="search_row">
@@ -51,8 +51,8 @@
           v-model="algoliaSearchText">
         </el-input>
       </el-popover>
-    </no-ssr>
-    <no-ssr>
+    </div>
+    <div>
       <el-breadcrumb v-if="$nuxt.$route.path.includes('/catalog')" separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="'/catalog'">Каталог</el-breadcrumb-item>
         <el-breadcrumb-item v-if="$nuxt.$route.params.group" :to="`/catalog/${$nuxt.$route.params.group}`">
@@ -67,7 +67,7 @@
           Арт.: {{ $store.getters.singleProduct.SKU }}
         </el-breadcrumb-item>
       </el-breadcrumb>
-    </no-ssr>
+    </div>
     <el-menu
       id="app_header"
       :default-active="activeIndex"

@@ -12,7 +12,7 @@ var config = {
   messagingSenderId: "457264938545"
 };
 
-!firebase.apps.length ? firebase.initializeApp(config) : ''
+firebase.apps && !firebase.apps.length ? firebase.initializeApp(config) : ''
 export const GoogleProvider = new firebase.auth.GoogleAuthProvider();
 export const auth = firebase.auth();
 export const db = firebase.database();

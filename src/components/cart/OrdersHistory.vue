@@ -1,5 +1,5 @@
 <template>
-  <el-row v-if="userOrders.length !== 0" type="flex" justify="center">
+  <el-row v-if="userOrders.length" type="flex" justify="center">
     <el-col :xs="22" :sm="20" :md="18" :lg="16" :xl="12" type="flex" align="middle">
       <p id="order_title" align="left">
         <!--<img src="@/assets/icons/routers/list.svg" id="order_bag" alt="">-->

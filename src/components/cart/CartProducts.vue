@@ -132,10 +132,7 @@ export default {
   },
   computed: {
     userCart () {
-      let cart = this.$store.getters.user.cart
-      if (!Array.isArray(cart)) { // initial cart ids array replaced by full object
-        return cart
-      }
+      return !Array.isArray(this.$store.getters.user.cart) ? this.$store.getters.user.cart : {};
     },
     totalOrder () {
       let items = []
