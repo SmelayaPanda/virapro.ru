@@ -70,10 +70,10 @@
             </el-form-item>
           </el-form>
           <el-row type="flex" justify="center" class="mt-3">
-            <el-button v-if="operation === 'add'" @click="addNewProduct" type="success" :disabled="!isValidForm">
+            <el-button v-if="operation === 'add'" @click="writeProduct('add')" type="success" :disabled="!isValidForm">
               Создать товар
             </el-button>
-            <el-button v-else @click="editProduct" type="success" :disabled="!isValidForm">
+            <el-button v-if="operation === 'edit'" @click="writeProduct('edit')" type="success" :disabled="!isValidForm">
               Сохранить
             </el-button>
             <el-button v-if="operation === 'add'" type="warning" @click="resetForm">Очистить форму</el-button>
@@ -82,7 +82,7 @@
                 Изображения у созданного клона будут ссылаться на изображения родителя (будут общие),<br>
                 так что при смене изображений родителя они так же поменяется у всех клонов. <br>
                 Обратное неверно: при смене изображения клона изображение родителя останется прежним.</div>
-              <el-button v-if="operation === 'edit'" type="info" @click="addNewProduct('clone')">
+              <el-button v-if="operation === 'edit'" type="info" @click="writeProduct('clone')">
                 Клонировать товар
                 <img id="clone" src="~/assets/icons/admin/flip.svg" alt="">
               </el-button>
@@ -200,14 +200,7 @@
       }
     },
     methods: {
-      editProduct() {
-        this.dialog = false
-        this.$store.dispatch('editProduct', {...this.product}).then(() => {
-          this.$refs.form.resetFields()
-        })
-      },
-      addNewProduct(operation) {
-        console.log(this.product)
+      async writeProduct(operation) {
         let data = {}
         for (let prop in this.product) {
           if (this.product[prop]) {
@@ -217,15 +210,21 @@
         data.group = this.option[0]
         data.category = this.option[1]
         data.price = parseFloat(this.product.price)
-        data.creationDate = new Date().getTime()
-        if (operation === 'clone') {
-          delete data.productId
-        }
-        console.log(data)
+
         this.dialog = false
-        this.$store.dispatch('addNewProduct', data).then(() => {
-          this.$refs.form.resetFields()
-        })
+        if (operation === 'add' || operation === 'clone') {
+          if (operation === 'add') {
+            data.creationDate = new Date().getTime()
+          }
+          if (operation === 'clone') {
+            await delete data.productId
+          }
+          await this.$store.dispatch('addNewProduct', data)
+        }
+        if (operation === 'edit') {
+          await this.$store.dispatch('editProduct', data)
+        }
+        await this.$refs.form.resetFields()
       },
       resetForm() {
         this.$refs.form.resetFields();

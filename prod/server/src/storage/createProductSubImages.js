@@ -21,12 +21,12 @@ const path = require('path');
 const os = require('os');
 const fs = require('fs');
 
-const THUMB_MAX_HEIGHT = 160; // px
-const THUMB_MAX_WIDTH = 160;
+const THUMB_MAX_HEIGHT = 120; // px
+const THUMB_MAX_WIDTH = 120;
 const THUMB_PREFIX = 'thumb_';
 
-const CARD_MAX_HEIGHT = 400; // px
-const CARD_MAX_WIDTH = 400;
+const CARD_MAX_HEIGHT = 320; // px
+const CARD_MAX_WIDTH = 320;
 const CARD_PREFIX = 'card_';
 
 

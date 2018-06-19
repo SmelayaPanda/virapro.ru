@@ -6,27 +6,39 @@ exports.handler = function (change, context) {
     let before = change.before.data()
     let productId = context.params.productId
     return new Promise((resolve, reject) => {
-        const client = productHandlers(ALGOLIA_ID, ALGOLIA_ADMIN_KEY);
-        const index = client.initIndex(ALGOLIA_INDEX_NAME);
 
-        let product = after;
-        product.objectID = productId
-        delete product.productId
-        delete product.img_0
-        delete product.img_1
-        delete product.img_2
-        delete product.img_3
-        delete product.img_4
-        delete product.qty
+        if (
+            after.title === before.title &&
+            after.description === before.description &&
+            after.group === before.group &&
+            after.category === before.category &&
+            after.price === before.price &&
+            after.SKU === before.SKU &&
+            after.productId === before.productId // after add product it has been updated with new field - productId
+        ) {
+            console.log('No fields to update Algolia index!')
+            return resolve()
+        } else {
+            const client = productHandlers(ALGOLIA_ID, ALGOLIA_ADMIN_KEY);
+            const index = client.initIndex(ALGOLIA_INDEX_NAME);
 
-        // Write to the algolia index
-        return index.saveObject(product, (err) => { // TODO: optimize -> to partialUpdateObject() ?
-            if (err) {
-                reject(err)
-            } else {
-                console.log(`Algolia: Object ${productId} updated!`)
-                resolve()
-            }
-        })
+            let product = {}
+            product.objectID = productId
+            product.title = after.title
+            product.description = after.description
+            product.group = after.group
+            product.category = after.category
+            product.price = after.price
+            product.SKU = after.SKU
+            // Write to the algolia index
+            return index.saveObject(product, (err) => { // TODO: optimize -> to partialUpdateObject() ?
+                if (err) {
+                    reject(err)
+                } else {
+                    console.log(`Algolia: Object ${productId} updated!`)
+                    resolve()
+                }
+            })
+        }
     })
 }

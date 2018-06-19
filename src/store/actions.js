@@ -145,11 +145,11 @@ export const actions = {
   async setAlgoliaSearchText({commit}, payload) {
     await commit('algoliaSearchText', payload)
   },
-  addNewProduct({commit, getters, dispatch}, payload) {
+  async addNewProduct({commit, getters, dispatch}, payload) {
     commit('LOADING', true)
     let products = getters.products ? getters.products : {}
     let updateData
-    fs.collection('products').add(payload)
+    await fs.collection('products').add(payload)
       .then(snap => {
         updateData = {
           // add productId field for quick access anywhere
@@ -172,10 +172,10 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
-  editProduct({commit, getters, dispatch}, payload) {
+  async editProduct({commit, getters, dispatch}, payload) {
     commit('LOADING', true)
     let products = getters.products
-    fs.collection('products').doc(payload.productId).update(payload)
+    await fs.collection('products').doc(payload.productId).update(payload)
       .then(() => {
         products[payload.productId] = payload
         commit('setProducts', {...products})
