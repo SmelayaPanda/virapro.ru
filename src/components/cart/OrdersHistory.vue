@@ -1,5 +1,5 @@
 <template>
-  <el-row v-if="userOrders.length" type="flex" justify="center">
+  <el-row v-if="userOrders && Object.keys(userOrders).length" type="flex" justify="center">
     <el-col :xs="22" :sm="20" :md="18" :lg="16" :xl="12" type="flex" align="middle">
       <p id="order_title" align="left">
         <!--<img src="@/assets/icons/routers/list.svg" id="order_bag" alt="">-->
@@ -23,30 +23,10 @@
               </el-col>
               <el-col :xs="18" :sm="21" :md="21" :lg="22" :xl="22">
                 <el-tag type="info">ИД: {{ order.id }}</el-tag>
-                <el-tag type="info">{{ order.history.created | date }}</el-tag>
+                <el-tag type="info">{{ new Date(order.history.created).toDateString() }}</el-tag>
                 <el-tag type="info">{{ order.amount.final.value }} {{ order.amount.final.currency }}</el-tag>
                 <el-tag type="info">{{ $store.getters.ORDER_STATUSES[order.status].label }}</el-tag>
                 <el-tag type="info">{{ $store.getters.PAYMENT_STATUSES[order.payment.status].label }}</el-tag>
-                <!--PAYPAL-->
-                <!--<pay-pal-paymet-dialog-->
-                <!--:orderId="order.id"-->
-                <!--:orderItems="order.products"-->
-                <!--:amount="order.totalPrice"-->
-                <!--v-if="order.status === 'payPending'">-->
-                <!--</pay-pal-paymet-dialog>-->
-                <!--YANDEX PAYMENT-->
-                <div v-if="order.payment.status === $store.getters.PAYMENT_STATUSES.none.value &&
-                           order.payment.type === $store.getters.PAYMENT_TYPES.online.value">
-                  <!--<yandex-payment-dialog :orderId="order.id"/>-->
-                  <el-button
-                    v-if="confirmationObj &&
-                          confirmationObj.orderId === order.id &&
-                          confirmationObj.url"
-                    @click="openConfirmationLink"
-                    id="confirm_payment">
-                    Подтвердить платеж
-                  </el-button>
-                </div>
               </el-col>
             </el-row>
             <!--DETAILS-->
@@ -91,10 +71,9 @@
                     <p>
                       <!--<v-icon class="info&#45;&#45;text">airplanemode_active</v-icon>-->
                       <span class="info_title">
-                        Способ и стоимость доставки:
+                        Способ доставки:
                       </span><br>
-                      {{ DELIVERY_METHODS[order.delivery.method].label }}
-                      - {{ order.amount.delivery.value }} <span v-html="RUB"></span>
+                      {{ $store.getters.DELIVERY_METHODS[order.delivery.method].label }}
                     </p>
                   </div>
                 </el-col>
@@ -140,29 +119,16 @@
 </template>
 
 <script>
-// import PayPalPaymetDialog from '@/components/shop/PayPalPaymetDialog'
-// import YandexPaymentDialog from '@/components/shop/YandexPaymentDialog'
-
 export default {
   name: 'OrdersHistory',
-  components: {
-    // PayPalPaymetDialog,
-    // YandexPaymentDialog
-  },
+  components: {},
   data () {
     return {}
   },
-  methods: {
-    openConfirmationLink () {
-      window.location.assign(this.confirmationObj.url)
-    }
-  },
+  methods: {},
   computed: {
     userOrders () {
       return this.$store.getters.orders
-    },
-    confirmationObj () {
-      return this.$store.getters.confirmationObj
     }
   }
 }
@@ -181,7 +147,7 @@ export default {
   }
 
   .order {
-    color: white;
+    /*color: white;*/
   }
 
   .order:before {
@@ -191,7 +157,7 @@ export default {
     z-index: 0;
     width: 100%;
     height: 100%;
-    background: white;
+    /*background: white;*/
     opacity: .05;
   }
 
@@ -202,7 +168,7 @@ export default {
 
   #confirm_payment {
     margin-top: 10px;
-    color: white;
+    /*color: white;*/
     border: 1px solid $color-secondary;
     background: $color-secondary;
   }

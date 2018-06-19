@@ -389,7 +389,7 @@ export const actions = {
         return Promise.all([
           dispatch('setAdmin'),
           dispatch('loadOwnProducts'),
-          // dispatch('fetchOrders', {userId: user.uid})
+          dispatch('fetchOrders', {userId: user.uid})
         ])
       })
       .then(() => {
