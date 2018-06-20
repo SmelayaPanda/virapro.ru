@@ -414,9 +414,9 @@
             delivery: {value: 0, currency: 'RUB'}
           },
           payment: {
-            status: this.$store.getters.PAYMENT_STATUSES.none.value,
+            status: this.$store.getters.PAYMENT_STATUSES.none.value, // now not used (for yandex.kassa lost here)
             history: {},
-            full: true,
+            ending: 'none', // PAYMENT_ENDING
             type: this.payment.type,
             method: this.payment.method,
             notification: {}

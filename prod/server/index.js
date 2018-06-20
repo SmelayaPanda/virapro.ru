@@ -43,6 +43,8 @@ exports.nuxtssr = functions.https.onRequest(app);
 const createProductSubImages = require('./src/storage/createProductSubImages')
 // DATABASE
 const updateProductStatistics = require('./src/db/products/updateProductStatistics')
+const updateOrdersStatistics = require('./src/db/orders/updateOrdersStatistics')
+const sendOrderNotification = require('./src/db/orders/sendOrderNotification')
 const updateAlgoliaIndex = require('./src/db/products/updateAlgoliaIndex')
 const deleteAlgoliaIndex = require('./src/db/products/deleteAlgoliaIndex')
 // GLOBAL CONST
@@ -83,6 +85,7 @@ exports.createProductSubImages = functions
 
 // DATABASE
 // Now, product updated after insertion (.onWrite not necessary)
+// product
 exports.onUpdateProduct = functions.firestore
     .document('products/{productId}')
     .onUpdate((change, context) => {
@@ -95,4 +98,15 @@ exports.onDeleteProduct = functions.firestore
     .document('products/{productId}')
     .onDelete((change, context) => {
         return deleteAlgoliaIndex.handler(change, context, functions)
+    })
+// order
+exports.onCreateOrder = functions.firestore
+    .document('orders/{orderId}')
+    .onCreate((snap, context) => {
+        return sendOrderNotification.handler(snap, context, mailTransporter)
+    })
+exports.onWriteOrder = functions.firestore
+    .document('orders/{orderId}')
+    .onWrite((change, context) => {
+        return updateOrdersStatistics.handler(change, context, admin)
     })

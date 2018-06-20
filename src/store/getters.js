@@ -21,6 +21,7 @@ export const getters = {
   orderStatistics: state => state.orderStatistics,
   confirmationObj: state => state.confirmationObj,
   ORDER_STATUSES: state => state.ORDER_STATUSES,
+  PAYMENT_ENDING: state => state.PAYMENT_ENDING,
   PAYMENT_METHODS: state => state.PAYMENT_METHODS,
   PAYMENT_STATUSES: state => state.PAYMENT_STATUSES,
   PAYMENT_TYPES: state => state.PAYMENT_TYPES,

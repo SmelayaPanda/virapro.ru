@@ -87,7 +87,7 @@ export const state = () => ({
   },
   PAYMENT_TYPES: {
     receipt: {value: 'receipt', label: 'При получении'},
-    online: {value: 'online', label: 'На сайте'}
+    online: {value: 'online', label: 'Электронный перевод'}
   },
   DELIVERY_METHODS: {
     kit: {value: 'kit', label: 'КИТ'},
@@ -95,7 +95,12 @@ export const state = () => ({
     courier: {value: 'courier', label: 'Курьер'},
     yourself: {value: 'yourself', label: 'Самовывоз'}
   },
-  PAYMENT_STATUSES: {
+  PAYMENT_ENDING: { // used for handle order payment
+    none: {value: 'none', label: 'Не оплачено'},
+    partial: {value: 'partial', label: 'Частично'},
+    full: {value: 'full', label: 'Полная'}
+  },
+  PAYMENT_STATUSES: { // for yandex.kassa lost (but not used now)
     none: {value: 'none', label: 'Не оплачено'},
     pending: {value: 'pending', label: 'Платеж создан (ожидает вашего подтверждения)'},
     waiting_for_capture: {value: 'waiting_for_capture', label: 'Оплачено (ожидает подтверждения магазином)'},
