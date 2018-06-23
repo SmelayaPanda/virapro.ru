@@ -21,7 +21,9 @@
       </p>
       <el-col :span="12">
         <h4>Покупатель:</h4>
-        <p>ИД: <el-tag type="success" size="small">{{ order.buyer.userId }}</el-tag></p>
+        <p>ИД:
+          <el-tag type="success" size="small">{{ order.buyer.userId }}</el-tag>
+        </p>
         <p>{{ order.buyer.lastname }} {{ order.buyer.firstname }}</p>
         <p>{{ order.buyer.phone }}</p>
         <p>{{ order.buyer.email }}</p>
@@ -29,7 +31,7 @@
       <el-col :span="12">
         <p>
           <b>Адрес:</b>
-        {{ order.delivery.address.country }}, {{ order.delivery.address.city }}</p>
+          {{ order.delivery.address.country }}, {{ order.delivery.address.city }}</p>
         <p>ул. {{ order.delivery.address.street }} {{ order.delivery.address.house }},
           кв. {{ order.delivery.address.build }}, {{ order.delivery.address.postCode }}
         </p>
@@ -48,9 +50,14 @@
       <el-col :span="24">
         <h4>Товары:</h4>
         <div v-for="p in order.products" :key="p.id">
-          <p>ИД: <el-tag type="success" size="small">{{ p.id }}</el-tag></p>
-          <p><el-tag size="small">{{ p.qty }} x</el-tag> {{ p.title }}
-            <span id="price">( Арт.: {{ p.SKU }} - {{ p.price }} &#8381 )</span>
+          <p></p>
+          <p>
+            <el-tag size="small">{{ p.qty }} x</el-tag>
+            {{ p.title }}
+            <span id="price">
+              ( ИД: <el-tag type="success" size="small">{{ p.id }}</el-tag> /
+              Арт.: <el-tag type="info" size="small">{{ p.SKU }}</el-tag> /
+              <el-tag type="warning" size="small">{{ p.price }} &#8381</el-tag> )</span>
           </p>
         </div>
       </el-col>
@@ -59,6 +66,16 @@
         <h4>Комментарии:</h4>
         <p>Ваш: {{ order.comments.admin }}</p>
         <p>Пользователя: {{ order.comments.client }}</p>
+        <!--TODO: order history -->
+      </el-col>
+      <hr>
+      <el-col :span="24">
+        <h4>История:</h4>
+        <i id="info_status">( Последнее значение статуса )</i>
+        <p v-for="(time, status) in order.history" :key="status">
+          {{ $store.getters.ORDER_STATUSES[status].label }}
+          <el-tag size="small">{{ new Date(time).toLocaleString() }}</el-tag>
+        </p>
       </el-col>
     </el-row>
   </el-card>
@@ -66,6 +83,7 @@
 <script>
 
   import ChangeOrder from "./ChangeOrder";
+
   export default {
     name: 'OrderRow',
     components: {ChangeOrder},
@@ -106,5 +124,10 @@
 
   #price {
     color: $color-info;
+  }
+
+  #info_status {
+    font-size: 12px;
+    color: $color-info
   }
 </style>
