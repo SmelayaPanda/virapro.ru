@@ -6,9 +6,7 @@ REVIEW STATUSES:
 -->
 <template>
   <div class="mb-5">
-    <h2 id="reviews_title">
-      Отзывы о нас
-    </h2>
+    <h2 id="reviews_title">Отзывы о нас</h2>
     <el-carousel
       id="reviews_carousel"
       :autoplay="false"
@@ -25,13 +23,9 @@ REVIEW STATUSES:
           </el-row>
           <el-col :span="24">
             <div class="review_text_wrapper">
-              <p>
-                {{ item.text.slice(0, 300) }}
-              </p>
+              <span v-html="item.text.slice(0, 300)"></span>
             </div>
-            <p>
-              {{ new Date(item.date).toLocaleDateString() }}
-            </p>
+            <p>{{ new Date(item.date).toLocaleDateString() }}</p>
           </el-col>
         </el-card>
       </el-carousel-item>

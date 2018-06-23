@@ -698,7 +698,7 @@ export const actions = {
   addReview:
     ({commit, getters, dispatch}, payload) => {
       commit('LOADING', true)
-      payload.userId = getters.user.uid
+      payload.user.id = getters.user.uid
       let image = payload.user.avatar
       payload.user.avatar = '' // will be updated as image url later
       let avatarRef
@@ -729,11 +729,15 @@ export const actions = {
         .catch(err => dispatch('LOG', err))
     },
   updateReview:
-    ({commit, dispatch}, payload) => {
+    ({commit, dispatch, getters}, payload) => {
       commit('LOADING', true)
-      fs.collection('reviews').doc(payload.reviewId).update(payload.updateData)
+      let reviews = getters.reviews
+      fs.collection('reviews').doc(payload.id).update(payload.updateData)
         .then(() => {
-          dispatch('fetchReviews', {status: payload.oldStatus})
+          if (payload.updateData.isChangedStatus) {
+            delete reviews[payload.id]
+            commit('setReviews', {...reviews})
+          }
           commit('LOADING', false)
           console.log('(i) Review updated')
         })
