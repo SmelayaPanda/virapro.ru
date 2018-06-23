@@ -19,6 +19,7 @@
       <p><span class="prop_name">ИД ордера: </span>
         <el-tag type="success" size="small">{{ order.id }}</el-tag>
       </p>
+      <hr>
       <el-col :span="12">
         <h4>Покупатель:</h4>
         <p>ИД:
@@ -42,7 +43,8 @@
           <b>Оплата:</b>
           {{ $store.getters.PAYMENT_METHODS[order.payment.method].label }}
           ({{ $store.getters.PAYMENT_TYPES[order.payment.type].label }})</p>
-        <p><i>Завершенность: </i>
+        <!-- Для читабельности назван статус, а вообще это завершенность оплаты -->
+        <p><i>Статус: </i>
           <el-tag size="small">{{ $store.getters.PAYMENT_ENDING[order.payment.ending].label }}</el-tag>
         </p>
       </el-col>

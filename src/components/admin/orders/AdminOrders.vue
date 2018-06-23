@@ -10,20 +10,12 @@ ORDER STATUS CHAIN:
   <div v-if="orders">
     <el-row id="status_select">
       <span id="title">Статус</span>
-      <el-select
-        value=""
-        filterable
-        no-match-text="Status is missing"
-        v-model="status"
-        placeholder="Brand"
-        @change="loadOrdersWithStatus">
-        <el-option
+      <el-radio-group v-model="status" @change="loadOrdersWithStatus">
+        <el-radio-button
           v-for="status in $store.getters.ORDER_STATUSES"
           :key="status.value"
-          :label="status.label"
-          :value="status.value">
-        </el-option>
-      </el-select>
+          :label="status.value"> {{ status.label }} </el-radio-button>
+      </el-radio-group>
     </el-row>
     <div v-for="order in orders" :key="order.id">
       <OrderRow :order="order"></OrderRow>
@@ -44,45 +36,48 @@ ORDER STATUS CHAIN:
 </template>
 
 <script>
-import OrderRow from "./OrderRow";
-export default {
-  components: {OrderRow},
-  name: 'AdminOrders',
-  data () {
-    return {
-      status: 'created',
-      curPage: 1,
-      pageSize: 5
-    }
-  },
-  methods: {
-    loadOrdersWithStatus () {
-      this.$store.dispatch('fetchOrders', {status: this.status})
-    },
-    changeCurPage (curPage) {
-      this.curPage = curPage
-    },
-    changePageSize (size) {
-      this.pageSize = size
-    }
-  },
-  computed: {
-    orders () {
-      if (this.$store.getters.orders) {
-        return Object.values(this.$store.getters.orders)
-          .slice((this.curPage - 1) * this.pageSize, this.curPage * this.pageSize)
-      } else {
-        return []
+  import OrderRow from "./OrderRow";
+
+  export default {
+    components: {OrderRow},
+    name: 'AdminOrders',
+    data() {
+      return {
+        status: 'created',
+        curPage: 1,
+        pageSize: 5
       }
     },
-    totalOrdersCount () {
-      return this.$store.getters.orders ? Object.keys(this.$store.getters.orders).length : 0
+    methods: {
+      loadOrdersWithStatus() {
+        console.log('load')
+        console.log(this.status)
+        this.$store.dispatch('fetchOrders', {status: this.status})
+      },
+      changeCurPage(curPage) {
+        this.curPage = curPage
+      },
+      changePageSize(size) {
+        this.pageSize = size
+      }
+    },
+    computed: {
+      orders() {
+        if (this.$store.getters.orders) {
+          return Object.values(this.$store.getters.orders)
+            .slice((this.curPage - 1) * this.pageSize, this.curPage * this.pageSize)
+        } else {
+          return []
+        }
+      },
+      totalOrdersCount() {
+        return this.$store.getters.orders ? Object.keys(this.$store.getters.orders).length : 0
+      }
+    },
+    created() {
+      this.loadOrdersWithStatus()
     }
-  },
-  created () {
-    this.loadOrdersWithStatus()
   }
-}
 </script>
 
 <style lang="scss" scoped>
@@ -91,7 +86,7 @@ export default {
   }
 
   #title {
-    color: $color-secondary;
+    color: $color-info;
     margin-right: 7px;
   }
 
