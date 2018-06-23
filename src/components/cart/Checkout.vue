@@ -242,23 +242,24 @@
           <!--Step 4-->
         <el-row type="flex" justify="center">
         <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
-        <div v-if="activeStep === 4" id="payment_form">
-        <h3>
-        ОПЛАТА
-        </h3>
-        <el-radio-group v-model="payment.type" class="mb-4">
-        <el-radio v-for="type in $store.getters.PAYMENT_TYPES" :key="type.value" :label="type.value" border class="mt-1">
-        {{ type.label }}
-        </el-radio>
-        </el-radio-group>
-        <h3 class="mb-1">
-        СПОСОБ ОПЛАТЫ
-        </h3>
-        <el-radio-group v-if="payment.type" v-model="payment.method" class="mb-4">
-        <el-radio v-for="method in $store.getters.PAYMENT_METHODS"  :key="method.value" :label="method.value" border class="mt-1">
-        {{ method.label }}
-        </el-radio>
-        </el-radio-group>
+          <div v-if="activeStep === 4" id="payment_form">
+          <h3>ОПЛАТА</h3>
+          <el-radio-group v-model="payment.type">
+            <el-radio v-for="type in $store.getters.PAYMENT_TYPES" :key="type.value" :label="type.value" border>
+            {{ type.label }}
+            </el-radio>
+          </el-radio-group>
+          <h3>СПОСОБ ОПЛАТЫ</h3>
+          <el-radio-group v-if="payment.type" v-model="payment.method">
+            <el-radio
+              v-if="payment.type !== $store.getters.PAYMENT_TYPES.online.value"
+              :label="$store.getters.PAYMENT_METHODS.cash.value" border>
+            {{ $store.getters.PAYMENT_METHODS.cash.label }}
+            </el-radio>
+            <el-radio :label="$store.getters.PAYMENT_METHODS.bank_card.value" border>
+            {{ $store.getters.PAYMENT_METHODS.bank_card.label }}
+            </el-radio>
+          </el-radio-group>
         </div>
         </el-col>
         </el-row>

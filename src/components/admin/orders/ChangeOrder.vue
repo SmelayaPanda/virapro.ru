@@ -9,7 +9,7 @@
       width="100%"
       center>
       <p align="center">Статус ордера</p>
-      <el-radio-group v-model="order.status" id="order_status">
+      <el-radio-group v-model="order.status" id="order_status" size="small">
         <el-radio-button
           v-for="status in $store.getters.ORDER_STATUSES"
           :key="status.value"
@@ -17,7 +17,7 @@
         </el-radio-button>
       </el-radio-group>
       <p align="center">Оплата</p>
-      <el-radio-group v-model="order.payment.ending" id="payment_status">
+      <el-radio-group v-model="order.payment.ending" id="payment_status" size="small">
         <el-radio-button
           v-for="ending in $store.getters.PAYMENT_ENDING"
           :key="ending.value"

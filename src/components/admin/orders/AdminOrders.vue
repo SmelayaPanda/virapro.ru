@@ -10,7 +10,7 @@ ORDER STATUS CHAIN:
   <div v-if="orders">
     <el-row id="status_select">
       <span id="title">Статус</span>
-      <el-radio-group v-model="status" @change="loadOrdersWithStatus">
+      <el-radio-group v-model="status" @change="loadOrdersWithStatus" size="small">
         <el-radio-button
           v-for="status in $store.getters.ORDER_STATUSES"
           :key="status.value"

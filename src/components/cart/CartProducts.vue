@@ -10,10 +10,8 @@
         КОРЗИНА
       </p>
       <div v-if="!Object.keys(userCart).length">
-        <p class="white--text">
-          Ваша корзина пуста
-        </p>
-        <router-link to="/shop">
+        <p>Ваша корзина пуста</p>
+        <router-link to="/catalog">
           <p id="into_catalog">
             В каталог
             <!--<v-icon class="secondary&#45;&#45;text">arrow_forward</v-icon>-->

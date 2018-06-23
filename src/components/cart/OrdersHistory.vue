@@ -30,7 +30,7 @@
               </el-col>
             </el-row>
             <!--DETAILS-->
-            <div v-show="order.showDetails === true">
+            <div v-show="order.showDetails === true" :key="order.id">
               <el-row type="flex" justify="center" style="flex-wrap: wrap;">
                 <el-col :xs="20" :sm="10" :md="10" :lg="10" :xl="10">
                   <div v-if="order.buyer">

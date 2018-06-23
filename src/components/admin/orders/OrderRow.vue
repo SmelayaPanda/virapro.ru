@@ -16,61 +16,60 @@
       <ChangeOrder :order-id="order.id" style="width: 70px"/>
     </el-row>
     <el-row v-if="openInfo" id="expand_description">
-      <p><span class="prop_name">ИД ордера: </span>
+      <el-col :span="24">
+        <span class="prop_name">ИД ордера: </span>
         <el-tag type="success" size="small">{{ order.id }}</el-tag>
-      </p>
-      <hr>
+      </el-col>
       <el-col :span="12">
         <h4>Покупатель:</h4>
         <p>ИД:
           <el-tag type="success" size="small">{{ order.buyer.userId }}</el-tag>
+          <br>
+          {{ order.buyer.lastname }} {{ order.buyer.firstname }} <br>
+          {{ order.buyer.phone }} <br>
+          {{ order.buyer.email }}
         </p>
-        <p>{{ order.buyer.lastname }} {{ order.buyer.firstname }}</p>
-        <p>{{ order.buyer.phone }}</p>
-        <p>{{ order.buyer.email }}</p>
       </el-col>
       <el-col :span="12">
+        <br><br>
         <p>
           <b>Адрес:</b>
-          {{ order.delivery.address.country }}, {{ order.delivery.address.city }}</p>
-        <p>ул. {{ order.delivery.address.street }} {{ order.delivery.address.house }},
-          кв. {{ order.delivery.address.build }}, {{ order.delivery.address.postCode }}
-        </p>
-        <p><b>Способ доставки:</b> {{ $store.getters.DELIVERY_METHODS[order.delivery.method].label }}</p>
-      </el-col>
-      <el-col :span="12">
+          {{ order.delivery.address.country }}, {{ order.delivery.address.city }}
+          ул. {{ order.delivery.address.street }} {{ order.delivery.address.house }},
+          кв. {{ order.delivery.address.build }}, {{ order.delivery.address.postCode }} <br>
+          <b>Способ доставки:</b> {{ $store.getters.DELIVERY_METHODS[order.delivery.method].label }}</p>
         <p>
           <b>Оплата:</b>
           {{ $store.getters.PAYMENT_METHODS[order.payment.method].label }}
-          ({{ $store.getters.PAYMENT_TYPES[order.payment.type].label }})</p>
-        <!-- Для читабельности назван статус, а вообще это завершенность оплаты -->
-        <p><i>Статус: </i>
+          ({{ $store.getters.PAYMENT_TYPES[order.payment.type].label }}) /
+          <!-- Для читабельности назван статус, а вообще это завершенность оплаты -->
+          <i>Статус: </i>
           <el-tag size="small">{{ $store.getters.PAYMENT_ENDING[order.payment.ending].label }}</el-tag>
         </p>
       </el-col>
-      <hr>
       <el-col :span="24">
         <h4>Товары:</h4>
         <div v-for="p in order.products" :key="p.id">
-          <p></p>
-          <p>
+          <span>
             <el-tag size="small">{{ p.qty }} x</el-tag>
             {{ p.title }}
             <span id="price">
               ( ИД: <el-tag type="success" size="small">{{ p.id }}</el-tag> /
               Арт.: <el-tag type="info" size="small">{{ p.SKU }}</el-tag> /
               <el-tag type="warning" size="small">{{ p.price }} &#8381</el-tag> )</span>
-          </p>
+          </span> <br>
         </div>
       </el-col>
-      <hr>
       <el-col :span="24">
         <h4>Комментарии:</h4>
-        <p><el-tag type="success" size="small">Ваш:</el-tag> <span v-html="order.comments.admin"></span></p>
-        <p><el-tag type="success" size="small">Пользователя:</el-tag> <span v-html="order.comments.client"></span></p>
+        <p>
+          <el-tag type="success" size="small">Ваш:</el-tag>
+          <span v-html="order.comments.admin"></span></p>
+        <p>
+          <el-tag type="success" size="small">Пользователя:</el-tag>
+          <span v-html="order.comments.client"></span></p>
         <!--TODO: order history -->
       </el-col>
-      <hr>
       <el-col :span="24">
         <h4>История:</h4>
         <span id="info_status">( Указано последнее значение статуса )</span>
@@ -135,10 +134,6 @@
   #info_status {
     font-size: 12px;
     color: $color-info
-  }
-
-  hr {
-    height: 2px;
   }
 
   #history_step {
