@@ -340,14 +340,14 @@ export const actions = {
   updateOrder:
     ({commit, getters, dispatch}, payload) => {
       commit('LOADING', true)
-      let orders = getters.orders
       fs.collection('orders').doc(payload.id).update(payload.updateData)
         .then(() => {
           if (payload.updateData.isChangedStatus) {
+            let orders = getters.orders
             delete orders[payload.id]
+            commit('setOrders', {...orders})
           }
           console.log('(i) Order updated')
-          commit('setOrders', {...orders})
           commit('LOADING', false)
         })
         .catch(err => dispatch('LOG', err))
@@ -731,10 +731,10 @@ export const actions = {
   updateReview:
     ({commit, dispatch, getters}, payload) => {
       commit('LOADING', true)
-      let reviews = getters.reviews
       fs.collection('reviews').doc(payload.id).update(payload.updateData)
         .then(() => {
           if (payload.updateData.isChangedStatus) {
+            let reviews = getters.reviews
             delete reviews[payload.id]
             commit('setReviews', {...reviews})
           }

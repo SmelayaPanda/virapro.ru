@@ -17,7 +17,7 @@
         {{ review.user.name }}
       </el-col>
       <el-col style="width: 60px;">
-        <ProcessReview :reviewId="review.id"/>
+        <UpdateReview :reviewId="review.id"/>
       </el-col>
     </el-row>
     <el-row v-if="openInfo" id="expand_description">
@@ -35,11 +35,11 @@
   </el-card>
 </template>
 <script>
-  import ProcessReview from './ProcessReview'
+  import UpdateReview from './UpdateReview'
 
   export default {
     name: 'ReviewRow',
-    components: {ProcessReview},
+    components: {UpdateReview},
     props: {
       review: {type: Object, required: true}
     },

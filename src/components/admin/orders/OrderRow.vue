@@ -13,7 +13,7 @@
       <el-col style="width: 100px" class="product_title">{{ order.amount.final.value }} &#8381</el-col>
       <el-col :span="8">{{ order.buyer.firstname.concat(' ', order.buyer.lastname ) }}</el-col>
       <el-col :span="8">{{ order.buyer.phone }} <br> {{ order.buyer.email }}</el-col>
-      <ChangeOrder :order-id="order.id" style="width: 70px"/>
+      <UpdateOrder :order-id="order.id" style="width: 70px"/>
     </el-row>
     <el-row v-if="openInfo" id="expand_description">
       <el-col :span="24">
@@ -87,11 +87,11 @@
 </template>
 <script>
 
-  import ChangeOrder from "./ChangeOrder";
+  import UpdateOrder from "./UpdateOrder";
 
   export default {
     name: 'OrderRow',
-    components: {ChangeOrder},
+    components: {UpdateOrder},
     props: {
       order: {type: Object, required: true}
     },

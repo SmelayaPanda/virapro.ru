@@ -4,7 +4,7 @@
       <i class="el-icon-edit-outline"></i>
     </el-button>
     <el-dialog
-      title="Редактировать отзыва"
+      title="Редактировать отзыв"
       :visible.sync="dialog"
       width="100%"
       center>
