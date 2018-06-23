@@ -97,8 +97,8 @@ export const state = () => ({
   },
   PAYMENT_ENDING: { // used for handle order payment
     none: {value: 'none', label: 'Не оплачено'},
-    partial: {value: 'partial', label: 'Частично'},
-    full: {value: 'full', label: 'Полная'}
+    partial: {value: 'partial', label: 'Частично оплачено'},
+    full: {value: 'full', label: 'Полная оплата'}
   },
   PAYMENT_STATUSES: { // for yandex.kassa lost (but not used now)
     none: {value: 'none', label: 'Не оплачено'},

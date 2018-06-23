@@ -7,13 +7,13 @@
           circle plain @click="openInfo = !openInfo">
         </el-button>
       </el-col>
-      <el-col style="width: 160px">
+      <el-col style="width: 180px">
         <el-tag size="small" type="success">{{ new Date(order.history.created).toLocaleString() }}</el-tag>
       </el-col>
       <el-col style="width: 100px" class="product_title">{{ order.amount.final.value }} &#8381</el-col>
-      <el-col :span="6">{{ order.buyer.firstname.concat(' ', order.buyer.lastname ) }}</el-col>
-      <el-col :span="6">{{ order.buyer.phone }} <br> {{ order.buyer.email }}</el-col>
-      <ChangeOrder :order-id="order.id"/>
+      <el-col :span="8">{{ order.buyer.firstname.concat(' ', order.buyer.lastname ) }}</el-col>
+      <el-col :span="8">{{ order.buyer.phone }} <br> {{ order.buyer.email }}</el-col>
+      <ChangeOrder :order-id="order.id" style="width: 70px"/>
     </el-row>
     <el-row v-if="openInfo" id="expand_description">
       <p><span class="prop_name">ИД ордера: </span>
@@ -42,8 +42,8 @@
           <b>Оплата:</b>
           {{ $store.getters.PAYMENT_METHODS[order.payment.method].label }}
           ({{ $store.getters.PAYMENT_TYPES[order.payment.type].label }})</p>
-        <p><i>Статус оплаты: </i>
-          <el-tag size="small">{{ $store.getters.PAYMENT_STATUSES[order.payment.status].label }}</el-tag>
+        <p><i>Завершенность: </i>
+          <el-tag size="small">{{ $store.getters.PAYMENT_ENDING[order.payment.ending].label }}</el-tag>
         </p>
       </el-col>
       <hr>
@@ -64,18 +64,22 @@
       <hr>
       <el-col :span="24">
         <h4>Комментарии:</h4>
-        <p>Ваш: {{ order.comments.admin }}</p>
-        <p>Пользователя: {{ order.comments.client }}</p>
+        <p><el-tag type="success" size="small">Ваш:</el-tag> <span v-html="order.comments.admin"></span></p>
+        <p><el-tag type="success" size="small">Пользователя:</el-tag> <span v-html="order.comments.client"></span></p>
         <!--TODO: order history -->
       </el-col>
       <hr>
       <el-col :span="24">
         <h4>История:</h4>
-        <i id="info_status">( Последнее значение статуса )</i>
-        <p v-for="(time, status) in order.history" :key="status">
-          {{ $store.getters.ORDER_STATUSES[status].label }}
-          <el-tag size="small">{{ new Date(time).toLocaleString() }}</el-tag>
-        </p>
+        <span id="info_status">( Указано последнее значение статуса )</span>
+        <el-steps id="history_step" align-center>
+          <el-step
+            v-if="order.history[status.value]"
+            v-for="status in $store.getters.ORDER_STATUSES" :key="status.value"
+            :title="status.label"
+            :description="new Date(order.history[status.value]).toLocaleString()">
+          </el-step>
+        </el-steps>
       </el-col>
     </el-row>
   </el-card>
@@ -129,5 +133,13 @@
   #info_status {
     font-size: 12px;
     color: $color-info
+  }
+
+  hr {
+    height: 2px;
+  }
+
+  #history_step {
+    margin-top: 40px;
   }
 </style>

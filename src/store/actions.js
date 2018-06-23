@@ -343,7 +343,9 @@ export const actions = {
       let orders = getters.orders
       fs.collection('orders').doc(payload.id).update(payload.updateData)
         .then(() => {
-          orders[payload.id] = Object.assign(orders[payload.id], payload.updateData)
+          if (payload.updateData.isChangedStatus) {
+            delete orders[payload.id]
+          }
           console.log('(i) Order updated')
           commit('setOrders', {...orders})
           commit('LOADING', false)
