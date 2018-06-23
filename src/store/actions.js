@@ -699,13 +699,27 @@ export const actions = {
     ({commit, getters, dispatch}, payload) => {
       commit('LOADING', true)
       payload.userId = getters.user.uid
+      let image = payload.user.avatar
+      payload.user.avatar = '' // will be updated as image url later
+      let avatarRef
+      let reviewId = ''
       fs.collection('reviews').add(payload)
+        .then((snap) => {
+          reviewId = snap.id
+          avatarRef = firebase.storage().ref('reviews/' + reviewId + '/avatar').put(image)
+          return avatarRef
+        })
+        .then(() => {
+          avatarRef.snapshot.ref.getDownloadURL().then(downloadURL => {
+            return fs.collection('reviews').doc(reviewId).update({'user.avatar': downloadURL})
+          });
+        })
         .then(() => {
           commit('LOADING', false)
           console.log('(i) Review added')
           Notification({
             title: 'Спасибо',
-            message: 'Ваш отзыв будет опубликован после проходения модерации!',
+            message: 'Ваш отзыв будет опубликован после прохождения модерации!',
             type: 'success',
             showClose: true,
             duration: 10000,

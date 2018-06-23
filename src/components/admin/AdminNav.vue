@@ -26,7 +26,7 @@
           <img src="~/assets/icons/admin/text_format.svg" alt="">
           <span>Словари</span>
         </el-menu-item>
-        <el-menu-item index="/admin/reviews" disabled>
+        <el-menu-item index="/admin/reviews">
           <img src="~/assets/icons/admin/record_voice_over.svg" alt="">
           <span>Отзывы</span>
         </el-menu-item>

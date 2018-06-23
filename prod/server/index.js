@@ -45,6 +45,8 @@ const createProductSubImages = require('./src/storage/createProductSubImages')
 const updateProductStatistics = require('./src/db/products/updateProductStatistics')
 const updateOrdersStatistics = require('./src/db/orders/updateOrdersStatistics')
 const sendOrderNotification = require('./src/db/orders/sendOrderNotification')
+const updateReviewsStatistics = require('./src/db/reviews/updateReviewsStatistics')
+const sendReviewNotification = require('./src/db/reviews/sendReviewNotification')
 const updateAlgoliaIndex = require('./src/db/products/updateAlgoliaIndex')
 const deleteAlgoliaIndex = require('./src/db/products/deleteAlgoliaIndex')
 // GLOBAL CONST
@@ -109,4 +111,15 @@ exports.onWriteOrder = functions.firestore
     .document('orders/{orderId}')
     .onWrite((change, context) => {
         return updateOrdersStatistics.handler(change, context, admin)
+    })
+// review
+exports.onCreateReview = functions.firestore
+    .document('reviews/{reviewId}')
+    .onCreate((snap, context) => {
+        return sendReviewNotification.handler(snap, context, mailTransporter)
+    })
+exports.onWriteReview = functions.firestore
+    .document('reviews/{reviewId}')
+    .onWrite((change, context) => {
+        return updateReviewsStatistics.handler(change, context, admin)
     })
