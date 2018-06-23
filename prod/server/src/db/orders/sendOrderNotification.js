@@ -59,7 +59,7 @@ let sendOrderEmailNotifyToBuyer = function (transporter, info) {
     let mailOptions = {
       from: ADMIN_EMAIL,
       to: info.buyer.email,
-      subject: `Misterio shop: покупка товара`,
+      subject: `Магазин сантехники: покупка товара`,
       text: `
       ${info.buyer.firstname}, спасибо за Вашу покупку на нашем сайте.   
       Мы свяжемся с Вами по телефону ${info.buyer.phone} в ближайшее время для подтвердения заказа!

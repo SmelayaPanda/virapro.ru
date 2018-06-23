@@ -96,8 +96,8 @@
           <hr>
         </div>
         <div v-if="Object.keys(userCart).length">
-          <el-row id="total_row" type="flex" style="flex-wrap: wrap">
-            <nuxt-link to="/shop" exact>
+          <el-row id="total_row">
+            <nuxt-link to="/catalog" exact>
               <el-button>ПРОДОЛЖИТЬ ПОКУПКИ</el-button>
             </nuxt-link>
             <checkout type="all" :checkout-obj="totalOrder.items"></checkout>
@@ -113,44 +113,44 @@
   </el-row>
 </template>
 <script>
-import Checkout from "./Checkout";
+  import Checkout from "./Checkout";
 
-export default {
-  name: 'CartProducts',
-  components: {Checkout},
-  props: {},
-  methods: {
-    removeFromCart (product) {
-      this.$store.dispatch('updateOwnProducts', {
-        subject: 'cart',
-        operation: 'remove',
-        product: product
-      })
-    }
-  },
-  computed: {
-    userCart () {
-      return !Array.isArray(this.$store.getters.user.cart) ? this.$store.getters.user.cart : {};
+  export default {
+    name: 'CartProducts',
+    components: {Checkout},
+    props: {},
+    methods: {
+      removeFromCart(product) {
+        this.$store.dispatch('updateOwnProducts', {
+          subject: 'cart',
+          operation: 'remove',
+          product: product
+        })
+      }
     },
-    totalOrder () {
-      let items = []
-      let price = 0
-      let cart = this.userCart
-      if (cart) {
-        for (let pId in cart) {
-          if (cart.hasOwnProperty(pId) && cart[pId]) {
-            let item = {}
-            item.productId = cart[pId].productId
-            item.qty = cart[pId].qty
-            price += cart[pId].qty * cart[pId].price
-            items.push(item)
+    computed: {
+      userCart() {
+        return !Array.isArray(this.$store.getters.user.cart) ? this.$store.getters.user.cart : {};
+      },
+      totalOrder() {
+        let items = []
+        let price = 0
+        let cart = this.userCart
+        if (cart) {
+          for (let pId in cart) {
+            if (cart.hasOwnProperty(pId) && cart[pId]) {
+              let item = {}
+              item.productId = cart[pId].productId
+              item.qty = cart[pId].qty
+              price += cart[pId].qty * cart[pId].price
+              items.push(item)
+            }
           }
         }
+        return {items: items, price: price}
       }
-      return {items: items, price: price}
     }
   }
-}
 </script>
 <style scoped lang="scss">
   #desctop_shopping_cart {
@@ -264,7 +264,9 @@ export default {
       margin-top: 10px;
     }
     #total_row {
+      display: flex;
       justify-content: center;
+      flex-wrap: wrap;
     }
     #go_shop {
       margin-right: 0;
