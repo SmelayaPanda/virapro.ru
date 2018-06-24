@@ -81,6 +81,11 @@ export const state = () => ({
   algoliaSearchText: '',
   // CONSTANTS
   ADMINS: ['smelayapandagm@gmail.com'],
+  SERVICE_TYPES: {
+    installation: {value: 'installation', label: 'Установка оборудования'},
+    consultation: {value: 'consultation', label: 'Консультация'},
+    evaluation: {value: 'evaluation', label: 'Замеры и оценка'},
+  },
   PAYMENT_METHODS: {
     cash: {value: 'cash', label: 'Наличные'},
     bank_card: {value: 'bank_card', label: 'Банковская карта'}
@@ -88,12 +93,6 @@ export const state = () => ({
   PAYMENT_TYPES: {
     receipt: {value: 'receipt', label: 'При получении'},
     online: {value: 'online', label: 'Электронный перевод'}
-  },
-  DELIVERY_METHODS: {
-    kit: {value: 'kit', label: 'КИТ'},
-    dellin: {value: 'dellin', label: 'Деловые Линии'},
-    courier: {value: 'courier', label: 'Курьер'},
-    yourself: {value: 'yourself', label: 'Самовывоз'}
   },
   PAYMENT_ENDING: { // used for handle order payment
     none: {value: 'none', label: 'Не оплачено'},
@@ -106,6 +105,12 @@ export const state = () => ({
     waiting_for_capture: {value: 'waiting_for_capture', label: 'Оплачено (ожидает подтверждения магазином)'},
     succeeded: {value: 'succeeded', label: 'Оплачено'},
     canceled: {value: 'canceled', label: 'Отменено'}
+  },
+  DELIVERY_METHODS: {
+    kit: {value: 'kit', label: 'КИТ'},
+    dellin: {value: 'dellin', label: 'Деловые Линии'},
+    courier: {value: 'courier', label: 'Курьер'},
+    yourself: {value: 'yourself', label: 'Самовывоз'}
   },
   ORDER_STATUSES: {
     created: {value: 'created', label: 'Оформлено'},

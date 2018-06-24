@@ -283,6 +283,7 @@ export const actions = {
           let order = doc.data()
           order.id = doc.id
           orders[doc.id] = order
+          orders[doc.id].showDetails = false // for collapse details
           commit('setOrders', {...orders})
         })
     },
@@ -296,6 +297,7 @@ export const actions = {
         .then((docRef) => {
           payload.id = docRef.id
           orders[docRef.id] = payload
+          orders[docRef.id].showDetails = false
           let actions = []
           // 1. Decrease totalQty of each products
           let decreaseQty = function (id, totalQty) {

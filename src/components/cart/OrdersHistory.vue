@@ -100,13 +100,15 @@
                       </p>
                     </div>
                   </div>
-                  <!--<p v-if="order.comments">-->
-                  <!--<span>-->
-                  <!--<i class="el-icon-warning"></i>-->
-                  <!--Комментарии:-->
-                  <!--</span>-->
-                  <!--{{ order.comments.user }}<br>-->
-                  <!--</p>-->
+                  <div v-if="order.services && order.services.length">
+                    Дополнительные услуги к заказу:
+                    <span v-for="service in order.services" :key="service">
+                      {{ $store.getters.SERVICE_TYPES[service].label }} /
+                    </span>
+                  </div>
+                  <p>Ваш комментарий:
+                    <span v-if="order.comments.user"> {{ order.comments.user }}</span>
+                  </p>
                 </el-col>
               </el-row>
             </div>
@@ -119,19 +121,19 @@
 </template>
 
 <script>
-export default {
-  name: 'OrdersHistory',
-  components: {},
-  data () {
-    return {}
-  },
-  methods: {},
-  computed: {
-    userOrders () {
-      return this.$store.getters.orders
+  export default {
+    name: 'OrdersHistory',
+    components: {},
+    data() {
+      return {}
+    },
+    methods: {},
+    computed: {
+      userOrders() {
+        return this.$store.getters.orders
+      }
     }
   }
-}
 </script>
 
 <style scoped lang="scss">

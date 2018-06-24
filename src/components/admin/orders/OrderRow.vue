@@ -60,6 +60,12 @@
           </span> <br>
         </div>
       </el-col>
+      <el-col :span="24" v-if="order.services && order.services.length">
+        <h4> Дополнительные услуги к заказу:</h4>
+        <span v-for="service in order.services" :key="service">
+          {{ $store.getters.SERVICE_TYPES[service].label }} /
+        </span>
+      </el-col>
       <el-col :span="24">
         <h4>Комментарии:</h4>
         <p>
@@ -67,8 +73,7 @@
           <span v-html="order.comments.admin"></span></p>
         <p>
           <el-tag type="success" size="small">Пользователя:</el-tag>
-          <span v-html="order.comments.client"></span></p>
-        <!--TODO: order history -->
+        <p>{{ order.comments.user }}</p>
       </el-col>
       <el-col :span="24">
         <h4>История:</h4>

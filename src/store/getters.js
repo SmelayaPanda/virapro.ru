@@ -2,6 +2,9 @@ export const getters = {
   // user
   user: state => state.user, // (Object) all user data
 
+  // services
+  SERVICE_TYPES: state => state.SERVICE_TYPES,
+
   // PRODUCTS
   products: state => state.products,
   singleProduct: state => state.singleProduct,

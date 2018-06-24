@@ -266,28 +266,36 @@
           <!---------->
           <!--Step 5-->
         <el-row type="flex" justify="center">
-        <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
-        <div v-if="activeStep === 5" class="white--text">
-        <p>Нажимая оформить вы соглашаетесь с
-        <a target="_blank" class="secondary--text" href="https://.../userAgreement">офертой</a>
-        </p>
-        <el-button class="mb-4" @click="checkout" type="danger">
-        ОФОРМИТЬ
-        </el-button>
-        </div>
-        </el-col>
+          <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
+            <div v-if="activeStep === 5" class="white--text">
+              <h3>Нужна помощь? Укажите дополнительные услуги к заказу:</h3>
+              <el-checkbox-group v-model="services">
+                <el-checkbox
+                  v-for="service in $store.getters.SERVICE_TYPES" :key="service.value"
+                  :label="service.value">
+                  <p>{{ service.label }}</p>
+                </el-checkbox>
+              </el-checkbox-group>
+              <el-input
+                type="textarea"
+                :autosize="{ minRows: 2, maxRows: 4}"
+                placeholder="Комментарии к заказу (не обязательно)"
+                v-model="comments.user">
+              </el-input>
+              <p>Нажимая оформить вы соглашаетесь с
+              <a target="_blank" class="secondary--text" href="https://.../userAgreement">офертой</a>
+              </p>
+              <el-button class="mb-4" @click="checkout" type="danger">ОФОРМИТЬ</el-button>
+            </div>
+          </el-col>
         </el-row>
-        <el-button @click="prevStep" v-if="activeStep !== 1">
-        Назад
-        </el-button>
+        <el-button @click="prevStep" v-if="activeStep !== 1">Назад</el-button>
         <el-button
           v-if="activeStep !== 5"
           @click="nextStep"
           id="next_step"
           :type="validCheckoutStep ? 'danger' : 'info'"
-          :disabled="!validCheckoutStep">
-        Вперед
-        </el-button>
+          :disabled="!validCheckoutStep">Вперед</el-button>
         </el-col>
       </el-row>
     </el-dialog>
@@ -321,6 +329,8 @@
       return {
         dialog: false,
         activeStep: 1,
+        comments: {user: '', admin: ''},
+        services: [],
         delivery: {
           method: '',
           prices: {
@@ -426,11 +436,12 @@
             method: this.delivery.method,
             address: this.address
           },
+          services: this.services,
           products: products,
           status: status,
           history: history,
           buyer: this.buyer,
-          comments: {user: '', admin: ''}
+          comments: this.comments
         }
         console.log(order);
         this.dialog = false
