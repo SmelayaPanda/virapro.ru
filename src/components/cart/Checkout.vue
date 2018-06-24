@@ -376,16 +376,16 @@
     methods: {
       clickBuy() {
         this.dialog = true
-        // this.$store.dispatch('USER_EVENT', 'Купить товар')
+        this.$store.dispatch('USER_EVENT', 'Купить товар')
       },
       nextStep() {
         if (this.activeStep < 5) this.activeStep++
-        // this.$store.dispatch('USER_EVENT', `Шаг: ${this.activeStep}`)
+        this.$store.dispatch('USER_EVENT', `Шаг: ${this.activeStep}`)
       },
       prevStep() {
         if (this.activeStep > 1) {
           this.activeStep--
-          // this.$store.dispatch('USER_EVENT', `Шаг: ${this.activeStep}`)
+          this.$store.dispatch('USER_EVENT', `Шаг: ${this.activeStep}`)
         }
       },
       isValidEmail() {
@@ -398,6 +398,7 @@
         this.buyer.userId = this.$store.getters.user.uid
         let products = []
         this.orderProducts.forEach(el => {
+          this.$store.dispatch('increaseProductCounter', {id: el.productId, type: 'checkout'})
           products.push({
             id: el.productId,
             SKU: el.SKU,
@@ -446,7 +447,7 @@
         console.log(order);
         this.dialog = false
         this.$store.dispatch('checkout', order)
-        // this.$store.dispatch('USER_EVENT', 'Успешная покупка!')
+        this.$store.dispatch('USER_EVENT', 'Успешная покупка!')
       }
     },
     computed: {

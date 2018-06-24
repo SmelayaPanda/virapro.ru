@@ -30,6 +30,10 @@
           <img src="~/assets/icons/admin/record_voice_over.svg" alt="">
           <span>Отзывы</span>
         </el-menu-item>
+        <el-menu-item index="/admin/users">
+          <img src="~/assets/icons/admin/how_to_reg.svg" alt="">
+          <span>Пользователи</span>
+        </el-menu-item>
         <el-menu-item index="/admin/company">
           <img src="~/assets/icons/admin/account_balance.svg" alt="">
           <span>Компания</span>

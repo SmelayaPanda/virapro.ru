@@ -37,7 +37,7 @@
     },
     methods: {
       async loadMore() {
-        // this.$store.dispatch('USER_EVENT', 'Загрузить больше')
+        this.$store.dispatch('USER_EVENT', 'Загрузить больше')
         await this.$store.dispatch('fetchProducts')
       },
       showProduct(p) {

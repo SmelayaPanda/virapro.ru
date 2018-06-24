@@ -14,13 +14,25 @@ export const actions = {
   //   ])
   // },
   // PRODUCTS
-  loadSingleProduct({commit, getters, dispatch}, payload) {
-    return fs.collection('products').doc(payload).get()
+  async loadSingleProduct({commit, getters, dispatch}, payload) {
+    await fs.collection('products').doc(payload).get()
       .then(snap => {
         commit('setSingleProduct', {...snap.data()})
         console.log('(i) Single product loaded')
       })
       .catch(err => dispatch('LOG', err))
+  },
+
+  async increaseProductCounter({commit, getters, dispatch}, payload) {
+    // watch: 'Просмотр товара'
+    // cart: 'Добавление в корзину'
+    // checkout: 'Покупка товара'
+    db.ref('productCounters').child(payload.id).once('value', snap => {
+      db.ref('productCounters').child(payload.id)
+        .update({
+          [payload.type]: snap.val() && snap.val()[payload.type] ? snap.val()[payload.type] + 1 : 1
+        })
+    })
   },
 
   async fetchProducts({commit, getters, dispatch}) {
@@ -91,7 +103,7 @@ export const actions = {
   },
 
 
-  createDynamicFilteredProductIds ({commit, getters}) { // client
+  createDynamicFilteredProductIds({commit, getters}) { // client
     let products = getters.products ? getters.products : {}
     let dynFilter = getters.productDynamicFilters
     let filteredProductIds = []
@@ -289,54 +301,54 @@ export const actions = {
     },
 
 
-  async checkout ({commit, getters, dispatch}, payload) {
-      commit('LOADING', true)
-      let user = getters.user
-      let orders = getters.orders ? getters.orders : {}
-      await fs.collection('orders').add(payload)
-        .then((docRef) => {
-          payload.id = docRef.id
-          orders[docRef.id] = payload
-          orders[docRef.id].showDetails = false
-          let actions = []
-          // 1. Decrease totalQty of each products
-          let decreaseQty = function (id, totalQty) {
-            return fs.collection('products').doc(id).update({totalQty: totalQty})
-          }
-          let productQty = 0
-          payload.products.forEach(el => {
-            productQty = user.cart[el.id].totalQty
-            delete user.cart[el.id]
-            actions.push(decreaseQty(el.id, productQty - el.qty > 0 ? productQty - el.qty : 0))
-          })
-          // 2. Update user data
-          let orderIds = Object.keys(orders)
-          let cartProductIds = user.cart ? Object.keys(user.cart) : []
-          let updateUserData = function (cart, orderIds) {
-            return fs.collection('users').doc(user.uid).update({cart: cart, orders: orderIds})
-          }
-          actions.push(updateUserData(cartProductIds, orderIds))
-          return Promise.all(actions)
+  async checkout({commit, getters, dispatch}, payload) {
+    commit('LOADING', true)
+    let user = getters.user
+    let orders = getters.orders ? getters.orders : {}
+    await fs.collection('orders').add(payload)
+      .then((docRef) => {
+        payload.id = docRef.id
+        orders[docRef.id] = payload
+        orders[docRef.id].showDetails = false
+        let actions = []
+        // 1. Decrease totalQty of each products
+        let decreaseQty = function (id, totalQty) {
+          return fs.collection('products').doc(id).update({totalQty: totalQty})
+        }
+        let productQty = 0
+        payload.products.forEach(el => {
+          productQty = user.cart[el.id].totalQty
+          delete user.cart[el.id]
+          actions.push(decreaseQty(el.id, productQty - el.qty > 0 ? productQty - el.qty : 0))
         })
-        .then(() => {
-          commit('setOrders', {...orders})
-          // user.orders = {...orders}s
-          // commit('setUser', {...user})
-          commit('LOADING', false)
-          Notification({
-            title: 'Поздравляем!',
-            message:
-            'Заказ совершен! ' +
-            'Мы свяжемся с Вами в ближайшее время для подтверждения покупки.',
-            type: 'success',
-            showClose: true,
-            duration: 30000,
-            offset: 50
-          })
-          $nuxt.$router.push('/cart')
+        // 2. Update user data
+        let orderIds = Object.keys(orders)
+        let cartProductIds = user.cart ? Object.keys(user.cart) : []
+        let updateUserData = function (cart, orderIds) {
+          return fs.collection('users').doc(user.uid).update({cart: cart, orders: orderIds})
+        }
+        actions.push(updateUserData(cartProductIds, orderIds))
+        return Promise.all(actions)
+      })
+      .then(() => {
+        commit('setOrders', {...orders})
+        // user.orders = {...orders}s
+        // commit('setUser', {...user})
+        commit('LOADING', false)
+        Notification({
+          title: 'Поздравляем!',
+          message:
+          'Заказ совершен! ' +
+          'Мы свяжемся с Вами в ближайшее время для подтверждения покупки.',
+          type: 'success',
+          showClose: true,
+          duration: 30000,
+          offset: 50
         })
-        .catch(err => dispatch('LOG', err))
-    },
+        $nuxt.$router.push('/cart')
+      })
+      .catch(err => dispatch('LOG', err))
+  },
 
 
   updateOrder:
@@ -755,6 +767,17 @@ export const actions = {
         .catch(err => dispatch('LOG', err))
     },
 
+  // USER EVENTS
+  USER_EVENT:
+    ({commit, getters, dispatch}, payload) => {
+      if (!getters.user.uid) return
+      let newEvent = {
+        name: payload,
+        date: new Date().getTime()
+      }
+      firebase.database().ref('events').child(getters.user.uid).push(newEvent)
+        .catch(err => dispatch('LOG', err))
+    },
 
   // APP
   ERR({commit}, payload) {

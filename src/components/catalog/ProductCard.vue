@@ -38,10 +38,13 @@
     },
     methods: {
       updateOwnProduct(product, subject, operation) {
+        if (operation === 'add') {
+          this.$store.dispatch('increaseProductCounter', {id: this.id, type: 'cart'})
+        }
         this.$store.dispatch('USER_EVENT',
           `${subject === 'cart' ? 'Корзина' : 'Избранное'}:
-         ${operation === 'add' ? ' добавлен' : ' удален'}
-        "${product.title}"`
+           ${operation === 'add' ? ' добавлен' : ' удален'}
+          "${product.title}"`
         )
         this.$store.dispatch('updateOwnProducts', {
           subject: subject,
@@ -50,7 +53,7 @@
         })
       },
       viewProduct() {
-        // this.$store.dispatch('USER_EVENT', `Просмотр: ${this.product.title}`)
+        this.$store.dispatch('USER_EVENT', `Просмотр: ${this.product.title}`)
         this.$router.push({
           path: `/catalog/${this.product.group}/${this.product.category}/${this.id}`,
         })

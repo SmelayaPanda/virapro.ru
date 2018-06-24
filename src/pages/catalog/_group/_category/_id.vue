@@ -127,6 +127,7 @@
     },
     async fetch({store, params}) {
       await store.dispatch('loadSingleProduct', params.id)
+      await store.dispatch('increaseProductCounter', {id: params.id, type: 'watch'})
     },
     // computed: {
     //   alreadyAddedProduct() {
@@ -151,11 +152,14 @@
         this.viewImage = this.$store.getters.singleProduct['img_' + idx].original
       },
       updateOwnProduct(product, subject, operation) {
-        // this.$store.dispatch('USER_EVENT',
-        //   `${subject === 'cart' ? 'Корзина' : 'Избранное'}:
-        //    ${operation === 'add' ? ' добавлен' : ' удален'}
-        //   "${product.title}"`
-        // )
+        if (operation === 'add') {
+          this.$store.dispatch('increaseProductCounter', {id: product.productId, type: 'cart'})
+        }
+        this.$store.dispatch('USER_EVENT',
+          `${subject === 'cart' ? 'Корзина' : 'Избранное'}:
+           ${operation === 'add' ? ' добавлен' : ' удален'}
+          "${product.title}"`
+        )
         this.$store.dispatch('updateOwnProducts', {
           subject: subject,
           operation: operation,
