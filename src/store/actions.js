@@ -766,7 +766,10 @@ export const actions = {
     commit('ERR', payload)
     commit('LOADING', false)
     if (payload.code !== 'aborted') { // offline client
-      firebase.database().ref('errLog').push(payload.stack ? payload.stack : payload)
+      firebase.database().ref('errLog').push({
+        time: new Date().getTime(),
+        data: payload.stack ? payload.stack : payload
+      })
     }
   }
 }
