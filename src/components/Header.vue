@@ -52,22 +52,6 @@
         </el-input>
       </el-popover>
     </div>
-    <div>
-      <el-breadcrumb v-if="$nuxt.$route.path.includes('/catalog')" separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="'/catalog'">Каталог</el-breadcrumb-item>
-        <el-breadcrumb-item v-if="$nuxt.$route.params.group" :to="`/catalog/${$nuxt.$route.params.group}`">
-          {{ loadedGroup.label }}
-        </el-breadcrumb-item>
-        <el-breadcrumb-item
-          v-if="$nuxt.$route.params.category"
-          :to="`/catalog/${$nuxt.$route.params.group}/${$nuxt.$route.params.category}`">
-          {{ loadedCategory.label }}
-        </el-breadcrumb-item>
-        <el-breadcrumb-item v-if="$nuxt.$route.params.id && $store.getters.singleProduct">
-          Арт.: {{ $store.getters.singleProduct.SKU }}
-        </el-breadcrumb-item>
-      </el-breadcrumb>
-    </div>
     <el-menu
       id="app_header"
       :default-active="activeIndex"
@@ -96,12 +80,15 @@
         </no-ssr>
       </el-menu-item>
     </el-menu>
+    <Breadcrumbs v-if="$nuxt.$route.path.includes('/catalog')"/>
   </div>
 </template>
 
 <script>
+  import Breadcrumbs from "./catalog/Breadcrumbs";
   export default {
     name: 'AppHeader',
+    components: {Breadcrumbs},
     data() {
       return {
         activeIndex: '/',
@@ -151,20 +138,6 @@
           return Object.keys(this.$store.getters.user.cart).length
         } else {
           return 0
-        }
-      },
-      loadedGroup() {
-        for (let group in this.$store.getters.PRODUCT_TREE) {
-          if (this.$store.getters.PRODUCT_TREE[group].value === this.$nuxt.$route.params.group) {
-            return this.$store.getters.PRODUCT_TREE[group]
-          }
-        }
-      },
-      loadedCategory() {
-        for (let child in this.loadedGroup.children) {
-          if (this.loadedGroup.children[child].value === this.$nuxt.$route.params.category) {
-            return this.loadedGroup.children[child]
-          }
         }
       }
     }
