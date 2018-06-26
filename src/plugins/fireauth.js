@@ -22,6 +22,8 @@ export default (context) => {
         store.dispatch('signInAnonymously')
       }
       // ALWAYS
+      store.dispatch('fetchProductStatistics')
+      store.dispatch('fetchDictionaries')
       store.dispatch('fetchCompanyInfo') // for footer
       resolve()
     })

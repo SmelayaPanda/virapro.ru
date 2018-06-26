@@ -13,14 +13,6 @@
 
   export default {
     components: {Advertising, CatalogProductsView, CatalogNavMenu},
-    async fetch({store, params}) {
-      if (!Object.keys(store.getters.dictionaries).length) {
-        await store.dispatch('fetchDictionaries')
-      }
-      if (!Object.keys(store.getters.productStatistics.avgPrice).length) {
-        await store.dispatch('fetchProductStatistics')
-      }
-    },
     methods: {},
     created() {
       this.$store.dispatch('fetchProducts') // TODO: not in the fetch method because lastVisible object - circular
