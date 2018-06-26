@@ -16,7 +16,7 @@
           </el-row>
           <div id="users_list">
             <div v-for="(user, id) in allUsers" :key="id">
-              <UserListRow :id="id" :data="user" :type="type"/>
+              <UserListRow v-if="user.events" :id="id" :data="user" :type="type"/>
             </div>
           </div>
         </el-card>
