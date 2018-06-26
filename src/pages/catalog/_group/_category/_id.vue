@@ -152,7 +152,7 @@
         this.viewImage = this.$store.getters.singleProduct['img_' + idx].original
       },
       updateOwnProduct(product, subject, operation) {
-        if (operation === 'add') {
+        if (subject === 'cart' && operation === 'add') {
           this.$store.dispatch('increaseProductCounter', {id: product.productId, type: 'cart'})
         }
         this.$store.dispatch('USER_EVENT',

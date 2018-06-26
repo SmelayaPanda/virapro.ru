@@ -120,12 +120,14 @@
               <div slot="reference" id="pop_product_statistics">
                 <el-tag type="info" size="small">
                   <span id="watch_count">{{ product.events.watch }}</span> /
-                  <span id="cart_count">{{ product.events.checkout ? product.events.cart : 0 }}</span> /
+                  <span id="cart_count">{{ product.events.cart ? product.events.cart : 0 }}</span> /
                   <span id="checkout_count">{{ product.events.checkout ? product.events.checkout : 0 }}</span>
                 </el-tag>
               </div>
             </el-popover>
-            {{ product.title }}
+            <nuxt-link :to="`/catalog/${product.group}/${product.category}/${product.productId}`">
+              {{ product.title }}
+            </nuxt-link>
             <span class="product_info">( Арт.: {{ product.SKU }}, Цена: {{ product.price }} руб. )</span>
           </el-row>
         </el-card>
@@ -204,6 +206,7 @@
 
   #pop_product_statistics {
     margin: 5px;
+    width: 100px;
   }
 
   #pop_product_row {
