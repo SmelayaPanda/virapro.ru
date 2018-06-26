@@ -8,10 +8,48 @@
         </el-button>
       </el-col>
       <el-col style="width: 74px"><img :src="p.img_0.thumbnail" height="40px" width="auto"></el-col>
-      <el-col style="width: 114px">
+      <el-col style="width: 118px">
         <el-tag size="small" type="success">{{ p.SKU }}</el-tag>
       </el-col>
-      <el-col :span="10" class="product_title">{{ p.title }}</el-col>
+      <el-col :span="9" class="product_title">{{ p.title }}</el-col>
+      <el-col :span="3">
+        <el-popover
+          placement="top-start"
+          width="280"
+          trigger="hover">
+          <div style="margin: 12px;">
+            Статистика товара
+            <ul id="product_statistics">
+              <li>Просмотров:
+                {{ $store.getters.productCounters[p.productId] && $store.getters.productCounters[p.productId].watch ?
+                $store.getters.productCounters[p.productId].watch : 0 }}
+              </li>
+              <li>Добавлений в корзину:
+                {{ $store.getters.productCounters[p.productId] && $store.getters.productCounters[p.productId].cart ?
+                $store.getters.productCounters[p.productId].cart : 0 }}
+              </li>
+              <li>Покупкок:
+                {{ $store.getters.productCounters[p.productId] && $store.getters.productCounters[p.productId].checkout ?
+                $store.getters.productCounters[p.productId].checkout : 0 }}
+              </li>
+            </ul>
+          </div>
+          <div slot="reference">
+            <span id="watch_count">
+              {{ $store.getters.productCounters[p.productId] && $store.getters.productCounters[p.productId].watch ?
+            $store.getters.productCounters[p.productId].watch : 0 }}
+            </span> /
+            <span id="cart_count">
+              {{ $store.getters.productCounters[p.productId] && $store.getters.productCounters[p.productId].cart ?
+              $store.getters.productCounters[p.productId].cart : 0 }}
+            </span> /
+            <span id="checkout_count">
+              {{ $store.getters.productCounters[p.productId] && $store.getters.productCounters[p.productId].checkout ?
+            $store.getters.productCounters[p.productId].checkout : 0 }}
+            </span>
+          </div>
+        </el-popover>
+      </el-col>
       <el-col :span="3">{{ p.price }} &nbsp;&#8381</el-col>
       <el-col :span="2">{{ p.totalQty }}</el-col>
       <AddEditProduct :productId="p.productId" operation="edit" :group="p.group" :category="p.category"/>
@@ -27,7 +65,8 @@
           <span class="prop_name">{{ $store.getters.DYNAMIC_PROPS[prop].label }}: </span> {{ val }}
         </p>
       </div>
-      <p><span class="prop_name">Описание: </span> <p v-html="p.description"></p>
+      <p><span class="prop_name">Описание: </span>
+      <p v-html="p.description"></p>
       <p><span class="prop_name">Добавлен: </span> {{ new Date(p.creationDate).toLocaleString() }}</p>
     </el-row>
   </div>

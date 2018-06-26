@@ -23,15 +23,22 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
+  // watch: 'Просмотр товара'
+  // cart: 'Добавление в корзину'
+  // checkout: 'Покупка товара'
   async increaseProductCounter({commit, getters, dispatch}, payload) {
-    // watch: 'Просмотр товара'
-    // cart: 'Добавление в корзину'
-    // checkout: 'Покупка товара'
     db.ref('productCounters').child(payload.id).once('value', snap => {
       db.ref('productCounters').child(payload.id)
         .update({
           [payload.type]: snap.val() && snap.val()[payload.type] ? snap.val()[payload.type] + 1 : 1
         })
+    })
+  },
+
+  async fetchProductCounters({commit}) {
+    db.ref('productCounters').once('value', snap => {
+      console.log('(i) Fetched: product counters')
+      commit('setProductCounters', snap.val())
     })
   },
 

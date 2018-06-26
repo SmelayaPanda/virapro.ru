@@ -80,7 +80,7 @@
         </no-ssr>
       </el-menu-item>
     </el-menu>
-    <Breadcrumbs v-if="$nuxt.$route.path.includes('/catalog')"/>
+    <Breadcrumbs v-if="$nuxt.$route.path.includes('/catalog/')"/>
   </div>
 </template>
 

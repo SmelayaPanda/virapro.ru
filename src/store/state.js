@@ -58,6 +58,7 @@ export const state = () => ({
   // PRODUCTS
   products: {},
   singleProduct: {},
+  productCounters: '',
   productStatistics: { // auto updated from cloud function
     maxPrice: 100000,
     avgPrice: 0,

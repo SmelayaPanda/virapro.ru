@@ -14,13 +14,14 @@
     </el-row>
     <div id="products_table">
       <el-row id="header">
-        <el-col style="width: 64px">Инфо</el-col>
-        <el-col style="width: 74px">Фото</el-col>
-        <el-col style="width: 114px">Артикул</el-col>
-        <el-col :span="10">Название</el-col>
+        <el-col style="width: 68px">Инфо</el-col>
+        <el-col style="width: 68px">Фото</el-col>
+        <el-col style="width: 106px">Артикул</el-col>
+        <el-col :span="9">Название</el-col>
+        <el-col :span="3">Статистика</el-col>
         <el-col :span="3">Цена</el-col>
         <el-col :span="2">Кол-во</el-col>
-        <el-col style="width: 166px">Операции</el-col>
+        <el-col style="width: 176px">Операции</el-col>
       </el-row>
       <el-card v-for="p in products" :key="p.productId" id="product_card">
         <ProductRow :key="p.productId" :p="p"/>
@@ -84,7 +85,7 @@
       }
     },
     created() {
-      this.$store.dispatch('fetchProductStatistics') // product MaxPrice for shop
+      this.$store.dispatch('fetchProductCounters')
       this.$store.dispatch('fetchDictionaries') // product dropdowns
       this.loadCategoryProducts()
     }
@@ -114,8 +115,8 @@
     font-size: 12px;
     color: $color-info;
     margin-bottom: 4px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
 </style>

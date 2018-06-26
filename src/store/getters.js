@@ -16,6 +16,7 @@ export const getters = {
   algoliaSQLFilter: state => state.algoliaSQLFilter,
   algoliaSearchText: state => state.algoliaSearchText,
   productStatistics: state => state.productStatistics,
+  productCounters: state => state.productCounters,
   PRODUCT_TREE: state => state.PRODUCT_TREE,
   DYNAMIC_PROPS: state => state.DYNAMIC_PROPS,
 
