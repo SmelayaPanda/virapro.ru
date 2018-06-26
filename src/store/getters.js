@@ -1,6 +1,8 @@
 export const getters = {
   // user
   user: state => state.user, // (Object) all user data
+  allUsers: state => state.allUsers,
+  watchedUserId: state => state.watchedUserId,
 
   // services
   SERVICE_TYPES: state => state.SERVICE_TYPES,

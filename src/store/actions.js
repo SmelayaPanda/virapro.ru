@@ -466,7 +466,7 @@ export const actions = {
               emailVerified: user.emailVerified,
               isAnonymous: false
             }),
-          db.ref(`liveChats/${user.uid}/props`).update({userEmail: user.email})
+          // db.ref(`liveChats/${user.uid}/props`).update({userEmail: user.email})
         ])
       })
       .catch(err => dispatch('LOG', err))
@@ -625,9 +625,26 @@ export const actions = {
         .catch(err => dispatch('LOG', err))
     },
   async setAdmin({commit, getters}) {
-    commit('setAdmin', await
-      getters.ADMINS.indexOf(getters.user.email) !== -1
-    )
+    commit('setAdmin', await getters.ADMINS.indexOf(getters.user.email) !== -1)
+  },
+
+  async fetchAllUsers({commit, getters, dispatch}) {
+    let users = {}
+    await fs.collection('users').get()
+      .then(snap => {
+        snap.docs.forEach(doc => {
+          users[doc.id] = doc.data()
+        })
+      })
+      .catch(err => dispatch('LOG', err))
+
+    await db.ref('events').once('value', snap => {
+      for (let userId in snap.val()) {
+        users[userId].events = snap.val()[userId]
+      }
+    })
+    await commit('setAllUsers', {...users})
+    console.log('(i) Fetched: all users from firestore');
   },
 
 
@@ -782,7 +799,7 @@ export const actions = {
         name: payload,
         date: new Date().getTime()
       }
-      firebase.database().ref('events').child(getters.user.uid).push(newEvent)
+      db.ref('events').child(getters.user.uid).push(newEvent)
         .catch(err => dispatch('LOG', err))
     },
 

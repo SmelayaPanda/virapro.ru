@@ -14,12 +14,26 @@
               </el-radio-group>
             </el-col>
           </el-row>
-          <UserListRow id="123"></UserListRow>
+          <div id="users_list">
+            <div v-for="(user, id) in allUsers" :key="id">
+              <UserListRow :id="id" :data="user" :type="type"/>
+            </div>
+          </div>
         </el-card>
       </el-col>
       <el-col :span="12" style="margin-left: 10px;">
         <el-card>
           <h4>Действия</h4>
+          <div id="users_events">
+            <el-row v-for="(event, id) in userEvents" :key="id" class="user_event_row">
+              <el-col style="width: 90px">
+                <el-tooltip :content="new Date(event.date).toLocaleString()" placement="bottom">
+                  <span class="chat_time">{{ new Date(event.date).toLocaleTimeString() }}</span>
+                </el-tooltip>
+              </el-col>
+              <el-col :span="18">{{ event.name }}</el-col>
+            </el-row>
+          </div>
         </el-card>
       </el-col>
     </el-row>
@@ -35,17 +49,32 @@
     layout: 'admin',
     data() {
       return {
-        type: 'register'
+        type: 'register' // user type: 'register' | 'anonymous'
       }
     },
-    methods: {}
+    methods: {},
+    computed: {
+      allUsers() {
+        return this.$store.getters.allUsers
+      },
+      userEvents () {
+        if (this.$store.getters.allUsers[this.$store.getters.watchedUserId]) {
+          return this.$store.getters.allUsers[this.$store.getters.watchedUserId].events
+        } else {
+          return {}
+        }
+      }
+    },
+    created() {
+      this.$store.dispatch('fetchAllUsers')
+    }
   }
 </script>
 
 <style scoped lang="scss">
-  #users_list {
+  #users_list, #users_events {
     width: 100%;
-    height: 600px;
+    max-height: 600px;
     overflow: scroll;
   }
 
@@ -57,5 +86,16 @@
     display: flex;
     justify-content: start;
     align-items: center;
+  }
+
+  .user_event_row {
+    display: flex;
+    font-size: 14px;
+    margin: 5px;
+  }
+
+  .chat_time {
+    font-size: 11px;
+    padding-top: 4px;
   }
 </style>

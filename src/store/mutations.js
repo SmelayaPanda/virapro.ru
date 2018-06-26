@@ -3,6 +3,12 @@ export const mutations = {
   setUser(state, payload) {
     state.user = payload
   },
+  setAllUsers(state, payload) {
+    state.allUsers = payload
+  },
+  setWatchedUserId(state, payload) {
+    state.watchedUserId = payload
+  },
   setAdmin(state, payload) {
     state.IS_ADMIN = payload
   },

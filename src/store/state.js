@@ -12,6 +12,8 @@ export const state = () => ({
     cart: [],
     orders: []
   },
+  allUsers: '',
+  watchedUserId: '',
 
   // ORDERS
   orders: {},
