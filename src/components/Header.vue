@@ -1,66 +1,75 @@
 <template>
   <div>
-    <div id="contacts">
-      <span id="phone">+777 2345 7885</span>
-      <i class="work_time">7 ДНЕЙ В НЕДЕЛЮ С 10 ДО 18 ЧАСОВ</i>
-      <div>
-        <img id="facebook" src="~/assets/icons/social/facebook-logo.svg" alt="Facebook">
-        <img id="twitter" src="~/assets/icons/social/twitter-logo.svg" alt="Twitter">
-        <img id="instagram" src="~/assets/icons/social/instagram-logo.svg" alt="Instagram">
-      </div>
-    </div>
-    <div id="algolia_search">
-      <el-popover
-        placement="bottom-start"
-        width="400"
-        trigger="click"
-        v-model="showResult">
-        <div id="search_result" v-if="algoliaSearchText && result && result.length">
-          <div v-for="res in result" :key="res.productId"
-               @click="toProduct(res.group, res.category, res.productId)"
-               class="search_row">
-            <p class="snippet_title" v-html="res.title"></p>
-            <p class="snippet_description" v-html="res.description + '...'"></p>
-            <p style="margin: 8px;">
-              <span class="snippet_sku" v-html="`Арт.: ${res.SKU}`"></span>
-              <span class="snippet_price" v-html="`${res.price} RUB`"></span>
-            </p>
-            <hr class="snippet_divider">
-          </div>
-          <div id="algolia_icon">
-            <a target="_blank" href="https://www.algolia.com/docsearch">
-              <img src="~/assets/icons/algolia/search_by_algolia.svg" alt="">
-            </a>
-          </div>
+    <el-row id="contacts_row">
+      <el-col :span="13" :offset="2">
+        <div id="work_time">
+          <img src="~/assets/icons/home/calendar.svg" id="work_time_icon" alt="Рабочее время">
+          <time>7 дней в неделю с 10<sup>00</sup> до 18<sup>00</sup> часов</time>
         </div>
-        <div v-else-if="isSearching" id="is_searching">
-          <i class="el-icon-loading"></i>
-        </div>
-        <div v-else-if="!isSearching && algoliaSearchText" id="no_algolia_match">
-          <p>Ничего не найдено</p>
-        </div>
-        <div v-else id="found_something">
-          <p>Введите то, что ищите!</p>
-          <p>Поиск среди {{ $store.getters.productStatistics.uniqueProductQty }} уникальных товаров</p>
-        </div>
-        <el-input
-          slot="reference"
-          label="Algolia Filter"
-          @input="algoliaSearch"
-          placeholder="введите поисковый запрос"
-          v-model="algoliaSearchText">
-        </el-input>
-      </el-popover>
-    </div>
+      </el-col>
+      <el-col :span="4" id="address">
+        <img src="~/assets/icons/home/location.svg" id="location_icon" alt="Местоположение">
+        г. {{ $store.getters.companyInfo.address.city }},
+        ул. {{ $store.getters.companyInfo.address.street }},
+        д. {{ $store.getters.companyInfo.address.build }}
+      </el-col>
+      <el-col :span="4" :offset="1" id="phone">
+        <img src="~/assets/icons/home/phone.svg" id="phone_icon" alt="Телефон">
+        {{ $store.getters.companyInfo.contacts.phone }}
+      </el-col>
+    </el-row>
     <el-menu
       id="app_header"
       :default-active="activeIndex"
       class="el-menu-demo"
       mode="horizontal"
-      background-color="#1976d2"
-      text-color="#fff"
+      background-color="white"
+      text-color="#004072"
       router
-      active-text-color="#fff">
+      active-text-color="#004072">
+      <div id="algolia_search">
+        <el-popover
+          placement="bottom-start"
+          width="400"
+          trigger="click"
+          v-model="showResult">
+          <div id="search_result" v-if="algoliaSearchText && result && result.length">
+            <div v-for="res in result" :key="res.productId"
+                 @click="toProduct(res.group, res.category, res.productId)"
+                 class="search_row">
+              <p class="snippet_title" v-html="res.title"></p>
+              <p class="snippet_description" v-html="res.description + '...'"></p>
+              <p style="margin: 8px;">
+                <span class="snippet_sku" v-html="`Арт.: ${res.SKU}`"></span>
+                <span class="snippet_price" v-html="`${res.price} RUB`"></span>
+              </p>
+              <hr class="snippet_divider">
+            </div>
+            <div id="algolia_icon">
+              <a target="_blank" href="https://www.algolia.com/docsearch">
+                <img src="~/assets/icons/algolia/search_by_algolia.svg" alt="">
+              </a>
+            </div>
+          </div>
+          <div v-else-if="isSearching" id="is_searching">
+            <i class="el-icon-loading"></i>
+          </div>
+          <div v-else-if="!isSearching && algoliaSearchText" id="no_algolia_match">
+            <p>Ничего не найдено</p>
+          </div>
+          <div v-else id="found_something">
+            <p>Введите то, что ищите!</p>
+            <p>Поиск среди {{ $store.getters.productStatistics.uniqueProductQty }} уникальных товаров</p>
+          </div>
+          <el-input
+            slot="reference"
+            label="Algolia Filter"
+            @input="algoliaSearch"
+            placeholder="введите поисковый запрос"
+            v-model="algoliaSearchText">
+          </el-input>
+        </el-popover>
+      </div>
       <el-menu-item index="/">
         Главная
       </el-menu-item>
@@ -86,6 +95,7 @@
 
 <script>
   import Breadcrumbs from "./catalog/Breadcrumbs";
+
   export default {
     name: 'AppHeader',
     components: {Breadcrumbs},
@@ -165,18 +175,21 @@
     margin-left: 10px;
   }
 
-  #contacts {
+  #contacts_row {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: start;
     align-items: center;
     flex-wrap: wrap;
-    background: $color-secondary;
-    padding: 5px;
+    background: $color-primary-dark;
+    height: 44px;
+    border-bottom: 2px solid $color-success;
+    -webkit-box-shadow: 0px 4px 16px 0px rgba(161,181,204,1);
+    -moz-box-shadow: 0px 4px 16px 0px rgba(161,181,204,1);
+    box-shadow: 0px 4px 16px 0px rgba(161,181,204,1);
   }
 
   #phone {
     color: white;
-    margin: 5px;
   }
 
   #facebook,
@@ -186,8 +199,37 @@
     margin: 5px 20px;
   }
 
-  .work_time {
+  #work_time, #address, #phone {
+    display: flex;
+    align-items: center;
     color: white;
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  #work_time_icon {
+    height: 20px;
+    padding-right: 7px;
+  }
+
+  #location_icon {
+    height: 18px;
+    padding-right: 7px;
+  }
+
+  #phone {
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  #phone_icon {
+    height: 18px;
+    padding-right: 7px;
+  }
+
+  sup {
+    font-size: 8px;
+    margin-bottom: 5px;
   }
 
   #search_result {
