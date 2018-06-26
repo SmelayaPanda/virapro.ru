@@ -1,7 +1,7 @@
 <template>
   <el-row type="flex">
     <el-col>
-      <span id="admin_panel">Админ панель</span>
+      <span id="admin_panel">Админ-панель</span>
     </el-col>
     <el-col align="right">
       <nuxt-link to="/">
