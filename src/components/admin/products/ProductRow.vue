@@ -35,18 +35,20 @@
             </ul>
           </div>
           <div slot="reference">
+            <el-tag type="info" size="small">
             <span id="watch_count">
               {{ $store.getters.productCounters[p.productId] && $store.getters.productCounters[p.productId].watch ?
             $store.getters.productCounters[p.productId].watch : 0 }}
             </span> /
-            <span id="cart_count">
+              <span id="cart_count">
               {{ $store.getters.productCounters[p.productId] && $store.getters.productCounters[p.productId].cart ?
               $store.getters.productCounters[p.productId].cart : 0 }}
             </span> /
-            <span id="checkout_count">
+              <span id="checkout_count">
               {{ $store.getters.productCounters[p.productId] && $store.getters.productCounters[p.productId].checkout ?
             $store.getters.productCounters[p.productId].checkout : 0 }}
             </span>
+            </el-tag>
           </div>
         </el-popover>
       </el-col>
