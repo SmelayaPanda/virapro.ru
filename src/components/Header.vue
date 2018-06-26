@@ -1,21 +1,12 @@
 <template>
   <div>
-    <el-row id="contacts_row">
-      <el-col :span="13" :offset="2">
-        <div id="work_time">
-          <img src="~/assets/icons/home/calendar.svg" id="work_time_icon" alt="Рабочее время">
-          <time>7 дней в неделю с 10<sup>00</sup> до 18<sup>00</sup> часов</time>
-        </div>
+    <SupHeader/>
+    <el-row id="header">
+      <el-col :span="1" :offset="2">
+        <span id="logo">ЛОГО</span>
       </el-col>
-      <el-col :span="4" id="address">
-        <img src="~/assets/icons/home/location.svg" id="location_icon" alt="Местоположение">
-        г. {{ $store.getters.companyInfo.address.city }},
-        ул. {{ $store.getters.companyInfo.address.street }},
-        д. {{ $store.getters.companyInfo.address.build }}
-      </el-col>
-      <el-col :span="4" :offset="1" id="phone">
-        <img src="~/assets/icons/home/phone.svg" id="phone_icon" alt="Телефон">
-        {{ $store.getters.companyInfo.contacts.phone }}
+      <el-col :span="6" :offset="1">
+        <AlgoliaSearch/>
       </el-col>
     </el-row>
     <el-menu
@@ -27,7 +18,6 @@
       text-color="#004072"
       router
       active-text-color="#004072">
-      <AlgoliaSearch/>
       <el-menu-item index="/">
         Главная
       </el-menu-item>
@@ -54,10 +44,11 @@
 <script>
   import Breadcrumbs from "./catalog/Breadcrumbs";
   import AlgoliaSearch from "./AlgoliaSearch";
+  import SupHeader from "./SupHeader";
 
   export default {
     name: 'AppHeader',
-    components: {AlgoliaSearch, Breadcrumbs},
+    components: {SupHeader, AlgoliaSearch, Breadcrumbs},
     data() {
       return {
         activeIndex: '/'
@@ -90,71 +81,17 @@
     justify-content: center;
   }
 
-  .el-menu-item {
-    font-size: 1em;
-  }
-
-  .item {
-    position: absolute;
-    margin-top: -12px;
-    margin-left: 10px;
-  }
-
-  #contacts_row {
+  #header {
     display: flex;
+    align-items: center;
     justify-content: start;
-    align-items: center;
-    flex-wrap: wrap;
-    background: $color-primary-dark;
-    height: 44px;
-    border-bottom: 2px solid $color-success;
-    -webkit-box-shadow: 0px 4px 16px 0px rgba(161,181,204,1);
-    -moz-box-shadow: 0px 4px 16px 0px rgba(161,181,204,1);
-    box-shadow: 0px 4px 16px 0px rgba(161,181,204,1);
+    height: 60px;
+    border-bottom: 1px solid $color-primary-light;
   }
 
-  #phone {
-    color: white;
+  #logo {
+    color: $color-primary-light;
+    border: 1px solid $color-primary-light;
+    padding: 5px 10px;
   }
-
-  #facebook,
-  #twitter,
-  #instagram {
-    height: 14px;
-    margin: 5px 20px;
-  }
-
-  #work_time, #address, #phone {
-    display: flex;
-    align-items: center;
-    color: white;
-    font-size: 12px;
-    font-weight: 300;
-  }
-
-  #work_time_icon {
-    height: 20px;
-    padding-right: 7px;
-  }
-
-  #location_icon {
-    height: 18px;
-    padding-right: 7px;
-  }
-
-  #phone {
-    font-weight: 400;
-    font-size: 14px;
-  }
-
-  #phone_icon {
-    height: 18px;
-    padding-right: 7px;
-  }
-
-  sup {
-    font-size: 8px;
-    margin-bottom: 5px;
-  }
-
 </style>

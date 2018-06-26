@@ -33,13 +33,14 @@
         <p>Введите то, что ищите!</p>
         <p>Поиск среди {{ $store.getters.productStatistics.uniqueProductQty }} уникальных товаров</p>
       </div>
-      <el-input
-        slot="reference"
-        label="Algolia Filter"
-        @input="algoliaSearch"
-        placeholder="Введите поисковый запрос"
-        v-model="algoliaSearchText">
-      </el-input>
+      <label for="algolia_search_input" slot="reference">
+        <input
+          @input="algoliaSearch"
+          v-model="algoliaSearchText"
+          placeholder="Введите поисковый запрос"
+          type="text"
+          id="algolia_search_input">
+      </label>
     </el-popover>
   </div>
 </template>
@@ -88,12 +89,6 @@
   }
 </script>
 <style scoped lang="scss">
-
-  sup {
-    font-size: 8px;
-    margin-bottom: 5px;
-  }
-
   #search_result {
     overflow: scroll;
     max-height: 440px;
@@ -144,6 +139,26 @@
     border-top: 1px solid #ccc;
     margin: 0;
     padding: 0;
+  }
+
+  #algolia_search_input {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 1px solid $color-primary;
+    margin-bottom: 5px;
+    width: 100%;
+    height: 20px;
+    &:focus {
+      outline:none;
+    }
+
+    &::placeholder {
+      font-size: 13px;
+      color: $color-info;
+      font-weight:300;
+    }
   }
 
   #algolia_icon {
