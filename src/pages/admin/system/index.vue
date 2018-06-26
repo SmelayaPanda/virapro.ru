@@ -34,7 +34,7 @@
       <el-collapse accordion id="error_accordion">
         <el-collapse-item
           v-for="(err, idx) in errLog" :key="idx" :name="idx"
-          :title="`${new Date(err.time).toLocaleString()}: ${typeof err.data === 'string' ? ': ' + err.data.slice(0, 140) + '...' : 'Object error'}`">
+          :title="`${new Date(err.time).toLocaleString()}: ${typeof err.data === 'string' ? ': ' + err.data.slice(0, 120) + '...' : 'Object error'}`">
           {{ err.data }}
         </el-collapse-item>
       </el-collapse>
