@@ -3,17 +3,21 @@
 // Large text is defined as 14 point (typically 18.66px)
 // and bold or larger, or 18 point (typically 24px) or larger.
 // Normal text is below 18 point or below 14 point and bold.
+$color-primary-light-3: #dfeffb; // white
+$color-primary-light-2: #b0d8f8; // white
 $color-primary-light: #63b9fa; // black
-$color-primary: #167dd6; // white, black
+$color-primary: #0976d4; // white, black
 $color-primary-dark: #004072; // white
 
-$color-secondary-dark: #102027; // white
-$color-secondary: #37474f; // white
-$color-secondary-light: #62727b; // white, black-large
+
+$color-secondary-dark: #101010; // white
+$color-secondary: #363636; // for text
+$color-secondary-light: #606060; // white, black-large
 
 $color-success-light: #e8ff58; // black
 $color-success: #b1ff00; // black
 $color-success-dark: #7bcb00; // black, large white
+$color-success-second: #67c23a; // black
 
 $color-warning-light: #ffdd4b; // black
 $color-warning: #ffab00; // black

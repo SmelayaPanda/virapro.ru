@@ -122,7 +122,7 @@
 
   .snippet_price {
     font-size: 12px;
-    color: $color-success;
+    color: $color-success-second;
     margin: 0 0 0 10px;
     padding: 0;
   }
@@ -150,6 +150,8 @@
   }
 
   #algolia_search_input {
+    font-size: 14px;
+    color: $color-info-dark;
     border-radius: 0;
     border-left: none;
     border-right: none;

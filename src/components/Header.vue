@@ -121,7 +121,7 @@
     background: $color-success;
     border-radius: 3px;
     position: absolute;
-    margin-top: -22px;
+    margin-top: -23px;
     -webkit-box-shadow: 0px 4px 12px 0px rgba(161, 181, 204, 1);
     -moz-box-shadow: 0px 4px 12px 0px rgba(161, 181, 204, 1);
     box-shadow: 0px 4px 12px 0px rgba(161, 181, 204, 1);

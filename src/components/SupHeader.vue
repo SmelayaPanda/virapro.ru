@@ -47,7 +47,16 @@
     align-items: center;
     color: white;
     font-size: 12px;
-    font-weight: 300;
+    time {
+      color: white;
+      font-size: 12px;
+      font-weight: 300;
+    }
+    sup {
+      color: white;
+      font-size: 8px;
+      margin-bottom: 5px;
+    }
   }
 
   #work_time_icon {
@@ -68,11 +77,6 @@
   #phone_icon {
     height: 18px;
     padding-right: 7px;
-  }
-
-  sup {
-    font-size: 8px;
-    margin-bottom: 5px;
   }
 
 </style>
