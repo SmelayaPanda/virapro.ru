@@ -1,48 +1,53 @@
 <template>
-  <div id="algolia_search">
-    <el-popover
-      placement="bottom-start"
-      width="400"
-      trigger="click"
-      v-model="showResult">
-      <div id="search_result" v-if="algoliaSearchText && result && result.length">
-        <div v-for="res in result" :key="res.productId"
-             @click="toProduct(res.group, res.category, res.productId)"
-             class="search_row">
-          <p class="snippet_title" v-html="res.title"></p>
-          <p class="snippet_description" v-html="res.description + '...'"></p>
-          <p style="margin: 8px;">
-            <span class="snippet_sku" v-html="`Арт.: ${res.SKU}`"></span>
-            <span class="snippet_price" v-html="`${res.price} RUB`"></span>
-          </p>
-          <hr class="snippet_divider">
+  <el-row id="algolia_search_row">
+    <el-col :span="19">
+      <el-popover
+        placement="bottom-start"
+        width="400"
+        trigger="click"
+        v-model="showResult">
+        <div id="search_result" v-if="algoliaSearchText && result && result.length">
+          <div v-for="res in result" :key="res.productId"
+               @click="toProduct(res.group, res.category, res.productId)"
+               class="search_row">
+            <p class="snippet_title" v-html="res.title"></p>
+            <p class="snippet_description" v-html="res.description + '...'"></p>
+            <p style="margin: 8px;">
+              <span class="snippet_sku" v-html="`Арт.: ${res.SKU}`"></span>
+              <span class="snippet_price" v-html="`${res.price} RUB`"></span>
+            </p>
+            <hr class="snippet_divider">
+          </div>
+          <div id="algolia_icon">
+            <a target="_blank" href="https://www.algolia.com/docsearch">
+              <img src="~/assets/icons/algolia/search_by_algolia.svg" alt="Algolia Search">
+            </a>
+          </div>
         </div>
-        <div id="algolia_icon">
-          <a target="_blank" href="https://www.algolia.com/docsearch">
-            <img src="~/assets/icons/algolia/search_by_algolia.svg" alt="Algolia Search">
-          </a>
+        <div v-else-if="isSearching" id="is_searching">
+          <i class="el-icon-loading"></i>
         </div>
-      </div>
-      <div v-else-if="isSearching" id="is_searching">
-        <i class="el-icon-loading"></i>
-      </div>
-      <div v-else-if="!isSearching && algoliaSearchText" id="no_algolia_match">
-        <p>Ничего не найдено</p>
-      </div>
-      <div v-else id="found_something">
-        <p>Введите то, что ищите!</p>
-        <p>Поиск среди {{ $store.getters.productStatistics.uniqueProductQty }} уникальных товаров</p>
-      </div>
-      <label for="algolia_search_input" slot="reference">
-        <input
-          @input="algoliaSearch"
-          v-model="algoliaSearchText"
-          placeholder="Введите поисковый запрос"
-          type="text"
-          id="algolia_search_input">
-      </label>
-    </el-popover>
-  </div>
+        <div v-else-if="!isSearching && algoliaSearchText" id="no_algolia_match">
+          <p>Ничего не найдено</p>
+        </div>
+        <div v-else id="found_something">
+          <p>Введите то, что ищите!</p>
+          <p>Поиск среди {{ $store.getters.productStatistics.uniqueProductQty }} уникальных товаров</p>
+        </div>
+        <label for="algolia_search_input" slot="reference">
+          <input
+            @input="algoliaSearch"
+            v-model="algoliaSearchText"
+            placeholder="Введите поисковый запрос"
+            type="text"
+            id="algolia_search_input">
+        </label>
+      </el-popover>
+    </el-col>
+    <el-col :span="2">
+      <img src="~/assets/icons/home/search.svg" id="search_icon" alt="Поиск">
+    </el-col>
+  </el-row>
 </template>
 <script>
   export default {
@@ -89,6 +94,10 @@
   }
 </script>
 <style scoped lang="scss">
+  #algolia_search_row {
+    display: flex;
+  }
+
   #search_result {
     overflow: scroll;
     max-height: 440px;
@@ -100,11 +109,10 @@
     margin: 0;
     padding: 0;
     text-align: left;
-  }
-
-  .search_row:hover {
-    cursor: pointer;
-    background: rgba(29, 134, 239, 0.33);
+    &:hover {
+      cursor: pointer;
+      background: rgba(29, 134, 239, 0.33);
+    }
   }
 
   .snippet_title {
@@ -151,13 +159,13 @@
     width: 100%;
     height: 20px;
     &:focus {
-      outline:none;
+      outline: none;
     }
 
     &::placeholder {
       font-size: 13px;
       color: $color-info;
-      font-weight:300;
+      font-weight: 300;
     }
   }
 
@@ -187,5 +195,11 @@
     align-items: center;
     height: 47px;
     padding: 20px;
+  }
+
+  #search_icon {
+    height: 18px;
+    margin-top: 5px;
+    margin-left: 3px;
   }
 </style>
