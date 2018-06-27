@@ -4,7 +4,7 @@
     <main id="content-wrapper">
       <nuxt/>
     </main>
-    <app-footer></app-footer>
+    <!--<app-footer></app-footer>-->
   </div>
 </template>
 

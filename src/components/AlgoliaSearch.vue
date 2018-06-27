@@ -165,7 +165,7 @@
     &::placeholder {
       font-size: 13px;
       color: $color-info;
-      font-weight: 300;
+      font-weight: 400;
     }
   }
 

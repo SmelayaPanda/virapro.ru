@@ -98,11 +98,14 @@
   }
 
   #header {
+    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: start;
     height: 56px;
-    border-bottom: 1px solid $color-primary-light;
+    -webkit-box-shadow: 0px 4px 12px 0px rgba(99, 185, 250, 0.4);
+    -moz-box-shadow: 0px 4px 12px 0px rgba(99, 185, 250, 0.4);
+    box-shadow: 0px 4px 12px 0px rgba(99, 185, 250, 0.4);
   }
 
   #logo {
