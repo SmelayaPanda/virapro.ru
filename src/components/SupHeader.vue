@@ -1,6 +1,6 @@
 <template>
   <el-row id="contacts_row">
-    <el-col :span="13" :offset="2">
+    <el-col :span="12" :offset="2">
       <div id="work_time">
         <img src="~/assets/icons/home/calendar.svg" id="work_time_icon" alt="Рабочее время">
         <time>7 дней в неделю с 10<sup>00</sup> до 18<sup>00</sup> часов</time>

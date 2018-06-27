@@ -45,7 +45,7 @@
       </el-popover>
     </el-col>
     <el-col :span="2">
-      <img src="~/assets/icons/home/search.svg" id="search_icon" alt="Поиск">
+      <img src="~/assets/icons/algolia/search.svg" id="search_icon" alt="Поиск товара">
     </el-col>
   </el-row>
 </template>
@@ -198,7 +198,7 @@
   }
 
   #search_icon {
-    height: 18px;
+    height: 17px;
     margin-top: 5px;
     margin-left: 3px;
   }
