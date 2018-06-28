@@ -30,15 +30,21 @@
         </el-col>
       </el-row>
     </el-col>
+    <ChoiceRoundBtn/>
   </el-row>
 </template>
 <script>
+  import ChoiceRoundBtn from "./ChoiceRoundBtn";
+
   export default {
-    name: 'SliderBlock'
+    name: 'SliderBlock',
+    components: {ChoiceRoundBtn}
   }
 </script>
+
 <style scoped lang="scss">
   @mixin block {
+    position: relative;
     height: 70vh;
     display: flex;
     flex-wrap: wrap;
@@ -59,12 +65,14 @@
   }
 
   #left_side_wrap {
-    background: $color-primary-light;
+    background: linear-gradient(0deg, rgba(99, 185, 250, 0.95), rgba(99, 185, 250, 0.95)), url('~/static/home/product.png');
+    background-size: cover;
     @include block;
   }
 
   #rightSide {
-    background: $color-primary;
+    background: linear-gradient(0deg, rgba(9, 118, 212, 0.95), rgba(9, 118, 212, 0.92)), url('~/static/home/services.png');
+    background-size: cover;
     @include block;
   }
 
