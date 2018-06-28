@@ -35,6 +35,8 @@
         </el-card>
       </el-col>
       <el-col :span="6" align="left">
+        <div id="round_2"></div>
+        <div id="round_1"></div>
         <img src="~/static/home/man.png" alt="Мозаика 1" id="man_img">
       </el-col>
     </el-row>
@@ -122,5 +124,25 @@
     bottom: 0;
     left: -8vw;
     height: 600px;
+  }
+
+  #round_1 {
+    position: absolute;
+    top: 30px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: $color-primary;
+  }
+
+  #round_2 {
+    position: absolute;
+    bottom: 0;
+    margin-left: 170px;
+    /*right: 200px;*/
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: $color-primary-light;
   }
 </style>
