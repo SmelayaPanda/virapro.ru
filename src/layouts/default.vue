@@ -1,10 +1,10 @@
 <template>
   <div id="app-wrapper">
-    <app-header></app-header>
+    <app-header/>
     <main id="content-wrapper">
       <nuxt/>
     </main>
-    <!--<app-footer></app-footer>-->
+    <app-footer id="app-footer"/>
   </div>
 </template>
 
@@ -28,5 +28,9 @@
 
   #content-wrapper {
     margin: 0 0 80px;
+  }
+
+  #app-footer {
+    position: relative;
   }
 </style>

@@ -34,7 +34,7 @@
           </el-form>
         </el-card>
       </el-col>
-      <el-col :span="6" align="left">
+      <el-col :span="6" align="left" style="position: relative">
         <div id="round_2"></div>
         <div id="round_1"></div>
         <img src="~/static/home/man.png" alt="Мозаика 1" id="man_img">
@@ -57,11 +57,14 @@
     }
   }
 </script>
+<!--margin-bottom: -101px;-->
 
 <style scoped lang="scss">
   #request_wrap {
-    height: 600px;
     position: relative;
+    height: 580px;
+    overflow: hidden;
+    margin-bottom: -82px;
   }
 
   #mozaika_1 {
@@ -75,7 +78,7 @@
     height: 300px;
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -20px;
   }
 
   #request_form {
@@ -120,10 +123,10 @@
   }
 
   #man_img {
-    position: relative;
-    bottom: 0;
+    position: absolute;
+    bottom: -86px;
     left: -8vw;
-    height: 600px;
+    height: 580px;
   }
 
   #round_1 {
@@ -133,13 +136,15 @@
     height: 400px;
     border-radius: 50%;
     background: $color-primary;
+    -webkit-box-shadow: 0px 10px 12px 0px rgba(1, 94, 172, .7);
+    -moz-box-shadow: 0px 10px 12px 0px rgba(1, 94, 172, .7);
+    box-shadow: 0px 10px 12px 0px rgba(1, 94, 172, .7);
   }
 
   #round_2 {
     position: absolute;
-    bottom: 0;
+    bottom: -80px;
     margin-left: 170px;
-    /*right: 200px;*/
     width: 300px;
     height: 300px;
     border-radius: 50%;
