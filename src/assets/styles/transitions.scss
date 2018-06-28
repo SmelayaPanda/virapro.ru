@@ -7,3 +7,11 @@
 //  opacity: 0;
 //  transform: translate(10px, 0);
 //}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.25s ease-out;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}

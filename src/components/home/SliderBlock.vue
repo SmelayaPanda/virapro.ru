@@ -1,7 +1,7 @@
 <template>
   <el-row type="flex">
-    <el-col :span="12" id="left_side_wrap">
-      <el-row class="flex_block">
+    <el-col :span="hoveredProducts ? 24 : 12" id="left_side_wrap">
+      <el-row>
         <el-col :span="18">
           <h1>Товары для обустройства <br>дома от А до Я</h1>
         </el-col>
@@ -13,9 +13,20 @@
             <el-button>Смотреть каталог</el-button>
           </nuxt-link>
         </el-col>
+        <transition name="fade">
+          <el-col v-if="hoveredProducts" :span="18">
+            <p class="more_text">
+              Разнообразный и богатый опыт укрепление и развитие структуры позволяет выполнять
+              важные задания по разработке системы обучения кадров, соответствует насущным потребностям. Разнообразный и
+              богатый опыт укрепление и развитие структуры способствует подготовки и реализации модели развития. Равным
+              образом сложившаяся структура организации играет важную роль в формировании систем массового участия.
+            </p>
+          </el-col>
+        </transition>
       </el-row>
+      <div class="slide_starter" @mouseover="hoveredProducts = true" @mouseleave="hoveredProducts = false"></div>
     </el-col>
-    <el-col :span="12" id="rightSide">
+    <el-col :span="hoveredServices ? 24 : 12" id="rightSide">
       <el-row class="flex_block">
         <el-col :span="18">
           <h1>Консультация и установка <br>оборудования</h1>
@@ -28,9 +39,20 @@
             <el-button>Смотреть каталог</el-button>
           </nuxt-link>
         </el-col>
+        <transition name="fade">
+          <el-col v-if="hoveredServices" :span="18">
+            <p class="more_text">
+              Разнообразный и богатый опыт укрепление и развитие структуры позволяет выполнять
+              важные задания по разработке системы обучения кадров, соответствует насущным потребностям. Разнообразный и
+              богатый опыт укрепление и развитие структуры способствует подготовки и реализации модели развития. Равным
+              образом сложившаяся структура организации играет важную роль в формировании систем массового участия.
+            </p>
+          </el-col>
+        </transition>
       </el-row>
+      <div class="slide_starter" @mouseover="hoveredServices = true" @mouseleave="hoveredServices = false"></div>
     </el-col>
-    <ChoiceRoundBtn/>
+    <ChoiceRoundBtn :hoveredProducts="hoveredProducts" :hoveredServices="hoveredServices"/>
   </el-row>
 </template>
 <script>
@@ -38,17 +60,25 @@
 
   export default {
     name: 'SliderBlock',
-    components: {ChoiceRoundBtn}
+    components: {ChoiceRoundBtn},
+    data() {
+      return {
+        hoveredProducts: false,
+        hoveredServices: false
+      }
+    }
   }
 </script>
 
 <style scoped lang="scss">
   @mixin block {
+    padding-top: 130px;
     position: relative;
     height: 70vh;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    transition: all 1s;
+    padding-left: 10%;
     h1 {
       color: white;
       font-weight: 600;
@@ -76,11 +106,16 @@
     @include block;
   }
 
-  .flex_block {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: -20%;
+  .slide_starter {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
   }
 
+  .more_text {
+    font-weight: 300;
+    color: white;
+    width: 600px;
+  }
 </style>

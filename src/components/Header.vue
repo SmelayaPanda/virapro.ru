@@ -61,13 +61,13 @@
       activeRouteLineMargin() {
         this.displayActiveRoute = 'block'
         if (this.$nuxt.$route.path === '/') {
-          return 19
+          return 18
         } else if (this.$nuxt.$route.path.includes('/catalog')) {
-          return 114
+          return 112
         } else if (this.$nuxt.$route.path === '/about') {
-          return 202
+          return 198
         } else if (this.$nuxt.$route.path === '/account') {
-          return 290
+          return 286
         } else {
           this.displayActiveRoute = 'none'
         }
@@ -119,7 +119,7 @@
     background: $color-success;
     border-radius: 3px;
     position: absolute;
-    margin-top: -23px;
+    margin-top: -22px;
     -webkit-box-shadow: 0px 4px 12px 0px rgba(161, 181, 204, 1);
     -moz-box-shadow: 0px 4px 12px 0px rgba(161, 181, 204, 1);
     box-shadow: 0px 4px 12px 0px rgba(161, 181, 204, 1);
