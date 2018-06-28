@@ -3,6 +3,7 @@
     <SliderBlock/>
     <EquipmentBlock/>
     <WhyWeBlock/>
+    <RequestBlock/>
   </div>
 </template>
 
@@ -10,15 +11,14 @@
   import SliderBlock from "../components/home/SliderBlock";
   import EquipmentBlock from "../components/home/EquipmentBlock";
   import WhyWeBlock from "../components/home/WhyWeBlock";
+  import RequestBlock from "../components/home/RequestBlock";
 
   export default {
     asyncData() {
       return {}
     },
-    components: {WhyWeBlock, EquipmentBlock, SliderBlock},
+    components: {RequestBlock, WhyWeBlock, EquipmentBlock, SliderBlock},
     methods: {}
   }
 </script>
 
-<style scoped lang="scss">
-</style>

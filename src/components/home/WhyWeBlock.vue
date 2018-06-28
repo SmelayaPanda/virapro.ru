@@ -1,6 +1,7 @@
 <template>
   <div id="why_we">
     <span id="experience"><span id="ten">10</span><br> лет <br> опыта</span>
+    <img src="~/static/home/tools.png" alt="Инструменты" id="tools_img">
     <el-row :span="24">
       <h3>Почему мы?</h3>
     </el-row>
@@ -13,10 +14,8 @@
         <i>
           Мы гарантируем качество товаров реализуемых в нашем интернет магазине, все товары являются оригинальной
           продукцией и не являются подделкой. Все строительные материалы поставляются в оригинальной упаковке и
-          могут
-          снабжаться сертификатами от производителя. Являясь официальными распространителями стрйматериалов
-          ведущих
-          мировых производителей, мы отвечаем своей репутацией.
+          могут снабжаться сертификатами от производителя. Являясь официальными распространителями стрйматериалов
+          ведущих мировых производителей, мы отвечаем своей репутацией.
         </i>
       </el-col>
     </el-row>
@@ -52,7 +51,7 @@
   #why_we {
     position: relative;
     background: linear-gradient($color-primary, $color-primary-light);
-    height: 840px;
+    height: 880px;
     margin-top: 80px;
     color: white;
     h3 {
@@ -74,6 +73,13 @@
       color: white;
       font-weight: 100;
     }
+  }
+
+  #tools_img {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    height: 800px;
   }
 
   #experience {
@@ -175,7 +181,7 @@
   #show_more {
     display: flex;
     justify-content: center;
-    margin-top: 160px;
+    margin-top: 170px;
     a.button {
       width: 300px;
       height: 80px;
@@ -198,6 +204,7 @@
       top: 0;
       left: 0;
     }
+
     a.button svg g line,
     a.button svg g polyline,
     a.button svg g circle {
@@ -207,6 +214,7 @@
     a.button svg g line,
     a.button svg g polyline {
       stroke-miterlimit: 10;
+      stroke: $color-success;
     }
     a.button svg g circle {
       display: block;

@@ -165,8 +165,8 @@
     }
 
     &::placeholder {
-      font-size: 13px;
-      color: $color-info;
+      font-size: 14px;
+      color: rgb(161, 181, 204);
       font-weight: 400;
     }
   }

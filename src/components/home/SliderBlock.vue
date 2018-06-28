@@ -45,7 +45,7 @@
     align-items: center;
     h1 {
       color: white;
-      font-weight: 400;
+      font-weight: 600;
       font-size: 28px;
     }
     h3 {
