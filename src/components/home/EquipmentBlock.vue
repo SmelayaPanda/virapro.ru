@@ -49,18 +49,14 @@
     height: 80px;
     margin-bottom: 30px;
     border-radius: 3px;
-    -webkit-box-shadow: 0px 4px 12px 0px rgba(99, 185, 250, 0.4);
-    -moz-box-shadow: 0px 4px 12px 0px rgba(99, 185, 250, 0.4);
-    box-shadow: 0px 4px 12px 0px rgba(99, 185, 250, 0.4);
+    @include primaryShadow
   }
 
   .services {
     height: 160px;
     margin-bottom: 80px;
     border-radius: 3px;
-    -webkit-box-shadow: 0px 4px 12px 0px rgba(99, 185, 250, 0.4);
-    -moz-box-shadow: 0px 4px 12px 0px rgba(99, 185, 250, 0.4);
-    box-shadow: 0px 4px 12px 0px rgba(99, 185, 250, 0.4);
+    @include primaryShadow
   }
 
   .get_service_btn {

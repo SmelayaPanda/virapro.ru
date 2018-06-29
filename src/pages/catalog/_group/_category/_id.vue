@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row el-row type="flex" justify="center" v-if="$store.getters.singleProduct" id="product_card_wrap">
-      <el-col :xs="24" :sm="20" :md="21" :lg="18" :xl="16" type="flex" align="middle">
+      <el-col :xs="24" :sm="24" :md="22" :lg="20" :xl="18" type="flex" align="middle">
         <div id="product_card" itemscope itemtype="http://schema.org/Product">
           <el-row type="flex" style="flex-wrap: wrap">
             <el-col :xs="24" :sm="4" :md="3" :lg="3" :xl="3" id="product_thumbnails_desctop">
@@ -17,11 +17,8 @@
               <img v-if="$store.getters.singleProduct.img_3.thumbnail"
                    :src="$store.getters.singleProduct.img_3.thumbnail" @click="loadOriginal(3)"
                    ref="d_img_3" class="thumb_img" itemprop="image"/>
-              <img v-if="$store.getters.singleProduct.img_4.thumbnail"
-                   :src="$store.getters.singleProduct.img_4.thumbnail" @click="loadOriginal(4)"
-                   ref="d_img_4" class="thumb_img" itemprop="image"/>
             </el-col>
-            <el-col :xs="24" :sm="20" :md="9" :lg="9" :xl="10">
+            <el-col :xs="24" :sm="20" :md="20" :lg="9" :xl="10">
               <zoom-on-hover
                 :img-normal="viewImage ? viewImage : $store.getters.singleProduct.img_0.original"
                 :img-zoom="viewImage ? viewImage : $store.getters.singleProduct.img_0.original"
@@ -40,31 +37,31 @@
                 <img v-if="$store.getters.singleProduct.img_3.thumbnail"
                      :src="$store.getters.singleProduct.img_3.thumbnail" @click="loadOriginal(3)"
                      ref="m_img_3" class="thumb_img" itemprop="image"/>
-                <img v-if="$store.getters.singleProduct.img_4.thumbnail"
-                     :src="$store.getters.singleProduct.img_4.thumbnail" @click="loadOriginal(4)"
-                     ref="m_img_4" class="thumb_img" itemprop="image"/>
               </el-row>
             </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
               <p id="product_title">
                 <span itemprop="name">{{ $store.getters.singleProduct.title }}</span>
               </p>
-              <hr>
-              <div class="product_info">
-                <p class="info--text">Арт. :<span itemprop="sku">{{ $store.getters.singleProduct.SKU }}</span></p>
-                <div v-for="(val, key) in $store.getters.singleProduct" :key="key"
-                     v-if="$store.getters.DYNAMIC_PROPS[key]">
-                  <p>{{ $store.getters.DYNAMIC_PROPS[key].label }}: <span> {{ val }}</span></p>
-                </div>
-              </div>
-              <hr>
               <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                 <p>
-                  Цена: <span itemprop="price" :content="$store.getters.singleProduct.price.toFixed(2)">{{ $store.getters.singleProduct.price | price }}</span>
+                  Цена:
+                  <span id="price" itemprop="price" :content="$store.getters.singleProduct.price.toFixed(2)">
+                  {{ $store.getters.singleProduct.price | price }}
+                </span>
                   <span itemprop="priceCurrency" content="RUB">RUB</span>
                 </p>
               </div>
-              <hr>
+              <div class="product_info">
+                <p>Арт. :<span itemprop="sku" id="sku"> {{ $store.getters.singleProduct.SKU }}</span></p>
+                <ul class="leaders">
+                  <li v-for="(val, key) in $store.getters.singleProduct" :key="key"
+                      v-if="$store.getters.DYNAMIC_PROPS[key]">
+                    <span>{{ $store.getters.DYNAMIC_PROPS[key].label }}</span>
+                    <span>{{ val }}</span>
+                  </li>
+                </ul>
+              </div>
               <no-ssr v-if="!isAlreadyAddedProduct">
                 <el-button
                   id="into_cart_btn"
@@ -73,7 +70,7 @@
                   <span>
                     В корзину
                   </span>
-                  <i class="el-icon-goods ml-2" style="transform: scale(1.5)"></i>
+                  <i class="el-icon-goods" style="transform: scale(1.5)"></i>
                 </el-button>
               </no-ssr>
               <!--ALREADY IN CART-->
@@ -179,40 +176,39 @@
 <style scoped lang="scss">
   #product_card_wrap {
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 40px;
   }
 
   .main_img {
     width: 400px;
     height: 400px;
     object-fit: cover;
+    @include primaryShadow
   }
 
   .thumb_img {
     height: 75px;
     width: 75px;
     object-fit: cover;
+    margin-bottom: 26px;
+    border: 1px solid $color-primary-light-3;
     margin-right: 1px;
     margin-left: 1px;
-  }
-
-  .thumb_img:hover {
+    &:hover {
     cursor: pointer;
+    }
   }
 
   .active {
     transition: all 0.5s;
-    transform: scale(1.08);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-
-  .back_to_shop {
-    writing-mode: vertical-rl;
-    font-size: 16px;
+    transform: scale(1.1);
+    @include primaryShadow
   }
 
   #product_title {
-    font-size: 20px;
+    font-size: 24px;
+    font-weight: 500;
+    color: $color-primary;
     padding: 10px 10px 5px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -224,9 +220,50 @@
     margin-bottom: 10px;
   }
 
+  #price {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
   .product_info {
     text-align: left;
-    margin-left: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+    #sku {
+      color: $color-success-second;
+    }
+    ul.leaders {
+      padding: 0;
+      overflow-x: hidden;
+      list-style: none;
+
+      li:before {
+        float: left;
+        width: 0;
+        white-space: nowrap;
+        margin-top: 4px;
+        color: $color-primary-light-2;
+        font-weight: 500;
+        font-size: 16px;
+        content: ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ";
+      }
+
+      span:first-child {
+        line-height: 28px;
+        font-weight: 400;
+        padding-right: 8px;
+        background: white;
+      }
+
+      span + span {
+        color: $color-primary;
+        font-weight: 500;
+        float: right;
+        padding-left: 8px;
+        margin-top: 5px;
+        background: white;
+      }
+    }
   }
 
   #product_card {
@@ -251,16 +288,21 @@
 
   #into_cart_btn {
     color: white;
-    background: $color-secondary;
+    background: $color-primary;
     height: 44px;
     width: 160px;
-    border: 1px solid $color-secondary;
+    border: 1px solid $color-primary;
     margin-bottom: 5px;
+    .el-icon-goods {
+      margin-left: 8px;
+    }
   }
 
   .already_added_btn {
     width: 142px;
     margin-bottom: 5px;
+    background: $color-success-second;
+    color: white;
   }
 
   #product_thumbnails_desctop {
@@ -269,12 +311,6 @@
 
   #product_thumbnails_mobile {
     display: none;
-  }
-
-  #misterio_shop {
-    font-size: 24px;
-    margin-bottom: 7px;
-    margin-top: 7px;
   }
 
   @media only screen and (max-width: $xs-screen) {

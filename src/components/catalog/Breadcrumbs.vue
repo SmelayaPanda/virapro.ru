@@ -63,11 +63,11 @@
         a {
           display: block;
           float: left;
-          height: 20px;
+          height: 18px;
           background: #F3F5FA; // white
 
           text-align: center;
-          padding: 10px 10px 10px 34px;
+          padding: 12px 10px 10px 34px;
           position: relative;
           margin: 0 10px 0 0;
 
@@ -119,12 +119,12 @@
   }
 
   #crumbs ul li a:hover {
-    background: $color-primary;
+    background: $color-primary-light;
     color: #fff;
   }
 
   #crumbs ul li a:hover:after {
-    border-left-color: $color-primary;
+    border-left-color: $color-primary-light;
     color: #fff;
   }
 </style>
