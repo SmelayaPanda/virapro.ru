@@ -51,7 +51,7 @@
         await this.$store.dispatch('setSelectedCatalogNode', data)
         await this.$store.dispatch('setLastVisible', '')
         if (data.value === 'all-products') {
-          return this.$nuxt.$router.push('/catalog/')
+          return this.$nuxt.$router.push('/catalog')
         }
         if (data.type === 'group'){
           return this.$nuxt.$router.push(`/catalog/${data.value}`)
