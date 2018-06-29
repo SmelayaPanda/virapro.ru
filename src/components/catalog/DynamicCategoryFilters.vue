@@ -18,7 +18,7 @@
         show-checkbox>
       </el-tree>
     </div>
-    <p v-else align="middle">Нет фильтров</p>
+    <p v-else id="no_filters">Нет фильтров</p>
   </div>
 </template>
 <script>
@@ -145,6 +145,11 @@
 
   .el-icon-close:hover {
     @include rotate(90deg, scale(1.4))
+  }
+
+  #no_filters {
+    text-align: center;
+    color: $color-info;
   }
 
   @media only screen and (max-width: $sm-screen) {

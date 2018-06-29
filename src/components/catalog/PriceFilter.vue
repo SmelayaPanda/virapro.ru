@@ -76,7 +76,7 @@
 
   #price_max,
   #price_min{
-    color: $color-success;
+    color: $color-success-second;
     font-size: 14px;
   }
   #price_min {

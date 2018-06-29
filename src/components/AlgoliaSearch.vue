@@ -12,9 +12,9 @@
                class="search_row">
             <p class="snippet_title" v-html="res.title"></p>
             <p class="snippet_description" v-html="res.description + '...'"></p>
-            <p style="margin: 8px;">
-              <span class="snippet_sku" v-html="`Арт.: ${res.SKU}`"></span>
-              <span class="snippet_price" v-html="`${res.price} RUB`"></span>
+            <p>
+              <span class="sku" v-html="`Арт.: ${res.SKU}`"></span>
+              <span class="price" v-html="`${res.price} RUB`"></span>
             </p>
             <hr class="snippet_divider">
           </div>
@@ -31,7 +31,6 @@
           <p>Ничего не найдено</p>
         </div>
         <div v-else id="found_something">
-          <p>Введите то, что ищите!</p>
           <p>Поиск среди {{ $store.getters.productStatistics.uniqueProductQty }} уникальных товаров</p>
         </div>
         <label for="algolia_search_input" slot="reference">
@@ -111,7 +110,10 @@
     text-align: left;
     &:hover {
       cursor: pointer;
-      background: rgba(29, 134, 239, 0.33);
+      background: rgba(29, 134, 239, 0.17);
+    }
+    p {
+      line-height: 12px;
     }
   }
 
@@ -120,14 +122,14 @@
     margin: 0;
   }
 
-  .snippet_price {
+  .price {
     font-size: 12px;
     color: $color-success-second;
     margin: 0 0 0 10px;
     padding: 0;
   }
 
-  .snippet_sku {
+  .sku {
     font-size: 12px;
     color: $color-info;
     margin: 0 0 0 10px;
@@ -189,6 +191,9 @@
   #found_something {
     padding: 20px;
     text-align: center;
+    p {
+      color: $color-info
+    }
   }
 
   #is_searching {
