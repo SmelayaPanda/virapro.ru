@@ -80,7 +80,7 @@
 <template>
   <span>
       <el-button v-if="type === 'single'" @click="clickBuy">КУПИТЬ</el-button>
-      <el-button type="success" v-else @click="clickBuy">КУПИТЬ ВСЕ</el-button>
+      <el-button type="success" v-else @click="clickBuy">ОФОРМИТЬ ЗАКАЗ</el-button>
     <el-dialog
       id="checkout_dialog"
       v-if="orderProducts"
@@ -88,16 +88,12 @@
       close-on-press-escape
       :visible.sync="dialog"
       :fullscreen="true">
-      <p id="checkout">
-        ОФОРМЛЕНИЕ
-      </p>
+      <p id="checkout">ОФОРМЛЕНИЕ</p>
       <el-row type="flex" justify="center" style="flex-wrap: wrap">
         <!--ITEMS INFO-->
         <el-col :xs="24" :sm="24" :md="9" :lg="8" :xl="7" id="my_order_wrap">
           <div id="my_order">
-            <p id="my_order_title">
-              Мой заказ
-            </p>
+            <p id="my_order_title">Мой заказ</p>
             <div class="order_info" v-for="product in orderProducts" :key="product.productId">
               <span class="product_title">{{ product.title }}:</span><br>
               <span class="price_tag">{{ product.price | price }}</span>x
@@ -109,7 +105,7 @@
         </el-col>
         <el-col :xs="24" :sm="16" :md="14" :lg="12" :xl="10">
         <!--Stepper-->
-        <el-row class="mt-4">
+        <el-row  style="margin-bottom: 40px;">
         <el-steps :active="activeStep" align-center finish-status="success">
           <el-step title="Ваши контакты" icon="el-icon-info"></el-step>
           <el-step title="Адрес" icon="el-icon-location"></el-step>
@@ -241,33 +237,35 @@
           <!---------->
           <!--Step 4-->
         <el-row type="flex" justify="center">
-        <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
-          <div v-if="activeStep === 4" id="payment_form">
-          <h3>ОПЛАТА</h3>
-          <el-radio-group v-model="payment.type">
-            <el-radio v-for="type in $store.getters.PAYMENT_TYPES" :key="type.value" :label="type.value" border>
-            {{ type.label }}
-            </el-radio>
-          </el-radio-group>
-          <h3>СПОСОБ ОПЛАТЫ</h3>
-          <el-radio-group v-if="payment.type" v-model="payment.method">
-            <el-radio
-              v-if="payment.type !== $store.getters.PAYMENT_TYPES.online.value"
-              :label="$store.getters.PAYMENT_METHODS.cash.value" border>
-            {{ $store.getters.PAYMENT_METHODS.cash.label }}
-            </el-radio>
-            <el-radio :label="$store.getters.PAYMENT_METHODS.bank_card.value" border>
-            {{ $store.getters.PAYMENT_METHODS.bank_card.label }}
-            </el-radio>
-          </el-radio-group>
-        </div>
-        </el-col>
+          <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
+            <div v-if="activeStep === 4" id="payment_form">
+            <h3>ОПЛАТА</h3>
+            <el-radio-group v-model="payment.type">
+              <el-radio v-for="type in $store.getters.PAYMENT_TYPES" :key="type.value" :label="type.value" border>
+              {{ type.label }}
+              </el-radio>
+            </el-radio-group>
+              <div v-if="payment.type">
+                <h3>СПОСОБ ОПЛАТЫ</h3>
+                <el-radio-group v-model="payment.method">
+                  <el-radio
+                    v-if="payment.type !== $store.getters.PAYMENT_TYPES.online.value"
+                    :label="$store.getters.PAYMENT_METHODS.cash.value" border>
+                  {{ $store.getters.PAYMENT_METHODS.cash.label }}
+                  </el-radio>
+                  <el-radio :label="$store.getters.PAYMENT_METHODS.bank_card.value" border>
+                  {{ $store.getters.PAYMENT_METHODS.bank_card.label }}
+                  </el-radio>
+                </el-radio-group>
+              </div>
+            </div>
+          </el-col>
         </el-row>
           <!---------->
           <!--Step 5-->
         <el-row type="flex" justify="center">
           <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
-            <div v-if="activeStep === 5" class="white--text">
+            <div v-if="activeStep === 5" id="final_stage">
               <h3>Нужна помощь? Укажите дополнительные услуги к заказу:</h3>
               <el-checkbox-group v-model="services">
                 <el-checkbox
@@ -277,6 +275,7 @@
                 </el-checkbox>
               </el-checkbox-group>
               <el-input
+                style="margin-top: 20px;"
                 type="textarea"
                 :autosize="{ minRows: 2, maxRows: 4}"
                 placeholder="Комментарии к заказу (не обязательно)"
@@ -285,19 +284,20 @@
               <p>Нажимая оформить вы соглашаетесь с
               <a target="_blank" class="secondary--text" href="https://.../userAgreement">офертой</a>
               </p>
-              <el-button class="mb-4" @click="checkout" type="danger">ОФОРМИТЬ</el-button>
+              <el-button @click="checkout" type="success">ОФОРМИТЬ</el-button>
             </div>
           </el-col>
         </el-row>
-        <el-button @click="prevStep" v-if="activeStep !== 1">Назад</el-button>
-        <el-button
-          v-if="activeStep !== 5"
-          @click="nextStep"
-          id="next_step"
-          :type="validCheckoutStep ? 'danger' : 'info'"
-          :disabled="!validCheckoutStep">Вперед</el-button>
         </el-col>
       </el-row>
+      <el-button @click="prevStep" v-if="activeStep !== 1" round>Назад</el-button>
+      <el-button
+        v-if="activeStep !== 5"
+        @click="nextStep" round
+        :type="validCheckoutStep ? 'success' : 'info'"
+        :disabled="!validCheckoutStep">
+        Вперед
+      </el-button>
     </el-dialog>
   </span>
 </template>
@@ -489,40 +489,8 @@
 </script>
 
 <style scoped lang="scss">
-  .order_info {
-    font-size: 16px;
-    margin-bottom: 14px;
-    padding: 5px;
-  }
-
-  #my_order_wrap {
-    padding: 30px;
-  }
-
-  #my_order {
-    background: $color-secondary-dark;
-    color: white;
-    border-radius: 3px;
-  }
-
-  #my_order_title {
-    font-weight: 600;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    box-shadow: 1px 1px 1px rgba(13, 13, 13, 0.1), 0 5px 5px rgba(13, 13, 13, 0.1);
-  }
-
-  .product_title {
-    font-size: 12px;
-  }
-
-  #total {
-    font-weight: 600;
-    padding-bottom: 20px;
-  }
 
   #checkout {
-    /*color: white;*/
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -530,44 +498,53 @@
     margin-bottom: 30px;
   }
 
-  #checkout:after {
-    content: '';
-    display: block;
-    width: 60px;
-    margin: 5px auto;
-    border-bottom: 2px solid white;
-  }
-
-  .price_tag {
-    /*color: white;*/
-    font-size: 12px;
-    background: $color-primary-light;
-    padding: 4px 10px;
-    border-radius: 4px;
-    margin-left: 2px;
-    margin-right: 5px;
-  }
-
-  .additional_info {
-    font-size: 12px;
-    color: $color-info;
-    font-weight: 300;
+  #my_order_wrap {
+    padding: 30px;
+    #my_order_title {
+      font-weight: 600;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      box-shadow: 1px 1px 1px rgba(13, 13, 13, 0.1), 0 5px 5px rgba(13, 13, 13, 0.1);
+    }
+    #my_order {
+      background: $color-primary;
+      color: white;
+      border-radius: 3px;
+      .order_info {
+        margin-bottom: 14px;
+        font-size: 14px;
+        padding: 5px;
+        line-height: 22px;
+        .product_title {
+        }
+        .price_tag {
+          background: $color-success-second;
+          padding: 4px 10px;
+          border-radius: 4px;
+          margin-left: 2px;
+          margin-right: 5px;
+        }
+      }
+    }
+    #total {
+      font-weight: 600;
+      padding-bottom: 20px;
+    }
   }
 
   #delivery_form,
-  #payment_form {
-    /*color: white;*/
+  #payment_form,
+  #final_stage{
+    /*margin-top: 40px;*/
   }
 
   #delivery_help {
     margin-top: -42px;
     margin-left: 2px;
     color: $color-info;
-  }
-
-  #delivery_help:hover,
-  #delivery_help:active {
-    cursor: help;
+    &:hover, &:active {
+      cursor: help;
+    }
   }
 
   @media only screen and (max-width: $xs-screen) {
