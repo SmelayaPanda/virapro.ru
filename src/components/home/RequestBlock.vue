@@ -57,14 +57,11 @@
     }
   }
 </script>
-<!--margin-bottom: -101px;-->
 
 <style scoped lang="scss">
   #request_wrap {
     position: relative;
-    height: 580px;
-    overflow: hidden;
-    margin-bottom: -82px;
+    height: 600px;
   }
 
   #mozaika_1 {
@@ -78,7 +75,7 @@
     height: 300px;
     position: absolute;
     left: 0;
-    bottom: -20px;
+    bottom: -60px;
   }
 
   #request_form {
@@ -124,14 +121,14 @@
 
   #man_img {
     position: absolute;
-    bottom: -86px;
+    bottom: -150px;
     left: -8vw;
-    height: 580px;
+    height: 600px;
   }
 
   #round_1 {
     position: absolute;
-    top: 30px;
+    top: 60px;
     width: 400px;
     height: 400px;
     border-radius: 50%;
@@ -143,7 +140,7 @@
 
   #round_2 {
     position: absolute;
-    bottom: -80px;
+    bottom: -100px;
     margin-left: 170px;
     width: 300px;
     height: 300px;

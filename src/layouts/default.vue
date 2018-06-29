@@ -19,7 +19,8 @@
 
 <style lang="scss">
   body {
-    margin: 0;
+    position: relative;
+    margin: 0 0 250px;
     padding: 0;
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
@@ -27,10 +28,13 @@
   }
 
   #content-wrapper {
-    margin: 0 0 80px;
+    /*margin: 0 0 80px;*/
   }
 
   #app-footer {
-    position: relative;
+    width: 100%;
+    position: absolute;
+    bottom: -250px;
+    left: 0;
   }
 </style>
