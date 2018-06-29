@@ -78,9 +78,9 @@
 }
 -->
 <template>
-  <span style="text-align: center">
+  <span>
       <el-button v-if="type === 'single'" @click="clickBuy">КУПИТЬ</el-button>
-      <el-button v-else @click="clickBuy">КУПИТЬ ВСЕ</el-button>
+      <el-button type="success" v-else @click="clickBuy">КУПИТЬ ВСЕ</el-button>
     <el-dialog
       id="checkout_dialog"
       v-if="orderProducts"

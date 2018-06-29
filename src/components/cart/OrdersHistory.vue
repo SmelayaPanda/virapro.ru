@@ -1,18 +1,9 @@
 <template>
-  <el-row v-if="userOrders && Object.keys(userOrders).length" type="flex" justify="center">
-    <el-col :xs="22" :sm="20" :md="18" :lg="16" :xl="12" type="flex" align="middle">
-      <p id="order_title" align="left">
-        <!--<img src="@/assets/icons/routers/list.svg" id="order_bag" alt="">-->
-        ИСТОРИЯ ПОКУПОК
-      </p>
+  <el-row v-if="userOrders && Object.keys(userOrders).length" id="history">
+    <el-col :xs="22" :sm="22" :md="18" :lg="16" :xl="14" type="flex" align="middle">
+      <h2 align="left">История покупок</h2>
       <div v-if="userOrders">
-        <hr>
-        <el-row
-          v-for="order in userOrders" :key="order.id"
-          type="flex"
-          justify="center"
-          class="order"
-          style="flex-wrap: wrap">
+        <el-row v-for="order in userOrders" :key="order.id" class="order_row">
           <el-col :span="24" align="left">
             <el-row
               type="flex"
@@ -34,10 +25,7 @@
               <el-row type="flex" justify="center" style="flex-wrap: wrap;">
                 <el-col :xs="20" :sm="10" :md="10" :lg="10" :xl="10">
                   <div v-if="order.buyer">
-                    <p class="info_title">
-                      <!--<v-icon class="info&#45;&#45;text">person_pin_circle</v-icon>-->
-                      Контакты:
-                    </p>
+                    <p class="info_title">Контакты:</p>
                     <p>
                       Имя: {{ order.buyer.firstname }}<br>
                       Фамилия: {{ order.buyer.lastname }}<br>
@@ -45,10 +33,7 @@
                       Телефон: {{ order.buyer.phone }}<br>
                     </p>
                     <p>
-                      <!--<v-icon class="info&#45;&#45;text">monetization_on</v-icon>-->
-                      <span class="info_title">
-                        Оплата:
-                      </span><br>
+                      <span class="info_title">Оплата:</span><br>
                       {{ $store.getters.PAYMENT_TYPES[order.payment.type].label }}:
                       {{ $store.getters.PAYMENT_METHODS[order.payment.method].label }}
                     </p>
@@ -56,10 +41,7 @@
                 </el-col>
                 <el-col :xs="20" :sm="10" :md="10" :lg="10" :xl="10">
                   <div v-if="order.delivery && order.delivery.address">
-                    <p class="info_title">
-                      <!--<v-icon class="info&#45;&#45;text">location_on</v-icon>-->
-                      Доставка:
-                    </p>
+                    <p class="info_title">Доставка:</p>
                     <p>
                       Страна: {{ order.delivery.address.country }}<br>
                       Город: {{ order.delivery.address.city }}<br>
@@ -69,24 +51,15 @@
                       Почтовый индекс: {{ order.delivery.address.postCode }}<br>
                     </p>
                     <p>
-                      <!--<v-icon class="info&#45;&#45;text">airplanemode_active</v-icon>-->
-                      <span class="info_title">
-                        Способ доставки:
-                      </span><br>
+                      <span class="info_title">Способ доставки:</span><br>
                       {{ $store.getters.DELIVERY_METHODS[order.delivery.method].label }}
                     </p>
                   </div>
                 </el-col>
               </el-row>
               <el-row type="flex" justify="center" style="flex-wrap: wrap">
-                <!--Standard looping is not working-->
                 <el-col :span="20">
-                  <div>
-                    <!--<v-icon class="info&#45;&#45;text">shopping_cart</v-icon>-->
-                    <span class="info_title">
-                      Товары:
-                    </span>
-                  </div>
+                  <span class="info_title">Товары:</span>
                   <div v-for="i in 10" :key="i">
                     <div v-if="order.products[i-1]">
                       Артикул:
@@ -112,7 +85,6 @@
                 </el-col>
               </el-row>
             </div>
-            <hr>
           </el-col>
         </el-row>
       </div>
@@ -137,6 +109,16 @@
 </script>
 
 <style scoped lang="scss">
+  #history {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      color: $color-primary;
+      font-size: 28px;
+      font-weight: 600;
+    }
+  }
   #order_title {
     color: $color-secondary;
     font-size: 18px;
@@ -148,30 +130,27 @@
     margin-right: 2px;
   }
 
-  .order {
-    /*color: white;*/
-  }
-
-  .order:before {
-    content: "";
-    display: block;
-    position: absolute;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    /*background: white;*/
-    opacity: .05;
-  }
-
-  .info_title {
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  #confirm_payment {
-    margin-top: 10px;
-    /*color: white;*/
-    border: 1px solid $color-secondary;
-    background: $color-secondary;
+  .order_row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 1px solid $color-primary-light-2;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 14px;
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .05;
+    }
+    .info_title {
+      font-size: 16px;
+      font-weight: 600;
+    }
   }
 </style>

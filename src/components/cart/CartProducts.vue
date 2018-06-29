@@ -1,111 +1,51 @@
 <template>
-  <el-row
-    v-if="userCart"
-    id="desctop_shopping_cart"
-    type="flex"
-    justify="center">
-    <el-col :xs="22" :sm="20" :md="18" :lg="16" :xl="12" type="flex" align="middle">
-      <p id="cart_title" align="left">
-        <!--<img src="@/assets/icons/routers/cart_bag.svg" id="cart_bag" alt="">-->
-        КОРЗИНА
-      </p>
+  <el-row v-if="userCart" id="desctop_shopping_cart">
+    <el-col :xs="22" :sm="22" :md="18" :lg="16" :xl="14" type="flex" align="middle">
+      <h1 align="left">Корзина</h1>
       <div v-if="!Object.keys(userCart).length">
         <p>Ваша корзина пуста</p>
         <router-link to="/catalog">
-          <p id="into_catalog">
-            В каталог
-            <!--<v-icon class="secondary&#45;&#45;text">arrow_forward</v-icon>-->
-          </p>
+          <p id="into_catalog">В каталог</p>
         </router-link>
       </div>
-      <!--PRODUCTS-->
       <div v-if="Object.keys(userCart).length">
-        <el-row
-          id="cart_table_header"
-          type="flex"
-          justify="center">
-          <el-col :span="3" align="left"><span>ТОВАР</span></el-col>
-          <el-col :span="8" align="left"><span>ОПИСАНИЕ</span></el-col>
-          <el-col :span="4" align="center"><span>КОЛИЧЕСТВО</span></el-col>
-          <el-col :span="3" align="center" class="pr-2"><span>СУММА</span></el-col>
-          <el-col :span="2" align="center"><span>УДАЛИТЬ</span></el-col>
-          <el-col :span="3" align="center"><span></span></el-col>
+        <el-row id="cart_table_header">
+          <el-col :span="3">ТОВАР</el-col>
+          <el-col :span="11">НАИМЕНОВАНИЕ</el-col>
+          <el-col :span="4">КОЛИЧЕСТВО</el-col>
+          <el-col :span="3">СУММА</el-col>
+          <el-col :span="2">УДАЛИТЬ</el-col>
         </el-row>
-        <hr>
-        <div
-          v-for="product in userCart"
-          :key="product.productId"
-          v-if="product">
-          <el-row
-            type="flex"
-            justify="center"
-            style="flex-wrap: wrap; align-items: center">
-            <el-col :xs="6" :sm="3" :md="3" :lg="3" :xl="3" align="left">
-              <img
-                v-if="product.img_0.thumbnail"
-                :src="product.img_0.thumbnail"
-                ref="img_0"
-                class="thumb_img"/>
+        <div v-for="product in userCart" :key="product.productId" v-if="product">
+          <el-row class="product_row">
+            <el-col :xs="6" :sm="3" :md="3" :lg="3" :xl="3">
+              <img v-if="product.img_0.thumbnail" :src="product.img_0.thumbnail" ref="img_0"/>
             </el-col>
-            <el-col :xs="18" :sm="8" :md="8" :lg="8" :xl="8" align="left" class="pr-2">
-              <!--TODO: link not working if product not loaded-->
+            <el-col :xs="18" :sm="11" :md="11" :lg="11" :xl="11">
               <router-link :to="`/catalog/${product.group}/${product.category}/${product.productId}`">
-                <p id="cart_product_descr" class="white--text">
-                  {{ product.title }} <br>
-                  <span class="cart_sub_text">
-                    Артикул: {{ product.SKU }}
-                  </span>
+                <p id="cart_product_descr">{{ product.title }} <br>
+                  <span class="cart_sub_text">Артикул: {{ product.SKU }}</span>
                 </p>
               </router-link>
             </el-col>
-            <el-col :xs="8" :sm="4" :md="4" :lg="4" :xl="4" align="center">
-              <div>
-                <i @click="product.qty--" class="el-icon-arrow-left count_control"></i>
-                <span class="product_count">
-                    {{ product.qty }}
-                  </span>
-                <i @click="product.qty++" class="el-icon-arrow-right count_control"></i>
-              </div>
-              <!--Keep for easy min/max control-->
-              <div style="display: none">
-                <el-input-number
-                  size="small"
-                  v-model="product.qty"
-                  :min="1"
-                  :max="product.totalQty">
-                </el-input-number>
-              </div>
+            <el-col :xs="8" :sm="4" :md="4" :lg="4" :xl="4">
+              <el-input-number size="small" v-model="product.qty" :min="1" :max="product.totalQty"></el-input-number>
             </el-col>
-            <el-col :xs="8" :sm="3" :md="3" :lg="3" :xl="3" align="center">
-              <p class="price mb-0">
-                {{ parseFloat(product.qty * product.price).toFixed(2) }} р.
-              </p>
+            <el-col :xs="8" :sm="3" :md="3" :lg="3" :xl="3">
+              <p class="price">{{ parseFloat(product.qty * product.price).toFixed(2) }} р.</p>
             </el-col>
-            <el-col id="remove_from_cart" :xs="8" :sm="2" :md="3" :lg="2" :xl="2" align="center">
-              <i @click="removeFromCart(product)"
-                 class="el-icon-close remove_product secondary--text">
-              </i>
-            </el-col>
-            <el-col :xs="8" :sm="3" :md="3" :lg="3" :xl="3" align="right">
-              <Checkout
-                type="single"
-                :checkout-obj="[{productId: product.productId, qty: product.qty}]">
-              </Checkout>
+            <el-col class="remove_from_cart" :xs="8" :sm="2" :md="3" :lg="2" :xl="2">
+              <i @click="removeFromCart(product)" class="el-icon-delete"></i>
             </el-col>
           </el-row>
-          <hr>
         </div>
         <div v-if="Object.keys(userCart).length">
           <el-row id="total_row">
+            <p id="total_price">ИТОГО: {{ parseFloat(totalOrder.price).toFixed(2) }} RUB</p>
             <nuxt-link to="/catalog" exact>
               <el-button>ПРОДОЛЖИТЬ ПОКУПКИ</el-button>
             </nuxt-link>
-            <checkout type="all" :checkout-obj="totalOrder.items"></checkout>
-            <el-col>
-              <p id="total_price">
-                ИТОГО: {{ parseFloat(totalOrder.price).toFixed(2) }} RUB
-              </p>
-            </el-col>
+            <checkout type="all" :checkout-obj="totalOrder.items" style="margin-left: 10px;"></checkout>
           </el-row>
         </div>
       </div>
@@ -154,13 +94,53 @@
 </script>
 <style scoped lang="scss">
   #desctop_shopping_cart {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
     margin-bottom: 30px;
+    h1 {
+      color: $color-primary;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    #cart_table_header {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      font-size: 12px;
+      color: $color-info-dark;
+      margin-top: 30px;
+      flex-wrap: wrap;
+      background: $color-primary-light-2;
+      div {
+        padding: 14px;
+        font-size: 10px;
+      }
+    }
+
+    .product_row {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      flex-wrap: wrap;
+      border: 1px solid $color-primary-light-2;
+      border-top: none;
+      margin: 0;
+      padding: 12px;
+      img {
+        height: 90px;
+        width: 78px;
+        object-fit: cover;
+      }
+      .remove_from_cart {
+        padding-left: 18px;
+      }
+    }
   }
 
-  .thumb_img {
-    height: 90px;
-    width: 78px;
-    object-fit: cover;
+  #total_row {
+    margin-top: 20px;
   }
 
   .cart_sub_text {
@@ -169,28 +149,23 @@
   }
 
   #total_price {
-    color: white;
+    color: $color-success-second;
     font-size: 16px;
     font-weight: 600;
-    text-align: right;
+    text-align: center;
   }
 
   .price {
     font-weight: 500;
   }
 
-  .remove_product {
-    transform: scale(1.8);
-  }
-
-  .remove_product:hover {
-    cursor: pointer;
-  }
-
-  #cart_title {
-    color: $color-secondary;
-    font-size: 18px;
-    margin-top: 5px;
+  .el-icon-delete {
+    transition: all .3s;
+    transform: scale(1.4);
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.6);
+    }
   }
 
   #cart_bag {
@@ -207,15 +182,7 @@
 
   #cart_product_descr {
     padding-left: 15px;
-  }
-
-  .count_control {
-    color: $color-info;
-    transform: scale(2);
-  }
-
-  .count_control:hover {
-    cursor: pointer;
+    text-align: left;
   }
 
   .product_count {
@@ -229,47 +196,13 @@
     border: 1px solid $color-secondary;
   }
 
-  #cart_table_header {
-    font-size: 12px;
-    color: $color-info;
-    margin-top: 30px;
-    margin-bottom: 7px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  #go_shop {
-    margin-right: 10px;
-    margin-bottom: 6px;
-  }
-
-  @media only screen and (max-width: $xs-screen) {
+  @media only screen and (max-width: $sm-screen) {
     #cart_table_header {
       display: none;
+      visibility: hidden;
     }
-    #cart_title {
-      margin-top: 15px;
-    }
-    .thumb_img {
-      margin-bottom: 12px;
-    }
-    #remove_from_cart {
-      position: absolute;
-      top: 0;
-      right: 0;
-      text-align: right;
-    }
-    #total_price {
-      text-align: center;
-      margin-top: 10px;
-    }
-    #total_row {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    #go_shop {
-      margin-right: 0;
+    .product_row {
+      border-top: 1px solid $color-primary-light-2 !important;
     }
   }
 </style>
