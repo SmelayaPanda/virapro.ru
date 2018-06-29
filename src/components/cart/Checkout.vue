@@ -281,6 +281,7 @@
                 placeholder="Комментарии к заказу (не обязательно)"
                 v-model="comments.user">
               </el-input>
+              <!-- TODO: Оферта -->
               <p>Нажимая оформить вы соглашаетесь с
               <a target="_blank" class="secondary--text" href="https://.../userAgreement">офертой</a>
               </p>

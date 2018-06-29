@@ -7,7 +7,7 @@
         </div>
         <div v-if="$store.getters.user && !$store.getters.user.isAnonymous" id="real_account">
           <h1>Аккаунт</h1>
-          <span id="uid">ИД пользователя: </span><el-tag type="success" size="small">{{ $store.getters.user.uid }}</el-tag> <br>
+          <span id="uid">ИД: </span><el-tag type="success" size="small">{{ $store.getters.user.uid }}</el-tag> <br>
           <p id="name">{{ $store.getters.user.firstname }} {{ $store.getters.user.lastname }}</p>
           <p id="email">{{ $store.getters.user.email }}</p>
           <el-button type="success" @click="$store.dispatch('logout')">Выйти</el-button>
