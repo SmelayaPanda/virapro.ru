@@ -5,7 +5,7 @@ REVIEW STATUSES:
 3. archived
 -->
 <template>
-  <div class="mb-5">
+  <div>
     <h2 id="reviews_title">Отзывы о нас</h2>
     <el-carousel
       id="reviews_carousel"
@@ -15,22 +15,26 @@ REVIEW STATUSES:
       height="350px">
       <el-carousel-item v-for="(item, idx) in reviews" :key="idx">
         <el-card class="review_card">
-          <el-row>
-            <img :src="item.user.avatar" height="70px" alt="User avatar">
-            <el-col :span="24">
+          <el-row class="review">
+            <el-col :span="6">
+              <img :src="item.user.avatar" alt="User avatar">
+            </el-col>
+            <el-col :span="18">
               <p class="user_name">{{ item.user.name }}</p>
+            </el-col>
+            <el-col :span="20">
+              <span v-html="item.text.slice(0, 300)"></span>
             </el-col>
           </el-row>
           <el-col :span="24">
-            <div class="review_text_wrapper">
-              <span v-html="item.text.slice(0, 300)"></span>
-            </div>
-            <p>{{ new Date(item.date).toLocaleDateString() }}</p>
+            <time>{{ new Date(item.date).toLocaleDateString() }}</time>
           </el-col>
         </el-card>
       </el-carousel-item>
     </el-carousel>
-    <el-button @click="dialog = true">Добавить отзыв</el-button>
+    <el-row type="flex" justify="center">
+      <el-button type="primary" @click="dialog = true">Добавить отзыв</el-button>
+    </el-row>
     <el-dialog
       id="your_review"
       title="Ваш отзыв!"
@@ -98,31 +102,40 @@ export default {
     padding: 0;
     margin: 0;
     height: 330px;
-    color: $color-primary;
+    .review {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding-left: 20px;
+    }
+    time {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      color: $color-info;
+      font-size: 12px;
+    }
+    img {
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .user_name {
+      font-size: 16px;
+      margin: 15px;
+    }
   }
 
   #reviews_title {
     font-size: 24px;
     font-weight: 400;
-    color: $color-secondary;
+    color: $color-primary;
     padding: 40px 40px 20px 55px;
   }
 
   .el-card {
     border-radius: 20px;
-  }
-
-  .review_text_wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 120px;
-  }
-
-  .user_name {
-    font-size: 16px;
-    margin: 15px;
-  }
-  .review_text {
   }
 </style>
