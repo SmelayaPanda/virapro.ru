@@ -66,6 +66,13 @@
 </script>
 
 <style scoped lang="scss">
+  footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
   #footer-row {
     display: flex;
     justify-content: center;

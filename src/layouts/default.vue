@@ -4,7 +4,7 @@
     <main id="content-wrapper">
       <nuxt/>
     </main>
-    <app-footer id="app-footer"/>
+    <app-footer/>
   </div>
 </template>
 
@@ -20,21 +20,18 @@
 <style lang="scss">
   body {
     position: relative;
-    margin: 0 0 250px;
+    margin: 0;
     padding: 0;
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
     color: $color-secondary;
   }
 
-  #content-wrapper {
-    /*margin: 0 0 80px;*/
+  #app-wrapper {
+    min-height: 100vh;
   }
 
-  #app-footer {
-    width: 100%;
-    position: absolute;
-    bottom: -250px;
-    left: 0;
+  #content-wrapper {
+    padding: 0 0 250px; // footer height
   }
 </style>
