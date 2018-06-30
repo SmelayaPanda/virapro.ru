@@ -24,7 +24,7 @@
           Разнообразный и богатый опыт укрепление и развитие структуры позволяет выполнять важные задания по разработке
           системы обучения кадров, соответствует насущным потребностям.
         </p>
-        <el-button type="primary">Заказать</el-button>
+        <el-button class="primary_btn">Заказать</el-button>
       </el-col>
     </el-row>
   </div>
@@ -82,8 +82,9 @@
     &:hover {
       cursor: pointer;
       background: $color-primary;
+      border: $color-primary;
       color: white;
-      @include primaryShadow;
+      @include secondaryShadow;
     }
     img {
       margin-right: 10px;
@@ -91,7 +92,7 @@
   }
 
   #service_title {
-    margin-top: 60px;
+    margin-top: 40px;
     color: $color-primary;
     text-align: center;
   }

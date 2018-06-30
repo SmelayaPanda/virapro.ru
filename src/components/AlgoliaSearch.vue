@@ -158,7 +158,7 @@
     border-left: none;
     border-right: none;
     border-top: none;
-    border-bottom: 1px solid $color-primary;
+    border-bottom: 1px solid $color-primary-light;
     margin-bottom: 5px;
     width: 100%;
     height: 20px;
@@ -167,8 +167,9 @@
     }
 
     &::placeholder {
-      font-size: 14px;
-      color: rgb(161, 181, 204);
+      font-size: 13px;
+      color: rgba(94, 97, 104, 0.44);
+      /*color: rgb(161, 181, 204);*/
       font-weight: 400;
     }
   }

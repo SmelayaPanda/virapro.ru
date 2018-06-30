@@ -1,3 +1,5 @@
+@import "transitions";
+@import "mixins";
 // https://material.io/tools/color
 // Comments - LEGIBLE text color
 // Large text is defined as 14 point (typically 18.66px)
@@ -51,5 +53,29 @@ a {
   font-weight: 700;
 }
 
-@import "transitions";
-@import "mixins";
+.primary_btn {
+  transition: all .5s;
+  width: 164px;
+  background: linear-gradient(90deg, $color-primary, $color-primary-light);
+  border: none;
+  color: white;
+  @include primaryShadow;
+  &:hover{
+    color: $color-primary;
+    background: white;
+  }
+}
+
+.secondary_btn {
+  transition: all .25s;
+  width: 164px;
+  border: none;
+  background: white;
+  color: $color-info;
+  @include primaryShadow;
+  &:hover{
+    background: $color-success-second;
+    color: white;
+    border: 1px solid white;
+  }
+}

@@ -163,13 +163,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 5px;
+      padding: 8px;
       position: relative;
-      top: -20px;
-      left: -20px;
+      top: -22px;
+      left: -22px;
       width: 30px;
       height: 30px;
-      font-size: 32px;
+      font-size: 30px;
       color: $color-success;
       font-weight: 500;
       border: 1px solid white;

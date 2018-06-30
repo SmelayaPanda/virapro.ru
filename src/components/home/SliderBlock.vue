@@ -10,7 +10,7 @@
         </el-col>
         <el-col :span="18">
           <nuxt-link to="/catalog">
-            <el-button>Смотреть каталог</el-button>
+            <el-button class="secondary_btn">Смотреть каталог</el-button>
           </nuxt-link>
         </el-col>
         <transition name="fade">
@@ -36,7 +36,7 @@
         </el-col>
         <el-col :span="18">
           <nuxt-link to="/catalog">
-            <el-button>Смотреть каталог</el-button>
+            <el-button class="secondary_btn">Смотреть каталог</el-button>
           </nuxt-link>
         </el-col>
         <transition name="fade">
@@ -72,7 +72,7 @@
 
 <style scoped lang="scss">
   @mixin block {
-    padding-top: 130px;
+    padding-top: 100px;
     position: relative;
     height: 70vh;
     display: flex;
@@ -82,12 +82,14 @@
     h1 {
       color: white;
       font-weight: 600;
-      font-size: 28px;
+      font-size: 32px;
+      margin-bottom: 5px;
     }
     h3 {
       color: white;
       font-weight: 400;
-      font-size: 18px;
+      font-size: 16px;
+      margin-bottom: 27px;
     }
     span {
       color: $color-success;
@@ -115,7 +117,9 @@
   }
 
   .more_text {
+    font-size: 14px;
     font-weight: 300;
+    line-height: 18px;
     color: white;
     width: 600px;
   }

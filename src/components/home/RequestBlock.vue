@@ -34,7 +34,7 @@
               <img src="~/assets/icons/home/two_speech.svg" alt="Комментарий" id="comments_img">
             </el-form-item>
           </el-form>
-          <el-button @click="sendRequestForm" type="success">Отправить</el-button>
+          <el-button @click="sendRequestForm" class="secondary_btn">Отправить</el-button>
         </el-card>
       </el-col>
       <el-col :span="6" align="left" style="position: relative">
@@ -122,6 +122,7 @@
       width: 340px;
       margin: 0 auto;
       padding-top: 15px;
+      @include primaryShadow;
       #avatar_img {
         height: 16px;
         width: 40px;
@@ -173,5 +174,8 @@
     height: 300px;
     border-radius: 50%;
     background: $color-primary-light;
+    -webkit-box-shadow: 10px 13px 21px -9px rgba(99,185,250,0.56);
+    -moz-box-shadow: 10px 13px 21px -9px rgba(99,185,250,0.56);
+    box-shadow: 10px 13px 21px -9px rgba(99,185,250,0.56);
   }
 </style>

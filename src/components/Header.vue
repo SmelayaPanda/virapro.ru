@@ -79,7 +79,7 @@
 <style scoped lang="scss">
   a {
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 400;
     color: $color-primary;
     padding: 19px;
     &:hover {
@@ -135,7 +135,7 @@
   }
 
   #cart_icon {
-    height: 36px;
+    height: 32px;
   }
 
   #cart_count_wrap {

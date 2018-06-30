@@ -8,7 +8,6 @@
     <el-tree
       :key="treeKey"
       ref="catalog"
-      empty-text="No data"
       :data="$store.getters.PRODUCT_TREE"
       :props="defaultProps"
       node-key="value"

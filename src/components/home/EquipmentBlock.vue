@@ -7,17 +7,17 @@
       </el-row>
       <el-row type="flex" justify="center">
         <nuxt-link to="/catalog">
-          <el-button type="primary">Перейти в каталог</el-button>
+          <el-button type="primary" id="into_catalog_btn" class="primary_btn">Перейти в каталог</el-button>
         </nuxt-link>
       </el-row>
     </el-col>
     <el-col :span="12">
-      <h2 id="services_title">Предоставление услуг</h2>
+      <h2 id="services_title">Предоставление услуг, <br> консультирование</h2>
       <el-row id="services_wrap">
         <el-col v-for="i in 4" :key="i" :span="7" :offset="4">
           <el-row class="services"></el-row>
           <el-row type="flex" justify="center">
-            <el-button type="primary" class="get_service_btn">Заказать</el-button>
+            <el-button type="primary" class="get_service_btn primary_btn">Заказать</el-button>
           </el-row>
         </el-col>
       </el-row>
@@ -34,8 +34,8 @@
   #equipment_title {
     color: $color-primary;
     text-align: center;
-    font-weight: 300;
-    font-size: 24px;
+    font-weight: 400;
+    font-size: 22px;
     margin: 40px;
   }
 
@@ -53,7 +53,7 @@
   }
 
   .services {
-    height: 160px;
+    height: 165px;
     margin-bottom: 80px;
     border-radius: 3px;
     @include primaryShadow
@@ -65,4 +65,8 @@
     margin-bottom: 20px;
   }
 
+  #into_catalog_btn {
+    margin-top: -10px;
+    margin-left: -60px;
+  }
 </style>

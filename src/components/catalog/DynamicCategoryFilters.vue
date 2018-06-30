@@ -15,6 +15,7 @@
         :props="defaultProps"
         @check="getCheckedFilterNodes"
         node-key="value"
+        highlight-current
         show-checkbox>
       </el-tree>
     </div>
@@ -129,7 +130,7 @@
 
   #clear_filter {
     background: #1A7CDD;
-    padding: 9px 9px 9px 20px;
+    padding: 11px 10px 10px 20px;
     color: white;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;

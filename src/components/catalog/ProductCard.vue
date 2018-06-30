@@ -14,9 +14,11 @@
           </div>
         </el-col>
         <el-col id="product_description"
-                :xs="24" :sm="16" :md="16" :lg="17" :xl="18">
+                :xs="24" :sm="16" :md="16" :lg="15" :xl="18">
           <p id="title" itemprop="name">{{ product.title }}</p>
           <p id="sku">Арт.: <span itemprop="sku">{{ product.SKU }}</span></p>
+        </el-col>
+        <el-col style="width: 110px">
           <p id="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
             <span itemprop="price" :content="product.price">{{ product.price }} </span>
             <span itemprop="priceCurrency" content="RUB">RUB</span>
@@ -94,10 +96,11 @@
     #card_content {
       display: flex;
       justify-content: start;
-      flex-wrap: wrap;
+      /*flex-wrap: wrap;*/
       #product_image {
         width: 120px;
         height: 120px;
+        padding-left: 10px;
         img {
           width: 120px;
           height: 100%;
@@ -113,10 +116,11 @@
           color: $color-info;
           font-size: 12px;
         }
-        #price {
-          color: $color-success-second;
-          font-size: 14px;
-        }
+      }
+      #price {
+        margin-top: 54px;
+        color: $color-success-second;
+        font-size: 14px;
       }
     }
   }
