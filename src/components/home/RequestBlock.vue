@@ -7,7 +7,7 @@
         <h3>Вы всегда можете оставить заявку</h3>
         <p>Мы свяжемся с Вами в ближайшее время</p>
         <el-card id="request_card">
-          <el-form :model="form" :rules="rules" ref="form">
+          <el-form :model="form" ref="form">
             <el-form-item prop="user.firstname">
               <el-input type="text" placeholder="Ваше имя" v-model="form.user.firstname">
                 <img slot="suffix" src="~/assets/icons/home/avatar.svg" alt="Имя" id="avatar_img">
@@ -34,11 +34,7 @@
               <img src="~/assets/icons/home/two_speech.svg" alt="Комментарий" id="comments_img">
             </el-form-item>
           </el-form>
-          <el-button
-            @click="sendRequestForm" :disabled="!isValidFormData"
-            :type="isValidFormData ? 'success' : 'info'">
-            Отправить
-          </el-button>
+          <el-button @click="sendRequestForm" type="success">Отправить</el-button>
         </el-card>
       </el-col>
       <el-col :span="6" align="left" style="position: relative">
@@ -54,32 +50,30 @@
   export default {
     name: 'RequestBlock',
     data() {
-      let notEmptyString = (rule, value, callback) => {
-        if (!value) {
-          callback(new Error('Поле необходимо заполнить'))
-        } else {
-          callback()
-        }
-      }
       return {
         form: {
           user: {firstname: '', phone: ''},
           comments: {user: '', admin: ''}
-        },
-        rules: {
-          firstname: [{validator: notEmptyString, trigger: 'blur'}]
         }
       }
     },
     methods: {
-      async sendRequestForm () {
+      async sendRequestForm() {
+        if (!this.form.user.firstname) {
+          this.$message({type: 'info', showClose: true, message: 'Укажите имя', duration: 5000})
+          return
+        }
+        if (!this.isValidPhone) {
+          this.$message({type: 'info', showClose: true, message: 'Укажите телефон', duration: 5000})
+          return
+        }
         await this.$store.dispatch('sendCallRequests', this.form)
         await this.$refs.form.resetFields()
       }
     },
     computed: {
-      isValidFormData () {
-        return this.form.user.phone.replace(/[^0-9]/g, '').length === 11 && this.form.user.firstname
+      isValidPhone() {
+        return this.form.user.phone.replace(/[^0-9]/g, '').length === 11
       }
     }
   }
