@@ -18,8 +18,8 @@ export const state = () => ({
   // ORDERS
   orders: {},
   orderStatistics: {
-    payPending: 0,
-    sentPending: 0,
+    created: 0,
+    pending: 0,
     sent: 0,
     delivered: 0,
     refused: 0,
@@ -35,6 +35,9 @@ export const state = () => ({
     archived: 0,
     totalReviews: 0
   },
+
+  // USER REQUESTS
+  requests: '',
 
   // COMPANY INFO
   companyInfo: {
@@ -126,6 +129,10 @@ export const state = () => ({
     created: {value: 'created', label: 'Новые'},
     published: {value: 'published', label: 'Опубликовано'},
     archived: {value: 'archived', label: 'Архив'}
+  },
+  REQUESTS_STATUSES: {
+    created: {value: 'created', label: 'Новые'},
+    handled: {value: 'handled', label: 'Обработано'}
   },
   DISCOUNT_TYPES: {
     online: {

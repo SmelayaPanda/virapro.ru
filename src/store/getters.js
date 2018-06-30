@@ -42,6 +42,10 @@ export const getters = {
   reviewStatistics: state => state.reviewStatistics,
   REVIEW_STATUSES: state => state.REVIEW_STATUSES,
 
+  // user requests
+  requests: state => state.requests,
+  REQUESTS_STATUSES: state => state.REQUESTS_STATUSES,
+
   // DICTIONARIES
   dictionaries: state => state.dictionaries,
 

@@ -1,7 +1,7 @@
 <template>
     <div>
       <h2 class="title">Sign In with Google</h2>
-      <el-button class="signIn mb-2" @click.native="googleSignUp">Google Sign In</el-button>
+      <el-button class="signIn" @click.native="googleSignUp">Google Sign In</el-button>
   </div>
 </template>
 

@@ -640,7 +640,9 @@ export const actions = {
 
     await db.ref('events').once('value', snap => {
       for (let userId in snap.val()) {
-        users[userId].events = snap.val()[userId]
+        if (users[userId]) {
+          users[userId].events = snap.val()[userId]
+        }
       }
     })
     await commit('setAllUsers', {...users})
@@ -790,6 +792,61 @@ export const actions = {
         })
         .catch(err => dispatch('LOG', err))
     },
+
+
+  // REVIEWS
+  async sendCallRequests({commit, dispatch, getters}, payload) {
+    payload.date = new Date().getTime()
+    payload.user.id = getters.user.uid
+    payload.status = 'created'
+    await fs.collection('userRequests').add(payload)
+      .then(() => {
+        Notification({
+          title: 'Спасибо',
+          message: 'Ваша заявка доставлена, мы свяжемся с вами в ближайшее время!',
+          type: 'success',
+          showClose: true,
+          duration: 10000,
+          offset: 50
+        })
+      })
+  },
+
+  async fetchRequests({commit, dispatch}, payload) {
+    commit('LOADING', true)
+    let query = fs.collection('userRequests')
+    if (payload.status) {
+      query = query.where('status', '==', payload.status)
+    }
+    query.get()
+      .then(snap => {
+        let requests = {}
+        snap.docs.forEach(doc => {
+          requests[doc.id] = doc.data()
+          requests[doc.id].id = doc.id
+        })
+        commit('setRequests', {...requests})
+        commit('LOADING', false)
+        console.log('(i) Fetched: user requests')
+      })
+      .catch(err => dispatch('LOG', err))
+  },
+
+  async updateRequest({commit, dispatch, getters}, payload) {
+    commit('LOADING', true)
+    await fs.collection('userRequests').doc(payload.id).update(payload.updateData)
+      .then(() => {
+        if (payload.updateData.isChangedStatus) {
+          let requests = getters.requests
+          delete requests[payload.id]
+          commit('setRequests', {...requests})
+        }
+        commit('LOADING', false)
+        console.log('(i) Requests updated')
+      })
+      .catch(err => dispatch('LOG', err))
+  },
+
 
   // USER EVENTS
   USER_EVENT:

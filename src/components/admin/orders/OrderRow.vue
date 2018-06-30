@@ -1,16 +1,16 @@
 <template>
   <el-card id="order_row_wrap">
     <el-row id="order_row">
-      <el-col style="width: 56px">
+      <el-col style="width: 62px">
         <el-button
           :icon="openInfo ? 'el-icon-arrow-down' : 'el-icon-arrow-right'"
           circle plain @click="openInfo = !openInfo">
         </el-button>
       </el-col>
-      <el-col style="width: 180px">
-        <el-tag size="small" type="success">{{ new Date(order.history.created).toLocaleString() }}</el-tag>
+      <el-col style="width: 280px">
+        <el-tag size="small" type="success">{{ order.history.created | date }}</el-tag>
       </el-col>
-      <el-col style="width: 100px" class="product_title">{{ order.amount.final.value }} &#8381</el-col>
+      <el-col style="width: 140px">{{ order.amount.final.value }} &#8381</el-col>
       <el-col :span="8">{{ order.buyer.firstname.concat(' ', order.buyer.lastname ) }}</el-col>
       <el-col :span="8">{{ order.buyer.phone }} <br> {{ order.buyer.email }}</el-col>
       <UpdateOrder :order-id="order.id" style="width: 70px"/>
@@ -83,7 +83,7 @@
             v-if="order.history[status.value]"
             v-for="status in $store.getters.ORDER_STATUSES" :key="status.value"
             :title="status.label"
-            :description="new Date(order.history[status.value]).toLocaleString()">
+            :description="order.history[status.value] | date">
           </el-step>
         </el-steps>
       </el-col>
@@ -117,10 +117,6 @@
     display: flex;
     justify-content: start;
     align-items: center;
-  }
-
-  .product_title {
-    padding-right: 5px;
   }
 
   #expand_description {

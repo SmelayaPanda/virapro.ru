@@ -8,9 +8,9 @@
         :span="8"
         v-for="(group, idx) in $store.getters.PRODUCT_TREE" :key="group.value"
         v-if="group.value !== 'all-products'">
-        <div class="catalog_card">
+        <div class="catalog_card" @click="$nuxt.$router.push(`/catalog/${group.value}`)">
           <img src="~/assets/icons/admin/attach_file.svg" alt="">
-          <nuxt-link :to="`/catalog/${group.value}`">{{idx}}. {{ group.label }}</nuxt-link>
+          <p>{{idx}}. {{ group.label }}</p>
         </div>
       </el-col>
     </el-row>
@@ -77,15 +77,13 @@
     transition: all .3s;
     margin: 10px;
     border: 1px solid $color-primary-light;
-    padding: 22px;
+    padding: 10px 10px 10px 20px;
     border-radius: 5px;
     &:hover {
       cursor: pointer;
       background: $color-primary;
+      color: white;
       @include primaryShadow;
-      a {
-        color: white !important;
-      }
     }
     img {
       margin-right: 10px;

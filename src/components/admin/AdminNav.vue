@@ -18,9 +18,9 @@
           <img src="~/assets/icons/admin/description.svg" alt="">
           <span>Покупки</span>
         </el-menu-item>
-        <el-menu-item index="/admin/files" disabled>
-          <img src="~/assets/icons/admin/attach_file.svg" alt="">
-          <span>Файлы</span>
+        <el-menu-item index="/admin/requests">
+          <img src="~/assets/icons/admin/pan_tool.svg" alt="">
+          <span>Заявки</span>
         </el-menu-item>
         <el-menu-item index="/admin/dictionaries">
           <img src="~/assets/icons/admin/text_format.svg" alt="">

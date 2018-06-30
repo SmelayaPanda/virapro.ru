@@ -131,12 +131,12 @@
         </el-form-item>
           <!--NAME-->
         <el-row>
-          <el-col :span="12" class="pr-1">
+          <el-col :span="12">
             <el-form-item label="Имя" prop="firstname">
               <el-input type="text" v-model="buyer.firstname" auto-complete="off"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="12" class="pl-1">
+          <el-col :span="12">
             <el-form-item label="Фамилия" prop="lastname">
               <el-input v-model="buyer.lastname"></el-input>
             </el-form-item>

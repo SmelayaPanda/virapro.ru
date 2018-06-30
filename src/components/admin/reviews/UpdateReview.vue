@@ -32,7 +32,7 @@
 
 <script>
   export default {
-    name: 'ProcessReview',
+    name: 'UpdateReview',
     props: {
       reviewId: {type: String, required: true}
     },
@@ -53,7 +53,8 @@
               ['link'],
               [{'align': []}],
             ]
-          }
+          },
+          placeholder: 'Текст отзыва (обязательно)'
         }
       }
     },

@@ -46,6 +46,11 @@ export const mutations = {
   },
 
 
+  // USER REQUESTS
+  setRequests(state, payload) {
+    state.requests = payload
+  },
+
   // PRODUCT
   setProducts(state, payload) {
     state.products = payload

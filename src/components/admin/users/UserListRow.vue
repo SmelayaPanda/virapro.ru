@@ -1,5 +1,5 @@
 <template>
-  <div @click="setWatchedUserId" :class="$store.getters.watchedUserId === id ? 'active_user' : ''">
+  <div v-if="data" @click="setWatchedUserId" :class="$store.getters.watchedUserId === id ? 'active_user' : ''">
     <el-row class="user_row" v-if="type === 'register' && data.email">
       <el-col :span="5" class="event_count">{{ data.events ? Object.keys(data.events).length : 0 }}</el-col>
       <el-col :span="19">{{ data.firstname + ' ' + data.lastname }} <br> {{ data.email }}</el-col>

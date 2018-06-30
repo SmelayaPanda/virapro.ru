@@ -1,48 +1,40 @@
 <template>
-  <el-row type="flex" justify="start">
+  <div v-if="request">
     <el-button @click="openDialog">
       <i class="el-icon-edit-outline"></i>
     </el-button>
     <el-dialog
-      title="Изменить ордер"
+      title="Редактировать заявку"
       :visible.sync="dialog"
       width="100%"
       center>
-      <p align="center">Статус ордера</p>
-      <el-radio-group v-model="order.status" id="order_status" size="small">
+      <p align="center">Статус заявки</p>
+      <el-radio-group v-model="request.status" id="request_status" size="small">
         <el-radio-button
-          v-for="status in $store.getters.ORDER_STATUSES"
+          v-for="status in $store.getters.REQUESTS_STATUSES"
           :key="status.value"
           :label="status.value">{{ status.label }}
         </el-radio-button>
       </el-radio-group>
-      <p align="center">Оплата</p>
-      <el-radio-group v-model="order.payment.ending" id="payment_status" size="small">
-        <el-radio-button
-          v-for="ending in $store.getters.PAYMENT_ENDING"
-          :key="ending.value"
-          :label="ending.value">{{ ending.label }}
-        </el-radio-button>
-      </el-radio-group>
       <section class="container">
         <div class="quill-editor"
-             v-model="order.comments.admin"
+             v-model="request.comments.admin"
              v-quill:myQuillEditor="editorOption">
         </div>
       </section>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialog = false">Отмена</el-button>
-        <el-button type="danger" @click="changeStatus">Подтвердить</el-button>
+        <el-button type="danger" @click="correctRequestText">Подтвердить</el-button>
       </span>
     </el-dialog>
-  </el-row>
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'ChangeOrder',
+    name: 'UpdateRequest',
     props: {
-      orderId: {type: String, required: true}
+      requestId: {type: String, required: true}
     },
     data() {
       return {
@@ -60,8 +52,6 @@
               ['clean'],
               ['link'],
               [{'align': []}],
-              [{'color': []}, {'background': []}],
-              [{'header': [2, 3, 4, 5, 6, false]}]
             ]
           },
           placeholder: 'Ваш комментарий (виден только Вам)'
@@ -69,38 +59,38 @@
       }
     },
     methods: {
-      changeStatus() {
+      correctRequestText() {
         this.dialog = false
         let obj = {
-          status: this.order.status,
-          'comments.admin': this.order.comments.admin,
-          'payment.ending': this.order.payment.ending,
-          ['history.' + this.order.status]: new Date().getTime()
+          'comments.admin': this.request.comments.admin,
+          status: this.request.status
         }
-        if (this.oldStatus !== this.order.status) {
+        if (this.oldStatus !== this.request.status) {
           obj.isChangedStatus = true
         }
-        this.$store.dispatch('updateOrder', {id: this.orderId, updateData: obj})
+        this.$store.dispatch('updateRequest', {
+          id: this.requestId,
+          updateData: obj
+        })
       },
       openDialog () {
-        this.oldStatus = this.order.status
+        this.oldStatus = this.request.status
         this.dialog = true
       }
     },
     computed: {
-      order() {
-        return this.$store.getters.orders[this.orderId]
+      request() {
+        return this.$store.getters.requests[this.requestId]
       }
     }
   }
 </script>
 
 <style scoped lang="scss">
-  #order_status,
-  #payment_status {
+  #request_status {
     display: flex;
     justify-content: center;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
   }
 
   .container {

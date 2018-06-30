@@ -98,7 +98,7 @@
           <div slot="header" class="clearfix">
             <h3>Популярные товары</h3>
           </div>
-          <el-row v-for="product in popProducts" :key="product.id" id="pop_product_row">
+          <el-row v-for="product in popProducts" :key="product.productId" id="pop_product_row">
             <el-popover
               placement="top-start"
               width="280"
@@ -167,14 +167,15 @@
     },
     created() {
       this.fetchDashboardStatistics()
-      db.ref('productCounters').orderByChild('watch').limitToLast(5).on('value', snap => {
-        let popProducts = {}
+      db.ref('productCounters').orderByChild('watch').limitToLast(10).on('value', snap => {
+        let popProducts = []
         let actions = []
         let fetchProduct = function (data) {
           return fs.collection('products').doc(data.key).get().then(snap => {
             if (snap.exists) {
-              popProducts[data.key] = snap.data()
-              popProducts[data.key].events = data.val()
+              let product = snap.data()
+              product.events = data.val()
+              popProducts.unshift(product)
             }
           })
         }
@@ -182,7 +183,9 @@
           actions.push(fetchProduct(data))
         });
         Promise.all(actions).then(() => {
-          this.popProducts = popProducts
+          this.popProducts = popProducts.sort((a, b) => {
+            return a.events.watch && b.events.watch ? a.events.watch < b.events.watch : -1;
+          });
         })
       });
     }

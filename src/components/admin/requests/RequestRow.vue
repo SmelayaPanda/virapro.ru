@@ -1,47 +1,53 @@
 <template>
   <el-card>
-    <el-row v-if="review" id="review_row">
+    <el-row v-if="request" id="request_row">
       <el-col style="width: 56px">
         <el-button
           :icon="openInfo ? 'el-icon-arrow-down' : 'el-icon-arrow-right'"
           circle plain @click="openInfo = !openInfo">
         </el-button>
       </el-col>
-      <el-col style="width: 76px">
-        <img v-if="review.user.avatar" :src="review.user.avatar" height="40px" alt="User avatar">
-      </el-col>
       <el-col style="width: 240px">
-        <el-tag type="success" size="small">{{ review.date | date }}</el-tag>
+        <el-tag type="success" size="small">{{ request.date | date }}</el-tag>
       </el-col>
-      <el-col :span="16">
-        {{ review.user.name }}
+      <el-col :span="10">
+        {{ request.user.firstname }}
+      </el-col>
+      <el-col :span="8">
+        {{ request.user.phone }}
       </el-col>
       <el-col style="width: 60px;">
-        <UpdateReview :reviewId="review.id"/>
+        <UpdateRequest :requestId="request.id"/>
       </el-col>
     </el-row>
     <el-row v-if="openInfo" id="expand_description">
       <el-col :span="24">
-        <span class="prop_name">ИД отзыва: </span>
-        <el-tag type="success" size="small">{{ review.id }}</el-tag>
+        <span class="prop_name">ИД запроса: </span>
+        <el-tag type="success" size="small">{{ request.id }}</el-tag>
         <br>
         <span class="prop_name">ИД пользователя: </span>
-        <el-tag type="success" size="small">{{ review.user.id }}</el-tag>
+        <el-tag type="success" size="small">{{ request.user.id }}</el-tag>
       </el-col>
       <el-col :span="24" id="review_text">
-        <span v-html="review.text"></span>
+        <h4>Комментарии:</h4>
+        <el-tag type="success" size="small">Пользователя:</el-tag>
+        <p>{{ request.comments.user }}</p>
+        <p v-if="request.comments.admin">
+          <el-tag type="success" size="small">Ваш:</el-tag>
+          <span v-html="request.comments.admin"></span>
+        </p>
       </el-col>
     </el-row>
   </el-card>
 </template>
 <script>
-  import UpdateReview from './UpdateReview'
+  import UpdateRequest from './UpdateRequest'
 
   export default {
-    name: 'ReviewRow',
-    components: {UpdateReview},
+    name: 'RequestRow',
+    components: {UpdateRequest},
     props: {
-      review: {type: Object, required: true}
+      request: {type: Object, required: true}
     },
     data() {
       return {
@@ -62,11 +68,11 @@
     color: $color-info;
   }
 
-  #review_text {
+  #request_text {
     margin-top: 20px;
   }
 
-  #review_row {
+  #request_row {
     display: flex;
     justify-content: center;
     align-items: center;
