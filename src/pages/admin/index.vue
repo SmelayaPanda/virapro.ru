@@ -2,8 +2,8 @@
   <div>
     <el-row type="flex" justify="left" style="flex-wrap: wrap">
       <!--ORDERS-->
-      <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8" class="pl-2 pr-2 mt-2">
-        <el-card style="height: 100%" :body-style="{ padding: '7px' }">
+      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" class="pl-2 pr-2 mt-2">
+        <el-card style="height: 100%" :body-style="{ padding: '0'}">
           <div slot="header" class="clearfix">
             <h3>Покупки</h3>
           </div>
@@ -35,9 +35,9 @@
           </div>
         </el-card>
       </el-col>
-      <!--PRODUCTS-->
-      <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8" class="pl-2 pr-2 mt-2">
-        <el-card style="height: 100%" :body-style="{ padding: '7px' }">
+      <!--REQUESTS-->
+      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" class="pl-2 pr-2 mt-2">
+        <el-card style="height: 100%" :body-style="{ padding: '0'}">
           <div slot="header" class="clearfix">
             <h3>Заявки</h3>
           </div>
@@ -58,8 +58,8 @@
         </el-card>
       </el-col>
       <!--REVIEW-->
-      <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8" class="pl-2 pr-2 mt-2">
-        <el-card style="height: 100%" :body-style="{ padding: '7px' }">
+      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" class="pl-2 pr-2 mt-2">
+        <el-card style="height: 100%" :body-style="{ padding: '0'}">
           <div slot="header" class="clearfix">
             <h3>Отзывы</h3>
           </div>
@@ -79,6 +79,36 @@
             <p>
               <el-tag label color="primary_a" text-color="white">{{ reviewStatistics.totalReviews }}</el-tag>
               общее количество
+            </p>
+          </div>
+        </el-card>
+      </el-col>
+      <!--PRODUCTS-->
+      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
+        <el-card style="height: 100%" :body-style="{ padding: '0'}">
+          <div slot="header" class="clearfix">
+            <h3>Товары</h3>
+          </div>
+          <div v-if="productStatistics" align="left" style="padding-left: 10%">
+            <p>
+              <el-tag>{{ productStatistics.avgPrice }} RUB</el-tag>
+              средняя цена
+            </p>
+            <p>
+              <el-tag>{{ productStatistics.maxPrice }} RUB</el-tag>
+              максимальная цена
+            </p>
+            <p>
+              <el-tag>{{ productStatistics.uniqueProductQty }}</el-tag>
+              уникальных продуктов
+            </p>
+            <p>
+              <el-tag>{{ productStatistics.totalProductQty }}</el-tag>
+              общее количество
+            </p>
+            <p>
+              <el-tag label>{{ productStatistics.totalStoreCoast }} RUB</el-tag>
+              общая стоимость
             </p>
           </div>
         </el-card>
@@ -121,31 +151,6 @@
               {{ product.title }}
             </nuxt-link>
             <span class="product_info">( Арт.: {{ product.SKU }}, Цена: {{ product.price }} руб. )</span>
-          </el-row>
-          <el-row>
-            <div v-if="productStatistics" align="left" id="product_numer_statistics">
-              <h3>Статистика по товарам</h3>
-              <p>
-                <el-tag>{{ productStatistics.avgPrice }} RUB</el-tag>
-                средняя цена
-              </p>
-              <p>
-                <el-tag>{{ productStatistics.maxPrice }} RUB</el-tag>
-                максимальная цена
-              </p>
-              <p>
-                <el-tag>{{ productStatistics.uniqueProductQty }}</el-tag>
-                уникальных товаров
-              </p>
-              <p>
-                <el-tag>{{ productStatistics.totalProductQty }}</el-tag>
-                общее количество товаров
-              </p>
-              <p>
-                <el-tag label>{{ productStatistics.totalStoreCoast }} RUB</el-tag>
-                общая стоимость
-              </p>
-            </div>
           </el-row>
         </el-card>
       </el-col>
