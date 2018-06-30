@@ -39,28 +39,20 @@
       <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8" class="pl-2 pr-2 mt-2">
         <el-card style="height: 100%" :body-style="{ padding: '7px' }">
           <div slot="header" class="clearfix">
-            <h3>Товары</h3>
+            <h3>Заявки</h3>
           </div>
-          <div v-if="productStatistics" align="left" style="padding-left: 10%">
+          <div v-if="requestsStatistics" align="left" style="padding-left: 10%">
             <p>
-              <el-tag>{{ productStatistics.avgPrice }} RUB</el-tag>
-              средняя цена
+              <el-tag>{{ requestsStatistics.created }}</el-tag>
+              новые
             </p>
             <p>
-              <el-tag>{{ productStatistics.maxPrice }} RUB</el-tag>
-              максимальная цена
+              <el-tag>{{ requestsStatistics.handled }}</el-tag>
+              обработанные
             </p>
             <p>
-              <el-tag>{{ productStatistics.uniqueProductQty }}</el-tag>
-              уникальных продуктов
-            </p>
-            <p>
-              <el-tag>{{ productStatistics.totalProductQty }}</el-tag>
+              <el-tag>{{ requestsStatistics.total }}</el-tag>
               общее количество
-            </p>
-            <p>
-              <el-tag label>{{ productStatistics.totalStoreCoast }} RUB</el-tag>
-              общая стоимость
             </p>
           </div>
         </el-card>
@@ -130,6 +122,31 @@
             </nuxt-link>
             <span class="product_info">( Арт.: {{ product.SKU }}, Цена: {{ product.price }} руб. )</span>
           </el-row>
+          <el-row>
+            <div v-if="productStatistics" align="left" id="product_numer_statistics">
+              <h3>Статистика по товарам</h3>
+              <p>
+                <el-tag>{{ productStatistics.avgPrice }} RUB</el-tag>
+                средняя цена
+              </p>
+              <p>
+                <el-tag>{{ productStatistics.maxPrice }} RUB</el-tag>
+                максимальная цена
+              </p>
+              <p>
+                <el-tag>{{ productStatistics.uniqueProductQty }}</el-tag>
+                уникальных товаров
+              </p>
+              <p>
+                <el-tag>{{ productStatistics.totalProductQty }}</el-tag>
+                общее количество товаров
+              </p>
+              <p>
+                <el-tag label>{{ productStatistics.totalStoreCoast }} RUB</el-tag>
+                общая стоимость
+              </p>
+            </div>
+          </el-row>
         </el-card>
       </el-col>
     </el-row>
@@ -152,6 +169,7 @@
         this.$store.dispatch('fetchProductStatistics')
         this.$store.dispatch('fetchOrderStatistics')
         this.$store.dispatch('fetchReviewStatistics')
+        this.$store.dispatch('fetchRequestsStatistics')
       }
     },
     computed: {
@@ -163,6 +181,9 @@
       },
       reviewStatistics() {
         return this.$store.getters.reviewStatistics
+      },
+      requestsStatistics () {
+        return this.$store.getters.requestsStatistics
       }
     },
     created() {
@@ -215,5 +236,11 @@
   #pop_product_row {
     display: flex;
     align-items: center;
+  }
+
+  #product_numer_statistics {
+    margin-top: 20px;
+    border-top: 1px solid #ebeef5;
+    padding: 20px;
   }
 </style>

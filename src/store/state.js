@@ -38,6 +38,11 @@ export const state = () => ({
 
   // USER REQUESTS
   requests: '',
+  requestsStatistics: {
+    created: 0,
+    handled: 0,
+    total: 0
+  },
 
   // COMPANY INFO
   companyInfo: {

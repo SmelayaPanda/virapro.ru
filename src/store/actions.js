@@ -847,6 +847,15 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
+  fetchRequestsStatistics:
+    ({commit, dispatch}) => {
+      fs.collection('statistics').doc('userRequests').get()
+        .then(snapshot => {
+          console.log('(i) Statistics: for user requests')
+          commit('setRequestsStatistics', snapshot.data())
+        })
+        .catch(err => dispatch('LOG', err))
+    },
 
   // USER EVENTS
   USER_EVENT:

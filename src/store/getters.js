@@ -44,6 +44,7 @@ export const getters = {
 
   // user requests
   requests: state => state.requests,
+  requestsStatistics: state => state.requestsStatistics,
   REQUESTS_STATUSES: state => state.REQUESTS_STATUSES,
 
   // DICTIONARIES

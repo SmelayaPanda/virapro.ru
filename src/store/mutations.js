@@ -50,6 +50,9 @@ export const mutations = {
   setRequests(state, payload) {
     state.requests = payload
   },
+  setRequestsStatistics(state, payload) {
+    state.requestsStatistics = payload
+  },
 
   // PRODUCT
   setProducts(state, payload) {
