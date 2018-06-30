@@ -46,6 +46,8 @@ const updateProductStatistics = require('./src/db/products/updateProductStatisti
 const updateOrdersStatistics = require('./src/db/orders/updateOrdersStatistics')
 const sendOrderNotification = require('./src/db/orders/sendOrderNotification')
 const updateReviewsStatistics = require('./src/db/reviews/updateReviewsStatistics')
+const sendRequestNotification = require('./src/db/userRequests/sendRequestNotification')
+const updateRequestsStatistics = require('./src/db/userRequests/updateRequestsStatistics')
 const sendReviewNotification = require('./src/db/reviews/sendReviewNotification')
 const updateAlgoliaIndex = require('./src/db/products/updateAlgoliaIndex')
 const deleteAlgoliaIndex = require('./src/db/products/deleteAlgoliaIndex')
@@ -122,4 +124,15 @@ exports.onWriteReview = functions.firestore
     .document('reviews/{reviewId}')
     .onWrite((change, context) => {
         return updateReviewsStatistics.handler(change, context, admin)
+    })
+// user requests
+exports.onCreateUserRequest = functions.firestore
+    .document('userRequests/{requestId}')
+    .onCreate((snap, context) => {
+        return sendRequestNotification.handler(snap, context, mailTransporter)
+    })
+exports.onWriteUserRequest = functions.firestore
+    .document('userRequests/{requestId}')
+    .onWrite((change, context) => {
+        return updateRequestsStatistics.handler(change, context, admin)
     })
