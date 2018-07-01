@@ -7,8 +7,8 @@
       </el-button>
     </el-row>
     <input type="file" style="display: none;" ref="fileInput" accept="image/*" @change="onFilePicked">
-    <el-row>
-      <img :src="imageUrl" :width="150">
+    <el-row type="flex" justify="center">
+      <img :src="imageUrl" height="120" style="margin-top: 7px;">
     </el-row>
   </div>
 </template>

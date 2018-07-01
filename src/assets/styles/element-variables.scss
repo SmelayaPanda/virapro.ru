@@ -53,3 +53,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
   color: $color-primary;
   transform: scale(1.2);
 }
+
+.el-carousel__arrow {
+  background: $color-primary-light-2;
+}

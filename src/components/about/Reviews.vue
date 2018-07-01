@@ -6,12 +6,12 @@ REVIEW STATUSES:
 -->
 <template>
   <div>
-    <h2 id="reviews_title">Отзывы о нас</h2>
     <el-carousel
       id="reviews_carousel"
       :autoplay="false"
       trigger="click"
       type="card"
+      arrow="always"
       height="350px">
       <el-carousel-item v-for="(item, idx) in reviews" :key="idx">
         <el-card class="review_card">
@@ -33,7 +33,7 @@ REVIEW STATUSES:
       </el-carousel-item>
     </el-carousel>
     <el-row type="flex" justify="center">
-      <el-button type="primary" @click="dialog = true">Добавить отзыв</el-button>
+      <el-button @click="dialog = true" class="primary_btn">Добавить отзыв</el-button>
     </el-row>
     <el-dialog
       id="your_review"
@@ -42,7 +42,7 @@ REVIEW STATUSES:
       width="500px"
       center>
       <UploadReviewAvatar @fileUploaded="loadFileData"/>
-      <el-input v-model="review.user.name" placeholder="Имя"></el-input>
+      <el-input v-model="review.user.name" placeholder="Имя" style="margin-bottom: 10px;"></el-input>
       <el-input
         v-model="review.text"
         type="textarea"
@@ -51,8 +51,7 @@ REVIEW STATUSES:
         :maxlength="300">
       </el-input>
       <span slot="footer" class="dialog-footer">
-      <el-button @click="addReview" type="danger" :disabled="!isValidForm">Отправить!</el-button>
-      <el-button @click="dialog = false">Отмена</el-button>
+      <el-button @click="addReview" class="primary_btn" :disabled="!isValidForm">Отправить!</el-button>
     </span>
     </el-dialog>
   </div>
@@ -98,6 +97,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  #reviews_carousel {
+    margin-top: 140px;
+  }
+
   .review_card {
     padding: 0;
     margin: 0;
@@ -126,13 +129,6 @@ export default {
       font-size: 16px;
       margin: 15px;
     }
-  }
-
-  #reviews_title {
-    font-size: 24px;
-    font-weight: 400;
-    color: $color-primary;
-    padding: 40px 40px 20px 55px;
   }
 
   .el-card {
