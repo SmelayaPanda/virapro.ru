@@ -6,7 +6,7 @@
     @touchstart="hoveredCard = true" @touchend="hoveredCard = false"
     @mouseover="hoveredCard = true" @mouseleave="hoveredCard = false"
     itemscope itemtype="http://schema.org/Product">
-    <el-card :body-style="{ padding: '0px' }" id="card">
+    <div :body-style="{ padding: '0px' }" id="card">
       <el-row id="card_content">
         <el-col style="width: 160px">
           <div id="product_image">
@@ -25,7 +25,7 @@
           </p>
         </el-col>
       </el-row>
-    </el-card>
+    </div>
   </div>
 </template>
 <script>
@@ -88,6 +88,7 @@
     margin-bottom: 8px;
     padding: 5px;
     border: 1px solid $color-info-light;
+    border-radius: 3px;
     transition: all .5s;
     height: 120px;
     &:hover, &:active {
@@ -110,11 +111,12 @@
       #product_description {
         padding: 10px;
         #title {
+          font-size: 16px;
           color: $color-primary;
         }
         #sku {
           color: $color-info;
-          font-size: 12px;
+          font-size: 13px;
         }
       }
       #price {

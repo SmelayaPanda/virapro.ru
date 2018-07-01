@@ -93,9 +93,24 @@ export const state = () => ({
   // CONSTANTS
   ADMINS: ['smelayapandagm@gmail.com'],
   SERVICE_TYPES: {
-    installation: {value: 'installation', label: 'Установка оборудования'},
-    consultation: {value: 'consultation', label: 'Консультация'},
-    evaluation: {value: 'evaluation', label: 'Замеры и оценка'},
+    installation: {
+      value: 'installation',
+      label: 'Установка оборудования',
+      content: 'Мы готовы установить для Вас любой товар каторый есть в наличии нашего магазина.',
+      icon: ''
+    },
+    consultation: {
+      value: 'consultation',
+      label: 'Консультация',
+      content: 'Консультация по любым вопросам связанным с установкой, покупкой, сравнительным характеристикам.',
+      icon: ''
+    },
+    evaluation: {
+      value: 'evaluation',
+      label: 'Замеры и оценка',
+      content: 'Мы всегда готовы провести прдварительные замеры и оценить Вашу будущую покупку',
+      icon: ''
+    }
   },
   PAYMENT_METHODS: {
     cash: {value: 'cash', label: 'Наличные'},

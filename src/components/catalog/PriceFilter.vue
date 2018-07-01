@@ -57,9 +57,9 @@
     align-items: center;
     padding: 0 10px;
     margin: 10px;
-    background: #f5f7fa;
+    background: $color-primary-dark;
     border: 1px solid #dcdfe6;
-    height: 40px;
+    height: 34px;
     border-radius: 4px;
   }
 
@@ -71,7 +71,7 @@
   #price_title {
     flex: 0 0 80px;
     padding-left: 7px;
-    color: #909399;
+    color: white;
   }
 
   #price_max,

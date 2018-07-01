@@ -51,20 +51,21 @@
 
 <style scoped lang="scss">
   $crumbs-back: white;
-  $text-color: #8093A7;
+  $text-color: white;
 
   #crumbs {
     /*text-align: center;*/
     ul {
       list-style: none;
       display: inline-table;
+      margin: 12px 12px 5px;
       li {
         display: inline;
         a {
           display: block;
           float: left;
           height: 18px;
-          background: #F3F5FA; // white
+          background: $color-primary-light; // white
 
           text-align: center;
           padding: 12px 10px 10px 34px;
@@ -79,7 +80,7 @@
             content: "";
             border-top: 20px solid transparent;
             border-bottom: 20px solid transparent;
-            border-left: 20px solid #F3F5FA;
+            border-left: 20px solid $color-primary-light;
             position: absolute;
             right: -20px;
             top: 0;
@@ -119,12 +120,12 @@
   }
 
   #crumbs ul li a:hover {
-    background: $color-primary-light;
+    background: $color-primary;
     color: #fff;
   }
 
   #crumbs ul li a:hover:after {
-    border-left-color: $color-primary-light;
+    border-left-color: $color-primary;
     color: #fff;
   }
 </style>

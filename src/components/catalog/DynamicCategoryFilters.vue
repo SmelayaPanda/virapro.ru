@@ -10,6 +10,7 @@
     </el-row>
     <div v-if="filtersTree.length">
       <el-tree
+        id="filter_tree"
         ref="filtersTree"
         :data="filtersTree"
         :props="defaultProps"
@@ -119,7 +120,7 @@
     justify-content: start;
     padding-left: 18px;
     align-items: center;
-    height: 40px;
+    height: 33px;
     color: #909399;
     background: #f5f7fa;
     border: 1px solid #dcdfe6;
@@ -128,9 +129,13 @@
     width: 290px;
   }
 
+  #filter_tree {
+    font-weight: 300;
+  }
+
   #clear_filter {
-    background: #1A7CDD;
-    padding: 11px 10px 10px 20px;
+    background: $color-primary;
+    padding: 7px 8px 7px 20px;
     color: white;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;

@@ -21,7 +21,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 }
 
 .el-tree-node__label {
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .el-cascader {
@@ -49,9 +49,9 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
   text-align: left;
 }
 
-.el-tree-node__expand-icon, .el-icon-caret-right {
+.el-tree-node__expand-icon, .el-icon-caret-right, .el-icon-caret-right .expanded {
   color: $color-primary;
-  transform: scale(1.2);
+  transform: scale(1.4);
 }
 
 .el-carousel__arrow {

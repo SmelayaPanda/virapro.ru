@@ -1,11 +1,12 @@
 <template>
   <div id="catalog_menu">
     <div id="filter_category">
-      <el-input label="Category Filter" placeholder="Поиск каталога" v-model="filterText">
-        <el-button slot="prepend" icon="el-icon-search"></el-button>
+      <el-input label="Category Filter" placeholder="Поиск каталога" v-model="filterText" size="small">
+        <!--<el-button slot="prepend" icon="el-icon-search"></el-button>-->
       </el-input>
     </div>
     <el-tree
+      id="catalog_tree"
       :key="treeKey"
       ref="catalog"
       :data="$store.getters.PRODUCT_TREE"
@@ -77,10 +78,17 @@
 
   #catalog_menu {
     flex: 0 0 340px;
+    margin-left: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+
+  #catalog_tree {
+    font-weight: 300;
   }
 
   #filter_category {
-    padding: 10px;
+    margin-bottom: 5px;
   }
 
   @media only screen and (max-width: $sm-screen) {
