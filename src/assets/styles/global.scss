@@ -69,9 +69,11 @@ a {
 .secondary_btn {
   transition: all .25s;
   width: 164px;
-  border: none;
+  border: 1px solid white;
   background: white;
   color: $color-info;
+  padding-top: 11px;
+  padding-bottom: 11px;
   @include primaryShadow;
   &:hover{
     background: $color-success-second;

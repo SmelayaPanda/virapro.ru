@@ -92,7 +92,7 @@
     transition: all .5s;
     height: 120px;
     &:hover, &:active {
-      box-shadow: 0 3px 8px 0 rgba(250, 250, 250, 0.15), 3px 3px 8px 0 rgba(250, 250, 250, 0.15);
+      @include thirdShadow
     }
     #card_content {
       display: flex;

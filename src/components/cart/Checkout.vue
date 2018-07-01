@@ -78,9 +78,9 @@
 }
 -->
 <template>
-  <span>
-      <el-button v-if="type === 'single'" @click="clickBuy">КУПИТЬ</el-button>
-      <el-button type="success" v-else @click="clickBuy">ОФОРМИТЬ ЗАКАЗ</el-button>
+  <div>
+    <el-button v-if="type === 'single'" @click="clickBuy">КУПИТЬ</el-button>
+    <el-button class="primary_btn" v-else @click="clickBuy">ОФОРМИТЬ ЗАКАЗ</el-button>
     <el-dialog
       id="checkout_dialog"
       v-if="orderProducts"
@@ -104,124 +104,125 @@
           </div>
         </el-col>
         <el-col :xs="24" :sm="16" :md="14" :lg="12" :xl="10">
-        <!--Stepper-->
-        <el-row  style="margin-bottom: 40px;">
-        <el-steps :active="activeStep" align-center finish-status="success">
-          <el-step title="Ваши контакты" icon="el-icon-info"></el-step>
-          <el-step title="Адрес" icon="el-icon-location"></el-step>
-          <el-step title="Доставка"></el-step>
-          <el-step title="Оплата" icon="el-icon-document"></el-step>
-          <el-step title="Оформление" icon="el-icon-circle-check-outline"></el-step>
-        </el-steps>
-        </el-row>
+          <!--Stepper-->
+          <el-row style="margin-bottom: 40px;">
+            <el-steps :active="activeStep" align-center finish-status="success">
+              <el-step title="Ваши контакты" icon="el-icon-info"></el-step>
+              <el-step title="Адрес" icon="el-icon-location"></el-step>
+              <el-step title="Доставка"></el-step>
+              <el-step title="Оплата" icon="el-icon-document"></el-step>
+              <el-step title="Оформление" icon="el-icon-circle-check-outline"></el-step>
+            </el-steps>
+          </el-row>
           <!--Form 1-->
-        <el-row type="flex" justify="center" class="mt-5">
-        <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
-        <div v-if="activeStep === 1">
-        <el-form
-          label-position="top"
-          label-width="100px"
-          status-icon
-          ref="buyer"
-          :rules="buyerFormRules"
-          :model="buyer">
-        <!--EMAIL-->
-        <el-form-item label="Email" prop="email">
-          <el-input type="email" v-model="buyer.email" auto-complete="on"></el-input>
-        </el-form-item>
-          <!--NAME-->
-        <el-row>
-          <el-col :span="12">
-            <el-form-item label="Имя" prop="firstname">
-              <el-input type="text" v-model="buyer.firstname" auto-complete="off"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item label="Фамилия" prop="lastname">
-              <el-input v-model="buyer.lastname"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-          <!--PHONE-->
-        <el-form-item label="Телефон" prop="phone">
-          <no-ssr>
-            <masked-input
-              v-model="buyer.phone"
-              class="el-input__inner"
-              required
-              mask="\+\7 (111) 111-11-11"
-              placeholder="Номер телефона"/>
-          </no-ssr>
-        </el-form-item>
-        </el-form>
-        </div>
-        </el-col>
-        </el-row>
+          <el-row type="flex" justify="center" class="mt-5">
+            <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
+              <div v-if="activeStep === 1">
+                <el-form
+                  label-position="top"
+                  label-width="100px"
+                  status-icon
+                  ref="buyer"
+                  :rules="buyerFormRules"
+                  :model="buyer">
+                  <!--EMAIL-->
+                  <el-form-item label="Email" prop="email">
+                    <el-input type="email" v-model="buyer.email" auto-complete="on"></el-input>
+                  </el-form-item>
+                  <!--NAME-->
+                  <el-row>
+                    <el-col :span="12">
+                      <el-form-item label="Имя" prop="firstname">
+                        <el-input type="text" v-model="buyer.firstname" auto-complete="off"></el-input>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form-item label="Фамилия" prop="lastname">
+                        <el-input v-model="buyer.lastname"></el-input>
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
+                  <!--PHONE-->
+                  <el-form-item label="Телефон" prop="phone">
+                    <no-ssr>
+                      <masked-input
+                        v-model="buyer.phone"
+                        class="el-input__inner"
+                        required
+                        mask="\+\7 (111) 111-11-11"
+                        placeholder="Номер телефона"/>
+                    </no-ssr>
+                  </el-form-item>
+                </el-form>
+              </div>
+            </el-col>
+          </el-row>
           <!---------->
           <!--Step 2-->
-        <el-row type="flex" justify="center">
-          <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
-            <div v-if="activeStep === 2">
-              <el-form
-                label-position="top"
-                label-width="100px"
-                status-icon
-                ref="address"
-                :rules="addressFormRules"
-                :model="address">
-                <el-row type="flex">
-                  <el-col :span="12" class="pr-1">
-                    <el-form-item label="Страна" prop="country">
-                     <el-input v-model="address.country"></el-input>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12" class="pl-1">
-                    <el-form-item label="Город" prop="city">
-                      <el-input v-model="address.city"></el-input>
-                   </el-form-item>
-                  </el-col>
-                </el-row>
-                <el-row>
-                  <el-col :xs="16" :sm="18" :md="18" :lg="18" :xl="18" class="pr-1">
-                    <el-form-item label="Улица" prop="street">
-                     <el-input v-model="address.street"></el-input>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :xs="8" :sm="6" :md="6" :lg="6" :xl="6" class="pl-1">
-                    <el-form-item label="Дом" prop="build">
-                     <el-input v-model="address.build"></el-input>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-                <el-row type="flex">
-                  <el-col :span="12" class="pr-1">
-                    <el-form-item label="Квартира" prop="house">
-                      <el-input v-model="address.house"></el-input>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12" class="pl-1">
-                    <el-form-item label="Почтовый индекс" prop="postCode">
-                      <el-input v-model="address.postCode"></el-input>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-              </el-form>
-            </div>
-          </el-col>
-        </el-row>
+          <el-row type="flex" justify="center">
+            <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
+              <div v-if="activeStep === 2">
+                <el-form
+                  label-position="top"
+                  label-width="100px"
+                  status-icon
+                  ref="address"
+                  :rules="addressFormRules"
+                  :model="address">
+                  <el-row type="flex">
+                    <el-col :span="12" class="pr-1">
+                      <el-form-item label="Страна" prop="country">
+                        <el-input v-model="address.country"></el-input>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="12" class="pl-1">
+                      <el-form-item label="Город" prop="city">
+                        <el-input v-model="address.city"></el-input>
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :xs="16" :sm="18" :md="18" :lg="18" :xl="18" class="pr-1">
+                      <el-form-item label="Улица" prop="street">
+                        <el-input v-model="address.street"></el-input>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :xs="8" :sm="6" :md="6" :lg="6" :xl="6" class="pl-1">
+                      <el-form-item label="Дом" prop="build">
+                        <el-input v-model="address.build"></el-input>
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
+                  <el-row type="flex">
+                    <el-col :span="12" class="pr-1">
+                      <el-form-item label="Квартира" prop="house">
+                        <el-input v-model="address.house"></el-input>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="12" class="pl-1">
+                      <el-form-item label="Почтовый индекс" prop="postCode">
+                        <el-input v-model="address.postCode"></el-input>
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
+                </el-form>
+              </div>
+            </el-col>
+          </el-row>
           <!---------->
           <!--Step 3-->
-        <el-row type="flex" justify="center">
-          <el-col :xs="24" :sm="18" :md="18" :lg="18" :xl="18">
-            <div v-if="activeStep === 3" id="delivery_form">
-              <el-tooltip placement="bottom" class="item">
-              <!--<v-icon small id="delivery_help">live_help</v-icon>-->
-              <span slot="content">
+          <el-row type="flex" justify="center">
+            <el-col :xs="24" :sm="18" :md="18" :lg="18" :xl="18">
+              <div v-if="activeStep === 3" id="delivery_form">
+                <el-tooltip placement="bottom" class="item">
+                  <!--<v-icon small id="delivery_help">live_help</v-icon>-->
+                  <span slot="content">
               На данный момент постоянная доставка осущестявляется только по России. <br>
               Если вы находитесь в другой стране, то мы готовы рассмотреть Вашу заявку в индивидуальном плане,<br>
               для этого свяжитесь с нами по телефону {{ this.$store.getters.companyInfo.contacts.phone }}
               </span>
-              </el-tooltip> <br>
+                </el-tooltip>
+                <br>
                 <el-radio-group v-model="delivery.method">
                   <el-radio
                     v-for="method in $store.getters.DELIVERY_METHODS"
@@ -230,77 +231,79 @@
                     border>{{ method.label }}
                   </el-radio>
                 </el-radio-group>
-              <br>
-            </div>
-          </el-col>
-        </el-row>
+                <br>
+              </div>
+            </el-col>
+          </el-row>
           <!---------->
           <!--Step 4-->
-        <el-row type="flex" justify="center">
-          <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
-            <div v-if="activeStep === 4" id="payment_form">
-            <h3>ОПЛАТА</h3>
-            <el-radio-group v-model="payment.type">
-              <el-radio v-for="type in $store.getters.PAYMENT_TYPES" :key="type.value" :label="type.value" border>
-              {{ type.label }}
-              </el-radio>
-            </el-radio-group>
-              <div v-if="payment.type">
-                <h3>СПОСОБ ОПЛАТЫ</h3>
-                <el-radio-group v-model="payment.method">
-                  <el-radio
-                    v-if="payment.type !== $store.getters.PAYMENT_TYPES.online.value"
-                    :label="$store.getters.PAYMENT_METHODS.cash.value" border>
-                  {{ $store.getters.PAYMENT_METHODS.cash.label }}
-                  </el-radio>
-                  <el-radio :label="$store.getters.PAYMENT_METHODS.bank_card.value" border>
-                  {{ $store.getters.PAYMENT_METHODS.bank_card.label }}
+          <el-row type="flex" justify="center">
+            <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
+              <div v-if="activeStep === 4" id="payment_form">
+                <h3>ОПЛАТА</h3>
+                <el-radio-group v-model="payment.type">
+                  <el-radio v-for="type in $store.getters.PAYMENT_TYPES" :key="type.value" :label="type.value" border>
+                    {{ type.label }}
                   </el-radio>
                 </el-radio-group>
+                <div v-if="payment.type">
+                  <h3>СПОСОБ ОПЛАТЫ</h3>
+                  <el-radio-group v-model="payment.method">
+                    <el-radio
+                      v-if="payment.type !== $store.getters.PAYMENT_TYPES.online.value"
+                      :label="$store.getters.PAYMENT_METHODS.cash.value" border>
+                      {{ $store.getters.PAYMENT_METHODS.cash.label }}
+                    </el-radio>
+                    <el-radio :label="$store.getters.PAYMENT_METHODS.bank_card.value" border>
+                      {{ $store.getters.PAYMENT_METHODS.bank_card.label }}
+                    </el-radio>
+                  </el-radio-group>
+                </div>
               </div>
-            </div>
-          </el-col>
-        </el-row>
+            </el-col>
+          </el-row>
           <!---------->
           <!--Step 5-->
-        <el-row type="flex" justify="center">
-          <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
-            <div v-if="activeStep === 5" id="final_stage">
-              <h3>Нужна помощь? Укажите дополнительные услуги к заказу:</h3>
-              <el-checkbox-group v-model="services">
-                <el-checkbox
-                  v-for="service in $store.getters.SERVICE_TYPES" :key="service.value"
-                  :label="service.value">
-                  <p>{{ service.label }}</p>
-                </el-checkbox>
-              </el-checkbox-group>
-              <el-input
-                style="margin-top: 20px;"
-                type="textarea"
-                :autosize="{ minRows: 2, maxRows: 4}"
-                placeholder="Комментарии к заказу (не обязательно)"
-                v-model="comments.user">
-              </el-input>
-              <!-- TODO: Оферта -->
-              <p>Нажимая оформить вы соглашаетесь с
-              <a target="_blank" class="secondary--text" href="https://.../userAgreement">офертой</a>
-              </p>
-              <el-button @click="checkout" type="success">ОФОРМИТЬ</el-button>
-            </div>
-          </el-col>
-        </el-row>
+          <el-row type="flex" justify="center">
+            <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
+              <div v-if="activeStep === 5" id="final_stage">
+                <h3>Нужна помощь? Укажите дополнительные услуги к заказу:</h3>
+                <el-checkbox-group v-model="services">
+                  <el-checkbox
+                    v-for="service in $store.getters.SERVICE_TYPES" :key="service.value"
+                    :label="service.value">
+                    <p>{{ service.label }}</p>
+                  </el-checkbox>
+                </el-checkbox-group>
+                <el-input
+                  style="margin-top: 20px;"
+                  type="textarea"
+                  :autosize="{ minRows: 2, maxRows: 4}"
+                  placeholder="Комментарии к заказу (не обязательно)"
+                  v-model="comments.user">
+                </el-input>
+                <!-- TODO: Оферта -->
+                <p>Нажимая оформить вы соглашаетесь с
+                  <a target="_blank" class="secondary--text" href="https://.../userAgreement">офертой</a>
+                </p>
+                <el-button @click="checkout" type="success">ОФОРМИТЬ</el-button>
+              </div>
+            </el-col>
+          </el-row>
         </el-col>
       </el-row>
-      <el-button @click="prevStep" v-if="activeStep !== 1" round>Назад</el-button>
-      <el-button
-        v-if="activeStep !== 5"
-        @click="nextStep" round
-        :type="validCheckoutStep ? 'success' : 'info'"
-        :disabled="!validCheckoutStep">
-        Вперед
-      </el-button>
+      <el-row type="flex" justify="center">
+        <el-button @click="prevStep" v-if="activeStep !== 1" round>Назад</el-button>
+        <el-button
+          v-if="activeStep !== 5"
+          @click="nextStep" round
+          :type="validCheckoutStep ? 'success' : 'info'"
+          :disabled="!validCheckoutStep">
+          Вперед
+        </el-button>
+      </el-row>
     </el-dialog>
-  </span>
+  </div>
 </template>
 
 <script>
@@ -535,7 +538,7 @@
 
   #delivery_form,
   #payment_form,
-  #final_stage{
+  #final_stage {
     /*margin-top: 40px;*/
   }
 

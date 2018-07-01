@@ -65,6 +65,7 @@
               <no-ssr v-if="!isAlreadyAddedProduct">
                 <el-button
                   id="into_cart_btn"
+                  class="primary_btn"
                   :disabled="$store.getters.singleProduct.totalQty < 1"
                   @click="updateOwnProduct($store.getters.singleProduct, 'cart', 'add')">
                   <span>
@@ -77,7 +78,7 @@
               <div v-else>
                 <el-tooltip class="item" effect="dark" placement="top-end" content="Продолжить покупки">
                   <nuxt-link to="/catalog">
-                    <el-button class="already_added_btn">
+                    <el-button class="secondary_btn">
                       <i class="el-icon-d-arrow-left"></i>
                       В каталог
                     </el-button>
@@ -85,7 +86,7 @@
                 </el-tooltip>
                 <el-tooltip class="item" effect="dark" placement="top-end" content="Оформить покупку">
                   <nuxt-link to="/cart">
-                    <el-button class="already_added_btn already_added_btn_xs_fix">
+                    <el-button class="secondary_btn">
                       Оформить
                       <i class="el-icon-d-arrow-right"></i>
                     </el-button>
@@ -93,7 +94,9 @@
                 </el-tooltip>
                 <br>
                 <el-tooltip class="item" effect="dark" content="Удалить из корзины">
-                  <el-button @click="updateOwnProduct($store.getters.singleProduct, 'cart', 'remove')" size="mini">
+                  <el-button
+                    @click="updateOwnProduct($store.getters.singleProduct, 'cart', 'remove')"
+                    style="margin-top: 5px;" size="mini">
                     <i class="el-icon-delete"></i>
                   </el-button>
                 </el-tooltip>
@@ -218,6 +221,7 @@
     width: 100%;
     text-align: left;
     margin-bottom: 10px;
+    font-weight: 300;
   }
 
   #price {
@@ -287,22 +291,9 @@
   }
 
   #into_cart_btn {
-    color: white;
-    background: $color-primary;
-    height: 44px;
-    width: 160px;
-    border: 1px solid $color-primary;
-    margin-bottom: 5px;
     .el-icon-goods {
       margin-left: 8px;
     }
-  }
-
-  .already_added_btn {
-    width: 142px;
-    margin-bottom: 5px;
-    background: $color-success-second;
-    color: white;
   }
 
   #product_thumbnails_desctop {
@@ -316,9 +307,6 @@
   @media only screen and (max-width: $xs-screen) {
     .product_info {
       margin-left: 10px;
-    }
-    .already_added_btn_xs_fix {
-      margin-left: 3px;
     }
     #product_thumbnails_desctop {
       display: none;

@@ -40,10 +40,10 @@
           </el-row>
         </div>
         <div v-if="Object.keys(userCart).length">
+          <p id="total_price">ИТОГО: {{ parseFloat(totalOrder.price).toFixed(2) }} RUB</p>
           <el-row id="total_row">
-            <p id="total_price">ИТОГО: {{ parseFloat(totalOrder.price).toFixed(2) }} RUB</p>
             <nuxt-link to="/catalog" exact>
-              <el-button>ПРОДОЛЖИТЬ ПОКУПКИ</el-button>
+              <el-button class="secondary_btn" style="width: 208px">ПРОДОЛЖИТЬ ПОКУПКИ</el-button>
             </nuxt-link>
             <checkout type="all" :checkout-obj="totalOrder.items" style="margin-left: 10px;"></checkout>
           </el-row>
@@ -140,6 +140,8 @@
   }
 
   #total_row {
+    display: flex;
+    justify-content: center;
     margin-top: 20px;
   }
 
@@ -153,6 +155,7 @@
     font-size: 16px;
     font-weight: 600;
     text-align: center;
+    margin-top: 20px;
   }
 
   .price {

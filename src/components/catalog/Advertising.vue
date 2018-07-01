@@ -61,20 +61,27 @@
 
 <style scoped lang="scss">
   #add_wrap {
-    margin-top: 10px;
+    margin-top: 45px;
     flex: 0 0 300px;
   }
 
   .carousel_title {
     display: flex;
     justify-content: center;
+    h4 {
+      margin: 10px;
+    }
   }
 
   .carousel_content {
     display: flex;
     justify-content: center;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 5px 15px;
+    margin: 0;
+    font-weight: 300;
+    p {
+      margin: 0 0 15px;
+    }
   }
 
   .info_carousel {

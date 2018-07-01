@@ -52,45 +52,48 @@
 <style scoped lang="scss">
   $crumbs-back: white;
   $text-color: white;
+  $angle-height: 14px;
 
   #crumbs {
     /*text-align: center;*/
     ul {
       list-style: none;
       display: inline-table;
-      margin: 12px 12px 5px;
+      margin: 10px 10px 5px;
+      padding-left: 0px;
       li {
         display: inline;
         a {
           display: block;
           float: left;
-          height: 18px;
-          background: $color-primary-light; // white
+          height: 16px;
+          background: $color-primary-dark;
 
           text-align: center;
-          padding: 12px 10px 10px 34px;
+          padding: 7px 10px 5px 24px;
           position: relative;
           margin: 0 10px 0 0;
 
-          font-size: 14px;
+          font-size: 12px;
+          font-weight: 300;
           text-decoration: none;
           color: $text-color;
 
           &:after {
             content: "";
-            border-top: 20px solid transparent;
-            border-bottom: 20px solid transparent;
-            border-left: 20px solid $color-primary-light;
+            border-top: $angle-height solid transparent;
+            border-bottom: $angle-height solid transparent;
+            border-left: $angle-height solid $color-primary-dark;
             position: absolute;
-            right: -20px;
+            right: -$angle-height;
             top: 0;
             z-index: 1;
           }
           &:before {
             content: "";
-            border-top: 20px solid transparent;
-            border-bottom: 20px solid transparent;
-            border-left: 20px solid #fff;
+            border-top: $angle-height solid transparent;
+            border-bottom: $angle-height solid transparent;
+            border-left: $angle-height solid #fff;
             position: absolute;
             left: 0;
             top: 0;

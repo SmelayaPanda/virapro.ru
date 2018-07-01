@@ -35,7 +35,7 @@
               <div class="pulsing-circle"></div>
             </div>
           </el-col>
-          <el-col :span="10">
+          <el-col :span="14">
             <h2>О наших возможностях</h2>
           </el-col>
         </el-row>
@@ -103,7 +103,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 30px;
     h2 {
       position: relative;
       color: $color-primary;

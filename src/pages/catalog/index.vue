@@ -82,7 +82,7 @@
     &:hover {
       cursor: pointer;
       background: $color-primary;
-      border: $color-primary;
+      border: 1px solid $color-primary;
       color: white;
       @include secondaryShadow;
     }
@@ -107,6 +107,7 @@
       padding: 10px;
     }
     p {
+      font-size: 14px;
       padding: 10px;
     }
     button {

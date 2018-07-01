@@ -8,7 +8,7 @@
     </el-row>
     <input type="file" style="display: none;" ref="fileInput" accept="image/*" @change="onFilePicked">
     <el-row type="flex" justify="center">
-      <img :src="imageUrl" height="120" style="margin-top: 7px;">
+      <img v-if="imageUrl" :src="imageUrl" height="120" style="margin-top: 7px;">
     </el-row>
   </div>
 </template>
