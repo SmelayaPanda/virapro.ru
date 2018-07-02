@@ -1,6 +1,6 @@
 <template>
   <el-row type="flex">
-    <el-col :span="hoveredProducts ? 24 : 12" id="left_side_wrap">
+    <el-col :span="hoveredProducts && !isSideChanging ? 24 : 12" id="left_side_wrap">
       <el-row>
         <el-col :span="18">
           <h1>Товары для обустройства <br>дома от А до Я</h1>
@@ -14,7 +14,7 @@
           </nuxt-link>
         </el-col>
         <transition name="fade">
-          <el-col v-if="hoveredProducts" :span="18">
+          <el-col v-if="hoveredProducts && !isSideChanging" :span="18">
             <p class="more_text">
               Разнообразный и богатый опыт укрепление и развитие структуры позволяет выполнять
               важные задания по разработке системы обучения кадров, соответствует насущным потребностям. Разнообразный и
@@ -24,9 +24,9 @@
           </el-col>
         </transition>
       </el-row>
-      <div class="slide_starter" @mouseover="hoveredProducts = true" @mouseleave="hoveredProducts = false"></div>
+      <div class="slide_starter" @mouseover="hoveredProducts = true" @mouseleave="mouseLeave('hoveredProducts')"></div>
     </el-col>
-    <el-col :span="hoveredServices ? 24 : 12" id="rightSide">
+    <el-col :span="hoveredServices && !isSideChanging ? 24 : 12" id="rightSide">
       <el-row class="flex_block">
         <el-col :span="18">
           <h1>Консультация и установка <br>оборудования</h1>
@@ -40,7 +40,7 @@
           </nuxt-link>
         </el-col>
         <transition name="fade">
-          <el-col v-if="hoveredServices" :span="18">
+          <el-col v-if="hoveredServices && !isSideChanging" :span="18">
             <p class="more_text">
               Разнообразный и богатый опыт укрепление и развитие структуры позволяет выполнять
               важные задания по разработке системы обучения кадров, соответствует насущным потребностям. Разнообразный и
@@ -50,7 +50,7 @@
           </el-col>
         </transition>
       </el-row>
-      <div class="slide_starter" @mouseover="hoveredServices = true" @mouseleave="hoveredServices = false"></div>
+      <div class="slide_starter" @mouseover="hoveredServices = true" @mouseleave="mouseLeave('hoveredServices')"></div>
     </el-col>
     <ChoiceRoundBtn :hoveredProducts="hoveredProducts" :hoveredServices="hoveredServices"/>
   </el-row>
@@ -64,7 +64,17 @@
     data() {
       return {
         hoveredProducts: false,
-        hoveredServices: false
+        hoveredServices: false,
+        isSideChanging: false
+      }
+    },
+    methods: {
+      mouseLeave (val) {
+        this.isSideChanging = true
+        this[val] = false
+        setTimeout(() =>  {
+          this.isSideChanging = false
+        }, 700)
       }
     }
   }
