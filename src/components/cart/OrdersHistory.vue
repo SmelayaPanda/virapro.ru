@@ -113,6 +113,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 300;
     h2 {
       color: $color-primary;
       font-size: 28px;

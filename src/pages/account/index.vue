@@ -22,11 +22,15 @@
                 </p>
                 <p id="name">
                   <img src="~/assets/icons/account/perm.svg" alt="Имя Фамилия">
-                  {{ $store.getters.user.firstname }} {{ $store.getters.user.lastname }}
+                  <span v-if="$store.getters.user.firstname">
+                    {{ $store.getters.user.firstname }} {{ $store.getters.user.lastname }}
+                  </span>
+                  <span v-else>-</span>
                 </p>
                 <p id="email">
                   <img src="~/assets/icons/account/email.svg" alt="Почта">
-                  {{ $store.getters.user.email }}
+                  <span v-if="$store.getters.user.email">{{ $store.getters.user.email }}</span>
+                  <span v-else>-</span>
                 </p>
                 <el-button class="primary_btn" @click="$store.dispatch('logout')">Выйти</el-button>
               </el-card>
@@ -79,6 +83,9 @@
         color: $color-secondary;
         img {
           margin-bottom: -6px;
+        }
+        span {
+          padding-left: 3px;
         }
       }
       button {
