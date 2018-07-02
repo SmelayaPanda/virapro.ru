@@ -3,6 +3,7 @@ export const state = () => ({
   IS_ADMIN: false,
   LOADING: false,
   ERR: null,
+  ANCHOR: '',
 
   // DICTIONARIES
   dictionaries: {},

@@ -28,7 +28,7 @@
             <nuxt-link to="/about">О нас</nuxt-link>
           </el-col>
           <el-col :xs="10" :sm="10" :md="4" :lg="4" :xl="4">
-            <nuxt-link to="/">Услуги</nuxt-link>
+            <a @click="$nuxt.$router.push({name: 'catalog', params: {ANCHOR: '#service_title'}})">Услуги</a>
           </el-col>
           <el-col :xs="10" :sm="10" :md="8" :lg="7" :xl="8">
             <el-button
@@ -140,6 +140,9 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 32px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   #rehigh_logo {

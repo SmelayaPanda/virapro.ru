@@ -873,6 +873,10 @@ export const actions = {
   ERR({commit}, payload) {
     commit('ERR', payload)
   },
+
+  ANCHOR({commit}, payload) {
+    commit('ANCHOR', payload)
+  },
   LOADING({commit}, payload) {
     commit('LOADING', payload)
   },

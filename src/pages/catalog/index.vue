@@ -2,7 +2,7 @@
   <div id="wrap">
     <el-row id="catalog_wrap">
       <el-col :span="8" id="catalog_title">
-        <h1><span>Каталог</span><br>сантехнического и<br>отопительного<br>оборудования</h1>
+        <h1 v-scroll-to="'#service_title'"><span>Каталог</span><br>сантехнического и<br>отопительного<br>оборудования</h1>
       </el-col>
       <el-col
         :span="8"
@@ -31,7 +31,23 @@
 </template>
 
 <script>
-  export default {}
+  export default {
+    data () {
+      return {
+        params: ''
+      }
+    },
+    fetch ({ store, params }) {
+      console.log(params.ANCHOR)
+      store.dispatch('ANCHOR', params.ANCHOR)
+    },
+    mounted() {
+      if (this.$store.getters.ANCHOR === '#service_title') { // stupid hack to scroll to services
+        this.$scrollTo('#service_title')
+        this.$store.dispatch('ANCHOR', '')
+      }
+    }
+  }
 </script>
 
 <style scoped lang="scss">

@@ -31,6 +31,9 @@ export const mutations = {
   ERR(state, payload) {
     state.ERR = payload
   },
+  ANCHOR (state, payload) {
+    state.ANCHOR = payload
+  },
 
   // DICTIONARIES
   setDictionary(state, payload) {
