@@ -30,7 +30,7 @@
             <nuxt-link to="/">Услуги</nuxt-link>
           </el-col>
           <el-col :xs="10" :sm="10" :md="8" :lg="7" :xl="8">
-            <nuxt-link to="/">Оплата и доставка</nuxt-link>
+            <delivery-and-payment></delivery-and-payment>
           </el-col>
           <el-col :xs="10" :sm="10" :md="4" :lg="4" :xl="4">
             <nuxt-link to="/about">Отзывы</nuxt-link>
@@ -54,8 +54,10 @@
 </template>
 
 <script>
+  import DeliveryAndPayment from "./info/DeliveryAndPayment";
   export default {
-    name: 'AppFooter'
+    name: 'AppFooter',
+    components: {DeliveryAndPayment}
   }
 </script>
 
@@ -89,6 +91,9 @@
       position: absolute;
       left: -28px;
       height: 18px;
+    }
+    #footer_links {
+      padding-left: 15px;
     }
     #location {
       position: relative;

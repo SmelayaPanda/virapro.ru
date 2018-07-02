@@ -8,6 +8,10 @@ $--color-info: #909399 !default;
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
 @import "~element-ui/packages/theme-chalk/src/index";
 
+.v-modal {
+  opacity: 0 !important; // remove black from modal window when in footer
+}
+
 .el-badge__content {
   background: #3b3b3b;
 }
