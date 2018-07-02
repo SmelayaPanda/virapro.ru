@@ -3,9 +3,13 @@
     <el-col :xs="22" :sm="22" :md="18" :lg="16" :xl="14" type="flex" align="middle">
       <h1 align="left">Корзина</h1>
       <div v-if="!Object.keys(userCart).length">
-        <p>Ваша корзина пуста</p>
+        <p id="cart_is_empty">Ваша корзина пуста</p>
         <router-link to="/catalog">
-          <p id="into_catalog">В каталог</p>
+          <el-button class="primary_btn" id="into_catalog">
+            <span style="padding-left: 15px;padding-right: 5px;">В каталог</span>
+            <i class="el-icon-arrow-right"></i>
+            <i class="el-icon-arrow-right"></i>
+          </el-button>
         </router-link>
       </div>
       <div v-if="Object.keys(userCart).length">
@@ -177,12 +181,6 @@
     margin-right: 2px;
   }
 
-  #into_catalog {
-    color: $color-secondary;
-    font-size: 16px;
-    font-weight: 600;
-  }
-
   #cart_product_descr {
     padding-left: 15px;
     text-align: left;
@@ -207,5 +205,9 @@
     .product_row {
       border-top: 1px solid $color-primary-light-2 !important;
     }
+  }
+
+  #cart_is_empty {
+    color: $color-info;
   }
 </style>
