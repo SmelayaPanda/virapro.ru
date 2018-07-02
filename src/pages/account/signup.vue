@@ -1,41 +1,40 @@
 <template>
   <el-row type="flex" justify="center">
-    <el-col :xs="24" :sm="14" :md="12" :lg="10" :xl="8">
+    <el-col :xs="24" :sm="14" :md="11" :lg="9" :xl="8">
       <el-card id="signup_card">
         <el-alert
           v-if="$store.state.ERR"
           :description="$store.state.ERR.message"
           title="Error" type="error" show-icon>
         </el-alert>
-        <h2>Signup</h2>
+        <h2>Регистрация</h2>
         <el-form :model="form" status-icon :rules="rules" auto-complete="on" ref="form">
-          <el-form-item label="Firstname" prop="firstname">
+          <el-form-item label="Имя" prop="firstname">
             <el-input type="text" id="firstname" :autofocus="true" v-model="form.firstname" auto-complete="on"/>
           </el-form-item>
-          <el-form-item label="Lastname" prop="lastname">
+          <el-form-item label="Фамилия" prop="lastname">
             <el-input type="text" id="lastname" :autofocus="true" v-model="form.lastname" auto-complete="on"/>
           </el-form-item>
-          <el-form-item label="Email" prop="email">
+          <el-form-item label="Почта" prop="email">
             <el-input type="email" :autofocus="true" v-model="form.email" auto-complete="on"></el-input>
           </el-form-item>
-          <el-form-item label="Password" prop="password">
+          <el-form-item label="Пароль" prop="password">
             <el-input type="password" v-model="form.password" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="Password confirmation" prop="checkPass">
+          <el-form-item label="Подтверждение пароля" prop="checkPass">
             <el-input type="password" v-model="form.checkPass" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button
-              type="danger mt-2"
+              class="primary_btn"
               :disabled="$store.getters.LOADING || !isValidForm"
               @click="submitForm('form')">
-              Go!
+              Вперед!
             </el-button>
-            <el-button @click.native="googleSignUp">Google Sign In</el-button>
           </el-form-item>
         </el-form>
         <router-link to="/account/signin">
-          <el-button type="text">Have an account?</el-button>
+          <el-button type="text">Есть аккаунт?</el-button>
         </router-link>
       </el-card>
     </el-col>

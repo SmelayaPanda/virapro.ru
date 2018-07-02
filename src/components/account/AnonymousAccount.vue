@@ -5,19 +5,19 @@
         <p id="greeting">
           Приветствуем!
         </p>
-        <b>Вы зашли как анонимный пользователь!</b><br>
-        <p>
-          Вы не сможете управлять своими данными на других устройствах
-          и аккаунтом также как зарегистрированный пользователь!
+        <p>Вы зашли как анонимный пользователь</p>
+        <p id="register_please">
+          Войдите в аккаунт или зарегистрируйтесь для того чтобы управлять своими данными на других устройствах. <br>
+          <span style="font-size: 12px;">( При регистрации все ваши текущие данные сохранятся )</span>
         </p>
         <br>
         <nuxt-link to="/account/signup">
-          <el-button type="primary">
+          <el-button class="secondary_btn" style="width: 180px">
             Зарегистрироваться
           </el-button>
         </nuxt-link>
         <nuxt-link to="/account/signin">
-          <el-button id="sign_in">
+          <el-button class="primary_btn" id="sign_in">
             Войти
           </el-button>
         </nuxt-link>
@@ -37,17 +37,16 @@
     font-size: 20px;
     letter-spacing: 1px;
     background: linear-gradient(to right, $color-secondary-light 43%, $color-secondary 51%);
-    color: transparent;
+    color: $color-primary;
     -webkit-background-clip: text;
     margin-top: 20px;
-  }
-
-  #greeting:after {
-    content: '';
-    display: block;
-    width: 120px;
-    height: 3px;
-    border-bottom: 2px solid $color-secondary;
+    &:after {
+      content: '';
+      display: block;
+      width: 120px;
+      height: 3px;
+      border-bottom: 2px solid $color-primary;
+    }
   }
 
   #anonymous_card {
@@ -62,5 +61,9 @@
   }
   #sign_in {
     margin-left: 10px;
+  }
+
+  #register_please {
+    font-weight: 300;
   }
 </style>

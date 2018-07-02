@@ -7,29 +7,55 @@
           :description="$store.state.ERR.message"
           title="Error" type="error" show-icon>
         </el-alert>
-        <h2>Login</h2>
-        <el-form :model="form" status-icon :rules="rules" auto-complete="on" ref="form">
-          <el-form-item label="Email" prop="email">
-            <el-input type="email" id="email" :autofocus="true" v-model="form.email" auto-complete="on"></el-input>
-          </el-form-item>
-          <el-form-item label="Password" prop="password">
-            <el-input type="password" v-model="form.password" auto-complete="off"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="danger" :disabled="$store.getters.LOADING" @click="submitForm('form')">
-              Go!
-            </el-button>
-            <el-button @click.native="googleSignUp">Google Sign In</el-button>
-          </el-form-item>
-          <div v-if="submitCount > 1">
-            <span class="primary--text ml-3">Forgot a password?</span>
-            <p>Type the email in the field above and click:</p>
-            <el-button type="danger" @click="resetPassword">Reset password</el-button>
-          </div>
-          <router-link to="/account/signup">
-            <el-button type="text">Haven't account?</el-button>
-          </router-link>
-        </el-form>
+        <h2 align="center">Выберите способ входа</h2>
+        <el-button @click.native="googleSignUp">
+          <img src="~/assets/icons/account/gmail.svg" height="60" alt="Войти с помощью Google"><br>
+          Войти с помощью Google
+        </el-button>
+        <el-button @click="emailSignInDialog = true">
+          <img src="~/assets/icons/account/emailSignIn.svg" height="60px" alt="Войти с помощью Google"><br>
+          Войти с помощью email
+        </el-button>
+        <router-link to="/account/signup">
+          <el-button type="text" id="havent_account">
+            <!--Haven't account?-->
+            Нет аккаунта?
+          </el-button>
+        </router-link>
+        <el-dialog
+          width="400px"
+          title="Войти с помощью email"
+          :visible.sync="emailSignInDialog">
+          <el-form :model="form" status-icon :rules="rules" auto-complete="on" ref="form">
+            <el-form-item label="Почта" prop="email">
+              <el-input type="email" id="email" :autofocus="true" v-model="form.email" auto-complete="on"></el-input>
+            </el-form-item>
+            <el-form-item label="Пароль" prop="password">
+              <el-input type="password" v-model="form.password" auto-complete="off"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button class="primary_btn" :disabled="$store.getters.LOADING" @click="submitForm('form')">
+                Вперед!
+              </el-button>
+            </el-form-item>
+            <div v-if="submitCount > 1">
+              <!--<span>Forgot a password?</span>-->
+              <span>Забыли пароль?</span>
+              <!--<p>Type the email in the field above and click:</p>-->
+              <p>Введите email в поле выше и нажмите:</p>
+              <el-button class="secondary_btn" @click="resetPassword">
+                <!--Reset password-->
+                Сбросить пароль
+              </el-button>
+            </div>
+            <router-link to="/account/signup">
+              <el-button type="text">
+                <!--Haven't account?-->
+                Нет аккаунта?
+              </el-button>
+            </router-link>
+          </el-form>
+        </el-dialog>
       </el-card>
     </el-col>
   </el-row>
@@ -62,6 +88,7 @@
         }
       }
       return {
+        emailSignInDialog: false,
         form: {
           password: '',
           checkPass: '',
@@ -91,7 +118,7 @@
       isValidEmail(email) {
         return /^\S+@\S+\.\S+$/.test(email)
       },
-      googleSignUp () {
+      googleSignUp() {
         this.$store.dispatch('signInWithGoogle').then(() => {
           console.log('inside then statement on login');
         }).catch((e) => {
@@ -106,8 +133,23 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  h2 {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    color: $color-info-dark;
+  }
+
   #signin_card {
+    position: relative;
     margin-top: 10px;
+    height: 500px;
+  }
+
+  #havent_account {
+    font-size: 16px;
+    position: absolute;
+    right: 30px;
+    bottom: 10px;
   }
 </style>

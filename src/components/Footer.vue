@@ -1,5 +1,6 @@
 <template>
   <footer>
+    <delivery-and-payment></delivery-and-payment>
     <el-row id="footer_row">
       <el-col :xs="24" :sm="4" :md="4" :lg="4" :xl="4" id="company_logo">
         <div id="logo">ЛОГО</div>
@@ -30,7 +31,10 @@
             <nuxt-link to="/">Услуги</nuxt-link>
           </el-col>
           <el-col :xs="10" :sm="10" :md="8" :lg="7" :xl="8">
-            <delivery-and-payment></delivery-and-payment>
+            <el-button
+              style="color: white; font-size: 14px; font-weight: 400; padding-top: 8px;;"
+              type="text" @click="$bus.$emit('openDeliveryAndPaymentDialog')" >Оплата и доставка
+            </el-button>
           </el-col>
           <el-col :xs="10" :sm="10" :md="4" :lg="4" :xl="4">
             <nuxt-link to="/about">Отзывы</nuxt-link>

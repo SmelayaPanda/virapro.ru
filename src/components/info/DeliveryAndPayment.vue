@@ -1,8 +1,5 @@
 <template>
   <div>
-    <el-button
-      style="color: white; font-size: 14px; font-weight: 400; padding-top: 8px;;"
-      type="text" @click="dialog = true" >Оплата и доставка</el-button>
   <el-dialog
     title="Оплата и доставка"
     center
@@ -37,6 +34,11 @@
       return {
         dialog: false
       }
+    },
+    created () {
+      this.$bus.$on('openDeliveryAndPaymentDialog', () => {
+        this.dialog = true
+      })
     }
   }
 </script>
