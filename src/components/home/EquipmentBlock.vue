@@ -14,10 +14,12 @@
     <el-col :span="12">
       <h2 id="services_title">Предоставление услуг, <br> консультирование</h2>
       <el-row id="services_wrap">
-        <el-col v-for="i in 4" :key="i" :span="7" :offset="4">
+        <el-col v-for="service in $store.getters.SERVICE_TYPES" :key="service.value" :span="7" :offset="4">
           <el-row class="services"></el-row>
           <el-row type="flex" justify="center">
-            <el-button type="primary" class="get_service_btn primary_btn">Заказать</el-button>
+            <el-button class="get_service_btn primary_btn" @click="$bus.$emit('openOrderServiceDialog', service.value)">
+              Заказать
+            </el-button>
           </el-row>
         </el-col>
       </el-row>

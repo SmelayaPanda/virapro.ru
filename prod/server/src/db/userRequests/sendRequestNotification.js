@@ -20,8 +20,8 @@ let sendAdminEmailNotification = function (transporter, info) {
       Имя _____________________ ${info.user.firstname}
       Телефон _________________ ${info.user.phone}
       ИД пользователя _________ ${info.user.id}
-     
-      Комментарий: ${info.comments.user}
+      
+      ${info.comments && info.comments.user ? 'Комментарий: ' + info.comments.user : ''}
       `
         };
 

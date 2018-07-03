@@ -27,6 +27,10 @@
         :total="totalRequestsCount">
       </el-pagination>
     </el-row>
+    <el-row>
+      <p><img src="~/assets/icons/admin/round_green.svg" style="margin-bottom: -6px;" alt=""> простая заявка</p>
+      <p><img src="~/assets/icons/admin/round_red.svg" style="margin-bottom: -6px;" alt=""> заявка с заказом услуги</p>
+    </el-row>
   </div>
 </template>
 

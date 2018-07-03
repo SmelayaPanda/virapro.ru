@@ -10,6 +10,10 @@
       <el-col style="width: 240px">
         <el-tag type="success" size="small">{{ request.date | date }}</el-tag>
       </el-col>
+      <el-col :span="1">
+        <img v-if="request.service" src="~/assets/icons/admin/round_red.svg" alt="">
+        <img v-else src="~/assets/icons/admin/round_green.svg" alt="">
+      </el-col>
       <el-col :span="10">
         {{ request.user.firstname }}
       </el-col>
@@ -28,10 +32,17 @@
         <span class="prop_name">ИД пользователя: </span>
         <el-tag type="success" size="small">{{ request.user.id }}</el-tag>
       </el-col>
-      <el-col :span="24" id="review_text">
+      <el-col :span="24" v-if="request.service" class="service_wrap">
+        Заказ услуги: <el-tag type="primary">
+        {{ $store.getters.SERVICE_TYPES[request.service] ?
+        $store.getters.SERVICE_TYPES[request.service].title : 'error' }}</el-tag>
+      </el-col>
+      <el-col :span="24" id="request_text">
         <h4>Комментарии:</h4>
-        <el-tag type="success" size="small">Пользователя:</el-tag>
-        <p>{{ request.comments.user }}</p>
+        <p v-if="request.comments.user">
+          <el-tag type="success" size="small">Пользователя:</el-tag>
+          {{ request.comments.user }}
+        </p>
         <p v-if="request.comments.admin">
           <el-tag type="success" size="small">Ваш:</el-tag>
           <span v-html="request.comments.admin"></span>
@@ -69,12 +80,19 @@
   }
 
   #request_text {
-    margin-top: 20px;
+    margin-top: 10px;
+    h4 {
+      margin-bottom: 0;
+    }
   }
 
   #request_row {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .service_wrap {
+    margin-top: 20px;
   }
 </style>

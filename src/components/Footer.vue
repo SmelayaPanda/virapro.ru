@@ -1,6 +1,7 @@
 <template>
   <footer>
-    <delivery-and-payment></delivery-and-payment>
+    <delivery-and-payment-dialog></delivery-and-payment-dialog>
+    <order-service-dialog></order-service-dialog>
     <el-row id="footer_row">
       <el-col :xs="24" :sm="4" :md="4" :lg="4" :xl="4" id="company_logo">
         <div id="logo">ЛОГО</div>
@@ -62,10 +63,11 @@
 </template>
 
 <script>
-  import DeliveryAndPayment from "./info/DeliveryAndPayment";
+  import DeliveryAndPaymentDialog from "./dialogs/DeliveryAndPaymentDialog";
+  import OrderServiceDialog from "./dialogs/OrderServiceDialog";
   export default {
     name: 'AppFooter',
-    components: {DeliveryAndPayment}
+    components: {OrderServiceDialog, DeliveryAndPaymentDialog}
   }
 </script>
 

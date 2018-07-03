@@ -17,14 +17,16 @@
     <h2 id="service_title">Дополнителные услуги</h2>
     <div id="divider"></div>
     <el-row id="services_wrap">
-      <el-col :span="6" v-for="i in 4" :key="i" class="service">
-        <p>ФОТО {{ i }}</p>
-        <h3>Некоторая услуга</h3>
-        <p>
-          Разнообразный и богатый опыт укрепление и развитие структуры позволяет выполнять важные задания по разработке
-          системы обучения кадров, соответствует насущным потребностям.
-        </p>
-        <el-button class="primary_btn">Заказать</el-button>
+      <el-col :span="6" v-for="service in $store.getters.SERVICE_TYPES" :key="service.value">
+        <!--TODO: service.icon-->
+        <img src="~/assets/icons/account/user-placeholder.svg" height="30px" style="margin-left: 20px;" alt="">
+        <div class="service_title">
+          <h3>{{ service.title }}</h3>
+        </div>
+        <div class="service_descr">
+          <p>{{ service.description }}</p>
+        </div>
+        <el-button class="primary_btn" @click="$bus.$emit('openOrderServiceDialog', service.value)">Заказать</el-button>
       </el-col>
     </el-row>
   </div>
@@ -38,11 +40,10 @@
       }
     },
     fetch ({ store, params }) {
-      console.log(params.ANCHOR)
       store.dispatch('ANCHOR', params.ANCHOR)
     },
     mounted() {
-      if (this.$store.getters.ANCHOR === '#service_title') { // stupid hack to scroll to services
+      if (this.$store.getters.ANCHOR === '#service_title') { // stupid solution for scrolling to services
         this.$scrollTo('#service_title')
         this.$store.dispatch('ANCHOR', '')
       }
@@ -114,23 +115,29 @@
   }
 
   #services_wrap {
+    position: relative;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     margin-top: 60px;
-    h3 {
-      color: $color-primary;
-      padding: 10px;
+    height: 280px;
+    .service_title {
+      height: 30px;
+      h3 {
+        text-align: left;
+        color: $color-primary;
+        padding: 10px;
+      }
     }
-    p {
-      font-size: 14px;
-      padding: 10px;
+    .service_descr {
+      height: 120px;
+      p {
+        font-size: 14px;
+        padding: 10px;
+      }
     }
-    button {
-      margin-left: 50px;
-    }
-    .service {
-    }
+      button {
+        margin-left: 30px;
+      }
   }
 
   #divider {

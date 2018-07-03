@@ -7,15 +7,15 @@
       indicator-position="none">
       <el-carousel-item v-for="item in $store.getters.SERVICE_TYPES" :key="item.value">
         <el-row class="carousel_title">
-          <h4>{{ item.label }}</h4>
+          <h4>{{ item.title }}</h4>
         </el-row>
         <el-row class="carousel_content">
           <p>
-          {{ item.content }}
+          {{ item.description }}
           </p>
         </el-row>
         <el-row type="flex" justify="center">
-          <el-button class="primary_btn">Заказать</el-button>
+          <el-button class="primary_btn" @click="$bus.$emit('openOrderServiceDialog', item.value)">Заказать</el-button>
         </el-row>
       </el-carousel-item>
     </el-carousel>

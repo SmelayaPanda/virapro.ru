@@ -10,6 +10,9 @@
     <file url="file://$PROJECT_DIR$/src/assets/icons/home/phone_blue.svg" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/assets/icons/home/shopping-cart.svg" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/assets/icons/home/two_speech.svg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/assets/icons/product/brand.svg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/assets/icons/product/qty.svg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/assets/icons/product/size.svg" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/static/catalog/tap.svg" charset="UTF-8" />
   </component>
 </project>
