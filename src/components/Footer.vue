@@ -5,13 +5,17 @@
       <el-col :xs="24" :sm="4" :md="4" :lg="4" :xl="4" id="company_logo">
         <div id="logo">ЛОГО</div>
       </el-col>
-      <el-col :xs="12" :sm="7" :md="4" :lg="4" :xl="4" :offset="1">
+      <el-col :xs="14" :sm="7" :md="4" :lg="4" :xl="4" :offset="1">
         <p id="phone">
-          <img src="~/assets/icons/home/phone.svg" id="phone_icon" alt="Телефон">
+          <img src="~/assets/icons/home/phone.svg" alt="Телефон">
           {{ $store.getters.companyInfo.contacts.phone }}
         </p>
+        <p id="email">
+          <img src="~/assets/icons/home/email.svg" alt="Электронная почта">
+          {{ $store.getters.companyInfo.contacts.email }}
+        </p>
         <p id="location">
-          <img src="~/assets/icons/home/location.svg" id="location_icon" alt="Местоположение">
+          <img src="~/assets/icons/home/location.svg" alt="Местоположение">
           <span id="city">г. {{ $store.getters.companyInfo.address.city }}</span> <br>
           <span id="street_build">
             ул. {{ $store.getters.companyInfo.address.street }},
@@ -23,7 +27,7 @@
         </p>
       </el-col>
       <el-col  :xs="12" :sm="12" :md="11" :lg="11" :xl="11" id="footer_links">
-        <el-row type="flex" style="margin-top: 10px; flex-wrap: wrap">
+        <el-row type="flex" style="flex-wrap: wrap">
           <el-col :xs="10" :sm="10" :md="3" :lg="4" :xl="3">
             <nuxt-link to="/about">О нас</nuxt-link>
           </el-col>
@@ -41,7 +45,7 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :xs="12" :sm="6" :md="4" :lg="4" :xl="4" id="work_time">
+      <el-col :xs="10" :sm="6" :md="4" :lg="4" :xl="4" id="work_time">
         <p>
           <img src="~/assets/icons/home/calendar.svg" id="work_time_icon" alt="Рабочее время">
           <time>Пн-Пт: 10:00 - 18:00, <br><span id="rest">Сб-Вс: Выходной</span></time>
@@ -90,19 +94,30 @@
     #phone {
       position: relative;
       font-size: 16px;
+      margin-top: 14px;
+      img {
+        position: absolute;
+        left: -28px;
+        height: 18px;
+      }
     }
-    #phone_icon {
-      position: absolute;
-      left: -28px;
-      height: 18px;
+    #email {
+      position: relative;
+      font-size: 14px;
+      font-weight: 300;
+      img {
+        position: absolute;
+        left: -28px;
+        height: 18px;
+      }
     }
     #footer_links {
-      padding-left: 15px;
+      padding-left: 40px;
+      margin-top: 8px;
     }
     #location {
       position: relative;
-      margin-top: 32px;
-      #location_icon {
+      img {
         position: absolute;
         left: -28px;
         height: 20px;
@@ -120,10 +135,10 @@
       }
     }
     #work_time {
-      padding-top: 5px;
       position: relative;
       font-size: 14px;
       font-weight: 300;
+      padding-top: 5px;
       #work_time_icon {
         position: absolute;
         left: -28px;
@@ -183,7 +198,7 @@
     #city {
       font-size: 14px;
     }
-    #phone, #street_build, #work_time {
+    #phone, #street_build, #work_time, #email {
       font-size: 12px !important;
     }
   }
