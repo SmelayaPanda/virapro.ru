@@ -2,7 +2,7 @@
   <div>
     <el-row type="flex" style="align-items: center">
       <span id="questions_title">Бинарный опросник</span>
-      <AddEditQuestion/>
+      <AddEditQuestion operation="add"/>
     </el-row>
     <div style="margin-top: 20px;">
       <QuestionRow v-for="q in questions" :key="q.id" :q="q"/>

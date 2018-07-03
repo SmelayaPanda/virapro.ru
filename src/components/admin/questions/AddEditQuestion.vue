@@ -1,14 +1,19 @@
 <template>
   <div>
-    <el-button @click="dialog = true">
-      <i class="el-icon-plus"></i>
+    <el-button @click="openDialog">
+      <i :class="operation === 'add' ? 'el-icon-plus' : 'el-icon-edit'"></i>
     </el-button>
     <el-dialog
-      title="Добавить вопрос"
+      :title="operation === 'add' ? 'Добавить вопрос' : 'Редактировать вопрос'"
       close-on-press-escape
       :visible.sync="dialog"
       center
       width="500px">
+      <p v-if="operation === 'edit'" class="info_msg">
+        Пользуйтесь исправлением вопроса только в случае орфографических/грамматических ошибок.
+        Не стоит менять вопрос, если на него уже начали отвечать пользователи
+        ( в таком случае лучше создать новый )
+      </p>
       <el-form :model="form" ref="form" :rules="rules">
         <el-form-item label="Заголовок" prop="title">
           <el-input type="text" placeholder="(От 4 до 32 символов)" v-model="form.title">
@@ -23,8 +28,11 @@
           </el-input>
         </el-form-item>
         <el-row type="flex" justify="center">
-          <el-button @click="addQuestion" :disabled="!isValidForm" class="secondary_btn">
+          <el-button v-if="operation === 'add'" @click="addQuestion" :disabled="!isValidForm" class="secondary_btn">
             Добавить
+          </el-button>
+          <el-button v-else @click="editQuestion" :disabled="!isValidForm" class="secondary_btn">
+            Редактировать
           </el-button>
         </el-row>
       </el-form>
@@ -34,6 +42,10 @@
 <script>
   export default {
     name: 'AddEditQuestion',
+    props: {
+      operation: {type: String, required: true},
+      question: {type: Object}
+    },
     data() {
       return {
         dialog: false,
@@ -56,6 +68,24 @@
         })
         this.$refs.form.resetFields();
         this.dialog = false
+      },
+      editQuestion() {
+        this.$store.dispatch('updateQuestion', {
+          id: this.question.id,
+          updateData: {
+            title: this.form.title,
+            description: this.form.description
+          }
+        })
+        this.$refs.form.resetFields();
+        this.dialog = false
+      },
+      openDialog() {
+        this.dialog = true
+        if (this.operation === 'edit') {
+          this.form.title = this.question.title
+          this.form.description = this.question.description
+        }
       }
     },
     computed: {
@@ -66,3 +96,10 @@
     }
   }
 </script>
+
+<style type="text/css" lang="scss">
+  .info_msg {
+    font-size: 12px;
+    color: $color-info;
+  }
+</style>

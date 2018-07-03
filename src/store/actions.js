@@ -858,6 +858,7 @@ export const actions = {
     },
 
 
+
   // QUESTIONS
   fetchQuestions({commit, dispatch}) {
     commit('LOADING', true)
@@ -894,11 +895,17 @@ export const actions = {
     commit('LOADING', true)
     fs.collection('questions').doc(payload.id).update(payload.updateData)
       .then(() => {
+        let questions = getters.questions
+        let question = questions[payload.id]
+        questions[payload.id] = Object.assign(question, payload.updateData)
+        commit('setQuestions', {...questions})
         commit('LOADING', false)
         console.log('(i) Updated: question')
       })
       .catch(err => dispatch('LOG', err))
   },
+
+
 
     // USER EVENTS
   USER_EVENT:
