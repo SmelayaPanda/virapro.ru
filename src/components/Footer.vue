@@ -42,7 +42,7 @@
             </el-button>
           </el-col>
           <el-col :xs="10" :sm="10" :md="4" :lg="4" :xl="4">
-            <nuxt-link to="/about">Отзывы</nuxt-link>
+            <a @click="$nuxt.$router.push({name: 'about', params: {ANCHOR: '#reviews'}})">Отзывы</a>
           </el-col>
         </el-row>
       </el-col>

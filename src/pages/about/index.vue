@@ -55,7 +55,7 @@
     </el-row>
     <el-row type="flex" justify="start">
       <el-col :span="16" :offset="3">
-        <Reviews></Reviews>
+        <Reviews id="reviews"></Reviews>
       </el-col>
     </el-row>
   </div>
@@ -66,14 +66,18 @@
 
   export default {
     components: {Reviews},
-    async asyncData() {
-      return {
-        renderSource: process.static ? 'static' : (process.server ? 'server' : 'client')
-      }
+    fetch ({ store, params }) {
+      store.dispatch('ANCHOR', params.ANCHOR)
     },
     methods: {
       reloadPage() {
         window.location.reload()
+      }
+    },
+    mounted() {
+      if (this.$store.getters.ANCHOR === '#reviews') { // stupid solution for scrolling to services
+        this.$scrollTo('#reviews')
+        this.$store.dispatch('ANCHOR', '')
       }
     }
   }
