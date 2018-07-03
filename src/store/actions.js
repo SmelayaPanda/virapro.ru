@@ -503,7 +503,7 @@ export const actions = {
   // All users initially register as anonymous
     ({commit, dispatch}) => {
       commit('setUser', {cart: [], orders: []})
-      firebase.auth().signInAnonymouslyAndRetrieveData() // TODO: deprecated - replace by signInAnonymously()
+      firebase.auth().signInAnonymously() // TODO: deprecated - replace by signInAnonymously()
         .then((data) => { // onAuthStateChanged works
           return fs.collection('users').doc(data.user.uid)
             .set({ // initialize user for quick update
@@ -577,6 +577,9 @@ export const actions = {
       const user = getters.user
       const subject = payload.subject // cart or favorites
       let pId = payload.product.productId
+      if (!user[subject]) { // strange situation no update user after anonymous login
+        user[subject] = []
+      }
       if (payload.operation === 'add') {
         user[subject][pId] = payload.product
       } else if (payload.operation === 'remove') {

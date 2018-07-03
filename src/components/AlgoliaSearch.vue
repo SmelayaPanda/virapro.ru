@@ -128,7 +128,7 @@
 
     &::placeholder {
       font-size: 13px;
-      color: rgba(94, 97, 104, 0.44);
+      color: rgba(79, 82, 89, 0.53);
       /*color: rgb(161, 181, 204);*/
       font-weight: 400;
     }

@@ -272,7 +272,7 @@
                   <el-checkbox
                     v-for="service in $store.getters.SERVICE_TYPES" :key="service.value"
                     :label="service.value">
-                    <p>{{ service.label }}</p>
+                    <p>{{ service.title }}</p>
                   </el-checkbox>
                 </el-checkbox-group>
                 <el-input
@@ -284,7 +284,7 @@
                 </el-input>
                 <!-- TODO: Оферта -->
                 <p>Нажимая оформить вы соглашаетесь с
-                  <a target="_blank" class="secondary--text" href="https://.../userAgreement">офертой</a>
+                  <privacy-dialog></privacy-dialog>
                 </p>
                 <el-button @click="checkout" type="success">ОФОРМИТЬ</el-button>
               </div>
@@ -307,8 +307,10 @@
 </template>
 
 <script>
+  import PrivacyDialog from "../dialogs/PrivacyDialog";
   export default {
     name: 'Checkout',
+    components: {PrivacyDialog},
     props: ['checkoutObj', 'type'],
     data() {
       let notEmptyString = (rule, value, callback) => {

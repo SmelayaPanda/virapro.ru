@@ -57,8 +57,8 @@
                 <ul class="leaders">
                   <li v-for="(val, key) in $store.getters.singleProduct" :key="key"
                       v-if="$store.getters.DYNAMIC_PROPS[key]">
-                    <span>{{ $store.getters.DYNAMIC_PROPS[key].label }}</span>
-                    <span>{{ val }}</span>
+                    <span>{{ $store.getters.DYNAMIC_PROPS[key].label }} </span>
+                    <span> {{ val }}</span>
                   </li>
                 </ul>
               </div>
@@ -129,11 +129,6 @@
       await store.dispatch('loadSingleProduct', params.id)
       await store.dispatch('increaseProductCounter', {id: params.id, type: 'watch'})
     },
-    // computed: {
-    //   alreadyAddedProduct() {
-    //     return this.$store.getters.alreadyCartAddedProduct
-    //   }
-    // },
     methods: {
       loadOriginal(idx) {
         if (this.$refs['d_img_' + this.activeImg]) {
