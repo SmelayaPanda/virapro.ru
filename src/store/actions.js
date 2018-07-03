@@ -905,6 +905,16 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
+  deleteQuestion({commit, dispatch, getters}, payload) {
+    fs.collection('questions').doc(payload).delete()
+      .then(() => {
+        let questions = getters.questions
+        delete questions[payload]
+        commit('setQuestions', {...questions})
+        commit('LOADING', false)
+        console.log('(i) Removed: question')
+      })
+  },
 
 
     // USER EVENTS

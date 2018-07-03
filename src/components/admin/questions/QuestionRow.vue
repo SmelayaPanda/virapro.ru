@@ -2,8 +2,10 @@
   <el-card style="margin-bottom: 3px;" :body-style="{padding: '10px'}">
     <el-row class="question">
       <el-col style="width: 90px" align="center">
-        <el-progress :width="74" type="circle"
-                     :percentage="q.counters.yes.length * 100 / (q.counters.yes.length + q.counters.no.length)">
+        <el-progress
+          :width="74" type="circle"
+          :percentage="q.counters.yes.length + q.counters.no.length ?
+                      q.counters.yes.length * 100 / (q.counters.yes.length + q.counters.no.length) : 0">
         </el-progress>
         <el-popover
           trigger="hover"
@@ -40,16 +42,18 @@
       <el-col :span="13">{{ q.description }}</el-col>
       <el-col :span="2">
         <AddEditQuestion operation="edit" :question="q"></AddEditQuestion>
+        <DeleteQuestion :id="q.id"></DeleteQuestion>
       </el-col>
     </el-row>
   </el-card>
 </template>
 <script>
   import AddEditQuestion from "./AddEditQuestion";
+  import DeleteQuestion from "./DeleteQuestion";
 
   export default {
     name: 'QuestionRow',
-    components: {AddEditQuestion},
+    components: {DeleteQuestion, AddEditQuestion},
     props: {
       q: {type: Object, required: true}
     },
