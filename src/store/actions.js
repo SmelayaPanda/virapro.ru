@@ -577,9 +577,6 @@ export const actions = {
       const user = getters.user
       const subject = payload.subject // cart or favorites
       let pId = payload.product.productId
-      if (!user[subject]) { // strange situation no update user after anonymous login
-        user[subject] = []
-      }
       if (payload.operation === 'add') {
         user[subject][pId] = payload.product
       } else if (payload.operation === 'remove') {
