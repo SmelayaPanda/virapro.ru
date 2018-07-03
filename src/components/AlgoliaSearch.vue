@@ -3,20 +3,26 @@
     <el-col :span="19">
       <el-popover
         placement="bottom-start"
-        width="400"
+        width="440"
         trigger="click"
         v-model="showResult">
         <div id="search_result" v-if="algoliaSearchText && result && result.length">
-          <div v-for="res in result" :key="res.productId"
-               @click="toProduct(res.group, res.category, res.productId)"
-               class="search_row">
-            <p class="snippet_title" v-html="res.title"></p>
-            <p class="snippet_description" v-html="res.description + '...'"></p>
-            <p>
-              <span class="sku" v-html="`Арт.: ${res.SKU}`"></span>
-              <span class="price" v-html="`${res.price} RUB`"></span>
-            </p>
-            <hr class="snippet_divider">
+          <div
+            v-for="res in result" :key="res.productId"
+            @click="toProduct(res.group, res.category, res.productId)"
+            class="search_row">
+            <el-col class="thumbnail">
+              <img v-if="res.thumbnail" :src="res.thumbnail" :alt="res.title">
+              <img v-else class="no_thumbnail_icon" src="~/assets/icons/algolia/no_photo.svg" alt="нет фото">
+            </el-col>
+            <el-col class="product_info_descr">
+              <p class="snippet_title" v-html="res.title"></p>
+              <p class="snippet_description" v-html="res.description + '...'"></p>
+              <p>
+                <span class="sku" v-html="`Арт.: ${res.SKU}`"></span>
+                <span class="price" v-html="`${res.price} RUB`"></span>
+              </p>
+            </el-col>
           </div>
           <div id="algolia_icon">
             <a target="_blank" href="https://www.algolia.com/docsearch">
@@ -77,7 +83,8 @@
                 price: el.price,
                 group: el.group,
                 category: el.category,
-                productId: el.objectID
+                productId: el.objectID,
+                thumbnail: el.thumbnail ? el.thumbnail : ''
               })
             })
             this.result = data
@@ -102,53 +109,6 @@
     max-height: 440px;
     margin-top: 5px;
     margin-bottom: 40px;
-  }
-
-  .search_row {
-    margin: 0;
-    padding: 0;
-    text-align: left;
-    &:hover {
-      cursor: pointer;
-      background: rgba(29, 134, 239, 0.17);
-    }
-    p {
-      line-height: 12px;
-    }
-  }
-
-  .snippet_title {
-    padding: 10px 10px 0;
-    margin: 0;
-  }
-
-  .price {
-    font-size: 12px;
-    color: $color-success-second;
-    margin: 0 0 0 10px;
-    padding: 0;
-  }
-
-  .sku {
-    font-size: 12px;
-    color: $color-info;
-    margin: 0 0 0 10px;
-  }
-
-  .snippet_description {
-    padding: 0 10px;
-    margin: 10px 0 0;
-    font-size: 12px;
-    color: $color-info;
-  }
-
-  .snippet_divider {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 0;
-    padding: 0;
   }
 
   #algolia_search_input {
@@ -209,5 +169,66 @@
     height: 17px;
     margin-top: 5px;
     margin-left: 3px;
+  }
+
+  .search_row {
+    display: flex;
+    justify-content: start;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    border: 1px solid white;
+    border-top: 1px solid #ccc;
+    &:hover {
+      cursor: pointer;
+      border: 1px solid $color-primary-light;
+      border-radius: 3px;
+    }
+    p {
+      line-height: 12px;
+    }
+    .thumbnail {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80px;
+      img {
+        height: 50px;
+      }
+      .no_thumbnail_icon {
+        height: 30px;
+      }
+    }
+    .product_info_descr {
+      width: 360px;
+      &:hover {
+        cursor: pointer;
+        background: rgba(29, 134, 239, 0.17);
+      }
+      .snippet_title {
+        padding: 10px 10px 0;
+        margin: 0;
+      }
+
+      .price {
+        font-size: 12px;
+        color: $color-success-second;
+        margin: 0 0 0 10px;
+        padding: 0;
+      }
+
+      .sku {
+        font-size: 12px;
+        color: $color-info;
+        margin: 0 0 0 10px;
+      }
+
+      .snippet_description {
+        padding: 0 10px;
+        margin: 10px 0 0;
+        font-size: 12px;
+        color: $color-info;
+      }
+    }
   }
 </style>

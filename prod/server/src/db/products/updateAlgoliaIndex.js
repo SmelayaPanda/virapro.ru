@@ -14,6 +14,7 @@ exports.handler = function (change, context) {
             after.category === before.category &&
             after.price === before.price &&
             after.SKU === before.SKU &&
+            after.img_0 === before.img_0 &&
             after.productId === before.productId // after add product it has been updated with new field - productId
         ) {
             console.log('No fields to update Algolia index!')
@@ -30,6 +31,7 @@ exports.handler = function (change, context) {
             product.category = after.category
             product.price = after.price
             product.SKU = after.SKU
+            product.thumbnail = after.img_0 && after.img_0.thumbnail ? after.img_0.thumbnail : ''
             // Write to the algolia index
             return index.saveObject(product, (err) => { // TODO: optimize -> to partialUpdateObject() ?
                 if (err) {
