@@ -40,6 +40,11 @@ export const mutations = {
     state.dictionaries[payload.name] = payload.data
   },
 
+  // QUESTIONS
+  setQuestions(state, payload) {
+    state.questions = payload
+  },
+
   // REVIEWS
   setReviews(state, payload) {
     state.reviews = payload

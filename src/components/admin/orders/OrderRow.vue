@@ -63,7 +63,7 @@
       <el-col :span="24" v-if="order.services && order.services.length">
         <h4> Дополнительные услуги к заказу:</h4>
         <span v-for="service in order.services" :key="service">
-          {{ $store.getters.SERVICE_TYPES[service].label }} /
+          {{ $store.getters.SERVICE_TYPES[service].title }} /
         </span>
       </el-col>
       <el-col :span="24">

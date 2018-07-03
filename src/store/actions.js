@@ -345,8 +345,8 @@ export const actions = {
         Notification({
           title: 'Поздравляем!',
           message:
-          'Заказ совершен! ' +
-          'Мы свяжемся с Вами в ближайшее время для подтверждения покупки.',
+            'Заказ совершен! ' +
+            'Мы свяжемся с Вами в ближайшее время для подтверждения покупки.',
           type: 'success',
           showClose: true,
           duration: 30000,
@@ -857,7 +857,50 @@ export const actions = {
         .catch(err => dispatch('LOG', err))
     },
 
-  // USER EVENTS
+
+  // QUESTIONS
+  fetchQuestions({commit, dispatch}) {
+    commit('LOADING', true)
+    fs.collection('questions').get()
+      .then(snap => {
+        let questions = {}
+        snap.docs.forEach(doc => {
+          questions[doc.id] = doc.data()
+          questions[doc.id].id = doc.id
+        })
+        commit('setQuestions', {...questions})
+        console.log('(i) Fetched: questions')
+        commit('LOADING', false)
+      })
+      .catch(err => dispatch('LOG', err))
+  },
+
+  createQuestion({commit, dispatch, getters}, payload) {
+    commit('LOADING', true)
+    payload.date = new Date().getTime()
+    fs.collection('questions').add(payload)
+      .then((snap) => {
+        let questions = getters.questions ? getters.questions : {}
+        questions[snap.id] = payload
+        questions[snap.id].id = snap.id
+        commit('setQuestions', {...questions})
+        console.log('(i) Added: new question')
+        commit('LOADING', false)
+      })
+      .catch(err => dispatch('LOG', err))
+  },
+
+  updateQuestion({commit, dispatch, getters}, payload) {
+    commit('LOADING', true)
+    fs.collection('questions').doc(payload.id).update(payload.updateData)
+      .then(() => {
+        commit('LOADING', false)
+        console.log('(i) Updated: question')
+      })
+      .catch(err => dispatch('LOG', err))
+  },
+
+    // USER EVENTS
   USER_EVENT:
     ({commit, getters, dispatch}, payload) => {
       if (!getters.user.uid) return

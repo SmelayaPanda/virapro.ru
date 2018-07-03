@@ -11,7 +11,7 @@
         </el-row>
         <el-row class="carousel_content">
           <p>
-          {{ item.description }}
+            {{ item.description }}
           </p>
         </el-row>
         <el-row type="flex" justify="center">
@@ -20,22 +20,20 @@
       </el-carousel-item>
     </el-carousel>
     <el-carousel
+      v-if="questions"
       :interval="5000"
       height="300px"
       class="question_carousel"
       indicator-position="none">
-      <el-carousel-item v-for="item in questions" :key="item.title">
+      <el-carousel-item v-for="q in questions" :key="q.title">
         <el-row class="carousel_title">
-          <h4>{{ item.title }}</h4>
+          <h4>{{ q.title }}</h4>
         </el-row>
         <el-row class="carousel_content">
-          <p>{{ item.content }}</p>
+          <p>{{ q.description }}</p>
         </el-row>
         <el-row type="flex" justify="center">
-          <el-radio-group v-model="ansver" size="small">
-            <el-radio-button label="Да" ></el-radio-button>
-            <el-radio-button label="Нет"></el-radio-button>
-          </el-radio-group>
+          <OneQuestionAnswer :item="q" :key="q.id"/>
         </el-row>
       </el-carousel-item>
     </el-carousel>
@@ -43,18 +41,21 @@
 </template>
 
 <script>
+  import OneQuestionAnswer from "./OneQuestionAnswer";
+
   export default {
     name: "Advertising",
-    data () {
-      return {
-        questions: [
-          {title: 'Новые товары', content: 'Хотели бы вы узнавать о новых поступлениях?'},
-          {title: 'Опт/розница', content: 'Важна ли для вас возможность оптовой покупки?'},
-          {title: 'Доставка', content: 'Обычно Вам доставляют или Вы сами приезжаете?'},
-          {title: 'Тех. поддержка', content: 'Требуется ли Вам техническая поддержка (например, при проектировании, установке)?'}
-        ],
-        ansver: ''
+    components: {OneQuestionAnswer},
+    data() {
+      return {}
+    },
+    computed: {
+      questions() {
+        return this.$store.getters.questions
       }
+    },
+    created() {
+      this.$store.dispatch('fetchQuestions')
     }
   }
 </script>

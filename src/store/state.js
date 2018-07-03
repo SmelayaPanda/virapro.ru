@@ -8,6 +8,9 @@ export const state = () => ({
   // DICTIONARIES
   dictionaries: {},
 
+  // QUESTIONS
+  questions: '',
+
   // user
   user: { // Cart and orders IDs array in database. Full products objects array in client side
     cart: [],

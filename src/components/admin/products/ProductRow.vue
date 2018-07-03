@@ -69,9 +69,11 @@
       </div>
       <p><span class="prop_name">Описание: </span>
       <p v-html="p.description"></p>
-      <p><span class="prop_name">Добавлен: </span> <el-tag type="info" size="small">
-        {{ p.creationDate | date }}
-      </el-tag></p>
+      <p><span class="prop_name">Добавлен: </span>
+        <el-tag type="info" size="small">
+          {{ new Date(p.creationDate).toLocaleDateString() }}
+        </el-tag>
+      </p>
     </el-row>
   </div>
 </template>

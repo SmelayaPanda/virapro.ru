@@ -34,6 +34,10 @@
           <img src="~/assets/icons/admin/how_to_reg.svg" alt="">
           <span>Пользователи</span>
         </el-menu-item>
+        <el-menu-item index="/admin/questions">
+          <img src="~/assets/icons/admin/contact_support.svg" alt="">
+          <span>Опросник</span>
+        </el-menu-item>
         <el-menu-item index="/admin/company">
           <img src="~/assets/icons/admin/account_balance.svg" alt="">
           <span>Компания</span>

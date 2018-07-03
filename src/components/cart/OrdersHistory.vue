@@ -76,7 +76,7 @@
                   <div v-if="order.services && order.services.length">
                     Дополнительные услуги к заказу:
                     <span v-for="service in order.services" :key="service">
-                      {{ $store.getters.SERVICE_TYPES[service].label }} /
+                      {{ $store.getters.SERVICE_TYPES[service].title }} /
                     </span>
                   </div>
                   <p>Ваш комментарий:

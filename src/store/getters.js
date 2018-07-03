@@ -50,6 +50,9 @@ export const getters = {
   // DICTIONARIES
   dictionaries: state => state.dictionaries,
 
+  // QUESTIONS
+  questions: state => state.questions,
+
   // SYSTEM
   IS_ADMIN: state => state.IS_ADMIN, // (Boolean) current user is admin?
   ADMINS: state => state.ADMINS, // (Array) list of admin emails
