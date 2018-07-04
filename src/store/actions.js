@@ -556,19 +556,9 @@ export const actions = {
           let errorCode = err.code
           let errorMessage = err.message
           if (errorCode === 'auth/invalid-email') {
-            Message({
-              type: 'error',
-              showClose: true,
-              message: errorMessage,
-              duration: 10000
-            })
+            Message({type: 'error', showClose: true, message: errorMessage, duration: 10000})
           } else if (errorCode === 'auth/user-not-found') {
-            Message({
-              type: 'error',
-              showClose: true,
-              message: errorMessage,
-              duration: 10000
-            })
+            Message({type: 'error', showClose: true, message: errorMessage, duration: 10000})
           }
           dispatch('LOG', err)
         })
@@ -631,6 +621,7 @@ export const actions = {
   },
 
   async fetchAllUsers({commit, getters, dispatch}) {
+    commit('LOADING', true)
     let users = {}
     await fs.collection('users').get()
       .then(snap => {
@@ -648,6 +639,7 @@ export const actions = {
       }
     })
     await commit('setAllUsers', {...users})
+    commit('LOADING', false)
     console.log('(i) Fetched: all users from firestore');
   },
 
@@ -670,9 +662,9 @@ export const actions = {
 
   uploadDictionary:
     ({commit, getters, dispatch}, payload) => {
+      commit('LOADING', true)
       let name = payload.name
       delete payload.dictionary
-      commit('LOADING', true)
       fs.collection('dictionaries').doc(name).set({all: payload.data})
         .then(() => {
           commit('setDictionary', {name: payload.name, data: payload.data})
@@ -908,6 +900,7 @@ export const actions = {
   },
 
   deleteQuestion({commit, dispatch, getters}, payload) {
+    commit('LOADING', true)
     fs.collection('questions').doc(payload).delete()
       .then(() => {
         let questions = getters.questions
@@ -935,7 +928,6 @@ export const actions = {
   ERR({commit}, payload) {
     commit('ERR', payload)
   },
-
   ANCHOR({commit}, payload) {
     commit('ANCHOR', payload)
   },
