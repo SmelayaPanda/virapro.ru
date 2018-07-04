@@ -5,14 +5,13 @@ import 'firebase/firestore'
 
 var config
 
-console.log(process.env.NODE_ENV)
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'production') {
   config = {
     apiKey: "AIzaSyDRGcfICNUp8SqmJ_Belmv55e6i7__ikWM",
     authDomain: "plumbing-prod.firebaseapp.com",
     databaseURL: "https://plumbing-prod.firebaseio.com",
     projectId: "plumbing-prod",
-    storageBucket: "",
+    storageBucket: "plumbing-prod.appspot.com",
     messagingSenderId: "463779483968"
   }
 } else {

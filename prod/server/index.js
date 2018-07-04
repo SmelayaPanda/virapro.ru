@@ -56,9 +56,9 @@ global.CONST = require('./src/common/constants')
 // firebase functions:config:set app.production="1/0"
 // firebase functions:config:set algolia.app_id="<YOUR-ALGOLIA-APP-ID>"
 // firebase functions:config:set algolia.api_key="<YOUR-ALGOLIA-ADMIN-KEY>"
-// firebase functions:config:set algolia.product_idx="<YOUR-ALGOLIA-PRODUCT-IDX-NAME>" // 'prod_santech', "dev_santech"
+// firebase functions:config:set algolia.product_idx="<YOUR-ALGOLIA-PRODUCT-IDX-NAME>" // 'PROD_SANTEHNIKA', "DEV_SANTEHNIKA"
 
-// firebase functions:config:set admin.email="SmelayaPandaGM@gmail.com"
+// firebase functions:config:set admin.email="santehnika.nsk@gmail.com"
 // firebase functions:config:set admin.password="***"
 // firebase functions:config:set developer.email="SmelayaPandaGM@gmail.com"
 // firebase functions:config:set developer.password="***"

@@ -153,7 +153,7 @@ export const actions = {
   runAlgoliaSearch({commit}, payload) {
     let index
     if (process.env.NODE_ENV === 'production') {
-      index = client.initIndex('DEV_SANTEHNIKA')
+      index = client.initIndex('PROD_SANTEHNIKA')
     } else if (process.env.NODE_ENV === 'development') {
       index = client.initIndex('DEV_SANTEHNIKA')
     }
