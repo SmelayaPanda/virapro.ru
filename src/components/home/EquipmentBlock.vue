@@ -3,7 +3,7 @@
     <el-col :span="12">
       <h2 id="equipment_title">Сантехническое, отопительное,<br> промышленное оборудование</h2>
       <el-row id="equipment_wrap">
-        <el-col v-for="i in 16" :key="i" :span="3" :offset="2" id="equipment"></el-col>
+        <el-col v-for="i in 16" :key="i" :span="3" :offset="2" id="equipment">{{ i }}</el-col>
       </el-row>
       <el-row type="flex" justify="center">
         <nuxt-link to="/catalog">
@@ -15,7 +15,14 @@
       <h2 id="services_title">Предоставление услуг, <br> консультирование</h2>
       <el-row id="services_wrap">
         <el-col v-for="service in $store.getters.SERVICE_TYPES" :key="service.value" :span="7" :offset="4">
-          <el-row class="services"></el-row>
+          <el-row class="services">
+            <el-col :span="24">
+              <h4>{{ service.title }}</h4>
+            </el-col>
+            <el-col :span="24">
+              <p>{{ service.description }}</p>
+            </el-col>
+          </el-row>
           <el-row type="flex" justify="center">
             <el-button class="get_service_btn primary_btn" @click="$bus.$emit('openOrderServiceDialog', service.value)">
               Заказать
@@ -48,6 +55,9 @@
   }
 
   #equipment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 80px;
     margin-bottom: 30px;
     border-radius: 3px;
@@ -55,10 +65,23 @@
   }
 
   .services {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px;
     height: 165px;
     margin-bottom: 80px;
     border-radius: 3px;
-    @include primaryShadow
+    @include primaryShadow;
+    h4 {
+      padding: 5px;
+      margin: 0;
+      height: 10px;
+    }
+    p {
+      font-size: 13px;
+      font-weight: 300;
+    }
   }
 
   .get_service_btn {

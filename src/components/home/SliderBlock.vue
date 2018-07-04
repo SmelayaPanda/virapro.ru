@@ -35,9 +35,11 @@
           <h3>Более <span>5000</span> товаров в наличае</h3>
         </el-col>
         <el-col :span="18">
-          <nuxt-link to="/catalog">
-            <el-button class="secondary_btn">Смотреть каталог</el-button>
-          </nuxt-link>
+          <el-button
+            @click="$nuxt.$router.push({name: 'catalog', params: {ANCHOR: '#service_title'}})"
+            class="secondary_btn">
+            Заказать
+          </el-button>
         </el-col>
         <transition name="fade">
           <el-col v-if="hoveredServices && !isSideChanging" :span="18">
@@ -69,10 +71,10 @@
       }
     },
     methods: {
-      mouseLeave (val) {
+      mouseLeave(val) {
         this.isSideChanging = true
         this[val] = false
-        setTimeout(() =>  {
+        setTimeout(() => {
           this.isSideChanging = false
         }, 700)
       }
