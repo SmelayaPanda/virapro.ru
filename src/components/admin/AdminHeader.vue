@@ -1,7 +1,10 @@
 <template>
-  <el-row type="flex">
-    <el-col>
+  <el-row id="admin_header">
+    <el-col style="width: 282px">
       <span id="admin_panel">Админ-панель</span>
+    </el-col>
+    <el-col style="width: 150px;">
+      <balls-loader v-if="$store.getters.LOADING" style="margin-bottom: 38px;"/>
     </el-col>
     <el-col align="right">
       <nuxt-link to="/">
@@ -12,13 +15,21 @@
 </template>
 
 <script>
+  import BallsLoader from "./BallsLoader";
   export default {
-    name: "AdminHeader"
+    name: "AdminHeader",
+    components: {BallsLoader}
   }
 </script>
 
 <style scoped lang="scss">
   #admin_panel {
     font-size: 22px;
+  }
+
+  #admin_header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
   }
 </style>
