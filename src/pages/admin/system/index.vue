@@ -24,7 +24,7 @@
     <!---->
     <!---->
     <!---->
-    <el-tooltip placement="bottom-end" effect="light">
+    <el-tooltip placement="bottom-end" :visible-arrow="false">
       <div slot="content">
         Внимание! <br>
         Эта операция полностью перетирает старые данные в базе! <br>

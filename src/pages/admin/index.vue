@@ -2,114 +2,150 @@
   <div>
     <el-row type="flex" justify="left" style="flex-wrap: wrap">
       <!--ORDERS-->
-      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" class="pl-2 pr-2 mt-2">
-        <el-card style="height: 100%" :body-style="{ padding: '0'}">
+      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
+        <el-card style="height: 100%" :body-style="{ padding: '10px'}">
           <div slot="header" class="clearfix">
             <h3>Покупки</h3>
           </div>
-          <div v-if="orderStatistics" align="left" style="padding-left: 10%">
-            <p>
-              <el-tag outline label color="danger_a">{{ orderStatistics.created }}</el-tag>
-              ожидают оплаты
-            </p>
-            <p>
-              <el-tag outline label color="danger_a">{{ orderStatistics.pending }}</el-tag>
-              ожидают отправки
-            </p>
-            <p>
-              <el-tag outline label color="info_a">{{ orderStatistics.sent }}</el-tag>
-              отправлено
-            </p>
-            <p>
-              <el-tag outline label color="success_a">{{ orderStatistics.delivered }}</el-tag>
-              доставлено
-            </p>
-            <p>
-              <el-tag outline label color="warning_a">{{ orderStatistics.refused }}</el-tag>
-              отклонено
-            </p>
-            <p>
-              <el-tag label color="primary_a" text-color="white">{{ orderStatistics.totalOrders }}</el-tag>
-              общее количество
-            </p>
+          <div v-if="orderStatistics">
+            <el-row class="item_row">
+              <el-col :span="17" :offset="2">ожидают оплаты</el-col>
+              <el-col :span="5">
+                <el-tag outline label>{{ orderStatistics.created }}</el-tag>
+              </el-col>
+            </el-row>
+            <el-row class="item_row">
+              <el-col :span="17" :offset="2">ожидают отправки</el-col>
+              <el-col :span="5">
+                <el-tag outline label>{{ orderStatistics.pending }}</el-tag>
+              </el-col>
+            </el-row>
+            <el-row class="item_row">
+              <el-col :span="17" :offset="2">отправлено</el-col>
+              <el-col :span="5">
+                <el-tag outline label>{{ orderStatistics.sent }}</el-tag>
+              </el-col>
+            </el-row>
+            <el-row class="item_row">
+              <el-col :span="17" :offset="2">доставлено</el-col>
+              <el-col :span="5">
+                <el-tag outline label>{{ orderStatistics.delivered }}</el-tag>
+              </el-col>
+            </el-row>
+            <el-row class="item_row">
+              <el-col :span="17" :offset="2">отклонено</el-col>
+              <el-col :span="5">
+                <el-tag outline label>{{ orderStatistics.refused }}</el-tag>
+              </el-col>
+            </el-row>
+            <el-row class="item_row">
+              <el-col :span="17" :offset="2">общее количество</el-col>
+              <el-col :span="5">
+                <el-tag outline label>{{ orderStatistics.totalOrders }}</el-tag>
+              </el-col>
+            </el-row>
           </div>
         </el-card>
       </el-col>
       <!--REQUESTS-->
-      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" class="pl-2 pr-2 mt-2">
-        <el-card style="height: 100%" :body-style="{ padding: '0'}">
+      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
+        <el-card style="height: 100%" :body-style="{ padding: '10px'}">
           <div slot="header" class="clearfix">
             <h3>Заявки</h3>
           </div>
-          <div v-if="requestsStatistics" align="left" style="padding-left: 10%">
-            <p>
-              <el-tag>{{ requestsStatistics.created }}</el-tag>
-              новые
-            </p>
-            <p>
-              <el-tag>{{ requestsStatistics.handled }}</el-tag>
-              обработанные
-            </p>
-            <p>
-              <el-tag>{{ requestsStatistics.total }}</el-tag>
-              общее количество
-            </p>
+          <div v-if="requestsStatistics">
+            <el-row class="item_row">
+              <el-col :span="17" :offset="2">новые</el-col>
+              <el-col :span="5">
+                <el-tag outline label>{{ requestsStatistics.created }}</el-tag>
+              </el-col>
+            </el-row>
+            <el-row class="item_row">
+              <el-col :span="17" :offset="2">обработанные</el-col>
+              <el-col :span="5">
+                <el-tag outline label>{{ requestsStatistics.handled }}</el-tag>
+              </el-col>
+            </el-row>
+            <el-row class="item_row">
+              <el-col :span="17" :offset="2">общее количество</el-col>
+              <el-col :span="5">
+                <el-tag outline label>{{ requestsStatistics.total }}</el-tag>
+              </el-col>
+            </el-row>
           </div>
         </el-card>
       </el-col>
       <!--REVIEW-->
-      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" class="pl-2 pr-2 mt-2">
-        <el-card style="height: 100%" :body-style="{ padding: '0'}">
+      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
+        <el-card style="height: 100%" :body-style="{ padding: '10px'}">
           <div slot="header" class="clearfix">
             <h3>Отзывы</h3>
           </div>
-          <div v-if="reviewStatistics" align="left" style="padding-left: 10%">
-            <p>
-              <el-tag outline label color="danger_a">{{ reviewStatistics.created }}</el-tag>
-              новые
-            </p>
-            <p>
-              <el-tag outline label color="success_a">{{ reviewStatistics.published }}</el-tag>
-              опубликованные
-            </p>
-            <p>
-              <el-tag outline label color="warning_a">{{ reviewStatistics.archived }}</el-tag>
-              архив
-            </p>
-            <p>
-              <el-tag label color="primary_a" text-color="white">{{ reviewStatistics.totalReviews }}</el-tag>
-              общее количество
-            </p>
+          <div v-if="reviewStatistics">
+            <el-row class="item_row">
+              <el-col :span="17" :offset="2">новые</el-col>
+              <el-col :span="5">
+                <el-tag outline label>{{ reviewStatistics.created }}</el-tag>
+              </el-col>
+            </el-row>
+            <el-row class="item_row">
+              <el-col :span="17" :offset="2">опубликованные</el-col>
+              <el-col :span="5">
+                <el-tag outline label>{{ reviewStatistics.published }}</el-tag>
+              </el-col>
+            </el-row>
+            <el-row class="item_row">
+              <el-col :span="17" :offset="2">архив</el-col>
+              <el-col :span="5">
+                <el-tag outline label>{{ reviewStatistics.archived }}</el-tag>
+              </el-col>
+            </el-row>
+            <el-row class="item_row">
+              <el-col :span="17" :offset="2">общее количество</el-col>
+              <el-col :span="5">
+                <el-tag outline label>{{ reviewStatistics.totalReviews }}</el-tag>
+              </el-col>
+            </el-row>
           </div>
         </el-card>
       </el-col>
       <!--PRODUCTS-->
       <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-        <el-card style="height: 100%" :body-style="{ padding: '0'}">
+        <el-card style="height: 100%" :body-style="{ padding: '10px'}">
           <div slot="header" class="clearfix">
             <h3>Товары</h3>
           </div>
-          <div v-if="productStatistics" align="left" style="padding-left: 10%">
-            <p>
-              <el-tag>{{ productStatistics.avgPrice }} RUB</el-tag>
-              средняя цена
-            </p>
-            <p>
-              <el-tag>{{ productStatistics.maxPrice }} RUB</el-tag>
-              максимальная цена
-            </p>
-            <p>
-              <el-tag>{{ productStatistics.uniqueProductQty }}</el-tag>
-              уникальных продуктов
-            </p>
-            <p>
-              <el-tag>{{ productStatistics.totalProductQty }}</el-tag>
-              общее количество
-            </p>
-            <p>
-              <el-tag label>{{ productStatistics.totalStoreCoast }} RUB</el-tag>
-              общая стоимость
-            </p>
+          <div v-if="productStatistics">
+            <el-row class="item_row">
+              <el-col :span="14" :offset="1">средняя цена</el-col>
+              <el-col :span="9">
+                <el-tag outline label>{{ productStatistics.avgPrice }} &#8381;</el-tag>
+              </el-col>
+            </el-row>
+            <el-row class="item_row">
+              <el-col :span="14" :offset="1">макс. цена</el-col>
+              <el-col :span="9">
+                <el-tag outline label>{{ productStatistics.maxPrice }} &#8381;</el-tag>
+              </el-col>
+            </el-row>
+            <el-row class="item_row">
+              <el-col :span="14" :offset="1">уникальных</el-col>
+              <el-col :span="9">
+                <el-tag outline label>{{ productStatistics.uniqueProductQty }}</el-tag>
+              </el-col>
+            </el-row>
+            <el-row class="item_row">
+              <el-col :span="14" :offset="1">общее кол-во</el-col>
+              <el-col :span="9">
+                <el-tag outline label>{{ productStatistics.totalProductQty }}</el-tag>
+              </el-col>
+            </el-row>
+            <el-row class="item_row">
+              <el-col :span="14" :offset="1">общая стоимость</el-col>
+              <el-col :span="9">
+                <el-tag outline label>{{ productStatistics.totalStoreCoast }} &#8381;</el-tag>
+              </el-col>
+            </el-row>
           </div>
         </el-card>
       </el-col>
@@ -187,7 +223,7 @@
       reviewStatistics() {
         return this.$store.getters.reviewStatistics
       },
-      requestsStatistics () {
+      requestsStatistics() {
         return this.$store.getters.requestsStatistics
       }
     },
@@ -248,4 +284,19 @@
     border-top: 1px solid #ebeef5;
     padding: 20px;
   }
+
+    .item_row {
+      display: flex;
+      font-weight: 300;
+      justify-content: start;
+      align-items: center;
+      padding: 5px;
+      border: 1px solid transparent;
+      &:hover {
+        background: $color-primary-light-2;
+        border: 1px solid $color-success-dark;
+        border-radius: 3px;
+      }
+    }
+
 </style>
