@@ -26,7 +26,6 @@
           if (cnt.no.indexOf(userId) === -1) cnt.no.push(userId)
           if (cnt.yes.indexOf(userId) !== -1) cnt.yes.splice(cnt.yes.indexOf(userId), 1)
         }
-        console.log(this.item)
         this.$store.dispatch('updateQuestion', {
           id: this.item.id,
           updateData: this.item
@@ -34,7 +33,6 @@
       }
     },
     created() {
-      console.log(this.item);
       if (this.item.counters.yes.indexOf(this.$store.getters.user.uid) !== -1) {
         this.answer = true
       } else if (this.item.counters.no.indexOf(this.$store.getters.user.uid) !== -1) {

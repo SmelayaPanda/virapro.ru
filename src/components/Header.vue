@@ -145,8 +145,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 17px;
-    width: 17px;
+    height: 18px;
+    width: 18px;
     border-radius: 50%;
     background: $color-primary;
   }

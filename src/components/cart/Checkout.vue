@@ -472,7 +472,6 @@
       },
       orderProducts() {
         let checkoutObj = this.checkoutObj
-        console.log(this.$store.getters.user.cart)
         let cart = this.$store.getters.user.cart
         let products = []
         checkoutObj.forEach(el => {

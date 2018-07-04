@@ -1,6 +1,6 @@
 <template>
   <el-row type="flex" justify="center">
-    <el-col :xs="24" :sm="14" :md="10" :lg="8" :xl="8">
+    <el-col :xs="24" :sm="15" :md="12" :lg="8" :xl="7">
       <el-card id="signin_card">
         <el-alert
           v-if="$store.state.ERR"
@@ -8,14 +8,20 @@
           title="Error" type="error" show-icon>
         </el-alert>
         <h2 align="center">Выберите способ входа</h2>
-        <el-button @click.native="googleSignUp">
-          <img src="~/assets/icons/account/gmail.svg" height="60" alt="Войти с помощью Google"><br>
-          Войти с помощью Google
-        </el-button>
-        <el-button @click="emailSignInDialog = true">
-          <img src="~/assets/icons/account/emailSignIn.svg" height="60px" alt="Войти с помощью Google"><br>
-          Войти с помощью email
-        </el-button>
+        <el-row type="flex" justify="center">
+          <el-col :span="12" align="right" style="padding: 5px;">
+            <el-button @click.native="googleSignUp">
+              <img src="~/assets/icons/account/gmail.svg" height="56" alt="Войти с помощью Google"><br>
+              Войти с помощью Google
+            </el-button>
+          </el-col>
+          <el-col :span="12" align="left" style="padding: 5px;">
+            <el-button @click="emailSignInDialog = true">
+              <img src="~/assets/icons/account/emailSignIn.svg" height="56" alt="Войти с помощью Google"><br>
+              Войти с помощью email
+            </el-button>
+          </el-col>
+        </el-row>
         <router-link to="/account/signup">
           <el-button type="text" id="havent_account">
             <!--Haven't account?-->

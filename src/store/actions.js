@@ -8,7 +8,7 @@ const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
 
 export const actions = {
 
-  nuxtServerInit ({ dispatch }, { req }) {
+  nuxtServerInit({dispatch}, {req}) {
     return Promise.all([
       dispatch('fetchCompanyInfo'), // for footer
       dispatch('fetchProductStatistics'),
@@ -400,12 +400,13 @@ export const actions = {
         user.email = payload.email
         user.isAnonymous = payload.isAnonymous
         user.emailVerified = payload.emailVerified
-        user.favorites = snap.data().favorites
-        user.firstname = snap.data().firstname
-        user.lastname = snap.data().lastname
-        user.orders = snap.data().orders
-        user.cart = snap.data().cart
-        user.role = snap.data().role
+        // snap.exists because first time Google sign in invoke onAuthStateChange before DB data will be updated
+        user.firstname = snap.exists ? snap.data().firstname : ''
+        user.lastname = snap.exists ? snap.data().lastname : ''
+        user.favorites = snap.exists ? snap.data().favorites : []
+        user.orders = snap.exists ? snap.data().orders : []
+        user.cart = snap.exists ? snap.data().cart : []
+        user.role = snap.exists ? snap.data().role : 'guest'
         commit('setUser', user)
         return Promise.all([
           dispatch('setAdmin'),
@@ -476,11 +477,32 @@ export const actions = {
 
 
   signInWithGoogle({commit}) {
-    return new Promise((resolve, reject) => {
-      auth.signInWithRedirect(GoogleProvider)
-      $nuxt.$router.push('/account')
-      resolve()
-    })
+    // auth.signInWithRedirect(GoogleProvider)
+    let user
+    return firebase.auth().signInWithPopup(GoogleProvider)
+      .then(data => {
+        user = data.user
+        return fs.collection('users').doc(user.uid).get()
+      })
+      .then((snap) => {
+        if (!snap.exists) { // First time Google sign in
+          return fs.collection('users').doc(user.uid).set({
+              email: user.email,
+              firstname: user.displayName ? user.displayName.split(' ')[0] : '',
+              lastname: user.displayName ? user.displayName.split(' ')[1] : '',
+              emailVerified: user.emailVerified,
+              isAnonymous: false,
+              role: 'guest',
+              cart: [],
+              orders: [],
+              favorites: []
+            })
+        }
+      })
+      .then(() => {
+        $nuxt.$router.push('/account')
+      })
+      .catch(err => console.log(err))
   },
 
   signOut({commit}) {
@@ -505,7 +527,7 @@ export const actions = {
   // All users initially register as anonymous
     ({commit, dispatch}) => {
       commit('setUser', {cart: [], orders: []})
-      firebase.auth().signInAnonymously() // TODO: deprecated - replace by signInAnonymously()
+      firebase.auth().signInAnonymously()
         .then((data) => { // onAuthStateChanged works
           return fs.collection('users').doc(data.user.uid)
             .set({ // initialize user for quick update
@@ -852,7 +874,6 @@ export const actions = {
     },
 
 
-
   // QUESTIONS
   fetchQuestions({commit, dispatch}) {
     commit('LOADING', true)
@@ -912,7 +933,7 @@ export const actions = {
   },
 
 
-    // USER EVENTS
+  // USER EVENTS
   USER_EVENT:
     ({commit, getters, dispatch}, payload) => {
       if (!getters.user.uid) return
