@@ -1,19 +1,73 @@
 <template>
   <div>
-    <el-button @click="getData" type="success">
-      Снять копию базы данных <br>
-      <img src="~/assets/icons/admin/dns.svg" id="data_dump_icon" alt="Data Dump">
-    </el-button>
-    <el-button @click="generateSitemap" type="success">
-      Сгенерировать Sitemap.xml <br>
-      <img src="~/assets/icons/admin/map.svg" id="site_map_icon" alt="Site map icon">
-    </el-button>
-    <el-button @click="loadErrorLog" type="success">
+    <el-tooltip placement="top" effect="light">
+      <div slot="content">
+        Создание архива всех данных, <br> которые вы и ваши пользователи вносили на сайте.
+      </div>
+      <el-button @click="getData" type="success" class="system_btn">
+        Снять копию базы данных <br>
+        <img src="~/assets/icons/admin/dns.svg" alt="Data Dump">
+      </el-button>
+    </el-tooltip>
+    <!---->
+    <!---->
+    <!---->
+    <el-tooltip placement="top" effect="light">
+      <div slot="content">
+        Создание файла со всеми страницами сайта для поисковых роботов.
+      </div>
+      <el-button @click="generateSitemap" type="success" class="system_btn">
+        Сгенерировать Sitemap.xml <br>
+        <img src="~/assets/icons/admin/map.svg" alt="Site map icon">
+      </el-button>
+    </el-tooltip>
+    <!---->
+    <!---->
+    <!---->
+    <el-tooltip placement="bottom-end" effect="light">
+      <div slot="content">
+        Внимание! <br>
+        Эта операция полностью перетирает старые данные в базе! <br>
+        Восстановление производить загрузкой файлов по одному <br>
+        с расширением <b>.json</b>! <br>
+        <b>Имя файла должно соответствовать названию коллекции!</b> <br>
+        Для использования операции необходим пароль разработчика.
+      </div>
+      <el-popover
+        placement="right-start"
+        width="220"
+        v-model="restoreDbPopover">
+        <div style="margin: 12px;">
+          <p style="text-align:left;">Введите пароль:</p>
+          <el-input type="password" v-model="password" auto-complete="off"></el-input>
+          <div style="text-align: right; margin-top: 10px">
+            <el-button size="mini" type="text" @click="restoreDbPopover = false">Отмена</el-button>
+            <el-button type="danger" size="mini" @click="onPickJsonFileForRestoreDB">Продолжить</el-button>
+          </div>
+        </div>
+        <el-button
+          slot="reference" type="success" class="system_btn" style="margin-left: 8px;"
+          @click="restoreDbPopover = true">
+          Восстановить коллекцию <br>
+          <img src="~/assets/icons/admin/history.svg" alt="Repair data">
+        </el-button>
+      </el-popover>
+    </el-tooltip>
+    <input
+      type="file"
+      style="display: none;"
+      ref="fileInput"
+      accept="json/*"
+      @change="onFileJsonPicked">
+    <br>
+    <!---->
+    <!---->
+    <!---->
+    <el-button @click="loadErrorLog" type="success" class="system_btn" style="margin-top: 8px;">
       Загрузить логи ошибок <br>
-      <img src="~/assets/icons/admin/history.svg" id="error_log_icon" alt="Load err log">
+      <img src="~/assets/icons/admin/bug_report.svg" alt="Load err log">
     </el-button>
     <div v-if="errLog">
-      <hr>
       <el-popover
         placement="top"
         width="220"
@@ -26,9 +80,11 @@
             <el-button type="danger" size="mini" @click="clearErrorLog">Удалить</el-button>
           </div>
         </div>
-        <el-button @click="clearLogPopover = true" type="warning" slot="reference">
+        <el-button
+          @click="clearLogPopover = true"
+          type="warning" slot="reference" class="system_btn" style="margin-top: 5px;">
           Очистить логи ошибок <br>
-          <img src="~/assets/icons/admin/clear.svg" id="clear_log_icon" alt="Clear err log">
+          <img src="~/assets/icons/admin/clear.svg" alt="Clear err log">
         </el-button>
       </el-popover>
       <el-collapse accordion id="error_accordion">
@@ -54,6 +110,7 @@
       return {
         errLog: '',
         clearLogPopover: false,
+        restoreDbPopover: false,
         password: '',
         collections: [
           'companyInfo',
@@ -62,7 +119,9 @@
           'products',
           'reviews',
           'statistics',
-          'users'
+          'users',
+          'questions',
+          'userRequests'
         ]
       }
     },
@@ -144,21 +203,53 @@
       async clearErrorLog() {
         this.clearLogPopover = false
         if (this.password !== 'panda') {
-          return this.$message({type: 'danger', message: 'Неверный пароль'})
+          return this.$message({type: 'error', message: 'Неверный пароль'})
         }
         await db.ref('errLog').remove()
         this.errLog = ''
+      },
+      onPickJsonFileForRestoreDB() {
+        if (this.password !== 'panda') {
+          return this.$message({type: 'error', message: 'Неверный пароль'})
+        }
+        this.$refs.fileInput.click()
+      },
+      onFileJsonPicked(event) {
+        this.$store.dispatch('LOADING', true)
+        const files = event.target.files
+        let collectionName = files[0].name.split('.')[0]
+        const fileReader = new FileReader()
+        fileReader.addEventListener('load', () => {
+          let actions = []
+          this.imageUrl = fileReader.result
+          let collection = JSON.parse(fileReader.result)
+          for (let docId in collection) {
+            actions.push(fs.collection(collectionName).doc(docId).set(collection[docId]))
+          }
+          Promise.all(actions).then(() => {
+            this.$message({type: 'success', message: `Коллекция "${collectionName}" перезаписана!`})
+            this.$refs.fileInput.value = ''
+            this.$store.dispatch('LOADING', false)
+          })
+            .catch(err => {
+              this.$message({type: 'error', message: err})
+              this.$store.dispatch('LOADING', false)
+            })
+        })
+        fileReader.readAsText(files[0])
+        this.image = files[0]
       }
     }
   }
 </script>
 
-<style scoped>
-  #data_dump_icon,
-  #site_map_icon,
-  #error_log_icon,
-  #clear_log_icon {
-    margin-top: 8px;
+<style scoped lang="scss">
+  .system_btn {
+    height: 100px;
+    width: 240px;
+    img {
+      margin-top: 8px;
+    }
   }
 
   #error_accordion {

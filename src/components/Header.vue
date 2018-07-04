@@ -130,7 +130,7 @@
     justify-content: start;
     align-items: center;
     a {
-      padding: 9px 28px 8px 20px;
+      padding: 9px 28px 9px 20px;
     }
   }
 
