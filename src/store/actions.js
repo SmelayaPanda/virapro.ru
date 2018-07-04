@@ -8,11 +8,13 @@ const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
 
 export const actions = {
 
-  // nuxtServerInit ({ dispatch }, { req }) {
-  //   return Promise.all([
-  //     // dispatch('loadSingleProduct', 'yUHgunWESW5E5aUybki8')
-  //   ])
-  // },
+  nuxtServerInit ({ dispatch }, { req }) {
+    return Promise.all([
+      dispatch('fetchCompanyInfo'), // for footer
+      dispatch('fetchProductStatistics'),
+      dispatch('fetchDictionaries')
+    ])
+  },
   // PRODUCTS
   async loadSingleProduct({commit, getters, dispatch}, payload) {
     await fs.collection('products').doc(payload).get()

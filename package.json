@@ -18,7 +18,8 @@
     "copydist": "cp -R prod/server/nuxt/dist/ prod/client/assets",
     "copystatic": "cp -R src/static/ prod/client",
     "clean": "rimraf prod/client/assets/*",
-    "build:nuxt": "cd \"src\" && yarn build"
+    "build:nuxt": "cd \"src\" && yarn build",
+    "prod": "yarn build && yarn deploy"
   },
   "devDependencies": {
     "cross-env": "^5.0.5",
