@@ -107,11 +107,10 @@
           <!--Stepper-->
           <el-row style="margin-bottom: 40px;">
             <el-steps :active="activeStep" align-center finish-status="success">
-              <el-step title="Ваши контакты" icon="el-icon-info"></el-step>
-              <el-step title="Адрес" icon="el-icon-location"></el-step>
-              <el-step title="Доставка"></el-step>
-              <el-step title="Оплата" icon="el-icon-document"></el-step>
-              <el-step title="Оформление" icon="el-icon-circle-check-outline"></el-step>
+              <el-step title="Ваши контакты"></el-step>
+              <el-step title="Адрес"></el-step>
+              <el-step title="Доставка/Оплата"></el-step>
+              <el-step title="Оформление"></el-step>
             </el-steps>
           </el-row>
           <!--Form 1-->
@@ -214,15 +213,13 @@
           <el-row type="flex" justify="center">
             <el-col :xs="24" :sm="18" :md="18" :lg="18" :xl="18">
               <div v-if="activeStep === 3" id="delivery_form">
-                <el-tooltip placement="bottom" class="item">
-                  <!--<v-icon small id="delivery_help">live_help</v-icon>-->
-                  <span slot="content">
-              На данный момент постоянная доставка осущестявляется только по России. <br>
-              Если вы находитесь в другой стране, то мы готовы рассмотреть Вашу заявку в индивидуальном плане,<br>
-              для этого свяжитесь с нами по телефону {{ this.$store.getters.companyInfo.contacts.phone }}
-              </span>
-                </el-tooltip>
+                Узнать подробнее:
+                <el-button
+                  style="font-size: 14px; font-weight: 400; padding-top: 8px;;"
+                  type="text" @click="$bus.$emit('openDeliveryAndPaymentDialog')">оплата и доставка
+                </el-button>
                 <br>
+                <h3>СПОСОБ ДОСТАВКИ</h3>
                 <el-radio-group v-model="delivery.method">
                   <el-radio
                     v-for="method in $store.getters.DELIVERY_METHODS"
@@ -231,15 +228,6 @@
                     border>{{ method.label }}
                   </el-radio>
                 </el-radio-group>
-                <br>
-              </div>
-            </el-col>
-          </el-row>
-          <!---------->
-          <!--Step 4-->
-          <el-row type="flex" justify="center">
-            <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
-              <div v-if="activeStep === 4" id="payment_form">
                 <h3>ОПЛАТА</h3>
                 <el-radio-group v-model="payment.type">
                   <el-radio v-for="type in $store.getters.PAYMENT_TYPES" :key="type.value" :label="type.value" border>
@@ -259,14 +247,14 @@
                     </el-radio>
                   </el-radio-group>
                 </div>
+                <br>
               </div>
             </el-col>
           </el-row>
-          <!---------->
-          <!--Step 5-->
+          <!--Step 4-->
           <el-row type="flex" justify="center">
             <el-col :xs="22" :sm="18" :md="18" :lg="18" :xl="18">
-              <div v-if="activeStep === 5" id="final_stage">
+              <div v-if="activeStep === 4" id="final_stage">
                 <h3>Нужна помощь? Укажите дополнительные услуги к заказу:</h3>
                 <el-checkbox-group v-model="services">
                   <el-checkbox
@@ -282,7 +270,6 @@
                   placeholder="Комментарии к заказу (не обязательно)"
                   v-model="comments.user">
                 </el-input>
-                <!-- TODO: Оферта -->
                 <p>Нажимая оформить вы соглашаетесь с
                   <privacy-dialog></privacy-dialog>
                 </p>
@@ -292,10 +279,10 @@
           </el-row>
         </el-col>
       </el-row>
-      <el-row type="flex" justify="center">
+      <el-row type="flex" justify="center" style="margin-top: 15px;">
         <el-button @click="prevStep" v-if="activeStep !== 1" round>Назад</el-button>
         <el-button
-          v-if="activeStep !== 5"
+          v-if="activeStep !== 4"
           @click="nextStep" round
           :type="validCheckoutStep ? 'success' : 'info'"
           :disabled="!validCheckoutStep">
@@ -308,9 +295,11 @@
 
 <script>
   import PrivacyDialog from "../dialogs/PrivacyDialog";
+  import DeliveryAndPaymentDialog from "../dialogs/DeliveryAndPaymentDialog";
+
   export default {
     name: 'Checkout',
-    components: {PrivacyDialog},
+    components: {DeliveryAndPaymentDialog, PrivacyDialog},
     props: ['checkoutObj', 'type'],
     data() {
       let notEmptyString = (rule, value, callback) => {
@@ -351,18 +340,18 @@
           method: ''
         },
         buyer: {
-          firstname: 'Алексей',
-          lastname: 'Азаров',
-          email: 'smelayapandagm@gmail.com',
-          phone: '89994677857'
+          firstname: '',
+          lastname: '',
+          email: '',
+          phone: ''
         },
         address: {
           country: 'Россия',
-          city: 'Новосибирск',
-          street: 'Сиреневая',
-          build: '31',
-          house: '65',
-          postCode: '630030'
+          city: '',
+          street: '',
+          build: '',
+          house: '',
+          postCode: ''
         },
         buyerFormRules: {
           firstname: [{validator: notEmptyString, trigger: 'blur'}],
@@ -385,7 +374,7 @@
         this.$store.dispatch('USER_EVENT', 'Купить товар')
       },
       nextStep() {
-        if (this.activeStep < 5) this.activeStep++
+        if (this.activeStep < 4) this.activeStep++
         this.$store.dispatch('USER_EVENT', `Шаг: ${this.activeStep}`)
       },
       prevStep() {
@@ -467,8 +456,7 @@
       validCheckoutStep() {
         if (this.activeStep === 1) return this.isValidBuyerData
         if (this.activeStep === 2) return this.isValidAddress
-        if (this.activeStep === 3) return this.delivery.method
-        if (this.activeStep === 4) return this.payment.type && this.payment.method
+        if (this.activeStep === 3) return this.delivery.method && this.payment.type && this.payment.method
       },
       orderProducts() {
         let checkoutObj = this.checkoutObj
