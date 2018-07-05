@@ -217,6 +217,8 @@
     text-align: left;
     margin-bottom: 10px;
     font-weight: 300;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   #price {

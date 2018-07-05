@@ -32,13 +32,13 @@
                 </p>
               </router-link>
             </el-col>
-            <el-col :xs="8" :sm="4" :md="4" :lg="4" :xl="4">
+            <el-col :xs="11" :sm="4" :md="4" :lg="4" :xl="4">
               <el-input-number size="small" v-model="product.qty" :min="1" :max="product.totalQty"></el-input-number>
             </el-col>
-            <el-col :xs="8" :sm="3" :md="3" :lg="3" :xl="3">
+            <el-col :xs="9" :sm="3" :md="3" :lg="3" :xl="3">
               <p class="price">{{ parseFloat(product.qty * product.price).toFixed(2) }} р.</p>
             </el-col>
-            <el-col class="remove_from_cart" :xs="8" :sm="2" :md="3" :lg="2" :xl="2">
+            <el-col class="remove_from_cart" :xs="4" :sm="2" :md="3" :lg="2" :xl="2">
               <i @click="removeFromCart(product)" class="el-icon-delete"></i>
             </el-col>
           </el-row>
@@ -117,6 +117,7 @@
       margin-top: 30px;
       flex-wrap: wrap;
       background: $color-primary-light-2;
+      padding-right: 10px;
       div {
         padding: 14px;
         font-size: 10px;

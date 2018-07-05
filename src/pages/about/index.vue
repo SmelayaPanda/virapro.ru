@@ -6,7 +6,7 @@
       </el-col>
     </el-row>
     <el-row id="about_content">
-      <el-col :span="11" :offset="2">
+      <el-col :xs="24" :sm="16" :md="13" :lg="11" :xl="10" :offset="2">
         <el-row type="flex">
           <el-col style="width: 40px">
             <div class="pulsing_wrap">
@@ -49,12 +49,12 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :span="11">
+      <el-col :xs="1" :sm="1" :md="9" :lg="11" :xl="11">
         <!-- EMPTY-->
       </el-col>
     </el-row>
     <el-row type="flex" justify="start">
-      <el-col :span="16" :offset="3">
+      <el-col :xs="24" :sm="20" :md="18" :lg="16" :xl="15" :offset="3">
         <Reviews id="reviews"></Reviews>
       </el-col>
     </el-row>
@@ -192,6 +192,15 @@
     }
     100% {
       transform: scale(0.8);
+    }
+  }
+
+  @media only screen and (max-width: $sm-screen ){
+    #reviews {
+      display: none;
+    }
+    #about{
+      background: none;
     }
   }
 </style>

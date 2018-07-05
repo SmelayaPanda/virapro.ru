@@ -1,19 +1,19 @@
 <template>
   <no-ssr>
     <el-row id="account">
-      <el-col :span="16">
+      <el-col :xs="23" :sm="20" :md="18" :lg="16" :xl="14">
         <div v-if="$store.getters.user && $store.getters.user.isAnonymous">
           <AnonymousAccount/>
         </div>
         <div v-if="$store.getters.user && !$store.getters.user.isAnonymous" id="real_account">
           <h1>Аккаунт</h1>
-          <el-row type="flex" justify="start">
-            <el-col :span="7">
-              <el-card style="width: 100%; height: 300px;">
-                <img src="~/assets/icons/account/user-placeholder.svg" alt="Пользователь">
+          <el-row type="flex" justify="start" style="flex-wrap: wrap">
+            <el-col :xs="24" :sm="7" :md="7" :lg="7" :xl="7" align="center">
+              <el-card id="user_avatar">
+                <img src="~/assets/icons/account/user-placeholder.svg" height="240px" alt="Пользователь">
               </el-card>
             </el-col>
-            <el-col :span="17">
+            <el-col :xs="24" :sm="17" :md="17" :lg="17" :xl="17">
               <el-card id="account_info_card">
                 <p id="uid"><img src="~/assets/icons/account/fingerprint.svg" alt="ИД">
                   ИД:
@@ -54,6 +54,7 @@
   #account {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     margin-top: 20px;
   }
   
@@ -94,5 +95,13 @@
         bottom: 20px;
       }
     }
+  }
+
+  #user_avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
   }
 </style>
