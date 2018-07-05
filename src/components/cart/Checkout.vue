@@ -403,15 +403,8 @@
             currency: 'RUB'
           })
         })
-        let status
-        let history
-        if (this.$store.getters.PAYMENT_TYPES.receipt.value === this.payment.type) {
-          status = 'pending'
-          history = {created: new Date().getTime(), pending: new Date().getTime()}
-        } else {
-          status = 'created'
-          history = {created: new Date().getTime()}
-        }
+        let status = 'created'
+        let history = {created: new Date().getTime()}
 
         let order = {
           amount: {
