@@ -3,12 +3,13 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: 'Nuxtjs SSR Firebase Functions',
+    title: 'Сантехника Новосибирск',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      {hid: 'description', name: 'description', content: 'Nuxt.js project'},
-      {name: 'google-site-verification', content: '25aGtsdrxiV5R2Q8Uc-e3j7KJjSH2EmjkdZ_JsOTYiU'}
+      {name: 'google-site-verification', content: '25aGtsdrxiV5R2Q8Uc-e3j7KJjSH2EmjkdZ_JsOTYiU'},
+      {hid: 'description', name: 'description', content: 'Интернет-магазин товаров сантехники и комплексного сервиса в Новосибирске. Доступные цены, доставка, консультация специалиста и монтажные работы.'},
+      {name: 'keywords', content: 'интернет-магазины сантехники в новосибирске, интернет-магазин сантехники новосибирск, магазин сантехники новосибирск, интернет-магазин сантехники, сантехника в новосибирске, сантехника для ванной комнаты, магазин сантехники'}
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
@@ -16,8 +17,8 @@ module.exports = {
     ]
   },
   manifest: {  // PWA meta
-    name: 'Your project name',
-    short_name: 'Short name'
+    name: 'Сантехника Новосибирске. Консультация, замерочные работы и установка.',
+    short_name: 'Сантехника Новосибирск'
   },
   router: {
     middleware: 'router-auth'

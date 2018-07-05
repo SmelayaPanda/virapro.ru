@@ -1,9 +1,9 @@
 <template>
   <el-row id="equipment_block">
-    <el-col :span="11" :offset="1">
+    <el-col :xs="24" :sm="22" :md="11" :lg="11" :xl="11" :offset="1">
       <h2 id="equipment_title">Сантехническое, отопительное,<br> промышленное оборудование</h2>
       <el-row id="equipment_wrap">
-        <el-col v-for="i in 16" :key="i" :span="5" :offset="1">
+        <el-col v-for="i in 16" :key="i" :xs="7" :sm="5" :md="5" :lg="5" :xl="5" :offset="1">
           <div id="equipment">{{ i }}</div>
         </el-col>
       </el-row>
@@ -13,10 +13,11 @@
         </nuxt-link>
       </el-row>
     </el-col>
-    <el-col :span="12">
+    <el-col :xs="24" :sm="22" :md="12" :lg="12" :xl="12">
       <h2 id="services_title">Предоставление услуг, <br> консультирование</h2>
       <el-row id="services_wrap">
-        <el-col v-for="service in $store.getters.SERVICE_TYPES" :key="service.value" :span="12" align="center">
+        <el-col v-for="service in $store.getters.SERVICE_TYPES" :key="service.value"
+                :xs="22" :sm="12" :md="12" :lg="12" :xl="12" align="center">
           <el-row class="services">
             <el-col :span="24">
               <h4 align="center">{{ service.title }}</h4>
@@ -46,6 +47,7 @@
   #equipment_block {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   #services_title,
@@ -104,5 +106,17 @@
   #into_catalog_btn {
     margin-top: -10px;
     margin-left: -60px;
+  }
+
+  @media only screen and (max-width: $sm-screen) {
+    #services_wrap {
+      padding-right: 0;
+    }
+  }
+    @media only screen and (max-width: $xs-screen) {
+    #equipment {
+      width: 70px;
+      height: 70px;
+    }
   }
 </style>

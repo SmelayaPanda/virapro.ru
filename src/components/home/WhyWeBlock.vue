@@ -111,7 +111,7 @@
       position: relative;
       font-weight: 500;
       font-size: 18px;;
-      bottom: 90px;
+      bottom: 80px;
       right: -240px;
       &:after {
         content: "";
