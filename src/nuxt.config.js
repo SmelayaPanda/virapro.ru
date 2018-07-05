@@ -39,6 +39,7 @@ module.exports = {
     '@/plugins/event-bus.js',
     {src: '@/plugins/scroll-to.js', ssr: false},
     {src: '@/plugins/masked-input.js', ssr: false},
+    {src: '@/plugins/back-to-top.js', ssr: false},
     {src: '@/plugins/quill-editor.js', ssr: false}
   ],
   css: [

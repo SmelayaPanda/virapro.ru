@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="desctop_home">
     <SliderBlock/>
     <EquipmentBlock/>
     <WhyWeBlock/>
@@ -21,4 +21,12 @@
     methods: {}
   }
 </script>
+
+<style lang="scss" scoped>
+  @media only screen and (max-width: $sm-screen) {
+    #desctop_home {
+      display: none;
+    }
+  }
+</style>
 

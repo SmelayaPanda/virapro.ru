@@ -3,7 +3,7 @@
     <el-carousel
       class="info_carousel"
       :interval="5000"
-      height="300px"
+      height="240px"
       indicator-position="none">
       <el-carousel-item v-for="item in $store.getters.SERVICE_TYPES" :key="item.value">
         <el-row class="carousel_title">
@@ -22,7 +22,7 @@
     <el-carousel
       v-if="questions"
       :interval="5000"
-      height="300px"
+      height="240px"
       class="question_carousel"
       indicator-position="none">
       <el-carousel-item v-for="q in questions" :key="q.title">
@@ -77,7 +77,7 @@
   .carousel_content {
     display: flex;
     justify-content: center;
-    padding: 5px 15px;
+    padding: 5px 15px 5px 30px;
     margin: 0;
     font-weight: 300;
     p {
@@ -94,13 +94,17 @@
     margin-top: 10px;
   }
 
-  /**/
-
   .el-carousel__item:nth-child(2n) {
     background-color: white;
   }
 
   .el-carousel__item:nth-child(2n+1) {
     background-color: white;
+  }
+
+  @media only screen and (max-width: $sm-screen) {
+    #add_wrap {
+      display: none;
+    }
   }
 </style>

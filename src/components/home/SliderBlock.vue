@@ -1,5 +1,5 @@
 <template>
-  <el-row type="flex">
+  <el-row id="slider_block">
     <el-col :span="hoveredProducts && !isSideChanging ? 24 : 12" id="left_side_wrap">
       <el-row>
         <el-col :span="18">
@@ -83,6 +83,10 @@
 </script>
 
 <style scoped lang="scss">
+  #slider_block {
+    display: flex;
+  }
+
   @mixin block {
     padding-top: 100px;
     position: relative;
@@ -134,5 +138,6 @@
     line-height: 18px;
     color: white;
     width: 600px;
+    padding-right: 5px;
   }
 </style>

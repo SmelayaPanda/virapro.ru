@@ -1,15 +1,15 @@
 <template>
   <div id="wrap">
     <el-row id="catalog_wrap">
-      <el-col :span="8" id="catalog_title">
+      <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8" id="catalog_title">
         <h1 v-scroll-to="'#service_title'"><span>Каталог</span><br>сантехнического и<br>отопительного<br>оборудования</h1>
       </el-col>
       <el-col
-        :span="8"
+        :xs="24" :sm="12" :md="12" :lg="8" :xl="8"
         v-for="(group, idx) in $store.getters.PRODUCT_TREE" :key="group.value"
         v-if="group.value !== 'all-products'">
         <div class="catalog_card" @click="$nuxt.$router.push(`/catalog/${group.value}`)">
-          <img src="~/assets/icons/admin/attach_file.svg" alt="">
+          <img src="~/assets/icons/no_photo_tmp.svg" alt="">
           <p>{{idx}}. {{ group.label }}</p>
         </div>
       </el-col>
@@ -17,9 +17,9 @@
     <h2 id="service_title">Дополнителные услуги</h2>
     <div id="divider"></div>
     <el-row id="services_wrap">
-      <el-col :span="6" v-for="service in $store.getters.SERVICE_TYPES" :key="service.value">
-        <!--TODO: service.icon-->
-        <img src="~/assets/icons/account/user-placeholder.svg" height="30px" style="margin-left: 20px;" alt="">
+      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" align="center"
+              v-for="service in $store.getters.SERVICE_TYPES" :key="service.value">
+        <img src="~/assets/icons/account/user-placeholder.svg" height="30px" alt="">
         <div class="service_title">
           <h3>{{ service.title }}</h3>
         </div>
@@ -91,6 +91,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
+    height: 60%;
     transition: all .3s;
     margin: 10px;
     border: 1px solid $color-primary-light;
@@ -117,26 +118,27 @@
   #services_wrap {
     position: relative;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    margin-top: 60px;
-    height: 280px;
+    margin-top: 40px;
     .service_title {
-      height: 30px;
       h3 {
-        text-align: left;
         color: $color-primary;
         padding: 10px;
       }
     }
     .service_descr {
-      height: 120px;
+      padding-bottom: 10px;
+      height: 25%;
       p {
+        text-align: left;
         font-size: 14px;
-        padding: 10px;
+        padding: 10px 10px 10px 30px;
       }
     }
       button {
-        margin-left: 30px;
+        margin-top: 10px;
+        margin-bottom: 20px;
       }
   }
 
@@ -154,6 +156,13 @@
       bottom: -6px;
       left: -6px;
       right: -6px;
+    }
+  }
+
+  @media only screen and (max-width: $xs-screen) {
+    #wrap {
+      margin-right: 20px;
+      margin-left: 20px;
     }
   }
 </style>

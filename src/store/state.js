@@ -87,7 +87,7 @@ export const state = () => ({
     group: '',
     category: '',
     sortByPrice: 'asc',
-    limit: 4
+    limit: 30
   },
   selectedCatalogNode: '',
   dynamicFilteredProductsIds: [],

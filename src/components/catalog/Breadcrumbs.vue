@@ -131,4 +131,10 @@
     border-left-color: $color-primary;
     color: #fff;
   }
+
+  @media only screen and (max-width: $xs-screen) {
+    #crumbs {
+      display: none;
+    }
+  }
 </style>

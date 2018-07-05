@@ -53,14 +53,14 @@
         if (data.value === 'all-products') {
           return this.$nuxt.$router.push('/catalog')
         }
-        if (data.type === 'group'){
+        if (data.type === 'group') {
           return this.$nuxt.$router.push(`/catalog/${data.value}`)
         }
-        if (data.type === 'category'){
+        if (data.type === 'category') {
           return this.$nuxt.$router.push(`/catalog/${this.$nuxt.$route.params.group}/${data.value}`)
         }
       },
-      async loadProducts () {
+      async loadProducts() {
         await this.$store.dispatch('fetchProducts')
       }
     },
@@ -69,7 +69,7 @@
         this.$refs.catalog.filter(val);
       }
     },
-    created () {
+    created() {
       this.defaultExpandedKeys.push(this.$nuxt.$route.params.group)
     }
   }

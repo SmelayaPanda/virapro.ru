@@ -26,7 +26,4 @@
     justify-content: start;
     flex-wrap: wrap;
   }
-
-  @media only screen and (max-width: $sm-screen) {
-  }
 </style>

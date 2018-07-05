@@ -43,11 +43,11 @@
     methods: {
       async sendRequestForm(service) {
         if (!this.form.user.firstname) {
-          this.$message({type: 'info', showClose: true, message: 'Укажите имя', duration: 5000})
+          this.$message({showClose: true, message: 'Укажите имя', duration: 5000})
           return
         }
         if (!this.isValidPhone) {
-          this.$message({type: 'info', showClose: true, message: 'Укажите телефон', duration: 5000})
+          this.$message({showClose: true, message: 'Укажите телефон', duration: 5000})
           return
         }
         if (service) {

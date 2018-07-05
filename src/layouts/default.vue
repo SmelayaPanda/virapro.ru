@@ -5,6 +5,9 @@
       <nuxt/>
     </main>
     <app-footer/>
+    <back-to-top v-if="$nuxt.$route.path !== '/'" visibleOffset="500" id="back_to_bottom">
+      <el-button id="back_to_top" type="primary" icon="el-icon-arrow-up"></el-button>
+    </back-to-top>
   </div>
 </template>
 
@@ -13,7 +16,7 @@
   import AppHeader from '../components/Header'
 
   export default {
-    components: { AppHeader, AppFooter }
+    components: {AppHeader, AppFooter}
   }
 </script>
 
@@ -33,5 +36,8 @@
 
   #content-wrapper {
     padding: 0 0 250px; // footer height
+  }
+
+  #back_to_top {
   }
 </style>
