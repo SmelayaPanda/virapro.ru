@@ -5,7 +5,7 @@
     </el-col>
     <!--Image-->
     <el-dialog title="Фото продукта" :visible.sync="dialogFormVisible" width="100%" :fullscreen="true" center>
-      <el-row type="flex" justify="center" class="mb-3" style="flex-wrap: wrap">
+      <el-row type="flex" justify="center" style="flex-wrap: wrap; margin-bottom: 5px;">
         <!--Image-->
         <!-- fileUploaded custom event from UploadProductImage.vue-->
         <upload-product-image @fileUploaded="loadFileData" img-name="img_0" img-btn-name="Главное" :cur-img="product.img_0.thumbnail"/>

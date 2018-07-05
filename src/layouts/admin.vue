@@ -58,5 +58,8 @@
 
   #is_not_admin {
     margin-left: 38px;
+    h1 {
+      color: $color-info-dark;
+    }
   }
 </style>

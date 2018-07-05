@@ -1,5 +1,5 @@
 <template>
-  <div id="product_row_wrap">
+  <div v-if="p" id="product_row_wrap">
     <el-row id="product_row">
       <el-col style="width: 64px">
         <el-button

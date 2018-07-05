@@ -95,7 +95,7 @@ export const state = () => ({
   algoliaSQLFilter: '',
   algoliaSearchText: '',
   // CONSTANTS
-  ADMINS: ['smelayapandagm@gmail.com'],
+  ADMINS: ['smelayapandagm@gmail.com', 'santehnika.nsk@gmail.com'],
   SERVICE_TYPES: {
     evaluation: {
       value: 'evaluation',
