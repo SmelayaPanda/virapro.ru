@@ -5,7 +5,7 @@
         <el-progress
           :width="74" type="circle"
           :percentage="q.counters.yes.length + q.counters.no.length ?
-                      q.counters.yes.length * 100 / (q.counters.yes.length + q.counters.no.length) : 0">
+                      Math.floor(q.counters.yes.length * 100 / (q.counters.yes.length + q.counters.no.length)) : 0">
         </el-progress>
         <el-popover
           trigger="hover"

@@ -14,10 +14,10 @@
       </el-dialog>
       <!--DELETE-->
       <el-dialog :title="`Удалить ${item} ?`" :visible.sync="deleteDialog" width="50%">
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="deleteDialog = false">Отмена</el-button>
-        <el-button type="danger" @click="deleteDictionaryItem">Удалить</el-button>
-      </span>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="deleteDialog = false">Отмена</el-button>
+          <el-button type="danger" @click="deleteDictionaryItem">Удалить</el-button>
+        </span>
       </el-dialog>
 
       <el-select filterable value="" v-model="item" :placeholder="title" v-if="dictionary">
@@ -73,7 +73,7 @@
 
 <style scoped lang="scss">
   .el-select {
-    width: 400px !important;
+    width: 300px !important;
   }
 
   #dictionary {
