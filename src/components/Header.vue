@@ -2,13 +2,13 @@
   <div>
     <SupHeader/>
     <el-row id="header">
-      <el-col :span="1" :offset="2">
+      <el-col id="logo_wrap" :span="1" :offset="2">
         <span id="logo">ЛОГО</span>
       </el-col>
-      <el-col :span="7" :offset="1">
+      <el-col id="algolia_desctop" :md="8" :lg="7" :xl="7" :offset="1">
         <AlgoliaSearch/>
       </el-col>
-      <el-col style="width: 420px" :offset="3">
+      <el-col :offset="3" id="routers">
         <div id="selected_route_line"
              :style="{marginLeft: activeRouteLineMargin + 'px', display: displayActiveRoute}"></div>
         <nuxt-link to="/">Главная</nuxt-link>
@@ -16,7 +16,7 @@
         <nuxt-link to="/about">О нас</nuxt-link>
         <nuxt-link to="/account">Аккаунт</nuxt-link>
       </el-col>
-      <el-col :span="2" id="cart_wrap">
+      <el-col :xs="5" :sm="4" :md="2" :lg="2" :xl="2" id="cart_wrap">
         <nuxt-link to="/cart">
           <img src="~/assets/icons/home/shopping-cart.svg" id="cart_icon" alt="Корзина">
           <no-ssr>
@@ -87,16 +87,6 @@
     }
   }
 
-  #app_header {
-    display: flex;
-    flex-flow: row wrap;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
-    justify-content: center;
-  }
-
   #header {
     z-index: 10;
     display: flex;
@@ -110,6 +100,10 @@
     color: $color-primary-light;
     border: 1px solid $color-primary-light;
     padding: 5px 10px;
+  }
+
+  #routers {
+    width: 420px;
   }
 
   #selected_route_line {
@@ -154,5 +148,31 @@
   #cart_count {
     font-size: 10px;
     color: white;
+  }
+
+  @media only screen and (max-width: $sm-screen) {
+    #algolia_desctop {
+      display: none;
+    }
+  }
+  @media only screen and (max-width: $xs-screen) {
+    #logo_wrap {
+      display: none;
+    }
+    #routers {
+      width: 270px;
+      margin-left: 10px;
+    }
+    a {
+      padding-right: 8px;
+      padding-left: 5px;
+    }
+    #cart_wrap {
+      position: absolute;
+      right: 10px;
+    }
+    #selected_route_line {
+      visibility: hidden;
+    }
   }
 </style>

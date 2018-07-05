@@ -1,18 +1,18 @@
 <template>
   <el-row id="contacts_row">
-    <el-col :span="12" :offset="2">
+    <el-col id="work_time_wrap" :md="9" :lg="12" :xl="12" :offset="2">
       <div id="work_time">
         <img src="~/assets/icons/home/calendar.svg" id="work_time_icon" alt="Рабочее время">
         <time>7 дней в неделю с 10<sup>00</sup> до 18<sup>00</sup> часов</time>
       </div>
     </el-col>
-    <el-col :span="4" id="address">
+    <el-col id="address" :md="6" :lg="4" :xl="4">
       <img src="~/assets/icons/home/location.svg" id="location_icon" alt="Местоположение">
       г. {{ $store.getters.companyInfo.address.city }},
       ул. {{ $store.getters.companyInfo.address.street }},
       д. {{ $store.getters.companyInfo.address.build }}
     </el-col>
-    <el-col :span="4" :offset="1" id="phone">
+    <el-col :xs="22" :sm="22" :md="6" :lg="4" :xl="4" :offset="1" id="phone">
       <img src="~/assets/icons/home/phone.svg" id="phone_icon" alt="Телефон">
       {{ $store.getters.companyInfo.contacts.phone }}
     </el-col>
@@ -61,7 +61,6 @@
     }
   }
 
-
   #work_time_icon {
     height: 20px;
     padding-right: 7px;
@@ -83,4 +82,9 @@
     padding-right: 7px;
   }
 
+  @media only screen and (max-width: $sm-screen) {
+    #work_time_wrap, #address {
+      display: none;
+    }
+  }
 </style>
