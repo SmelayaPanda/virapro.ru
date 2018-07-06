@@ -45,15 +45,19 @@
       getCheckedFilterNodes(data, tree) { // active dynamic filters
         let filterObj = {} // { color: [red, green], size: [big, small] }
         let prevNodeProp
+        let filterString = ''
         tree.checkedNodes.forEach(node => {
           if (!node.children) {
             if (prevNodeProp === node.prop) {
               filterObj[node.prop].push(node.value)
+              filterString += `; ${node.value}`
             } else {
               filterObj[node.prop] = [node.value]
+              filterString += ` / ${this.$store.getters.DYNAMIC_PROPS[node.prop].label}: ${node.value}`
             }
             prevNodeProp = node.prop
           }
+          this.$store.dispatch('USER_EVENT', 'Фильтр: ' + filterString)
         })
         this.$store.dispatch('setProductDynamicFilters', filterObj).then(() => {
           this.$store.dispatch('createDynamicFilteredProductIds')

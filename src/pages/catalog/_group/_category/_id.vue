@@ -128,6 +128,7 @@
     async fetch({store, params}) {
       await store.dispatch('loadSingleProduct', params.id)
       await store.dispatch('increaseProductCounter', {id: params.id, type: 'watch'})
+      await store.dispatch('USER_EVENT', `Просмотр: ${store.getters.singleProduct.title}`)
     },
     methods: {
       loadOriginal(idx) {

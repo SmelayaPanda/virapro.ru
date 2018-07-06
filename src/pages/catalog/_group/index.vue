@@ -13,6 +13,12 @@
 
   export default {
     components: {Advertising, CatalogProductsView, CatalogNavMenu},
+    async fetch({store, params}) {
+      let group = store.getters.PRODUCT_TREE.filter(el => el.value === params.group)
+      if (group && group[0]) {
+        await store.dispatch('USER_EVENT', `Каталог: ${group[0].label}`)
+      }
+    },
     methods: {},
     created() {
       this.$store.dispatch('fetchProducts') // TODO: not in the fetch method because lastVisible object - circular

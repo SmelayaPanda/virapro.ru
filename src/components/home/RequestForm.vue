@@ -43,17 +43,19 @@
     methods: {
       async sendRequestForm(service) {
         if (!this.form.user.firstname) {
-          this.$message({showClose: true, message: 'Укажите имя', duration: 5000})
+          await this.$message({showClose: true, message: 'Укажите имя', duration: 5000})
           return
         }
         if (!this.isValidPhone) {
-          this.$message({showClose: true, message: 'Укажите телефон', duration: 5000})
+          await this.$message({showClose: true, message: 'Укажите телефон', duration: 5000})
           return
         }
         if (service) {
           this.form.service = service
+          this.$store.dispatch('USER_EVENT', 'Успешный заявка с услугой')
+        } else {
+          this.$store.dispatch('USER_EVENT', 'Успешная заявка')
         }
-        console.log(this.form)
         await this.$store.dispatch('sendCallRequests', this.form)
         await this.$refs.form.resetFields()
         if (service) {

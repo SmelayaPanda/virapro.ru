@@ -46,7 +46,10 @@
   import AnonymousAccount from "@/components/account/AnonymousAccount";
 
   export default {
-    components: {AnonymousAccount}
+    components: {AnonymousAccount},
+    async fetch({store, params}) {
+      await store.dispatch('USER_EVENT', 'Страница: Аккаунт')
+    }
   }
 </script>
 

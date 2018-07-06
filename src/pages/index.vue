@@ -24,8 +24,8 @@
   import RequestBlock from "../components/home/RequestBlock";
 
   export default {
-    asyncData() {
-      return {}
+    async fetch({store, params}) {
+      await store.dispatch('USER_EVENT', 'Главная страница')
     },
     components: {RequestBlock, WhyWeBlock, EquipmentBlock, SliderBlock},
     methods: {}

@@ -54,7 +54,6 @@
         })
       },
       viewProduct() {
-        this.$store.dispatch('USER_EVENT', `Просмотр: ${this.product.title}`)
         this.$router.push({
           path: `/catalog/${this.product.group}/${this.product.category}/${this.id}`,
         })

@@ -32,6 +32,7 @@
         await this.$store.dispatch('setLastVisible', null)
         await this.$store.dispatch('updateProductCommonFilter', {field: 'minPrice', value: this.sliderValues[0]})
         await this.$store.dispatch('updateProductCommonFilter', {field: 'maxPrice', value: this.sliderValues[1]})
+        this.$store.dispatch('USER_EVENT', `Фильтр: цена от ${this.sliderValues[0]} до ${this.sliderValues[1]}` )
         if (!this.$store.getters.productCommonFilters.category) {
           await this.$store.dispatch('fetchProducts')
         }

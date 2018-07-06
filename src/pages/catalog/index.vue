@@ -39,8 +39,9 @@
         params: ''
       }
     },
-    fetch ({ store, params }) {
-      store.dispatch('ANCHOR', params.ANCHOR)
+    async fetch ({ store, params }) {
+      await store.dispatch('ANCHOR', params.ANCHOR)
+      await store.dispatch('USER_EVENT', 'Страница: Каталог')
     },
     mounted() {
       if (this.$store.getters.ANCHOR === '#service_title') { // stupid solution for scrolling to services

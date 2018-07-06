@@ -10,7 +10,7 @@
       <p>{{ service.description }}</p>
       <request-form></request-form>
       <el-row type="flex" justify="center">
-        <el-button @click="$bus.$emit('sendRequestForm', service.value)" class="secondary_btn">
+        <el-button @click="sendRequestForm(service.value)" class="secondary_btn">
           Отправить
         </el-button>
       </el-row>
@@ -41,6 +41,7 @@
           this.service = this.$store.getters.SERVICE_TYPES[val]
         }
         this.dialog = true
+        this.$store.dispatch('USER_EVENT', 'Заказать услугу')
       })
       this.$bus.$on('isSentServiceForm', () => {
         this.dialog = false

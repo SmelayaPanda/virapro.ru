@@ -90,6 +90,7 @@
             this.result = data
             this.showResult = true
             this.isSearching = false
+            this.$store.dispatch('USER_EVENT', `Поиск: ${this.algoliaSearchText}`)
           })
       },
       toProduct(group, category, productId) {

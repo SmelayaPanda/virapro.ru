@@ -1,13 +1,13 @@
 <template>
   <div>
     <el-row type="flex">
-      <el-col :span="12">
+      <el-col :xs="20" :sm="12" :md="11" :lg="10" :xl="10">
         <el-card>
           <el-row id="users_header">
             <el-col :span="8">
               <h4>Пользователи</h4>
             </el-col>
-            <el-col :span="16">
+            <el-col :xs="22" :sm="22" :md="22" :lg="16" :xl="16">
               <el-radio-group fill="#67c23a" v-model="type" size="medium" id="user_type">
                 <el-radio-button label="register">С аккаунтом</el-radio-button>
                 <el-radio-button label="anonymous">Анонимные</el-radio-button>
@@ -21,7 +21,7 @@
           </div>
         </el-card>
       </el-col>
-      <el-col :span="12" style="margin-left: 10px;">
+      <el-col :xs="20" :sm="12" :md="13" :lg="14" :xl="14" style="margin-left: 10px;">
         <el-card>
           <h4>Действия</h4>
           <div id="users_events">
@@ -86,6 +86,8 @@
     display: flex;
     justify-content: start;
     align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
   }
 
   .user_event_row {

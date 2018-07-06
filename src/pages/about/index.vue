@@ -66,8 +66,9 @@
 
   export default {
     components: {Reviews},
-    fetch ({ store, params }) {
-      store.dispatch('ANCHOR', params.ANCHOR)
+    async fetch ({ store, params }) {
+      await store.dispatch('ANCHOR', params.ANCHOR)
+      await store.dispatch('USER_EVENT', 'Страница: О нас')
     },
     methods: {
       reloadPage() {
