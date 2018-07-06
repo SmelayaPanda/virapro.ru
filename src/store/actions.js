@@ -389,6 +389,8 @@ export const actions = {
   },
 
 
+
+
   // user
   // user DATA = full firebase auth.currentUser object + app data keeping in firestore db
   fetchUserData({commit, dispatch, getters}, payload) {
@@ -411,7 +413,8 @@ export const actions = {
         return Promise.all([
           dispatch('setAdmin'),
           dispatch('loadOwnProducts'),
-          dispatch('fetchOrders', {userId: user.uid})
+          dispatch('fetchOrders', {userId: user.uid}),
+          dispatch('observeUserConnection', user.uid)
         ])
       })
       .then(() => {
@@ -419,6 +422,24 @@ export const actions = {
         console.log('(i) Fetched: all user data')
       })
       .catch(err => dispatch('LOG', err))
+  },
+
+  observeUserConnection ({commit}, payload) {
+    let userRef = db.ref(`users/${payload}/`)
+    db.ref('.info/connected').on('value', snap => {
+      if (snap.val() === true) {
+        // online
+        userRef.update({
+          lastOnline: 0,
+          onlineFrom: firebase.database.ServerValue.TIMESTAMP
+        })
+        // offline
+        userRef.onDisconnect().update({
+          lastOnline: firebase.database.ServerValue.TIMESTAMP,
+          onlineFrom: 0
+        })
+      }
+    })
   },
 
   editPersonalInfo({commit, getters, dispatch}, payload) {
@@ -641,42 +662,6 @@ export const actions = {
   async setAdmin({commit, getters}) {
     commit('setAdmin', await getters.ADMINS.indexOf(getters.user.email) !== -1)
   },
-
-  async fetchAllUsers({commit, getters, dispatch}) {
-    commit('LOADING', true)
-    let users = {}
-    await fs.collection('users').get()
-      .then(snap => {
-        snap.docs.forEach(doc => {
-          users[doc.id] = doc.data()
-        })
-      })
-
-    await db.ref('events').once('value', snap => {
-      for (let userId in snap.val()) {
-        if (users[userId]) {
-          users[userId].events = snap.val()[userId]
-        }
-      }
-    })
-
-    db.ref('events').on('child_changed', data => {
-      if (data.exists()) {
-        let allUsers = getters.allUsers
-        allUsers[data.key].events = data.val()
-        commit('setAllUsers', {...allUsers})
-      }
-    })
-
-    await commit('setAllUsers', {...users})
-    commit('LOADING', false)
-    console.log('(i) Fetched: all users from firestore');
-  },
-
-  unsubscribeFromEvents() {
-    db.ref('events').off()
-  },
-
 
   // DICTIONARIES
   async fetchDictionaries({commit, dispatch}) {
@@ -970,6 +955,66 @@ export const actions = {
       })
       .catch(err => dispatch('LOG', err))
   },
+
+
+  // ALL USERS EVENTS
+  async fetchAllUsers({commit, getters, dispatch}) {
+    commit('LOADING', true)
+    let users = {}
+    await fs.collection('users').get()
+      .then(snap => {
+        snap.docs.forEach(doc => {
+          users[doc.id] = doc.data()
+        })
+      })
+
+    await db.ref('events').once('value', snap => {
+      for (let userId in snap.val()) {
+        if (users[userId]) {
+          users[userId].events = snap.val()[userId]
+        }
+      }
+    })
+
+    await db.ref('users').once('value', snap => {
+      for (let userId in snap.val()) {
+        if (users[userId] && snap.val().lastOnline && snap.val().onlineFrom) {
+          users[userId].lastOnline = snap.val().lastOnline
+          users[userId].onlineFrom = snap.val().onlineFrom
+        }
+      }
+    })
+
+    // REALTIME
+    db.ref('events').on('child_changed', data => {
+      if (data.exists()) {
+        let allUsers = getters.allUsers
+        allUsers[data.key].events = data.val()
+        commit('setAllUsers', {...allUsers})
+      }
+    })
+
+    db.ref('users').on('child_changed', data => {
+      if (data.exists()) {
+        let allUsers = getters.allUsers
+        allUsers[data.key].lastOnline = data.val().lastOnline
+        allUsers[data.key].onlineFrom = data.val().onlineFrom
+        commit('setAllUsers', {...allUsers})
+      }
+    })
+
+    await commit('setAllUsers', {...users})
+    commit('LOADING', false)
+    console.log('(i) Fetched: all users from firestore');
+  },
+
+  unsubscribeFromEvents() {
+    db.ref('events').off()
+  },
+
+
+
+
 
   // APP
   ERR({commit}, payload) {

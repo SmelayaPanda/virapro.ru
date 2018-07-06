@@ -8,13 +8,13 @@
               <h4>Пользователи</h4>
             </el-col>
             <el-col :xs="22" :sm="22" :md="22" :lg="16" :xl="16">
-              <el-radio-group fill="#67c23a" v-model="type" size="medium" id="user_type">
+              <el-radio-group fill="#67c23a" v-model="type" size="small" id="user_type">
                 <el-radio-button label="register">С аккаунтом</el-radio-button>
                 <el-radio-button label="anonymous">Анонимные</el-radio-button>
               </el-radio-group>
             </el-col>
           </el-row>
-          <div id="users_list">
+          <div id="users_list" :key="userListKey">
             <div v-for="(user, id) in allUsers" :key="id">
               <UserListRow v-if="user.events" :id="id" :data="user" :type="type"/>
             </div>
@@ -63,6 +63,7 @@
     layout: 'admin',
     data() {
       return {
+        userListKey: '1',
         deleteEventsPopover: false,
         type: 'register' // user type: 'register' | 'anonymous'
       }
@@ -75,6 +76,7 @@
     },
     computed: {
       allUsers() {
+        this.userListKey = new Date().getTime()
         return this.$store.getters.allUsers
       },
       userEvents() {

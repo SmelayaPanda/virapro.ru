@@ -12,7 +12,8 @@
 </template>
 
 <script>
-  import{db, fs} from "@/services/fireinit";
+  import {db, fs} from "@/services/fireinit";
+
   export default {
     name: "UserListRow",
     props: {
@@ -20,13 +21,13 @@
       data: {type: Object, required: true},
       type: {type: String, required: true}
     },
-    data () {
+    data() {
       return {
         events: ''
       }
     },
     methods: {
-      setWatchedUserId () {
+      setWatchedUserId() {
         this.$store.commit('setWatchedUserId', this.id)
       }
     }
