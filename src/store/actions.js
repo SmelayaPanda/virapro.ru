@@ -944,6 +944,20 @@ export const actions = {
       db.ref('events').child(getters.user.uid).push(newEvent)
         .catch(err => dispatch('LOG', err))
     },
+  clearUserEvents({commit, getters, dispatch}, payload){
+    commit('LOADING', true)
+    if (!getters.watchedUserId) return
+    db.ref('events').child(getters.watchedUserId).remove()
+      .then(() => {
+        Message({type: 'success', message: 'Действия пользователя удалены', duration: 5000})
+        let allUsers = getters.allUsers
+        allUsers[getters.watchedUserId].events = ''
+        commit('setAllUsers', {...allUsers})
+        commit('setWatchedUserId', '')
+        commit('LOADING', false)
+      })
+      .catch(err => dispatch('LOG', err))
+  },
 
   // APP
   ERR({commit}, payload) {

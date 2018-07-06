@@ -24,6 +24,20 @@
       <el-col :xs="20" :sm="12" :md="13" :lg="14" :xl="14" style="margin-left: 10px;">
         <el-card>
           <h4>Действия</h4>
+          <el-popover
+            v-if="$store.getters.watchedUserId"
+            placement="top"
+            width="220"
+            v-model="deleteEventsPopover">
+            <div style="margin: 12px;">
+              <p style="text-align:left;">Вы действительно хотите удалить действия пользователя?</p>
+              <div style="text-align: right; margin: 0">
+                <el-button size="mini" type="text" @click="deleteEventsPopover = false">Отмена</el-button>
+                <el-button type="danger" size="mini" @click="clearUserEvents">Удалить</el-button>
+              </div>
+            </div>
+            <el-button slot="reference" icon="el-icon-delete" size="small"></el-button>
+          </el-popover>
           <div id="users_events">
             <el-row v-for="(event, id) in userEvents" :key="id" class="user_event_row">
               <el-col style="width: 90px">
@@ -49,15 +63,21 @@
     layout: 'admin',
     data() {
       return {
+        deleteEventsPopover: false,
         type: 'register' // user type: 'register' | 'anonymous'
       }
     },
-    methods: {},
+    methods: {
+      clearUserEvents() {
+        this.deleteEventsPopover = false
+        this.$store.dispatch('clearUserEvents')
+      }
+    },
     computed: {
       allUsers() {
         return this.$store.getters.allUsers
       },
-      userEvents () {
+      userEvents() {
         if (this.$store.getters.allUsers[this.$store.getters.watchedUserId]) {
           return this.$store.getters.allUsers[this.$store.getters.watchedUserId].events
         } else {
