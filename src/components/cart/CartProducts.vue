@@ -3,28 +3,27 @@
     <RouterHeader>
       <div slot="title">КОРЗИНА</div>
     </RouterHeader>
-  <el-row v-if="userCart" id="desctop_shopping_cart">
-    <el-col :xs="22" :sm="22" :md="18" :lg="16" :xl="14" type="flex" align="middle">
-      <div v-if="!Object.keys(userCart).length">
-        <p id="cart_is_empty">Ваша корзина пуста</p>
-        <router-link to="/catalog">
-          <el-button class="primary_btn" id="into_catalog">
-            <span style="padding-left: 15px;padding-right: 5px;">В каталог</span>
-            <i class="el-icon-arrow-right"></i>
-            <i class="el-icon-arrow-right"></i>
-          </el-button>
-        </router-link>
-      </div>
-      <div v-if="Object.keys(userCart).length">
-        <el-row id="cart_table_header">
-          <el-col :span="3">ТОВАР</el-col>
-          <el-col :span="11">НАИМЕНОВАНИЕ</el-col>
-          <el-col :span="4">КОЛИЧЕСТВО</el-col>
-          <el-col :span="3">СУММА</el-col>
-          <el-col :span="2">УДАЛИТЬ</el-col>
-        </el-row>
-        <div v-for="product in userCart" :key="product.productId" v-if="product">
-          <el-row class="product_row">
+    <el-row v-if="userCart" id="desctop_shopping_cart">
+      <el-col :xs="22" :sm="22" :md="18" :lg="16" :xl="14">
+        <div v-if="!Object.keys(userCart).length">
+          <p id="cart_is_empty">Ваша корзина пуста</p>
+          <router-link to="/catalog">
+            <el-button class="primary_btn" id="into_catalog">
+              <span style="padding-left: 15px;padding-right: 5px;">В каталог</span>
+              <i class="el-icon-arrow-right"></i>
+              <i class="el-icon-arrow-right"></i>
+            </el-button>
+          </router-link>
+        </div>
+        <div v-if="Object.keys(userCart).length">
+          <el-row id="cart_table_header">
+            <el-col :span="3" style="padding-left: 35px;">ТОВАР</el-col>
+            <el-col :span="11">НАИМЕНОВАНИЕ</el-col>
+            <el-col :span="4" align="center">КОЛИЧЕСТВО</el-col>
+            <el-col :span="4" align="center">СУММА</el-col>
+            <el-col :span="2" align="center">УДАЛИТЬ</el-col>
+          </el-row>
+          <el-row v-for="product in userCart" :key="product.productId" v-if="product" class="product_row">
             <el-col :xs="6" :sm="3" :md="3" :lg="3" :xl="3">
               <img v-if="product.img_0.thumbnail" :src="product.img_0.thumbnail" ref="img_0"/>
             </el-col>
@@ -35,29 +34,28 @@
                 </p>
               </router-link>
             </el-col>
-            <el-col :xs="11" :sm="4" :md="4" :lg="4" :xl="4">
+            <el-col :xs="11" :sm="4" :md="4" :lg="4" :xl="4" align="center">
               <el-input-number size="small" v-model="product.qty" :min="1" :max="product.totalQty"></el-input-number>
             </el-col>
-            <el-col :xs="9" :sm="3" :md="3" :lg="3" :xl="3">
+            <el-col :xs="9" :sm="4" :md="4" :lg="4" :xl="4" align="center">
               <p class="price">{{ parseFloat(product.qty * product.price).toFixed(2) }} р.</p>
             </el-col>
-            <el-col class="remove_from_cart" :xs="4" :sm="2" :md="3" :lg="2" :xl="2">
+            <el-col :xs="4" :sm="2" :md="2" :lg="2" :xl="2" align="center">
               <i @click="removeFromCart(product)" class="el-icon-delete"></i>
             </el-col>
           </el-row>
+          <div v-if="Object.keys(userCart).length">
+            <p id="total_price">ИТОГО: {{ parseFloat(totalOrder.price).toFixed(2) }} RUB</p>
+            <el-row id="total_row">
+              <nuxt-link to="/catalog" exact>
+                <el-button class="secondary_btn" style="width: 208px">ПРОДОЛЖИТЬ ПОКУПКИ</el-button>
+              </nuxt-link>
+              <checkout type="all" :checkout-obj="totalOrder.items" style="margin-left: 10px;"></checkout>
+            </el-row>
+          </div>
         </div>
-        <div v-if="Object.keys(userCart).length">
-          <p id="total_price">ИТОГО: {{ parseFloat(totalOrder.price).toFixed(2) }} RUB</p>
-          <el-row id="total_row">
-            <nuxt-link to="/catalog" exact>
-              <el-button class="secondary_btn" style="width: 208px">ПРОДОЛЖИТЬ ПОКУПКИ</el-button>
-            </nuxt-link>
-            <checkout type="all" :checkout-obj="totalOrder.items" style="margin-left: 10px;"></checkout>
-          </el-row>
-        </div>
-      </div>
-    </el-col>
-  </el-row>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script>
@@ -116,14 +114,13 @@
 
     #cart_table_header {
       display: flex;
-      justify-content: start;
+      justify-content: center;
       align-items: center;
       font-size: 12px;
       color: $color-info-dark;
       margin-top: 30px;
       flex-wrap: wrap;
       background: $color-primary-light-2;
-      padding-right: 10px;
       div {
         padding: 14px;
         font-size: 10px;
@@ -138,14 +135,13 @@
       border: 1px solid $color-primary-light-2;
       border-top: none;
       margin: 0;
-      padding: 12px;
+      padding-top: 10px;
+      padding-bottom: 10px;
       img {
         height: 90px;
         width: 78px;
         object-fit: cover;
-      }
-      .remove_from_cart {
-        padding-left: 18px;
+        padding-left: 5px;
       }
     }
   }

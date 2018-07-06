@@ -20,7 +20,7 @@
                 :xs="22" :sm="12" :md="12" :lg="12" :xl="12" align="center">
           <el-row class="services">
             <el-col :span="24">
-              <h4 align="center">{{ service.title }}</h4>
+              <h4>{{ service.title }}</h4>
             </el-col>
             <el-col :span="24">
               <p style="padding-left: 5px;">{{ service.description }}</p>
@@ -63,7 +63,6 @@
   #services_wrap {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     padding-right: 20px;
   }
 

@@ -1,19 +1,19 @@
 <template>
   <el-row id="slider_block">
     <el-col :span="hoveredProducts && !isSideChanging ? 24 : 12" id="left_side_wrap">
-      <el-row>
-        <el-col :span="18">
-          <h1>Товары для обустройства <br>дома от А до Я</h1>
-        </el-col>
-        <el-col :span="18">
-          <h3>Более <span>5000</span> товаров в наличае</h3>
-        </el-col>
-        <el-col :span="18">
-          <nuxt-link to="/catalog">
-            <el-button class="secondary_btn">Смотреть каталог</el-button>
-          </nuxt-link>
-        </el-col>
-        <transition name="fade">
+      <transition name="fade">
+        <el-row v-if="!hoveredServices && !isSideChanging">
+          <el-col :span="18">
+            <h1>Товары для обустройства <br>дома от А до Я</h1>
+          </el-col>
+          <el-col :span="18">
+            <h3>Более <span>5000</span> товаров в наличае</h3>
+          </el-col>
+          <el-col :span="18">
+            <nuxt-link to="/catalog">
+              <el-button style="z-index: 100" class="secondary_btn">Смотреть каталог</el-button>
+            </nuxt-link>
+          </el-col>
           <el-col v-if="hoveredProducts && !isSideChanging" :span="18">
             <p class="more_text">
               Разнообразный и богатый опыт укрепление и развитие структуры позволяет выполнять
@@ -22,26 +22,27 @@
               образом сложившаяся структура организации играет важную роль в формировании систем массового участия.
             </p>
           </el-col>
-        </transition>
-      </el-row>
+        </el-row>
+      </transition>
       <div class="slide_starter" @mouseover="hoveredProducts = true" @mouseleave="mouseLeave('hoveredProducts')"></div>
     </el-col>
     <el-col :span="hoveredServices && !isSideChanging ? 24 : 12" id="rightSide">
-      <el-row class="flex_block">
-        <el-col :span="18">
-          <h1>Консультация и установка <br>оборудования</h1>
-        </el-col>
-        <el-col :span="18">
-          <h3>Более <span>5000</span> товаров в наличае</h3>
-        </el-col>
-        <el-col :span="18">
-          <el-button
-            @click="$nuxt.$router.push({name: 'catalog', params: {ANCHOR: '#service_title'}})"
-            class="secondary_btn">
-            Заказать
-          </el-button>
-        </el-col>
-        <transition name="fade">
+      <transition name="fade">
+        <el-row v-if="!hoveredProducts && !isSideChanging" class="flex_block">
+          <el-col :span="18">
+            <h1>Консультация и установка <br>оборудования</h1>
+          </el-col>
+          <el-col :span="18">
+            <h3>Более <span>5000</span> товаров в наличае</h3>
+          </el-col>
+          <el-col :span="18">
+            <el-button
+              style="z-index: 100"
+              @click="$nuxt.$router.push({name: 'catalog', params: {ANCHOR: '#service_title'}})"
+              class="secondary_btn">
+              Заказать
+            </el-button>
+          </el-col>
           <el-col v-if="hoveredServices && !isSideChanging" :span="18">
             <p class="more_text">
               Разнообразный и богатый опыт укрепление и развитие структуры позволяет выполнять
@@ -50,8 +51,8 @@
               образом сложившаяся структура организации играет важную роль в формировании систем массового участия.
             </p>
           </el-col>
-        </transition>
-      </el-row>
+        </el-row>
+      </transition>
       <div class="slide_starter" @mouseover="hoveredServices = true" @mouseleave="mouseLeave('hoveredServices')"></div>
     </el-col>
     <ChoiceRoundBtn :hoveredProducts="hoveredProducts" :hoveredServices="hoveredServices"/>
@@ -90,7 +91,7 @@
   @mixin block {
     padding-top: 100px;
     position: relative;
-    height: 70vh;
+    height: 580px;
     display: flex;
     flex-wrap: wrap;
     transition: all 1s;

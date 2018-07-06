@@ -1,6 +1,12 @@
 <template>
   <div id="central_view">
     <PriceFilter/>
+    <el-row v-if="products && !Object.keys(products).length && $store.getters.LOADING" type="flex" justify="center">
+      <i class="el-icon-loading" style="margin-top: 20px;"></i>
+    </el-row>
+    <el-row v-if="products && !Object.keys(products).length && !$store.getters.LOADING" type="flex" justify="center">
+      <div id="no_products">Товары отсутствуют</div>
+    </el-row>
     <el-row>
       <el-col
         :span="24" v-for="p in products" :key="p.productId"
@@ -74,6 +80,8 @@
     margin-top: 10px;
   }
 
-  @media only screen and (max-width: $sm-screen) {
+  #no_products {
+    margin-top: 10px;
+    color: $color-info-dark;
   }
 </style>
