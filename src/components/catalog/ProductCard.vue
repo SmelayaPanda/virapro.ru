@@ -8,17 +8,17 @@
     itemscope itemtype="http://schema.org/Product">
     <div :body-style="{ padding: '0px' }" id="card">
       <el-row id="card_content">
-        <el-col style="width: 160px">
+        <el-col id="product_img_wrap">
           <div id="product_image">
             <img v-if="product.img_0" :src="product.img_0.card" :alt="`Фото: ${product.title}`">
           </div>
         </el-col>
         <el-col id="product_description"
-                :xs="24" :sm="16" :md="16" :lg="15" :xl="18">
+                :xs="18" :sm="16" :md="16" :lg="15" :xl="18">
           <p id="title" itemprop="name">{{ product.title }}</p>
           <p id="sku">Арт.: <span itemprop="sku">{{ product.SKU }}</span></p>
         </el-col>
-        <el-col style="width: 110px">
+        <el-col id="price_wrap">
           <p id="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
             <span itemprop="price" :content="product.price">{{ product.price }} </span>
             <span itemprop="priceCurrency" content="RUB">RUB</span>
@@ -96,17 +96,20 @@
     #card_content {
       display: flex;
       justify-content: start;
-      /*flex-wrap: wrap;*/
-      #product_image {
-        width: 120px;
-        height: 120px;
-        padding-left: 10px;
-        img {
+      #product_img_wrap {
+        width: 160px;
+        #product_image {
           width: 120px;
-          height: 100%;
-          object-fit: cover;
+          height: 120px;
+          padding-left: 10px;
+          img {
+            width: 120px;
+            height: 100%;
+            object-fit: cover;
+          }
         }
       }
+
       #product_description {
         padding: 10px;
         #title {
@@ -118,14 +121,31 @@
           font-size: 13px;
         }
       }
-      #price {
-        margin-top: 54px;
-        color: $color-success-second;
-        font-size: 14px;
+      #price_wrap {
+        width: 110px;
+        #price {
+          margin-top: 54px;
+          color: $color-success-second;
+          font-size: 14px;
+        }
       }
     }
   }
 
   @media only screen and (max-width: $xs-screen) {
+    #product_img_wrap {
+      width: 100px !important;
+      #product_image {
+        padding-top: 20px;
+        width: 80px !important;
+        height: 80px !important;
+        img {
+          width: 80px !important;
+        }
+      }
+    }
+    #price_wrap {
+      width: 80px !important;
+    }
   }
 </style>

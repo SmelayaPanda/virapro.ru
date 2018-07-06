@@ -60,7 +60,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 
   .zoom-on-hover {
     position: relative;
@@ -78,5 +78,12 @@ export default {
     position: absolute;
     opacity: 0;
     transform-origin: top left;
+  }
+
+  @media only screen and (max-width: $xs-screen) {
+    .zoom-on-hover .normal {
+      width: 300px !important;
+      height: 300px !important;
+    }
   }
 </style>

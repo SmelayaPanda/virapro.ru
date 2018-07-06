@@ -84,4 +84,8 @@
     margin-top: 10px;
     color: $color-info-dark;
   }
+
+  @media only screen and (max-width: $xs-screen) {
+    flex: 0 0 90vw !important;
+  }
 </style>

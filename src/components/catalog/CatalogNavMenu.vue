@@ -93,7 +93,7 @@
 
   @media only screen and (max-width: $sm-screen) {
     #catalog_menu {
-      flex: 0 0 100%;
+      flex: 0 0 100vw !important;
     }
   }
 </style>

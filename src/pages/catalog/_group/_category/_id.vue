@@ -313,5 +313,12 @@
       display: block;
       margin-top: 12px;
     }
+    .main_img {
+      width: 300px !important;
+      height: 300px !important;
+    }
+    #product_descr_wrapper {
+      width: 90%;
+    }
   }
 </style>

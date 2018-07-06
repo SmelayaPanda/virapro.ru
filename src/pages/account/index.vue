@@ -118,4 +118,14 @@
     padding: 4px 10px;
     border-radius: 3px;
   }
+
+  @media only screen and (max-width: $xs-screen) {
+    #account_info_card {
+      padding-left: 5px !important;
+      font-size: 13px !important;
+    }
+    .user_prop {
+      font-size: 14px;
+    }
+  }
 </style>

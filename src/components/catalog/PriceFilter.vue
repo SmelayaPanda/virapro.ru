@@ -87,6 +87,6 @@
     flex: 0 0 60px;
   }
 
-  @media only screen and (max-width: $sm-screen) {
+  @media only screen and (max-width: $xs-screen) {
   }
 </style>

@@ -160,11 +160,11 @@
       display: none;
     }
     #routers {
-      width: 270px;
+      width: 260px !important;
       margin-left: 10px;
     }
     a {
-      padding-right: 8px;
+      padding-right: 5px;
       padding-left: 5px;
     }
     #cart_wrap {

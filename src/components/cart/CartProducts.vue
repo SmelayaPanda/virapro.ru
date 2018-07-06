@@ -48,7 +48,9 @@
             <p id="total_price">ИТОГО: {{ parseFloat(totalOrder.price).toFixed(2) }} RUB</p>
             <el-row id="total_row">
               <nuxt-link to="/catalog" exact>
-                <el-button class="secondary_btn" style="width: 208px">ПРОДОЛЖИТЬ ПОКУПКИ</el-button>
+                <el-button class="secondary_btn" style="width: 208px; margin-bottom: 5px;">
+                  ПРОДОЛЖИТЬ ПОКУПКИ
+                </el-button>
               </nuxt-link>
               <checkout type="all" :checkout-obj="totalOrder.items" style="margin-left: 10px;"></checkout>
             </el-row>
@@ -149,6 +151,7 @@
   #total_row {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     margin-top: 20px;
   }
 
