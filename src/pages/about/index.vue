@@ -85,8 +85,8 @@
 
 <style scoped lang="scss">
   #about {
-    background: url("~/static/about/plumber.png") no-repeat top right;
-    background-size: 100vw;
+    background: url("~/static/about/plumb.png") no-repeat top right;
+    background-size: 570px;
   }
 
   #about_content {

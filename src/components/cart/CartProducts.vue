@@ -17,7 +17,7 @@
         </div>
         <div v-if="Object.keys(userCart).length">
           <el-row id="cart_table_header">
-            <el-col :span="3" style="padding-left: 35px;">ТОВАР</el-col>
+            <el-col :span="3" style="padding-left: 45px;">ТОВАР</el-col>
             <el-col :span="11">НАИМЕНОВАНИЕ</el-col>
             <el-col :span="4" align="center">КОЛИЧЕСТВО</el-col>
             <el-col :span="4" align="center">СУММА</el-col>
@@ -141,7 +141,7 @@
         height: 90px;
         width: 78px;
         object-fit: cover;
-        padding-left: 5px;
+        padding-left: 15px;
       }
     }
   }

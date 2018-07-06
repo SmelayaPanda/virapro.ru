@@ -485,6 +485,7 @@
   }
 
   #my_order_wrap {
+    text-align: center;
     padding: 30px;
     #my_order_title {
       font-weight: 600;

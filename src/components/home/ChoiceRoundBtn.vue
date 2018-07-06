@@ -39,7 +39,7 @@
   #round {
     transition: all .5s;
     position: absolute;
-    top: 450px;
+    top: 490px;
     left: calc(50% - 90px);
   }
 

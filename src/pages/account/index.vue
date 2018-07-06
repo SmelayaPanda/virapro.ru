@@ -114,8 +114,8 @@
   }
 
   #user_id {
-    background: $color-primary-light-2;
-    padding: 5px 10px;
+    background: $color-primary-light-3;
+    padding: 4px 10px;
     border-radius: 3px;
   }
 </style>

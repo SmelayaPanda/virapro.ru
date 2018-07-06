@@ -18,21 +18,17 @@
       <el-row id="services_wrap">
         <el-col v-for="service in $store.getters.SERVICE_TYPES" :key="service.value"
                 :xs="22" :sm="12" :md="12" :lg="12" :xl="12" align="center">
-          <el-row class="services">
-            <el-col :span="24">
-              <h4>{{ service.title }}</h4>
-            </el-col>
-            <el-col :span="24">
-              <p style="padding-left: 5px;">{{ service.description }}</p>
-            </el-col>
-          </el-row>
-          <el-row type="flex" justify="center">
-            <el-col align="center">
-            <el-button class="get_service_btn primary_btn" @click="$bus.$emit('openOrderServiceDialog', service.value)">
+          <div :span="24" class="services">
+            <h4>{{ service.title }}</h4>
+            <p style="padding-left: 5px;">{{ service.description }}</p>
+          </div>
+          <div align="center">
+            <el-button
+              class="get_service_btn primary_btn"
+              @click="$bus.$emit('openOrderServiceDialog', service.value)">
               Заказать
             </el-button>
-            </el-col>
-          </el-row>
+          </div>
         </el-col>
       </el-row>
     </el-col>
@@ -112,7 +108,8 @@
       padding-right: 0;
     }
   }
-    @media only screen and (max-width: $xs-screen) {
+
+  @media only screen and (max-width: $xs-screen) {
     #equipment {
       width: 70px;
       height: 70px;
