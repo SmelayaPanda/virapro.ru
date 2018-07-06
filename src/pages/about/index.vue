@@ -1,10 +1,8 @@
 <template>
   <div id="about">
-    <el-row id="about_title">
-      <el-col :offset="2">
-        <h1>О НАС И НАШИХ ВОЗМОЖНОСТЯХ</h1>
-      </el-col>
-    </el-row>
+    <RouterHeader>
+      <div slot="title">О НАС И НАШИХ ВОЗМОЖНОСТЯХ</div>
+    </RouterHeader>
     <el-row id="about_content">
       <el-col :xs="24" :sm="16" :md="13" :lg="11" :xl="10" :offset="2">
         <el-row type="flex">
@@ -63,10 +61,11 @@
 
 <script>
   import Reviews from "@/components/about/Reviews";
+  import RouterHeader from "@/components/RouterHeader";
 
   export default {
-    components: {Reviews},
-    async fetch ({ store, params }) {
+    components: {RouterHeader, Reviews},
+    async fetch({store, params}) {
       await store.dispatch('ANCHOR', params.ANCHOR)
       await store.dispatch('USER_EVENT', 'Страница: О нас')
     },
@@ -88,20 +87,6 @@
   #about {
     background: url("~/static/about/plumber.png") no-repeat top right;
     background-size: 100vw;
-  }
-
-  #about_title {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    height: 140px;
-    color: white;
-    background: url("~/static/about/pattern.png");
-    background-size: cover;
-    h1 {
-      font-size: 22px;
-      font-weight: 500;
-    }
   }
 
   #about_content {
@@ -196,11 +181,11 @@
     }
   }
 
-  @media only screen and (max-width: $sm-screen ){
+  @media only screen and (max-width: $sm-screen) {
     #reviews {
       display: none;
     }
-    #about{
+    #about {
       background: none;
     }
   }

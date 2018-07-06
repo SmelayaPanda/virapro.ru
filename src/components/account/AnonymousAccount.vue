@@ -42,7 +42,7 @@
     background: linear-gradient(to right, $color-secondary-light 43%, $color-secondary 51%);
     color: $color-primary;
     -webkit-background-clip: text;
-    margin-top: 20px;
+    margin-top: 10px;
     &:after {
       content: '';
       display: block;

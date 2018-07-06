@@ -1,7 +1,10 @@
 <template>
+  <div>
+    <RouterHeader>
+      <div slot="title">КОРЗИНА</div>
+    </RouterHeader>
   <el-row v-if="userCart" id="desctop_shopping_cart">
     <el-col :xs="22" :sm="22" :md="18" :lg="16" :xl="14" type="flex" align="middle">
-      <h1 align="left">Корзина</h1>
       <div v-if="!Object.keys(userCart).length">
         <p id="cart_is_empty">Ваша корзина пуста</p>
         <router-link to="/catalog">
@@ -55,13 +58,15 @@
       </div>
     </el-col>
   </el-row>
+  </div>
 </template>
 <script>
   import Checkout from "./Checkout";
+  import RouterHeader from "../RouterHeader";
 
   export default {
     name: 'CartProducts',
-    components: {Checkout},
+    components: {RouterHeader, Checkout},
     props: {},
     methods: {
       removeFromCart(product) {
@@ -97,6 +102,7 @@
   }
 </script>
 <style scoped lang="scss">
+
   #desctop_shopping_cart {
     display: flex;
     justify-content: center;
