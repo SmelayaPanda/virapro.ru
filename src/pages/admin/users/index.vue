@@ -87,6 +87,9 @@
     },
     created() {
       this.$store.dispatch('fetchAllUsers')
+    },
+    beforeDestroy () {
+      this.$store.dispatch('unsubscribeFromEvents')
     }
   }
 </script>

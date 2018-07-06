@@ -651,7 +651,6 @@ export const actions = {
           users[doc.id] = doc.data()
         })
       })
-      .catch(err => dispatch('LOG', err))
 
     await db.ref('events').once('value', snap => {
       for (let userId in snap.val()) {
@@ -660,9 +659,22 @@ export const actions = {
         }
       }
     })
+
+    db.ref('events').on('child_changed', data => {
+      if (data.exists()) {
+        let allUsers = getters.allUsers
+        allUsers[data.key].events = data.val()
+        commit('setAllUsers', {...allUsers})
+      }
+    })
+
     await commit('setAllUsers', {...users})
     commit('LOADING', false)
     console.log('(i) Fetched: all users from firestore');
+  },
+
+  unsubscribeFromEvents() {
+    db.ref('events').off()
   },
 
 
