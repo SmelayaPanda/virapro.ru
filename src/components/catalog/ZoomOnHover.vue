@@ -1,7 +1,9 @@
 <template>
   <div class="zoom-on-hover" @mousemove="move" @mouseenter="zoom" @mouseleave="unzoom">
-    <img class="normal" ref="normal" :src="imgNormal"/>
-    <img class="zoom" ref="zoom" :src="imgZoom || imgNormal" height="700px" width="auto"/>
+    <img class="normal" ref="normal" :src="imgNormal"
+         :alt="$store.getters.singleProduct.title + '(фото главное)'"/>/>
+    <img class="zoom" ref="zoom" :src="imgZoom || imgNormal" height="700px" width="auto"
+         :alt="$store.getters.singleProduct.title + '(фото увеличенное)'"/>/>
   </div>
 </template>
 

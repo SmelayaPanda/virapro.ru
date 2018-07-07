@@ -17,7 +17,7 @@ REVIEW STATUSES:
         <el-card class="review_card">
           <el-row class="review">
             <el-col :span="6">
-              <img :src="item.user.avatar" alt="User avatar">
+              <img :src="item.user.avatar" alt="Аватар">
             </el-col>
             <el-col :span="18">
               <p class="user_name">{{ item.user.name }}</p>

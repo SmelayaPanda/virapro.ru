@@ -25,7 +25,7 @@
           </el-row>
           <el-row v-for="product in userCart" :key="product.productId" v-if="product" class="product_row">
             <el-col :xs="6" :sm="3" :md="3" :lg="3" :xl="3">
-              <img v-if="product.img_0.thumbnail" :src="product.img_0.thumbnail" ref="img_0"/>
+              <img v-if="product.img_0.thumbnail" :src="product.img_0.thumbnail" ref="img_0" :alt="product.title"/>
             </el-col>
             <el-col :xs="18" :sm="11" :md="11" :lg="11" :xl="11">
               <router-link :to="`/catalog/${product.group}/${product.category}/${product.productId}`">

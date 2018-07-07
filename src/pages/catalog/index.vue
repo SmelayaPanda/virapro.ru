@@ -9,7 +9,7 @@
         v-for="(group, idx) in $store.getters.PRODUCT_TREE" :key="group.value"
         v-if="group.value !== 'all-products'">
         <div class="catalog_card" @click="$nuxt.$router.push(`/catalog/${group.value}`)">
-          <img src="~/assets/icons/no_photo_tmp.svg" alt="">
+          <img src="~/assets/icons/no_photo_tmp.svg" :alt="group.label">
           <p>{{idx}}. {{ group.label }}</p>
         </div>
       </el-col>
@@ -19,7 +19,7 @@
     <el-row id="services_wrap">
       <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" align="center"
               v-for="service in $store.getters.SERVICE_TYPES" :key="service.value">
-        <img src="~/assets/icons/account/user-placeholder.svg" height="30px" alt="">
+        <img src="~/assets/icons/account/user-placeholder.svg" height="30px" :alt="service.title">
         <div class="service_title">
           <h3>{{ service.title }}</h3>
         </div>
@@ -164,6 +164,11 @@
     #wrap {
       margin-right: 20px;
       margin-left: 20px;
+    }
+    .service_descr {
+      p {
+        font-size: 16px !important;
+      }
     }
   }
 </style>
