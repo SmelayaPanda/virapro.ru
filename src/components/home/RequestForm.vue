@@ -41,13 +41,19 @@
       }
     },
     methods: {
-      async sendRequestForm(service) {
+      sendRequestForm(service) {
         if (!this.form.user.firstname) {
-          await this.$message({showClose: true, message: 'Укажите имя', duration: 5000})
+          this.$store.commit('ERR', 'Укажите имя')
+          if (!service) {
+            this.$message({showClose: true, message: 'Укажите имя', duration: 5000})
+          }
           return
         }
         if (!this.isValidPhone) {
-          await this.$message({showClose: true, message: 'Укажите телефон', duration: 5000})
+          this.$store.commit('ERR', 'Укажите телефон')
+          if (!service) {
+            this.$message({showClose: true, message: 'Укажите телефон', duration: 5000})
+          }
           return
         }
         if (service) {
@@ -56,10 +62,11 @@
         } else {
           this.$store.dispatch('USER_EVENT', 'Успешная заявка')
         }
-        await this.$store.dispatch('sendCallRequests', this.form)
-        await this.$refs.form.resetFields()
+        this.$store.dispatch('sendCallRequests', this.form)
+        this.$refs.form.resetFields()
         if (service) {
           this.$bus.$emit('isSentServiceForm')
+          this.$store.commit('ERR', '')
         }
       }
     },
