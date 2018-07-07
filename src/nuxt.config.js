@@ -18,7 +18,7 @@ module.exports = {
   },
   manifest: {  // PWA meta
     name: 'Сантехника Новосибирске. Консультация, замерочные работы и установка.',
-    short_name: 'Сантехника Новосибирск'
+    short_name: 'Сантехника'
   },
   router: {
     middleware: 'router-auth'

@@ -32,21 +32,21 @@
     "img/search.2e4a635.svg",
     "img/shopping-cart.90d0051.svg",
     "pages/admin/system/index.b84e177d27a8a49a427f.js",
-    "layouts/default.92608aa4ea61773a7258.js",
+    "layouts/default.e64541159404f0752a87.js",
     "pages/index.6a38657cf64332e57db7.js",
-    "pages/cart/index.f930827a11fa04e89b52.js",
-    "pages/catalog/_group/index.1ebaaf3e1dfe45b00c44.js",
+    "pages/cart/index.a011b21a5737a4f2b149.js",
+    "pages/catalog/_group/index.e9aff13993fea4fd6999.js",
     "pages/admin/products/index.a4931110ce370f022c76.js",
-    "pages/catalog/_group/_category/index.1fcbdc17344925c7bc53.js",
+    "pages/catalog/_group/_category/index.eb18afda9065fb99060a.js",
     "layouts/admin.30e2955bee0c02d24031.js",
     "pages/admin/requests/index.cec32641cf7101dc8547.js",
     "pages/admin/reviews/index.35705b2422863a352f0b.js",
     "pages/admin/orders/index.70f37fe55b18e9171322.js",
-    "pages/account/index.74d1613be1b9fcd4c55e.js",
+    "pages/account/index.0dff318c27e431961ab5.js",
     "pages/about/index.f684443387afed1f20f3.js",
     "pages/admin/questions/index.117c29d53d78910e807f.js",
     "pages/admin/company/index.6db4cd90f3831780fd3a.js",
-    "pages/catalog/_group/_category/_id.665e361fae1ec25966a9.js",
+    "pages/catalog/_group/_category/_id.492d1d5a4effb6b5c93d.js",
     "fonts/element-icons.6f0a763.ttf",
     "pages/admin/dictionaries/index.55f7bc1512f44915b37f.js",
     "pages/catalog/index.646c58b1d1884828ca48.js",
@@ -55,25 +55,25 @@
     "pages/account/signup.a16e7f48ab4fdbf4267d.js",
     "common.ed2e7fdec00c5c2adc9f.js",
     "app.e4eb94d1aa6eb7cea4cd.js",
-    "manifest.90fdf0e6a8e1691729a9.js",
+    "manifest.c3f13ad122f8564b3a1b.js",
     "common.9afa90c0cd38632d279c4f04fff5aba7.css",
     "LICENSES",
     "pages/admin/system/index.b84e177d27a8a49a427f.js.map",
-    "layouts/default.92608aa4ea61773a7258.js.map",
+    "layouts/default.e64541159404f0752a87.js.map",
     "pages/index.6a38657cf64332e57db7.js.map",
-    "pages/cart/index.f930827a11fa04e89b52.js.map",
-    "pages/catalog/_group/index.1ebaaf3e1dfe45b00c44.js.map",
+    "pages/cart/index.a011b21a5737a4f2b149.js.map",
+    "pages/catalog/_group/index.e9aff13993fea4fd6999.js.map",
     "pages/admin/products/index.a4931110ce370f022c76.js.map",
-    "pages/catalog/_group/_category/index.1fcbdc17344925c7bc53.js.map",
+    "pages/catalog/_group/_category/index.eb18afda9065fb99060a.js.map",
     "layouts/admin.30e2955bee0c02d24031.js.map",
     "pages/admin/requests/index.cec32641cf7101dc8547.js.map",
     "pages/admin/reviews/index.35705b2422863a352f0b.js.map",
     "pages/admin/orders/index.70f37fe55b18e9171322.js.map",
-    "pages/account/index.74d1613be1b9fcd4c55e.js.map",
+    "pages/account/index.0dff318c27e431961ab5.js.map",
     "pages/about/index.f684443387afed1f20f3.js.map",
     "pages/admin/questions/index.117c29d53d78910e807f.js.map",
     "pages/admin/company/index.6db4cd90f3831780fd3a.js.map",
-    "pages/catalog/_group/_category/_id.665e361fae1ec25966a9.js.map",
+    "pages/catalog/_group/_category/_id.492d1d5a4effb6b5c93d.js.map",
     "pages/admin/users/index.e007c1949fdb731a7631.js.map",
     "pages/admin/dictionaries/index.55f7bc1512f44915b37f.js.map",
     "pages/catalog/index.646c58b1d1884828ca48.js.map",
@@ -83,7 +83,7 @@
     "common.ed2e7fdec00c5c2adc9f.js.map",
     "app.e4eb94d1aa6eb7cea4cd.js.map",
     "common.9afa90c0cd38632d279c4f04fff5aba7.css.map",
-    "manifest.90fdf0e6a8e1691729a9.js.map",
+    "manifest.c3f13ad122f8564b3a1b.js.map",
     "icons/icon_64.8k7O$0GdKQ6.png",
     "icons/icon_120.8k7O$0GdKQ6.png",
     "icons/icon_144.8k7O$0GdKQ6.png",
@@ -96,28 +96,28 @@
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.90fdf0e6a8e1691729a9.js",
+    "manifest.c3f13ad122f8564b3a1b.js",
     "common.ed2e7fdec00c5c2adc9f.js",
     "app.e4eb94d1aa6eb7cea4cd.js"
   ],
   "async": [
     "pages/admin/users/index.e007c1949fdb731a7631.js",
     "pages/admin/system/index.b84e177d27a8a49a427f.js",
-    "layouts/default.92608aa4ea61773a7258.js",
+    "layouts/default.e64541159404f0752a87.js",
     "pages/index.6a38657cf64332e57db7.js",
-    "pages/cart/index.f930827a11fa04e89b52.js",
-    "pages/catalog/_group/index.1ebaaf3e1dfe45b00c44.js",
+    "pages/cart/index.a011b21a5737a4f2b149.js",
+    "pages/catalog/_group/index.e9aff13993fea4fd6999.js",
     "pages/admin/products/index.a4931110ce370f022c76.js",
-    "pages/catalog/_group/_category/index.1fcbdc17344925c7bc53.js",
+    "pages/catalog/_group/_category/index.eb18afda9065fb99060a.js",
     "layouts/admin.30e2955bee0c02d24031.js",
     "pages/admin/requests/index.cec32641cf7101dc8547.js",
     "pages/admin/reviews/index.35705b2422863a352f0b.js",
     "pages/admin/orders/index.70f37fe55b18e9171322.js",
-    "pages/account/index.74d1613be1b9fcd4c55e.js",
+    "pages/account/index.0dff318c27e431961ab5.js",
     "pages/about/index.f684443387afed1f20f3.js",
     "pages/admin/questions/index.117c29d53d78910e807f.js",
     "pages/admin/company/index.6db4cd90f3831780fd3a.js",
-    "pages/catalog/_group/_category/_id.665e361fae1ec25966a9.js",
+    "pages/catalog/_group/_category/_id.492d1d5a4effb6b5c93d.js",
     "pages/admin/dictionaries/index.55f7bc1512f44915b37f.js",
     "pages/catalog/index.646c58b1d1884828ca48.js",
     "pages/account/signin.e7154c6f5c006ce2bbd6.js",
@@ -793,10 +793,6 @@
     "4592db90": [
       52,
       79
-    ],
-    "6b104176": [
-      45,
-      72
     ],
     "549a4a1b": [
       52,
@@ -2226,6 +2222,10 @@
       28,
       29
     ],
+    "b1a743d8": [
+      45,
+      72
+    ],
     "581c889a": [
       49,
       76,
@@ -2261,10 +2261,6 @@
       55,
       80,
       81
-    ],
-    "d543a2fc": [
-      45,
-      72
     ],
     "521fafb6": [
       52,
@@ -2531,6 +2527,10 @@
     "bb46a170": [
       52,
       79
+    ],
+    "3e9d61f0": [
+      45,
+      72
     ],
     "681dab70": [
       52,
@@ -3240,10 +3240,6 @@
       30,
       57
     ],
-    "65be0027": [
-      45,
-      72
-    ],
     "4aa2dea8": [
       30,
       57
@@ -3737,6 +3733,10 @@
     "4e8cbe28": [
       52,
       79
+    ],
+    "3848988d": [
+      45,
+      72
     ],
     "6a0d9e17": [
       52,
@@ -4348,10 +4348,6 @@
       52,
       79
     ],
-    "d009c7a2": [
-      52,
-      79
-    ],
     "78e96042": [
       39,
       66
@@ -4364,13 +4360,17 @@
       52,
       79
     ],
-    "4759a4a6": [
+    "d009c7a2": [
       52,
       79
     ],
     "4806d61b": [
       30,
       57
+    ],
+    "4759a4a6": [
+      52,
+      79
     ],
     "87dbb59c": [
       43,

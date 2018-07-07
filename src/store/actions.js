@@ -341,8 +341,7 @@ export const actions = {
       })
       .then(() => {
         commit('setOrders', {...orders})
-        // user.orders = {...orders}s
-        // commit('setUser', {...user})
+        commit('setUser', {...user})
         commit('LOADING', false)
         Notification({
           title: 'Поздравляем!',

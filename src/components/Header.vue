@@ -3,7 +3,7 @@
     <SupHeader/>
     <el-row id="header">
       <el-col id="logo_wrap" :span="1" :offset="2">
-        <span id="logo">ЛОГО</span>
+        <span>ЛОГО</span>
       </el-col>
       <el-col id="algolia_desctop" :md="8" :lg="7" :xl="7" :offset="1">
         <AlgoliaSearch/>
@@ -87,6 +87,14 @@
     }
   }
 
+  #logo_wrap {
+    span {
+      color: $color-primary-light;
+      border: 1px solid $color-primary-light;
+      padding: 5px 10px;
+    }
+  }
+
   #header {
     z-index: 10;
     display: flex;
@@ -94,12 +102,6 @@
     justify-content: start;
     height: 56px;
     border-bottom: 1px solid $color-primary-light-3;
-  }
-
-  #logo {
-    color: $color-primary-light;
-    border: 1px solid $color-primary-light;
-    padding: 5px 10px;
   }
 
   #routers {

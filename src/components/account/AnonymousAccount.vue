@@ -69,4 +69,11 @@
   #register_please {
     font-weight: 300;
   }
+
+  @media only screen and (max-width: $xs-screen) {
+    #sign_in {
+      margin-left: 0;
+      margin-top: 12px;
+    }
+  }
 </style>

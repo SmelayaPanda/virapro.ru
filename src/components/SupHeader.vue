@@ -2,18 +2,18 @@
   <el-row id="contacts_row">
     <el-col id="work_time_wrap" :md="9" :lg="12" :xl="12" :offset="2">
       <div id="work_time">
-        <img src="~/assets/icons/home/calendar.svg" id="work_time_icon" alt="Рабочее время">
+        <img src="~/assets/icons/home/calendar.svg" alt="Рабочее время">
         <time>7 дней в неделю с 10<sup>00</sup> до 18<sup>00</sup> часов</time>
       </div>
     </el-col>
     <el-col id="address" :md="6" :lg="4" :xl="4">
-      <img src="~/assets/icons/home/location.svg" id="location_icon" alt="Местоположение">
+      <img src="~/assets/icons/home/location.svg" alt="Местоположение">
       г. {{ $store.getters.companyInfo.address.city }},
       ул. {{ $store.getters.companyInfo.address.street }},
       д. {{ $store.getters.companyInfo.address.build }}
     </el-col>
     <el-col :xs="22" :sm="22" :md="6" :lg="4" :xl="4" :offset="1" id="phone">
-      <img src="~/assets/icons/home/phone.svg" id="phone_icon" alt="Телефон">
+      <img src="~/assets/icons/home/phone.svg" alt="Телефон">
       {{ $store.getters.companyInfo.contacts.phone }}
     </el-col>
   </el-row>
@@ -61,25 +61,28 @@
     }
   }
 
-  #work_time_icon {
-    height: 20px;
-    padding-right: 7px;
+  #work_time {
+    img {
+      height: 20px;
+      padding-right: 7px;
+    }
   }
 
-  #location_icon {
-    height: 18px;
-    padding-right: 7px;
+  #address {
+    img {
+      height: 18px;
+      padding-right: 7px;
+    }
   }
 
   #phone {
     font-weight: 400;
     font-size: 14px;
     letter-spacing: 1px;
-  }
-
-  #phone_icon {
-    height: 18px;
-    padding-right: 7px;
+    img {
+      height: 18px;
+      padding-right: 7px;
+    }
   }
 
   @media only screen and (max-width: $sm-screen) {

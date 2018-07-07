@@ -133,10 +133,13 @@
   }
 
   @media only screen and (max-width: $xs-screen) {
+    #card {
+      height: 180px;
+    }
     #product_img_wrap {
       width: 100px !important;
       #product_image {
-        padding-top: 20px;
+        padding-top: 30px;
         width: 80px !important;
         height: 80px !important;
         img {

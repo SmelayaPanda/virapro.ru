@@ -48,11 +48,11 @@
             <p id="total_price">ИТОГО: {{ parseFloat(totalOrder.price).toFixed(2) }} RUB</p>
             <el-row id="total_row">
               <nuxt-link to="/catalog" exact>
-                <el-button class="secondary_btn" style="width: 208px; margin-bottom: 5px;">
+                <el-button class="secondary_btn" id="continue">
                   ПРОДОЛЖИТЬ ПОКУПКИ
                 </el-button>
               </nuxt-link>
-              <checkout type="all" :checkout-obj="totalOrder.items" style="margin-left: 10px;"></checkout>
+              <checkout type="all" :checkout-obj="totalOrder.items"></checkout>
             </el-row>
           </div>
         </div>
@@ -203,6 +203,16 @@
     border: 1px solid $color-secondary;
   }
 
+  #cart_is_empty {
+    color: $color-info;
+  }
+
+  #continue {
+    margin-right: 10px;
+    width: 208px;
+    margin-bottom: 5px;
+  }
+
   @media only screen and (max-width: $sm-screen) {
     #cart_table_header {
       display: none;
@@ -211,9 +221,8 @@
     .product_row {
       border-top: 1px solid $color-primary-light-2 !important;
     }
-  }
-
-  #cart_is_empty {
-    color: $color-info;
+    #continue {
+      margin-right: 0;
+    }
   }
 </style>
