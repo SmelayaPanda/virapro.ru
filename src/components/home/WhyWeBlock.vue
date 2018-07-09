@@ -23,7 +23,8 @@
       <el-col v-for="i in 4" :key="i" :span="4" class="guarantee">
         <div class="guarantee_number">{{ i }}</div>
         <p>
-          Мы гарантируем качество товаров реализуемых в нашем интернет магазине.
+          Мы гарантируем качество товаров реализуемых в нашем интернет магазине,
+          все товары являются оригинальной продукцией и не являются подделкой.
         </p>
       </el-col>
     </el-row>
@@ -50,7 +51,7 @@
   #why_we {
     position: relative;
     background: linear-gradient($color-primary, $color-primary-light);
-    height: 840px;
+    height: 860px;
     margin-top: 80px;
     color: white;
     h3 {
@@ -183,7 +184,7 @@
   #show_more {
     display: flex;
     justify-content: center;
-    margin-top: 150px;
+    margin-top: 180px;
     a.button {
       width: 300px;
       height: 80px;
