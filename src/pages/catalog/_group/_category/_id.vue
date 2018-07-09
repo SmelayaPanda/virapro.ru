@@ -71,6 +71,7 @@
                   </li>
                 </ul>
               </div>
+              <p v-if="$store.getters.singleProduct.totalQty < 1" id="not_allowed">Нет в наличии</p>
               <no-ssr v-if="!isAlreadyAddedProduct">
                 <el-button
                   id="into_cart_btn"
@@ -203,7 +204,7 @@
     margin-right: 1px;
     margin-left: 1px;
     &:hover {
-    cursor: pointer;
+      cursor: pointer;
     }
   }
 
@@ -309,6 +310,10 @@
 
   #product_thumbnails_mobile {
     display: none;
+  }
+
+  #not_allowed {
+    color: $color-danger;
   }
 
   @media only screen and (max-width: $xs-screen) {
