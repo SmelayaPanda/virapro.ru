@@ -1,7 +1,7 @@
 <template>
   <el-row id="contacts_row">
-    <el-col id="work_time_wrap" :md="9" :lg="12" :xl="12" :offset="2">
-      <div id="work_time">
+    <el-col id="work_time" :md="9" :lg="12" :xl="12" :offset="2">
+      <div>
         <img src="~/assets/icons/home/calendar.svg" alt="Рабочее время">
         <time>7 дней в неделю с 10<sup>00</sup> до 18<sup>00</sup> часов</time>
       </div>
@@ -42,7 +42,7 @@
     color: white;
   }
 
-  #work_time, #address, #phone {
+  #work_time div, #address, #phone {
     display: flex;
     align-items: center;
     color: white;
@@ -61,7 +61,7 @@
     }
   }
 
-  #work_time {
+  #work_time div {
     img {
       height: 20px;
       padding-right: 7px;
@@ -86,7 +86,7 @@
   }
 
   @media only screen and (max-width: $sm-screen) {
-    #work_time_wrap, #address {
+    #work_time, #address {
       display: none;
     }
   }
