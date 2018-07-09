@@ -1,14 +1,16 @@
 <template>
   <div id="form">
     <el-form :model="form" ref="form">
-      <el-form-item prop="user.firstname">
+      <el-form-item prop="user.firstname" label="">
         <el-input type="text" placeholder="Ваше имя" v-model="form.user.firstname">
           <img slot="suffix" src="~/assets/icons/home/avatar.svg" alt="Имя" id="avatar_img">
         </el-input>
       </el-form-item>
-      <el-form-item prop="user.phone">
+      <el-form-item prop="user.phone" label="">
+        <label for="phone_number"></label>
         <no-ssr>
           <masked-input
+            id="phone_number"
             v-model="form.user.phone"
             class="el-input__inner"
             required
@@ -17,7 +19,7 @@
         </no-ssr>
         <img src="~/assets/icons/home/phone_blue.svg" alt="Телефон" id="phone_img">
       </el-form-item>
-      <el-form-item prop="comments.user">
+      <el-form-item prop="comments.user" label="">
         <el-input
           placeholder="Комментарий или вопрос"
           type="textarea"
@@ -75,7 +77,7 @@
         return this.form.user.phone.replace(/[^0-9]/g, '').length === 11
       }
     },
-    created () {
+    created() {
       this.$bus.$on('sendRequestForm', (service) => {
         this.sendRequestForm(service)
       })
@@ -92,6 +94,7 @@
     width: 40px;
     margin-top: 12px;
   }
+
   #phone_img, #comments_img {
     z-index: 10;
     position: absolute;
@@ -100,9 +103,11 @@
     top: 13px;
     right: 5px;
   }
+
   #comments_img {
     height: 18px;
   }
+
   #chat_img {
     height: 18px;
     width: 40px;

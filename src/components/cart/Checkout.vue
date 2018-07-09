@@ -143,8 +143,10 @@
                   </el-row>
                   <!--PHONE-->
                   <el-form-item label="Телефон" prop="phone">
+                    <label for="phone_number"></label>
                     <no-ssr>
                       <masked-input
+                        id="phone_number"
                         v-model="buyer.phone"
                         class="el-input__inner"
                         required

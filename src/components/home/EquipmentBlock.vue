@@ -58,7 +58,7 @@
   }
 
   #equipment_wrap {
-    padding-right: 40px;
+    padding-right: 20px;
   }
 
   #services_wrap {
@@ -84,7 +84,7 @@
     justify-content: center;
     flex-wrap: wrap;
     padding: 10px;
-    height: 170px;
+    height: 171px;
     width: 200px;
     border-radius: 3px;
     @include primaryShadow;
@@ -94,7 +94,7 @@
       height: 10px;
     }
     p {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 300;
     }
   }

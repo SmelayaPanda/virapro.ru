@@ -7,7 +7,7 @@
     </el-row>
     <el-row id="sergey_wrap">
       <el-col :span="6" :offset="3">
-        <img src="~/static/home/sergey.png" alt="Сергей Порываев" id="sergey_img">
+        <img src="~/static/home/sergey.png" alt="Сергей Порываев">
         <p id="sergey_name">Порываев <br> Сергей</p>
       </el-col>
       <el-col :xs="24" :sm="14" :md="12" :lg="10" :xl="10" id="why_we_text">
@@ -23,8 +23,7 @@
       <el-col v-for="i in 4" :key="i" :span="4" class="guarantee">
         <div class="guarantee_number">{{ i }}</div>
         <p>
-          Мы гарантируем качество товаров реализуемых в нашем интернет магазине,
-          все товары являются оригинальной продукцией и не являются подделкой.
+          Мы гарантируем качество товаров реализуемых в нашем интернет магазине.
         </p>
       </el-col>
     </el-row>
@@ -51,7 +50,7 @@
   #why_we {
     position: relative;
     background: linear-gradient($color-primary, $color-primary-light);
-    height: 880px;
+    height: 840px;
     margin-top: 80px;
     color: white;
     h3 {
@@ -104,8 +103,9 @@
   #sergey_wrap {
     display: flex;
     justify-content: start;
-    #sergey_img {
+    img {
       height: 300px;
+      margin-top: -20px;
     }
     #sergey_name {
       position: relative;
@@ -125,7 +125,7 @@
     }
     #why_we_text {
       font-weight: 900;
-      margin-top: 90px;
+      margin-top: 50px;
       font-style: oblique;
     }
   }
@@ -183,7 +183,7 @@
   #show_more {
     display: flex;
     justify-content: center;
-    margin-top: 170px;
+    margin-top: 150px;
     a.button {
       width: 300px;
       height: 80px;
