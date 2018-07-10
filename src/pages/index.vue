@@ -18,10 +18,10 @@
 </template>
 
 <script>
-  import SliderBlock from "../components/home/SliderBlock";
-  import EquipmentBlock from "../components/home/EquipmentBlock";
-  import WhyWeBlock from "../components/home/WhyWeBlock";
-  import RequestBlock from "../components/home/RequestBlock";
+  import SliderBlock from "~/components/home/SliderBlock";
+  const EquipmentBlock = () => import( /* webpackChunkName: "below-slider" */ "~/components/home/EquipmentBlock")
+  const WhyWeBlock = () => import( /* webpackChunkName: "below-slider" */ "~/components/home/WhyWeBlock")
+  const RequestBlock = () => import( /* webpackChunkName: "below-slider" */ "~/components/home/RequestBlock")
 
   export default {
     async fetch({store, params}) {
@@ -39,11 +39,13 @@
       color: $color-primary;
     }
   }
+
   @media only screen and (max-width: $sm-screen) {
     #desctop_home {
       display: none;
     }
   }
+
   @media only screen and (max-width: $sm-screen) {
     #mobile_home {
       display: block;

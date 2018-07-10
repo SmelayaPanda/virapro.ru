@@ -60,8 +60,8 @@
 </template>
 
 <script>
-  import Reviews from "@/components/about/Reviews";
   import RouterHeader from "@/components/RouterHeader";
+  const Reviews = () =>  import("@/components/about/Reviews");
 
   export default {
     components: {RouterHeader, Reviews},

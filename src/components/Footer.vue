@@ -63,8 +63,9 @@
 </template>
 
 <script>
-  import DeliveryAndPaymentDialog from "./dialogs/DeliveryAndPaymentDialog";
-  import OrderServiceDialog from "./dialogs/OrderServiceDialog";
+  const DeliveryAndPaymentDialog = () => import(/* webpackChunkName: "modal" */ './dialogs/DeliveryAndPaymentDialog');
+  const OrderServiceDialog = () => import(/* webpackChunkName: "modal" */ "./dialogs/OrderServiceDialog");
+
   export default {
     name: 'AppFooter',
     components: {OrderServiceDialog, DeliveryAndPaymentDialog}

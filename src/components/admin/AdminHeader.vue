@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import BallsLoader from "./BallsLoader";
+  const BallsLoader = () => import("./BallsLoader");
   export default {
     name: "AdminHeader",
     components: {BallsLoader}

@@ -12,8 +12,8 @@
 </template>
 
 <script>
-  import AppFooter from '../components/Footer'
-  import AppHeader from '../components/Header'
+  import AppHeader from '~/components/Header'
+  const AppFooter = () => import('~/components/Footer')
 
   export default {
     components: {AppHeader, AppFooter}
