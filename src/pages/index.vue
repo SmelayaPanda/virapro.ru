@@ -19,6 +19,7 @@
 
 <script>
   import SliderBlock from "~/components/home/SliderBlock";
+
   const EquipmentBlock = () => import( /* webpackChunkName: "below-slider" */ "~/components/home/EquipmentBlock")
   const WhyWeBlock = () => import( /* webpackChunkName: "below-slider" */ "~/components/home/WhyWeBlock")
   const RequestBlock = () => import( /* webpackChunkName: "below-slider" */ "~/components/home/RequestBlock")
