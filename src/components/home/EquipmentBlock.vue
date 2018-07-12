@@ -3,8 +3,15 @@
     <el-col :xs="24" :sm="22" :md="11" :lg="11" :xl="11" id="equipment_wrap">
       <h2>Сантехническое, отопительное,<br> промышленное оборудование</h2>
       <el-row>
-        <el-col v-for="i in 16" :key="i" :xs="8" :sm="6" :md="6" :lg="6" :xl="6" align="center">
-          <div id="equipment">{{ i }}</div>
+        <el-col
+          v-if="group.value !== 'all-products'"
+          v-for="(group, idx) in $store.getters.PRODUCT_TREE" :key="group.value"
+          :xs="8" :sm="6" :md="6" :lg="6" :xl="6" align="center">
+          <el-tooltip :content="group.label" placement="top" effect="light">
+            <div id="equipment" @click="$nuxt.$router.push(`/catalog/${group.value}/`)">
+              <img :src="`catalog/${group.value}.svg`" :alt="group.title">
+            </div>
+          </el-tooltip>
         </el-col>
       </el-row>
       <nuxt-link to="/catalog">
@@ -18,7 +25,7 @@
                 :xs="22" :sm="12" :md="12" :lg="12" :xl="12" align="center">
           <div :span="24" class="services">
             <h4>{{ service.title }}</h4>
-            <p style="padding-left: 5px;">{{ service.description }}</p>
+            <img :src="`services/${service.value}.svg`" :alt="service.title">
           </div>
           <div align="center">
             <el-button class="primary_btn" @click="$bus.$emit('openOrderServiceDialog', service.value)">
@@ -62,21 +69,30 @@
   }
 
   #services_wrap {
+    padding-top: 10px;
     button {
-      margin-bottom: 25px;
-      margin-top: 18px;
+      margin-bottom: 28px;
+      margin-top: 20px;
     }
   }
 
   #equipment {
+    transition: all .5s;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 85px;
-    width: 85px;
+    height: 100px;
+    width: 100px;
     margin-bottom: 40px;
     border-radius: 3px;
     @include primaryShadow;
+    img {
+      height: 50px;
+    }
+    &:hover {
+      cursor: pointer;
+      background: $color-primary-light-3;
+    }
   }
 
   .services {
@@ -84,8 +100,8 @@
     justify-content: center;
     flex-wrap: wrap;
     padding: 10px;
-    height: 171px;
-    width: 200px;
+    height: 198px;
+    width: 198px;
     border-radius: 3px;
     @include primaryShadow;
     h4 {
@@ -96,6 +112,9 @@
     p {
       font-size: 14px;
       font-weight: 300;
+    }
+    img {
+      height: 120px;
     }
   }
 

@@ -2,15 +2,18 @@
   <div id="wrap">
     <el-row id="catalog_wrap">
       <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8" id="catalog_title">
-        <h1 v-scroll-to="'#service_title'"><span>Каталог</span><br>сантехнического и<br>отопительного<br>оборудования</h1>
+        <h1 v-scroll-to="'#service_title'"><span>Каталог</span><br>сантехнического и<br>отопительного<br>оборудования
+        </h1>
       </el-col>
       <el-col
         :xs="24" :sm="12" :md="12" :lg="8" :xl="8"
         v-for="(group, idx) in $store.getters.PRODUCT_TREE" :key="group.value"
         v-if="group.value !== 'all-products'">
         <div class="catalog_card" @click="$nuxt.$router.push(`/catalog/${group.value}`)">
-          <img src="~/assets/icons/no_photo_tmp.svg" :alt="group.label">
-          <p>{{idx}}. {{ group.label }}</p>
+          <div class="group_img_wrap">
+            <img :src="`catalog/${group.value}.svg`" :alt="group.title">
+          </div>
+          <p>{{ group.label }}</p>
         </div>
       </el-col>
     </el-row>
@@ -19,7 +22,7 @@
     <el-row id="services_wrap">
       <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" align="center"
               v-for="service in $store.getters.SERVICE_TYPES" :key="service.value">
-        <img src="~/assets/icons/account/user-placeholder.svg" height="30px" :alt="service.title">
+        <img :src="`services/${service.value}.svg`" :alt="service.title" height="100px">
         <div class="service_title">
           <h3>{{ service.title }}</h3>
         </div>
@@ -34,12 +37,12 @@
 
 <script>
   export default {
-    data () {
+    data() {
       return {
         params: ''
       }
     },
-    async fetch ({ store, params }) {
+    async fetch({store, params}) {
       await store.dispatch('ANCHOR', params.ANCHOR)
       await store.dispatch('USER_EVENT', 'Страница: Каталог')
     },
@@ -104,9 +107,19 @@
       border: 1px solid $color-primary;
       color: white;
       @include secondaryShadow;
+      img {
+        display: none;
+      }
     }
-    img {
-      margin-right: 10px;
+    .group_img_wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 68px;
+      img {
+        height: 30px;
+        margin-right: 10px;
+      }
     }
   }
 
@@ -137,10 +150,10 @@
         padding: 10px 10px 10px 30px;
       }
     }
-      button {
-        margin-top: 10px;
-        margin-bottom: 20px;
-      }
+    button {
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
   }
 
   #divider {

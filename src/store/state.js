@@ -101,25 +101,25 @@ export const state = () => ({
       value: 'evaluation',
       title: 'Замеры и оценка',
       description: 'Мы всегда готовы провести прдварительные профессиональные замеры и оценить Вашу будущую покупку.',
-      icon: ''
+      icon: 'services/evaluation.svg'
     },
     installation: {
       value: 'installation',
-      title: 'Установка оборудования',
+      title: 'Установка',
       description: 'Мы готовы установить для Вас любой товар который есть в наличии нашего магазина и сэкономить Ваше время.',
-      icon: ''
+      icon: 'services/installation.svg'
     },
     consultation: {
       value: 'consultation',
       title: 'Консультация',
       description: 'Консультация по любым вопросам связанным с установкой, покупкой, сравнительным характеристикам товаров магазина.',
-      icon: ''
+      icon: 'services/consultation.svg'
     },
     repair: {
       value: 'repair',
       title: 'Ремонт',
       description: 'Доверяйте ремонт профессионалам - это избавит Вас от доп. расходов на внеплановые ремонтные работы или переделку.',
-      icon: ''
+      icon: 'services/repair.svg'
     }
   },
   PAYMENT_METHODS: {
