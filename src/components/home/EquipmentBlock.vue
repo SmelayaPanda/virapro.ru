@@ -26,6 +26,7 @@
           <div :span="24" class="services">
             <h4>{{ service.title }}</h4>
             <img :src="`services/${service.value}.svg`" :alt="service.title">
+            <p>{{ service.description }}</p>
           </div>
           <div align="center">
             <el-button class="primary_btn" @click="$bus.$emit('openOrderServiceDialog', service.value)">
@@ -96,6 +97,7 @@
   }
 
   .services {
+    transition: all .5s;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -110,11 +112,21 @@
       height: 10px;
     }
     p {
+      display: none;
       font-size: 14px;
       font-weight: 300;
     }
     img {
       height: 120px;
+    }
+    &:hover {
+      transition: all .5s;
+      img {
+        display: none;
+      }
+      p {
+        display: flex;
+      }
     }
   }
 
