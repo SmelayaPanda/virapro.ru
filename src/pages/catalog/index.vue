@@ -115,9 +115,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 68px;
+      width: 74px;
       img {
-        height: 30px;
+        height: 70px;
         margin-right: 10px;
       }
     }

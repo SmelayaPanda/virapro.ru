@@ -88,7 +88,7 @@
     border-radius: 3px;
     @include primaryShadow;
     img {
-      height: 50px;
+      height: 90px;
     }
     &:hover {
       cursor: pointer;
