@@ -11,21 +11,21 @@
         <p id="sergey_name">Порываев <br> Сергей</p>
       </el-col>
       <el-col :xs="24" :sm="14" :md="12" :lg="10" :xl="10" id="why_we_text">
-        <p>
-          Мы гарантируем качество товаров реализуемых в нашем интернет магазине, все товары являются оригинальной
-          продукцией и не являются подделкой. Все строительные материалы поставляются в оригинальной упаковке и
-          могут снабжаться сертификатами от производителя. Являясь официальными распространителями стрйматериалов
-          ведущих мировых производителей, мы отвечаем своей репутацией.
-        </p>
+        <ul>
+          <li> Представлены только проверенные мировые бренды сантехники</li>
+          <li>Квалифицированный персонал прошедший обучение у производителей и готовый помочь клиентам выбрать самый
+            выгодный для него товар по цене и качеству
+          </li>
+          <li>Качественный монтаж различного сантехнического оборудования</li>
+          <li>Быстрая доставка по Новосибирску и Новосибирской области</li>
+        </ul>
       </el-col>
     </el-row>
     <el-row id="guarantee_wrap">
-      <el-col v-for="i in 4" :key="i" :span="4" class="guarantee">
-        <div class="guarantee_number">{{ i }}</div>
-        <p>
-          Мы гарантируем качество товаров реализуемых в нашем интернет магазине,
-          все товары являются оригинальной продукцией и не являются подделкой.
-        </p>
+      <el-col v-for="(item, idx) in guaranties" :key="idx" :span="4" class="guarantee">
+        <div class="guarantee_number">{{ idx + 1 }}</div>
+        <h4>{{ item.title }}</h4>
+        <p>{{ item.description }}</p>
       </el-col>
     </el-row>
     <el-row id="show_more">
@@ -44,14 +44,32 @@
 </template>
 <script>
   export default {
-    name: 'WhyWeBlock'
+    name: 'WhyWeBlock',
+    data() {
+      return {
+        guaranties: [{
+          title: 'Профессионализм',
+          description: 'Мы стараемся быть профессионалами во всем, что делаем! Для того,чтобы предлагать вам самую лучшую сантехнику, сотрудники нашей компании проходят обучение на заводах-производителях и знают о товаре всё.'
+        }, {
+          title: 'Ответственность',
+          description: 'Все наши сотрудники ориентированы на качественный результат, поэтому ответственно относятся к оказываемым услугам. Мы всегда выполняем то, что обещали, так как доверие наших партнеров является самым ценным достижением для нас.'
+        }, {
+          title: 'Сотрудничество',
+          description: 'В отношениях с партнерами, заказчиками и коллегами мы придерживаемся принципов признания и уважения личности и нацелены на долгосрочное и взаимовыгодное сотрудничество.'
+        }, {
+          title: 'Развитие',
+          description: 'В отношениях с партнерами, заказчиками и коллегами мы придерживаемся принципов признания и уважения личности и нацелены на долгосрочное и взаимовыгодное сотрудничество.'
+        }
+        ]
+      }
+    }
   }
 </script>
 <style scoped lang="scss">
   #why_we {
     position: relative;
     background: linear-gradient($color-primary, $color-primary-light);
-    height: 860px;
+    height: 940px;
     margin-top: 80px;
     color: white;
     h3 {
@@ -113,7 +131,7 @@
       font-weight: 500;
       font-size: 18px;;
       bottom: 80px;
-      right: -240px;
+      right: -260px;
       &:after {
         content: "";
         position: absolute;
@@ -125,41 +143,48 @@
       }
     }
     #why_we_text {
-      font-weight: 900;
-      margin-top: 50px;
-      font-style: oblique;
+      font-weight: 300;
+      margin-top: 30px;
+      margin-left: -50px;
+      line-height: 22px;
     }
   }
 
   #guarantee_wrap {
     display: flex;
     justify-content: center;
-
-    p {
-      margin-top: 160px;
-      font-size: 12px;
-      font-weight: 300;
-      &:before {
-        content: "";
-        position: absolute;
-        width: 100px;
-        height: 2px;
-        margin-left: 30px;
-        margin-top: -20px;
-        border-bottom: 1px solid $color-success;
-      }
-    }
     .guarantee {
-      margin-top: -40px;
-      height: 160px;
-      width: 160px;
-      margin-left: 60px;
-      margin-right: 60px;
+      height: 190px;
+      width: 210px;
+      margin-left: 50px;
+      margin-right: 50px;
       background: $color-primary-light;
       border-radius: 5px;
       -webkit-box-shadow: 0px 6px 10px 4px rgba(1, 94, 172, 0.25);
       -moz-box-shadow: 0px 6px 10px 4px rgba(1, 94, 172, 0.25);
       box-shadow: 0px 6px 10px 4px rgba(1, 94, 172, 0.25);
+      h4 {
+        font-size: 18px;
+        font-weight: 400;
+        margin-top: 34px;
+        text-align: center;
+        text-shadow: 0px 0px 1px rgba(99, 185, 250, 0.95), 0 0 8px #ffffff;
+      }
+      p {
+        margin-top: 120px;
+        font-size: 12px;
+        font-weight: 300;
+        padding-left: 8px;
+        &:before {
+          content: "";
+          position: absolute;
+          width: 100px;
+          height: 2px;
+          margin-left: 46px;
+          margin-top: -16px;
+          border-bottom: 1px solid $color-success;
+        }
+      }
     }
 
     .guarantee_number {
@@ -184,7 +209,7 @@
   #show_more {
     display: flex;
     justify-content: center;
-    margin-top: 180px;
+    margin-top: 200px;
     a.button {
       width: 300px;
       height: 80px;
@@ -240,6 +265,16 @@
     }
     a.button:hover svg g circle {
       stroke-dashoffset: 200;
+    }
+  }
+
+  @media only screen and (max-width: $md-screen) {
+    .guarantee {
+      margin-left: 30px !important;
+      margin-right: 30px !important;
+    }
+    #why_we_text {
+      margin-left: 0 !important;
     }
   }
 </style>

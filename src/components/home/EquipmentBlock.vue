@@ -138,8 +138,8 @@
 
   @media only screen and (max-width: $xs-screen) {
     #equipment {
-      width: 70px;
-      height: 70px;
+      width: 74px;
+      height: 74px;
     }
     .services {
       p {

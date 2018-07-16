@@ -98,7 +98,6 @@ export default {
 
 <style scoped lang="scss">
   #reviews_carousel {
-    margin-top: 140px;
   }
 
   .review_card {
