@@ -37,7 +37,6 @@
                      :src="$store.getters.singleProduct.img_1.thumbnail" @click="loadOriginal(1)"
                      ref="m_img_1" class="thumb_img" itemprop="image"
                      :alt="$store.getters.singleProduct.title + '- фото 2'"/>
-                :alt="$store.getters.singleProduct.title + '- фото 2'"/>
                 <img v-if="$store.getters.singleProduct.img_2.thumbnail"
                      :src="$store.getters.singleProduct.img_2.thumbnail" @click="loadOriginal(2)"
                      ref="m_img_2" class="thumb_img" itemprop="image"
