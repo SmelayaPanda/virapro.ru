@@ -8,7 +8,6 @@ $--color-info: #909399 !default;
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
 @import "~element-ui/packages/theme-chalk/src/index";
 
-
 .el-badge__content {
   background: #3b3b3b;
 }
@@ -57,4 +56,20 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
 .el-carousel__arrow {
   background: $color-primary-light-2;
+}
+
+#service_dialog .el-dialog {
+  width: 500px !important;
+}
+
+#delivery_and_payment_dialog .el-dialog {
+  width: 800px !important;
+}
+
+@media only screen and (max-width: $sm-screen) {
+  #service_dialog, #delivery_and_payment_dialog {
+    .el-dialog {
+      width: 96vw !important;
+    }
+  }
 }

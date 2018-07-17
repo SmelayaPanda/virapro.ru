@@ -1,11 +1,11 @@
 <template>
   <div>
     <el-dialog
+      id="delivery_and_payment_dialog"
       title="Оплата и доставка"
       center
       close-on-press-escape
-      :visible.sync="dialog"
-      width="60vw">
+      :visible.sync="dialog">
       <h3>Доставка</h3>
       <p>
         Наш магазин освободит Вас от забот по самостоятельной доставке товаров, приобретенных в нашем магазине.

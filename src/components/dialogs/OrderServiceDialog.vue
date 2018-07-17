@@ -1,11 +1,11 @@
 <template>
   <div>
     <el-dialog
+      id="service_dialog"
       title="Заказать услугу"
       center
       close-on-press-escape
-      :visible.sync="dialog"
-      width="500px">
+      :visible.sync="dialog">
       <el-alert v-if="$store.getters.ERR" :title="$store.getters.ERR"></el-alert>
       <h3>{{ service.title }}</h3>
       <p>{{ service.description }}</p>
