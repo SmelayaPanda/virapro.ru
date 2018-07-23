@@ -1,4 +1,6 @@
-![alt text](https://firebasestorage.googleapis.com/v0/b/plumbing-prod.appspot.com/o/Asset%208.svg?alt=media&token=5803db4b-9e89-44f3-8295-b20fa43dcb5d)
+<p align="center">
+ <img src="https://firebasestorage.googleapis.com/v0/b/plumbing-prod.appspot.com/o/Asset%208.svg?alt=media&token=5803db4b-9e89-44f3-8295-b20fa43dcb5d" alt="virapro logo">
+</p>
 
 https://virapro.ru/
 
