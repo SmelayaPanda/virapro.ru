@@ -1,6 +1,10 @@
 <template>
   <div id="round" :style="roundStyles">
-    <div id="zero">{{ !hoveredProducts && !hoveredServices ? 'VIRA PRO' : (hoveredProducts ? 'Товары' : 'Услуги') }}</div>
+    <div id="zero">
+      <img v-if="!hoveredProducts && !hoveredServices" height="46px" src="~/assets/icons/logo/vira-v.svg" alt="Vira Pro Water Wave">
+      <span v-else-if="hoveredProducts">Товары</span>
+      <span v-else="hoveredProducts">Услуги</span>
+    </div>
     <div id="one">
       <div id="two" :style="twoStyle"></div>
       <div id="three" :style="threeStyle"></div>
@@ -56,6 +60,9 @@
     height: 100px;
     border-radius: 50%;
     background: white;
+    img {
+      margin-left: -3px;
+    }
   }
 
   #one {

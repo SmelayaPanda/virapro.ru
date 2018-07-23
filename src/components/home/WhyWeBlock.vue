@@ -269,6 +269,9 @@
   }
 
   @media only screen and (max-width: $md-screen) {
+    #sergey_name {
+      bottom: 60px !important;
+    }
     .guarantee {
       margin-left: 30px !important;
       margin-right: 30px !important;
