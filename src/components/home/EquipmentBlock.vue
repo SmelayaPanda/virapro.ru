@@ -1,6 +1,6 @@
 <template>
-  <el-row id="equipment_block">
-    <el-col :xs="24" :sm="22" :md="11" :lg="11" :xl="11" id="equipment_wrap">
+  <el-row class="equipment_block">
+    <el-col :xs="24" :sm="22" :md="11" :lg="11" :xl="11" class="equipment_wrap">
       <h2>Сантехническое, отопительное,<br> промышленное оборудование</h2>
       <el-row>
         <el-col
@@ -8,8 +8,8 @@
           v-for="(group, idx) in $store.getters.PRODUCT_TREE" :key="group.value"
           :xs="8" :sm="6" :md="6" :lg="6" :xl="6" align="center">
           <el-tooltip :content="group.label" placement="top" effect="light">
-            <div id="equipment" @click="$nuxt.$router.push(`/catalog/${group.value}/`)">
-              <img :src="`catalog/${group.value}.svg`" :alt="group.title">
+            <div class="equipment" @click="$nuxt.$router.push(`/catalog/${group.value}/`)">
+              <img :src="`catalog/${group.value}.svg`" :alt="group.label">
             </div>
           </el-tooltip>
         </el-col>
@@ -18,7 +18,7 @@
         <el-button class="primary_btn">Перейти в каталог</el-button>
       </nuxt-link>
     </el-col>
-    <el-col :xs="24" :sm="22" :md="11" :lg="11" :xl="11" id="services_wrap">
+    <el-col :xs="24" :sm="22" :md="11" :lg="11" :xl="11" class="services_wrap">
       <h2>Предоставление услуг, <br> консультирование</h2>
       <el-row>
         <el-col v-for="service in $store.getters.SERVICE_TYPES" :key="service.value"
@@ -44,7 +44,7 @@
   }
 </script>
 <style scoped lang="scss">
-  #equipment_block {
+  .equipment_block {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -57,19 +57,19 @@
     }
   }
 
-  #equipment_wrap,
-  #services_wrap {
+  .equipment_wrap,
+  .services_wrap {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
   }
 
-  #equipment_wrap {
+  .equipment_wrap {
     padding-right: 20px;
   }
 
-  #services_wrap {
+  .services_wrap {
     padding-top: 10px;
     button {
       margin-bottom: 28px;
@@ -77,7 +77,7 @@
     }
   }
 
-  #equipment {
+  .equipment {
     transition: all .5s;
     display: flex;
     justify-content: center;
@@ -113,7 +113,7 @@
     }
     p {
       display: none;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 300;
     }
     img {
@@ -131,13 +131,13 @@
   }
 
   @media only screen and (max-width: $sm-screen) {
-    #equipment_wrap, #services_wrap {
+    .equipment_wrap, .services_wrap {
       padding-right: 0 !important;
     }
   }
 
   @media only screen and (max-width: $xs-screen) {
-    #equipment {
+    .equipment {
       width: 74px;
       height: 74px;
     }

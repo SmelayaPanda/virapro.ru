@@ -1,31 +1,31 @@
 <template>
   <div id="form">
     <el-form :model="form" ref="form">
-      <el-form-item prop="user.firstname" label="">
-        <el-input type="text" placeholder="Ваше имя" v-model="form.user.firstname">
-          <img slot="suffix" src="~/assets/icons/home/avatar.svg" alt="Имя" id="avatar_img">
-        </el-input>
+      <el-form-item prop="user.firstname">
+        <input title="Ваше имя" placeholder="Ваше имя" v-model="form.user.firstname" type="text"/>
+        <img src="~/assets/icons/home/avatar.svg" alt="Имя" id="avatar_img">
       </el-form-item>
-      <el-form-item prop="user.phone" label="">
-        <label for="phone_number"></label>
+      <el-form-item prop="user.phone">
         <no-ssr>
           <masked-input
-            id="phone_number"
+            title="Номер телефона"
+            placeholder="Номер телефона"
             v-model="form.user.phone"
             class="el-input__inner"
             required
-            mask="\+\7 (111) 111-11-11"
-            placeholder="Номер телефона"/>
+            mask="\+\7 (111) 111-11-11"/>
         </no-ssr>
         <img src="~/assets/icons/home/phone_blue.svg" alt="Телефон" id="phone_img">
       </el-form-item>
-      <el-form-item prop="comments.user" label="">
-        <el-input
+      <el-form-item prop="comments.user">
+        <textarea
+          title="Комментарий или вопрос"
           placeholder="Комментарий или вопрос"
-          type="textarea"
-          :autosize="{ minRows: 7, maxRows: 7}"
+          aria-labelledby="send_request"
+          id="user_comments"
+          rows="7"
           v-model="form.comments.user">
-        </el-input>
+        </textarea>
         <img src="~/assets/icons/home/two_speech.svg" alt="Комментарий" id="comments_img">
       </el-form-item>
     </el-form>
@@ -86,10 +86,40 @@
 </script>
 
 <style lang="scss" scoped>
+  input, textarea {
+    -webkit-appearance: none;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    height: 40px;
+    line-height: 40px;
+    outline: none;
+    padding: 0 15px;
+    -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%;
+    &::placeholder {
+      font-size: 14px;
+      color: rgba(79, 82, 89, 0.53);
+      font-weight: 400;
+    }
+  }
+
+  textarea {
+    height: 150px;
+  }
+
   #form {
   }
 
   #avatar_img {
+    position: absolute;
+    top: 1px;
+    right: 5px;
     height: 16px;
     width: 40px;
     margin-top: 12px;

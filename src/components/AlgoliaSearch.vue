@@ -39,14 +39,15 @@
         <div v-else id="found_something">
           <p>Поиск среди {{ $store.getters.productStatistics.uniqueProductQty }} уникальных товаров</p>
         </div>
-        <label for="algolia_search_input" slot="reference">
+        <div slot="reference">
           <input
+            title="Поиск товаров по описанию"
             @input="algoliaSearch"
             v-model="algoliaSearchText"
             placeholder="Введите поисковый запрос"
             type="text"
             id="algolia_search_input">
-        </label>
+        </div>
       </el-popover>
     </el-col>
     <el-col :span="2">

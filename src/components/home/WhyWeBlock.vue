@@ -23,9 +23,13 @@
     </el-row>
     <el-row id="guarantee_wrap">
       <el-col v-for="(item, idx) in guaranties" :key="idx" :span="4" class="guarantee">
-        <div class="guarantee_number">{{ idx + 1 }}</div>
-        <h4>{{ item.title }}</h4>
-        <p>{{ item.description }}</p>
+        <el-tooltip placement="top" offset="20">
+          <div slot="content" style="width: 300px; font-size: 14px;">{{ item.description }}</div>
+          <div>
+            <div class="guarantee_number">{{ idx + 1 }}</div>
+            <h4>{{ item.title }}</h4>
+          </div>
+        </el-tooltip>
       </el-col>
     </el-row>
     <el-row id="show_more">
@@ -69,7 +73,7 @@
   #why_we {
     position: relative;
     background: linear-gradient($color-primary, $color-primary-light);
-    height: 940px;
+    height: 880px;
     margin-top: 80px;
     color: white;
     h3 {
@@ -97,7 +101,7 @@
     position: absolute;
     right: 0;
     top: 30px;
-    height: 800px;
+    height: 760px;
   }
 
   #experience {
@@ -158,32 +162,26 @@
       width: 210px;
       margin-left: 50px;
       margin-right: 50px;
-      background: $color-primary-light;
+      background-image: linear-gradient(0deg, rgba(99, 185, 250, 0.95), rgba(99, 185, 250, 0.95));
       border-radius: 5px;
       -webkit-box-shadow: 0px 6px 10px 4px rgba(1, 94, 172, 0.25);
       -moz-box-shadow: 0px 6px 10px 4px rgba(1, 94, 172, 0.25);
       box-shadow: 0px 6px 10px 4px rgba(1, 94, 172, 0.25);
+      &:after {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 2px;
+        margin-left: 60px;
+        margin-top: 80px;
+        border-bottom: 1px solid $color-success;
+      }
       h4 {
         font-size: 18px;
         font-weight: 400;
         margin-top: 34px;
         text-align: center;
         text-shadow: 0px 0px 1px rgba(99, 185, 250, 0.95), 0 0 8px #ffffff;
-      }
-      p {
-        margin-top: 120px;
-        font-size: 12px;
-        font-weight: 300;
-        padding-left: 8px;
-        &:before {
-          content: "";
-          position: absolute;
-          width: 100px;
-          height: 2px;
-          margin-left: 46px;
-          margin-top: -16px;
-          border-bottom: 1px solid $color-success;
-        }
       }
     }
 
@@ -209,7 +207,7 @@
   #show_more {
     display: flex;
     justify-content: center;
-    margin-top: 200px;
+    margin-top: 100px;
     a.button {
       width: 300px;
       height: 80px;

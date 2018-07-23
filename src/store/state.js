@@ -100,7 +100,7 @@ export const state = () => ({
     evaluation: {
       value: 'evaluation',
       title: 'Замеры и оценка',
-      description: 'Мы всегда готовы провести прдварительные профессиональные замеры и оценить Вашу будущую покупку.',
+      description: 'Мы всегда готовы провести предварительные профессиональные замеры и оценить Вашу будущую покупку.',
       icon: 'services/evaluation.svg'
     },
     installation: {

@@ -7,7 +7,7 @@
         <img src="~/assets/icons/logo/virapro.svg" alt="Vira Pro Logo">
       </el-col>
       <el-col :xs="14" :sm="7" :md="4" :lg="4" :xl="4" :offset="1">
-        <p id="phone">
+        <p id="footer_phone">
           <img src="~/assets/icons/home/phone.svg" alt="Телефон">
           {{ $store.getters.companyInfo.contacts.phone }}
         </p>
@@ -46,7 +46,7 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :xs="10" :sm="6" :md="4" :lg="4" :xl="4" id="work_time">
+      <el-col :xs="10" :sm="6" :md="4" :lg="4" :xl="4" id="footer_work_time">
         <p>
           <img src="~/assets/icons/home/calendar.svg" id="work_time_icon" alt="Рабочее время">
           <time>Пн-Пт: 10:00 - 18:00, <br><span id="rest">Сб-Вс: Выходной</span></time>
@@ -97,7 +97,7 @@
       border: 1px solid white;
       padding: 58px;
     }
-    #phone {
+    #footer_phone {
       position: relative;
       font-size: 16px;
       margin-top: 14px;
@@ -140,7 +140,7 @@
         font-weight: 300;
       }
     }
-    #work_time {
+    #footer_work_time {
       position: relative;
       font-size: 14px;
       font-weight: 300;
@@ -218,7 +218,7 @@
     #city {
       font-size: 14px;
     }
-    #phone, #street_build, #work_time, #email {
+    #footer_phone, #street_build, #footer_work_time, #email {
       font-size: 12px !important;
     }
   }
