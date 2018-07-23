@@ -4,7 +4,7 @@
     <order-service-dialog></order-service-dialog>
     <el-row id="footer_row">
       <el-col :xs="24" :sm="4" :md="4" :lg="4" :xl="4" id="company_logo">
-        <div id="logo">ЛОГО</div>
+        <img src="~/assets/icons/logo/virapro.svg" alt="Vira Pro Logo">
       </el-col>
       <el-col :xs="14" :sm="7" :md="4" :lg="4" :xl="4" :offset="1">
         <p id="phone">
@@ -163,6 +163,13 @@
     }
   }
 
+  #company_logo {
+    img {
+      margin-top: -7px;
+      height: 70px;
+    }
+  }
+
   #rehigh_logo {
     p {
       margin: 0;
@@ -184,6 +191,13 @@
       &:hover {
         cursor: pointer;
       }
+    }
+  }
+
+  @media only screen and (max-width: $md-screen) {
+    #company_logo img{
+      height: 56px;
+      margin-top: -3px;
     }
   }
 

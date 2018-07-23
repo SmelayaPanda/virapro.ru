@@ -114,7 +114,7 @@
   }
 
   #left_side_wrap {
-    background: linear-gradient(0deg, rgba(99, 185, 250, 0.95), rgba(99, 185, 250, 0.95)), url('~/static/home/product.png');
+    background: linear-gradient(0deg, rgba(99, 185, 250, 0.95), rgba(99, 185, 250, 0.95)), url('~/static/home/product.jpg');
     background-size: cover;
     @include block;
   }

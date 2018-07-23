@@ -209,6 +209,7 @@
       .snippet_title {
         padding: 10px 10px 0;
         margin: 0;
+        line-height: 16px;
       }
 
       .price {

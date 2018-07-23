@@ -3,7 +3,7 @@
     <SupHeader/>
     <el-row id="header">
       <el-col id="logo_wrap" :span="1" :offset="2">
-        <span>ЛОГО</span>
+        <img src="~/assets/icons/logo/virapro.svg" alt="Vira Pro Logo">
       </el-col>
       <el-col id="algolia_desctop" :md="8" :lg="7" :xl="7" :offset="1">
         <AlgoliaSearch/>
@@ -93,6 +93,11 @@
       border: 1px solid $color-primary-light;
       padding: 5px 10px;
     }
+    img {
+      margin-left: -4px;
+      margin-top: 2px;
+      height: 40px;
+    }
   }
 
   #header {
@@ -102,6 +107,10 @@
     justify-content: start;
     height: 56px;
     border-bottom: 1px solid $color-primary-light-3;
+  }
+
+  #algolia_desctop {
+    padding-left: 18px;
   }
 
   #routers {
@@ -152,11 +161,18 @@
     color: white;
   }
 
+  @media only screen and (max-width: $md-screen) {
+    #algolia_desctop {
+      padding-left: 28px;
+    }
+  }
+
   @media only screen and (max-width: $sm-screen) {
     #algolia_desctop {
       display: none;
     }
   }
+
   @media only screen and (max-width: $xs-screen) {
     #logo_wrap {
       display: none;

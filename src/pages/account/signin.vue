@@ -1,6 +1,6 @@
 <template>
   <el-row type="flex" justify="center">
-    <el-col :xs="24" :sm="15" :md="12" :lg="8" :xl="7">
+    <el-col :xs="24" :sm="15" :md="12" :lg="9" :xl="8">
       <el-card id="signin_card">
         <el-alert
           v-if="$store.state.ERR"
@@ -12,13 +12,13 @@
           <el-col :span="12" align="right" style="padding: 5px;">
             <el-button @click.native="googleSignUp">
               <img src="~/assets/icons/account/gmail.svg" height="56" alt="Войти с помощью Google"><br>
-              Войти с помощью Google
+              <p>Войти с помощью Google</p>
             </el-button>
           </el-col>
           <el-col :span="12" align="left" style="padding: 5px;">
-            <el-button @click="emailSignInDialog = true">
+            <el-button @click="openEmailSignInDialog">
               <img src="~/assets/icons/account/emailSignIn.svg" height="56" alt="Войти с помощью Google"><br>
-              Войти с помощью email
+              <p>Войти с помощью email</p>
             </el-button>
           </el-col>
         </el-row>
@@ -32,6 +32,11 @@
           width="400px"
           title="Войти с помощью email"
           :visible.sync="emailSignInDialog">
+          <el-alert
+            v-if="$store.state.ERR"
+            :description="$store.state.ERR.message"
+            title="Error" type="error" show-icon>
+          </el-alert>
           <el-form :model="form" status-icon :rules="rules" auto-complete="on" ref="form">
             <el-form-item label="Почта" prop="email">
               <el-input type="email" id="email" :autofocus="true" v-model="form.email" auto-complete="on"></el-input>
@@ -48,7 +53,7 @@
               <!--<span>Forgot a password?</span>-->
               <span>Забыли пароль?</span>
               <!--<p>Type the email in the field above and click:</p>-->
-              <p>Введите email в поле выше и нажмите:</p>
+              <p>Введите вашу почту в форме выше и нажмите:</p>
               <el-button class="secondary_btn" @click="resetPassword">
                 <!--Reset password-->
                 Сбросить пароль
@@ -108,6 +113,10 @@
       }
     },
     methods: {
+      openEmailSignInDialog () {
+        this.$store.dispatch('ERR', '')
+        this.emailSignInDialog = true
+      },
       submitForm(formName) {
         this.submitCount++
         this.$refs[formName].validate((valid) => {
@@ -144,6 +153,10 @@
     margin-top: 30px;
     margin-bottom: 40px;
     color: $color-info-dark;
+  }
+
+  img {
+    margin-top: 8px;
   }
 
   #signin_card {

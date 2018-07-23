@@ -134,6 +134,9 @@
           this.form.password.length > 5 && this.form.password === this.form.checkPass &&
           this.isValidEmail(this.form.email)
       }
+    },
+    created () {
+      this.$store.dispatch('ERR', '')
     }
   }
 </script>

@@ -38,6 +38,7 @@
     },
     created() {
       this.$bus.$on('openOrderServiceDialog', (val) => {
+        this.$store.dispatch('ERR', '')
         if (this.$store.getters.SERVICE_TYPES[val]) {
           this.service = this.$store.getters.SERVICE_TYPES[val]
         }
