@@ -78,6 +78,9 @@
     right: 0;
     bottom: 0;
     left: 0;
+    -webkit-box-shadow: 0px -4px 12px 0px rgba(136, 189, 218, 0.4);
+    -moz-box-shadow: 0px -4px 12px 0px rgba(136, 189, 218, 0.4);
+    box-shadow: 0px -4px 12px 0px rgba(136, 189, 218, 0.4);
   }
 
   #footer_row {
