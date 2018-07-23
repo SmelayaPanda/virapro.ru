@@ -7,11 +7,10 @@
           v-if="group.value !== 'all-products'"
           v-for="(group, idx) in $store.getters.PRODUCT_TREE" :key="group.value"
           :xs="8" :sm="6" :md="6" :lg="6" :xl="6" align="center">
-          <el-tooltip :content="group.label" placement="top" effect="light">
-            <div class="equipment" @click="$nuxt.$router.push(`/catalog/${group.value}/`)">
-              <img :src="`catalog/${group.value}.svg`" :alt="group.label">
-            </div>
-          </el-tooltip>
+          <div class="tooltip equipment" @click="$nuxt.$router.push(`/catalog/${group.value}/`)">
+            <img :src="`catalog/${group.value}.svg`" :alt="group.label">
+            <span class="tooltiptext">{{ group.label }}</span>
+          </div>
         </el-col>
       </el-row>
       <nuxt-link to="/catalog">
@@ -44,6 +43,35 @@
   }
 </script>
 <style scoped lang="scss">
+  .tooltip {
+    position: relative;
+  }
+
+  .tooltip .tooltiptext {
+    transition: all .5s;
+    font-size: 16px;
+    font-weight: 300;
+    opacity: 0;
+    width: 150px;
+    background-color: $color-secondary-light;
+    color: white;
+    border: 1px solid $color-success-dark;
+    text-align: center;
+    border-radius: 30px;
+    padding: 10px;
+
+    /* Position the tooltip */
+    position: absolute;
+    left: -36px;
+    top: 76px;
+    z-index: 1;
+  }
+
+  .tooltip:hover .tooltiptext {
+    transition: all .5s;
+    opacity: 1;
+  }
+
   .equipment_block {
     display: flex;
     justify-content: center;

@@ -23,13 +23,11 @@
     </el-row>
     <el-row id="guarantee_wrap">
       <el-col v-for="(item, idx) in guaranties" :key="idx" :span="4" class="guarantee">
-        <el-tooltip placement="top" offset="20">
-          <div slot="content" style="width: 300px; font-size: 14px;">{{ item.description }}</div>
-          <div>
-            <div class="guarantee_number">{{ idx + 1 }}</div>
-            <h4>{{ item.title }}</h4>
-          </div>
-        </el-tooltip>
+        <div class="guarantee_number">{{ idx + 1 }}</div>
+        <div class="tooltip">
+          <h4>{{ item.title }}</h4>
+          <span class="tooltiptext">{{ item.description }}</span>
+        </div>
       </el-col>
     </el-row>
     <el-row id="show_more">
@@ -70,6 +68,35 @@
   }
 </script>
 <style scoped lang="scss">
+  .tooltip {
+    position: relative;
+  }
+
+  .tooltip .tooltiptext {
+    transition: all .5s;
+    font-size: 16px;
+    font-weight: 300;
+    opacity: 0;
+    width: 300px;
+    background-color: $color-secondary-light;
+    color: white;
+    border: 1px solid $color-success-dark;
+    text-align: center;
+    border-radius: 30px;
+    padding: 20px;
+
+    /* Position the tooltip */
+    position: absolute;
+    left: -68px;
+    z-index: 1;
+  }
+
+  .tooltip:hover .tooltiptext {
+    transition: all .5s;
+    opacity: 1;
+    @include fourthShadow;
+  }
+
   #why_we {
     position: relative;
     background: linear-gradient($color-primary, $color-primary-light);
@@ -164,9 +191,7 @@
       margin-right: 50px;
       background-image: linear-gradient(0deg, rgba(99, 185, 250, 0.95), rgba(99, 185, 250, 0.95));
       border-radius: 5px;
-      -webkit-box-shadow: 0px 6px 10px 4px rgba(1, 94, 172, 0.25);
-      -moz-box-shadow: 0px 6px 10px 4px rgba(1, 94, 172, 0.25);
-      box-shadow: 0px 6px 10px 4px rgba(1, 94, 172, 0.25);
+      @include fourthShadow;
       &:after {
         content: "";
         position: absolute;

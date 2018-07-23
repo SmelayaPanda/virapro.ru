@@ -11,7 +11,7 @@
         v-if="group.value !== 'all-products'">
         <div class="catalog_card" @click="$nuxt.$router.push(`/catalog/${group.value}`)">
           <div class="group_img_wrap">
-            <img :src="`catalog/${group.value}.svg`" :alt="group.title">
+            <img :src="`catalog/${group.value}.svg`" :alt="group.label">
           </div>
           <p>{{ group.label }}</p>
         </div>

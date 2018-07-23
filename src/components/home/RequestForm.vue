@@ -21,7 +21,6 @@
         <textarea
           title="Комментарий или вопрос"
           placeholder="Комментарий или вопрос"
-          aria-labelledby="send_request"
           id="user_comments"
           rows="7"
           v-model="form.comments.user">
