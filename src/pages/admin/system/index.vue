@@ -147,7 +147,7 @@
           .then(() => {
             zip.generateAsync({type: 'blob'})
               .then((content) => {
-                FileSaver.saveAs(content, 'santehnika_dump_' + new Date().toLocaleString() + '.zip')
+                FileSaver.saveAs(content, 'virapro_dump_' + new Date().toLocaleString() + '.zip')
                 this.$message({type: 'success', message: 'Архив базы данных создан. Сохраните его в надежном месте.'})
                 this.$store.dispatch('LOADING', false)
               })
