@@ -53,11 +53,11 @@
     font-weight: 300;
     opacity: 0;
     width: 150px;
-    background-color: $color-secondary-light;
-    color: white;
+    background-color: white;
+    color: $color-secondary;
     border: 1px solid $color-success-dark;
     text-align: center;
-    border-radius: 30px;
+    border-radius: 5px;
     padding: 10px;
 
     /* Position the tooltip */

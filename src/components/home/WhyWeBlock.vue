@@ -78,11 +78,11 @@
     font-weight: 300;
     opacity: 0;
     width: 300px;
-    background-color: $color-secondary-light;
-    color: white;
+    background-color: white;
+    color: $color-secondary;
     border: 1px solid $color-success-dark;
     text-align: center;
-    border-radius: 30px;
+    border-radius: 7px;
     padding: 20px;
 
     /* Position the tooltip */
@@ -206,7 +206,7 @@
         font-weight: 400;
         margin-top: 34px;
         text-align: center;
-        text-shadow: 0px 0px 1px rgba(99, 185, 250, 0.95), 0 0 8px #ffffff;
+        text-shadow: 0px 0px 1px rgba(99, 185, 250, 0.95), 0 0 2px #ffffff;
       }
     }
 
