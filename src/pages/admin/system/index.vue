@@ -152,7 +152,8 @@
                 this.$store.dispatch('LOADING', false)
               })
               .catch(err => {
-                console.log(err)
+                this.$message({type: 'error', message: err})
+                this.$store.dispatch('ERR', err)
                 this.$store.dispatch('LOADING', false)
               })
           })
@@ -187,7 +188,8 @@
                 this.$message({type: 'success', message: 'Архив с файлом sitemap.xml создан.'})
               })
               .catch(err => {
-                console.log(err)
+                this.$message({type: 'error', message: err})
+                this.$store.dispatch('ERR', err)
                 this.$store.dispatch('LOADING', false)
               })
           })
@@ -233,6 +235,7 @@
           })
             .catch(err => {
               this.$message({type: 'error', message: err})
+              this.$store.dispatch('ERR', err)
               this.$store.dispatch('LOADING', false)
             })
         })
