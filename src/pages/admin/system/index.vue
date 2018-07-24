@@ -167,7 +167,7 @@
         fs.collection('products').get()
           .then(snap => {
             xml = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-            let URL = 'https://nuxt-shop-205015.firebaseapp.com/' // TODO: replace by real domain
+            let URL = 'https://virapro.ru/'
             let mainPages = ['', 'catalog', 'about']
             let lastmod = new Date().toISOString()
             mainPages.forEach(el => {
@@ -182,7 +182,7 @@
             zip.generateAsync({type: 'blob'})
               .then((content) => {
                 let date = new Date().toISOString().substring(0, 10)
-                FileSaver.saveAs(content, 'santehnika_sitemap_' + date + '.zip')
+                FileSaver.saveAs(content, 'virapro_sitemap_' + date + '.zip')
                 this.$store.dispatch('LOADING', false)
                 this.$message({type: 'success', message: 'Архив с файлом sitemap.xml создан.'})
               })
