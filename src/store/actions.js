@@ -84,12 +84,14 @@ export const actions = {
           }
           products[doc.id] = doc.data()
         })
+        maxFetchPrice = Math.round(maxFetchPrice / 100) * 100 + 100
         commit('setProducts', {...products})
-        commit('setMaxFetchPrice', maxFetchPrice)
         commit('setProductDynamicFilters', '') // dynamic filters work in client side only for categories
         commit('setDynamicFilteredProductsIds', '') // dynamic filters work in client side only for categories
+        commit('setMaxFetchPrice', maxFetchPrice)
         commit('updateProductCommonFilter', {field: 'group', value: params.group})
         commit('updateProductCommonFilter', {field: 'category', value: params.category})
+        commit('updateProductCommonFilter', {field: 'maxPrice', value: maxFetchPrice})
         commit('LOADING', false)
       })
       .catch(err => dispatch('LOG', err))
@@ -390,8 +392,6 @@ export const actions = {
   },
 
 
-
-
   // user
   // user DATA = full firebase auth.currentUser object + app data keeping in firestore db
   fetchUserData({commit, dispatch, getters}, payload) {
@@ -425,7 +425,7 @@ export const actions = {
       .catch(err => dispatch('LOG', err))
   },
 
-  observeUserConnection ({commit}, payload) {
+  observeUserConnection({commit}, payload) {
     let userRef = db.ref(`users/${payload}/`)
     db.ref('.info/connected').on('value', snap => {
       if (snap.val() === true) {
@@ -509,16 +509,16 @@ export const actions = {
       .then((snap) => {
         if (!snap.exists) { // First time Google sign in
           return fs.collection('users').doc(user.uid).set({
-              email: user.email,
-              firstname: user.displayName ? user.displayName.split(' ')[0] : '',
-              lastname: user.displayName ? user.displayName.split(' ')[1] : '',
-              emailVerified: user.emailVerified,
-              isAnonymous: false,
-              role: 'guest',
-              cart: [],
-              orders: [],
-              favorites: []
-            })
+            email: user.email,
+            firstname: user.displayName ? user.displayName.split(' ')[0] : '',
+            lastname: user.displayName ? user.displayName.split(' ')[1] : '',
+            emailVerified: user.emailVerified,
+            isAnonymous: false,
+            role: 'guest',
+            cart: [],
+            orders: [],
+            favorites: []
+          })
         }
       })
       .then(() => {
@@ -942,7 +942,7 @@ export const actions = {
       db.ref('events').child(getters.user.uid).push(newEvent)
         .catch(err => dispatch('LOG', err))
     },
-  clearUserEvents({commit, getters, dispatch}, payload){
+  clearUserEvents({commit, getters, dispatch}, payload) {
     commit('LOADING', true)
     if (!getters.watchedUserId) return
     db.ref('events').child(getters.watchedUserId).remove()
@@ -1012,9 +1012,6 @@ export const actions = {
   unsubscribeFromEvents() {
     db.ref('events').off()
   },
-
-
-
 
 
   // APP

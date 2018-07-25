@@ -6,10 +6,10 @@
       <el-slider
         id="price_slider"
         v-model="sliderValues" @change="changePriceRange" range
-        :step="100" :min="0" :max="~~$store.getters.maxFetchPrice + 100">
+        :step="100" :min="0" :max="maxFetchPrice">
       </el-slider>
     </el-col>
-    <el-col id="price_max">{{ ~~$store.getters.maxFetchPrice }} &#8381</el-col>
+    <el-col id="price_max">{{ maxFetchPrice }} &#8381</el-col>
   </el-row>
 </template>
 <script>
@@ -28,26 +28,25 @@
       }
     },
     methods: {
-      async changePriceRange () {
+      async changePriceRange() {
         await this.$store.dispatch('setLastVisible', null)
         await this.$store.dispatch('updateProductCommonFilter', {field: 'minPrice', value: this.sliderValues[0]})
         await this.$store.dispatch('updateProductCommonFilter', {field: 'maxPrice', value: this.sliderValues[1]})
-        this.$store.dispatch('USER_EVENT', `Фильтр: цена от ${this.sliderValues[0]} до ${this.sliderValues[1]}` )
+        this.$store.dispatch('USER_EVENT', `Фильтр: цена от ${this.sliderValues[0]} до ${this.sliderValues[1]}`)
         if (!this.$store.getters.productCommonFilters.category) {
           await this.$store.dispatch('fetchProducts')
         }
       }
     },
     computed: {
-      // maxPrice() {
-      //   let max = 0
-      //   for (let p in this.$store.getters.products) {
-      //     if (Number(this.$store.getters.products[p].price) > max) {
-      //       max = Number(this.$store.getters.products[p].price)
-      //     }
-      //   }
-      //   return max
-      // }
+      maxFetchPrice() {
+        return this.$store.getters.maxFetchPrice
+      }
+    },
+    watch: {
+      maxFetchPrice(val) {
+        this.sliderValues[1] = val
+      }
     }
   }
 </script>
@@ -76,13 +75,15 @@
   }
 
   #price_max,
-  #price_min{
+  #price_min {
     color: $color-success-second;
     font-size: 14px;
   }
+
   #price_min {
     flex: 0 0 20px;
   }
+
   #price_max {
     flex: 0 0 60px;
   }
