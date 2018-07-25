@@ -11,7 +11,7 @@ export const state = () => ({
   // QUESTIONS
   questions: '',
 
-  // user
+  // USER
   user: { // Cart and orders IDs array in database. Full products objects array in client side
     cart: [],
     orders: []

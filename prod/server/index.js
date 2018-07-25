@@ -23,8 +23,6 @@ const config = {
 const nuxt = new Nuxt(config);
 
 function handleRequest(req, res) {
-    // TODO: max-age ~ 600sec
-    // TODO: add CPU power to this function
     res.set('Cache-Control', 'public, max-age=600, s-maxage=600');
     return new Promise((resolve, reject) => {
         nuxt.render(req, res, promise => {

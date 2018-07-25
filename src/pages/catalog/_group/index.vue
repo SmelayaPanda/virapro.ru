@@ -21,7 +21,7 @@
     },
     methods: {},
     created() {
-      this.$store.dispatch('fetchProducts') // TODO: not in the fetch method because lastVisible object - circular
+      this.$store.dispatch('fetchProducts') // NOTE: not in the fetch method because lastVisible object - circular
     }
   }
 </script>

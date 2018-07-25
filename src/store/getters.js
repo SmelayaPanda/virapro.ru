@@ -1,10 +1,10 @@
 export const getters = {
-  // user
-  user: state => state.user, // (Object) all user data
+  // USER
+  user: state => state.user,
   allUsers: state => state.allUsers,
   watchedUserId: state => state.watchedUserId,
 
-  // services
+  // SERVICES
   SERVICE_TYPES: state => state.SERVICE_TYPES,
 
   // PRODUCTS
@@ -42,7 +42,7 @@ export const getters = {
   reviewStatistics: state => state.reviewStatistics,
   REVIEW_STATUSES: state => state.REVIEW_STATUSES,
 
-  // user requests
+  // USER REQUESTS
   requests: state => state.requests,
   requestsStatistics: state => state.requestsStatistics,
   REQUESTS_STATUSES: state => state.REQUESTS_STATUSES,

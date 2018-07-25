@@ -1,5 +1,5 @@
 export const mutations = {
-  // user
+  // USER
   setUser(state, payload) {
     state.user = payload
   },

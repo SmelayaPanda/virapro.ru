@@ -10,7 +10,7 @@ export const actions = {
 
   nuxtServerInit({dispatch}, {req}) {
     return Promise.all([
-      dispatch('fetchCompanyInfo'), // for footer
+      dispatch('fetchCompanyInfo'),
       dispatch('fetchProductStatistics'),
       dispatch('fetchDictionaries')
     ])
