@@ -20,8 +20,8 @@ workboxSW.precache([
     "revision": "7a6416948323544f853d7f0bf818818e"
   },
   {
-    "url": "/assets/app.d461e3a40aec5fce9378.js",
-    "revision": "b7ebbc04a17211b558387f74f1fbb423"
+    "url": "/assets/app.1986a27005e9b4c19a6d.js",
+    "revision": "eb8cff8b9cc939c41fcaf2a2be8083da"
   },
   {
     "url": "/assets/below-slider.d1ab5e03348e1bc78e70.js",
@@ -44,8 +44,8 @@ workboxSW.precache([
     "revision": "785a8a9319bab8b1aa2c2409b05e7ac9"
   },
   {
-    "url": "/assets/manifest.a76e8acbe58eb61a2354.js",
-    "revision": "ca4d8b2e2e2c521810517187a0236dc6"
+    "url": "/assets/manifest.07ea200fe7e4ea29d100.js",
+    "revision": "b70b25020dce83539a3eb06db807d0f9"
   },
   {
     "url": "/assets/modal.888e250548e22562acb5.js",
@@ -116,12 +116,12 @@ workboxSW.precache([
     "revision": "92be8358f0e5ae0f44d3b0d3bef8c5ac"
   },
   {
-    "url": "/assets/pages/catalog/_group/_category/index.38dfe079127c9b5caf36.js",
-    "revision": "f2251cac6dedc28e232e8791fd8e4c00"
+    "url": "/assets/pages/catalog/_group/_category/index.7703d63ad037b8763273.js",
+    "revision": "f75123fe9a5623caaef4be51cbe5737e"
   },
   {
-    "url": "/assets/pages/catalog/_group/index.0050475336f1a31ce748.js",
-    "revision": "d8679808870402db165daf4e8c093ea1"
+    "url": "/assets/pages/catalog/_group/index.da89def101d95396479c.js",
+    "revision": "e5d8866ff1bcc1727ddd17480038496c"
   },
   {
     "url": "/assets/pages/catalog/index.5069d41830d1ca51b7d2.js",

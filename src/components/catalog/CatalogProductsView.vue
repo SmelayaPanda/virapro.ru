@@ -52,11 +52,17 @@
             this.$store.getters.dynamicFilteredProductsIds.indexOf(p.productId) !== -1)) &&
           (p.price > this.$store.getters.productCommonFilters.minPrice &&
             p.price < this.$store.getters.productCommonFilters.maxPrice)
+      },
+      sortByProp (arr, prop) {
+        return arr.sort(function (a, b) {
+          return a[prop] === b[prop] ? 0 : +(a[prop] > b[prop]) || -1
+        })
       }
     },
     computed: {
       products() {
-        return this.$store.getters.products ? this.$store.getters.products : {}
+        let products = this.$store.getters.products ? Object.values(this.$store.getters.products): []
+        return products.length ? this.sortByProp(products, 'title') : []
       },
       dictionaries() {
         return this.$store.getters.dictionaries
