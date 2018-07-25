@@ -1,15 +1,18 @@
 <template>
   <div id="central_view">
     <PriceFilter/>
-    <el-row v-if="products && !Object.keys(products).length && $store.getters.LOADING" type="flex" justify="center">
+    <el-row v-if="!Object.keys(groupedByProp).length && $store.getters.LOADING" type="flex" justify="center">
       <i class="el-icon-loading" style="margin-top: 20px;"></i>
     </el-row>
-    <el-row v-if="products && !Object.keys(products).length && !$store.getters.LOADING" type="flex" justify="center">
+    <el-row v-if="!Object.keys(groupedByProp).length && !$store.getters.LOADING" type="flex" justify="center">
       <div id="no_products">Товары отсутствуют</div>
     </el-row>
-    <el-row>
+    <el-row v-for="(items, idx) in groupedByProp" :key="idx">
+      <h3 @click="$nuxt.$router.push(`/catalog/${items[0].group}/${items[0].category}/`)">
+        {{ categoryTitle(items[0].group, items[0].category) }}
+      </h3>
       <el-col
-        :span="24" v-for="p in products" :key="p.productId"
+        :span="24" v-for="p in items" :key="p.productId"
         itemscope itemtype="http://schema.org/ItemList">
         <ProductCard
           v-if="showProduct(p)" :id="p.productId"
@@ -53,19 +56,50 @@
           (p.price > this.$store.getters.productCommonFilters.minPrice &&
             p.price < this.$store.getters.productCommonFilters.maxPrice)
       },
-      sortByProp(arr, prop) {
-        let x, y
-        return arr.sort(function (a, b) {
-          x = a[prop] ? a[prop].trim() : ''
-          y = b[prop] ? b[prop].trim() : ''
-          return x === y ? 0 : +(x > y) || -1
-        })
+      // sortByProp(arr, prop) {
+      //   let x, y
+      //   return arr.sort(function (a, b) {
+      //     x = a[prop] ? a[prop] : ''
+      //     y = b[prop] ? b[prop] : ''
+      //     return x === y ? 0 : +(x > y) || -1
+      //   })
+      // },
+      groupByProp(arr, prop) { // can be used for grouping by any product property
+        let grouped = {}
+        for (let item of arr) {
+          let p
+          if (item[prop]) {
+            p = item[prop]
+          } else { // without prop
+            continue
+          }
+          if (!grouped[p]) grouped[p] = []
+          grouped[p].push(item)
+        }
+        return grouped
+      },
+      categoryTitle(groupVal, catVal) {
+        let label = ''
+        let tree = this.$store.getters.PRODUCT_TREE
+        for (let group in tree) {
+          if (tree[group].value === groupVal) {
+            tree[group].children.forEach(category => {
+              if (category.value === catVal) {
+                label = category.label
+              }
+            })
+          }
+        }
+        return this.capitalizeFirstLetter(label)
+      },
+      capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
       }
     },
     computed: {
-      products() {
-        let products = this.$store.getters.products ? Object.values(this.$store.getters.products) : []
-        return products.length ? this.sortByProp(products, 'title') : []
+      groupedByProp() {
+        return this.groupByProp(this.$store.getters.products ?
+          Object.values(this.$store.getters.products) : [], 'category')
       },
       dictionaries() {
         return this.$store.getters.dictionaries
@@ -77,6 +111,13 @@
   }
 </script>
 <style scoped lang="scss">
+
+  h3 {
+    color: $color-primary;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   #central_view {
     /*min-width: 600px;*/

@@ -49,18 +49,15 @@ export const actions = {
     let params = $nuxt.$route.params
     let filter = getters.productCommonFilters
     let query = fs.collection('products')
-    if (filter.maxPrice && !filter.category) { // all if category
-      query = query
-        .where('price', '>=', filter.minPrice)
-        .where('price', '<=', filter.maxPrice)
-    }
     if (params.group) {
       query = query.where('group', '==', params.group)
     }
     if (params.category) {
-      query = query.where('category', '==', params.category)
+      query = query.where('category', '==', params.category).orderBy('title', 'asc')
+    } else {
+      query = query.orderBy('category', 'asc').orderBy('title', 'asc')
     }
-    query = query.orderBy('price', 'asc')
+
     if (getters.lastVisible) {
       query = query.startAfter(getters.lastVisible)
     }
@@ -83,7 +80,6 @@ export const actions = {
         snap.docs.forEach(doc => {
           products[doc.id] = doc.data()
         })
-        console.log(products)
         commit('setProducts', {...products})
         commit('setProductDynamicFilters', '') // dynamic filters work in client side only for categories
         commit('setDynamicFilteredProductsIds', '') // dynamic filters work in client side only for categories
@@ -99,7 +95,7 @@ export const actions = {
     await fs.collection('products')
       .where('group', '==', payload.group)
       .where('category', '==', payload.category)
-      .orderBy('price', 'asc')
+      .orderBy('title', 'asc')
       .get()
       .then(snap => {
         let products = {}

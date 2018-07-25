@@ -33,10 +33,10 @@
     "img/vira-v.25ab4ff.svg",
     "img/shopping-cart.90d0051.svg",
     "pages/admin/system/index.ca3907c9e2505a6c2846.js",
-    "pages/catalog/_group/index.d17cbc9f9f2986be799e.js",
+    "pages/catalog/_group/index.fe9e2b591ca60ac208b0.js",
     "pages/cart/index.16a6d95cad10d8c984b3.js",
-    "pages/catalog/_group/_category/index.894142b5449c55e3572a.js",
-    "layouts/default.d9a82b476eea54297929.js",
+    "pages/catalog/_group/_category/index.1d98d34279ad56ef3964.js",
+    "layouts/default.3db74c3d6435574e31b1.js",
     "pages/admin/products/index.a66d1769c03d82c61740.js",
     "pages/admin/requests/index.d6550031e4ceb3c122e1.js",
     "layouts/admin.dc6dbc6ccbe61bd7f4d6.js",
@@ -61,14 +61,14 @@
     "26.2126e8219f1b241b1f51.js",
     "27.65e5de29a878802027b0.js",
     "28.d75ac66742968d97ee60.js",
-    "manifest.a3cf8c9ef2e2864595ad.js",
+    "manifest.f08255aa14d8dd7578eb.js",
     "common.33dcb42f9287439bec5b48ff44a4b935.css",
     "LICENSES",
     "pages/admin/system/index.ca3907c9e2505a6c2846.js.map",
-    "pages/catalog/_group/index.d17cbc9f9f2986be799e.js.map",
+    "pages/catalog/_group/index.fe9e2b591ca60ac208b0.js.map",
     "pages/cart/index.16a6d95cad10d8c984b3.js.map",
-    "pages/catalog/_group/_category/index.894142b5449c55e3572a.js.map",
-    "layouts/default.d9a82b476eea54297929.js.map",
+    "pages/catalog/_group/_category/index.1d98d34279ad56ef3964.js.map",
+    "layouts/default.3db74c3d6435574e31b1.js.map",
     "pages/admin/products/index.a66d1769c03d82c61740.js.map",
     "pages/admin/requests/index.d6550031e4ceb3c122e1.js.map",
     "layouts/admin.dc6dbc6ccbe61bd7f4d6.js.map",
@@ -94,7 +94,7 @@
     "26.2126e8219f1b241b1f51.js.map",
     "27.65e5de29a878802027b0.js.map",
     "28.d75ac66742968d97ee60.js.map",
-    "manifest.a3cf8c9ef2e2864595ad.js.map",
+    "manifest.f08255aa14d8dd7578eb.js.map",
     "icons/icon_64.c3Mvx$448Ub.png",
     "icons/icon_120.c3Mvx$448Ub.png",
     "icons/icon_144.c3Mvx$448Ub.png",
@@ -107,17 +107,17 @@
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.a3cf8c9ef2e2864595ad.js",
+    "manifest.f08255aa14d8dd7578eb.js",
     "common.0c3b66ec0d08bf8fb29e.js",
     "app.ac2fa7eede7bbe635b42.js"
   ],
   "async": [
     "pages/account/signup.d00d43541870737ec958.js",
     "pages/admin/system/index.ca3907c9e2505a6c2846.js",
-    "pages/catalog/_group/index.d17cbc9f9f2986be799e.js",
+    "pages/catalog/_group/index.fe9e2b591ca60ac208b0.js",
     "pages/cart/index.16a6d95cad10d8c984b3.js",
-    "pages/catalog/_group/_category/index.894142b5449c55e3572a.js",
-    "layouts/default.d9a82b476eea54297929.js",
+    "pages/catalog/_group/_category/index.1d98d34279ad56ef3964.js",
+    "layouts/default.3db74c3d6435574e31b1.js",
     "pages/admin/products/index.a66d1769c03d82c61740.js",
     "pages/admin/requests/index.d6550031e4ceb3c122e1.js",
     "layouts/admin.dc6dbc6ccbe61bd7f4d6.js",
@@ -436,7 +436,8 @@
     ],
     "5acdb340": [
       32,
-      64
+      64,
+      13
     ],
     "eeaf1586": [
       46,
@@ -647,7 +648,8 @@
     ],
     "836768f0": [
       34,
-      66
+      66,
+      13
     ],
     "6cfc1cd8": [
       53,
@@ -683,11 +685,13 @@
     ],
     "dadb0a56": [
       32,
-      64
+      64,
+      13
     ],
     "685753b3": [
       32,
-      64
+      64,
+      13
     ],
     "50a89cfa": [
       36,
@@ -816,7 +820,8 @@
     ],
     "fbc8ad36": [
       32,
-      64
+      64,
+      13
     ],
     "eb3cc9c4": [
       36,
@@ -885,7 +890,8 @@
     ],
     "1f18dfe9": [
       32,
-      64
+      64,
+      13
     ],
     "a8f7edac": [
       57,
@@ -1272,7 +1278,8 @@
     ],
     "a087899c": [
       34,
-      66
+      66,
+      13
     ],
     "97365c84": [
       53,
@@ -1502,18 +1509,6 @@
       53,
       85
     ],
-    "64b32920": [
-      35,
-      67,
-      9,
-      13,
-      15,
-      19,
-      24,
-      26,
-      28,
-      30
-    ],
     "541ab35e": [
       53,
       85
@@ -1533,7 +1528,8 @@
     ],
     "b0fc2ca8": [
       32,
-      64
+      64,
+      13
     ],
     "77dce3a8": [
       35,
@@ -1549,7 +1545,8 @@
     ],
     "2391af22": [
       34,
-      66
+      66,
+      13
     ],
     "37f92aa1": [
       43,
@@ -1746,7 +1743,8 @@
     ],
     "ce2ecec6": [
       34,
-      66
+      66,
+      13
     ],
     "5f1f5f91": [
       53,
@@ -1754,7 +1752,8 @@
     ],
     "2a967aa6": [
       32,
-      64
+      64,
+      13
     ],
     "459e18aa": [
       38,
@@ -1770,7 +1769,8 @@
     ],
     "705cae7f": [
       32,
-      64
+      64,
+      13
     ],
     "00b6e902": [
       39,
@@ -1914,7 +1914,8 @@
     ],
     "ac63f936": [
       34,
-      66
+      66,
+      13
     ],
     "f3a186ca": [
       37,
@@ -1942,7 +1943,8 @@
     ],
     "2b2affe2": [
       32,
-      64
+      64,
+      13
     ],
     "865edde0": [
       53,
@@ -2281,7 +2283,8 @@
     ],
     "810700a4": [
       32,
-      64
+      64,
+      13
     ],
     "4807e9d1": [
       39,
@@ -2366,7 +2369,8 @@
     ],
     "08316bd3": [
       34,
-      66
+      66,
+      13
     ],
     "68449edd": [
       46,
@@ -2528,7 +2532,8 @@
     ],
     "1f247148": [
       34,
-      66
+      66,
+      13
     ],
     "beefc13c": [
       54,
@@ -2560,7 +2565,8 @@
     ],
     "70fcd338": [
       32,
-      64
+      64,
+      13
     ],
     "2cfbecdf": [
       54,
@@ -2737,7 +2743,8 @@
     ],
     "45f8418e": [
       32,
-      64
+      64,
+      13
     ],
     "6cb92845": [
       55,
@@ -3108,7 +3115,8 @@
     ],
     "3a400a4f": [
       34,
-      66
+      66,
+      13
     ],
     "4dad4a5c": [
       53,
@@ -3116,7 +3124,8 @@
     ],
     "06cc7700": [
       32,
-      64
+      64,
+      13
     ],
     "5e4cf584": [
       54,
@@ -3615,7 +3624,8 @@
     ],
     "254a04c0": [
       34,
-      66
+      66,
+      13
     ],
     "64428ca8": [
       54,
@@ -3967,13 +3977,10 @@
       86,
       87
     ],
-    "d009c7a2": [
-      53,
-      85
-    ],
     "29b4c566": [
       34,
-      66
+      66,
+      13
     ],
     "717b1686": [
       53,
@@ -4012,6 +4019,10 @@
       85
     ],
     "4759a4a6": [
+      53,
+      85
+    ],
+    "d009c7a2": [
       53,
       85
     ],
