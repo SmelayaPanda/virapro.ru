@@ -6,8 +6,15 @@ https://virapro.ru/
 
 # Nuxt.js Universal App with SSR via Firebase Functions and Firebase Hosting.
  - Firebase Hosting, Auth, Cloud Functions, Emailing, ElementUI, Algolia ...
+ - Admin panel: Dashboard, Add/edit catalog, Orders, User requests, Dictionaries, Reviews, All users actions, Binary questions, Company info, System settings (data dumb/restore, sitemap generator, error log )
 
 
+### Litehouse Audits
 <p align="center">
- <img src="https://firebasestorage.googleapis.com/v0/b/plumbing-prod.appspot.com/o/Screen%20Shot%202018-07-24%20at%2012.46.44%20AM.png?alt=media&token=e5ed0806-7ccc-40a7-bc27-33c41a10dce8" alt="Audits">
+ <img src="https://firebasestorage.googleapis.com/v0/b/plumbing-prod.appspot.com/o/Audits.png?alt=media&token=1ea292c8-b5ea-4b1b-b883-907bb72d4751" alt="Audits">
+</p>
+
+### Admin panel
+<p align="center">
+ <img src="https://firebasestorage.googleapis.com/v0/b/plumbing-prod.appspot.com/o/AdminPanel.png?alt=media&token=1f667a52-0501-482a-9b0f-f838f7c0aa6e" alt="Admin panel">
 </p>
