@@ -20,8 +20,8 @@ workboxSW.precache([
     "revision": "7a6416948323544f853d7f0bf818818e"
   },
   {
-    "url": "/assets/app.1986a27005e9b4c19a6d.js",
-    "revision": "eb8cff8b9cc939c41fcaf2a2be8083da"
+    "url": "/assets/app.ac2fa7eede7bbe635b42.js",
+    "revision": "c996697bf9303778ce1dc9d2e4bc1270"
   },
   {
     "url": "/assets/below-slider.d1ab5e03348e1bc78e70.js",
@@ -40,12 +40,12 @@ workboxSW.precache([
     "revision": "26add39f40f8f140e93edbca31447cc4"
   },
   {
-    "url": "/assets/layouts/default.45ced15195aefc278bac.js",
-    "revision": "785a8a9319bab8b1aa2c2409b05e7ac9"
+    "url": "/assets/layouts/default.d9a82b476eea54297929.js",
+    "revision": "066df38ae1cde427cce5ec7a4a5feb9d"
   },
   {
-    "url": "/assets/manifest.07ea200fe7e4ea29d100.js",
-    "revision": "b70b25020dce83539a3eb06db807d0f9"
+    "url": "/assets/manifest.a3cf8c9ef2e2864595ad.js",
+    "revision": "0638be1c7817d9a806d9bc94194413c4"
   },
   {
     "url": "/assets/modal.888e250548e22562acb5.js",
@@ -84,8 +84,8 @@ workboxSW.precache([
     "revision": "5e012c57c44982814fea861663af29b0"
   },
   {
-    "url": "/assets/pages/admin/products/index.be77e0159c1c9541b10c.js",
-    "revision": "142bd38638b0a8184d151938f4457075"
+    "url": "/assets/pages/admin/products/index.a66d1769c03d82c61740.js",
+    "revision": "034bc71a1c27acd18df7d6e2ce347dcb"
   },
   {
     "url": "/assets/pages/admin/questions/index.8fb7598a1bb6b2db0469.js",
@@ -108,20 +108,20 @@ workboxSW.precache([
     "revision": "96a1c655161b0c30d6818bedc800eb77"
   },
   {
-    "url": "/assets/pages/cart/index.cd2dcb67f595903057e1.js",
-    "revision": "ddb779ac521764a27fd745bf37b05311"
+    "url": "/assets/pages/cart/index.16a6d95cad10d8c984b3.js",
+    "revision": "4d571de9380732aa25f53fa6b4e539da"
   },
   {
     "url": "/assets/pages/catalog/_group/_category/_id.281b47abf74b44ba00b4.js",
     "revision": "92be8358f0e5ae0f44d3b0d3bef8c5ac"
   },
   {
-    "url": "/assets/pages/catalog/_group/_category/index.7703d63ad037b8763273.js",
-    "revision": "f75123fe9a5623caaef4be51cbe5737e"
+    "url": "/assets/pages/catalog/_group/_category/index.894142b5449c55e3572a.js",
+    "revision": "300fa05e8314b52f65e0506890618c8d"
   },
   {
-    "url": "/assets/pages/catalog/_group/index.da89def101d95396479c.js",
-    "revision": "e5d8866ff1bcc1727ddd17480038496c"
+    "url": "/assets/pages/catalog/_group/index.d17cbc9f9f2986be799e.js",
+    "revision": "45870b18e7d6d249e59034c3a1138c12"
   },
   {
     "url": "/assets/pages/catalog/index.5069d41830d1ca51b7d2.js",

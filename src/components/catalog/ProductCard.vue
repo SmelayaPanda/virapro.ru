@@ -10,7 +10,8 @@
       <el-row id="card_content">
         <el-col id="product_img_wrap">
           <div id="product_image">
-            <img v-if="product.img_0" :src="product.img_0.card" :alt="product.title">
+            <img v-if="product.img_0 && product.img_0.card" :src="product.img_0.card" :alt="product.title">
+            <img v-else src="~/assets/icons/algolia/no_photo.svg" :alt="product.title">
           </div>
         </el-col>
         <el-col id="product_description"

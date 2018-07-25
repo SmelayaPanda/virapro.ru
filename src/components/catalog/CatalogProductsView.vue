@@ -53,15 +53,18 @@
           (p.price > this.$store.getters.productCommonFilters.minPrice &&
             p.price < this.$store.getters.productCommonFilters.maxPrice)
       },
-      sortByProp (arr, prop) {
+      sortByProp(arr, prop) {
+        let x, y
         return arr.sort(function (a, b) {
-          return a[prop] === b[prop] ? 0 : +(a[prop] > b[prop]) || -1
+          x = a[prop] ? a[prop].trim() : ''
+          y = b[prop] ? b[prop].trim() : ''
+          return x === y ? 0 : +(x > y) || -1
         })
       }
     },
     computed: {
       products() {
-        let products = this.$store.getters.products ? Object.values(this.$store.getters.products): []
+        let products = this.$store.getters.products ? Object.values(this.$store.getters.products) : []
         return products.length ? this.sortByProp(products, 'title') : []
       },
       dictionaries() {

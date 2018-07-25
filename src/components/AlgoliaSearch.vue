@@ -13,7 +13,7 @@
             class="search_row">
             <el-col class="thumbnail">
               <img v-if="res.thumbnail" :src="res.thumbnail" :alt="res.title">
-              <img v-else class="no_thumbnail_icon" src="~/assets/icons/algolia/no_photo.svg" alt="нет фото">
+              <img v-else class="no_thumbnail_icon" src="~/assets/icons/algolia/no_photo.svg" :alt="res.title">
             </el-col>
             <el-col class="product_info_descr">
               <p class="snippet_title" v-html="res.title"></p>
