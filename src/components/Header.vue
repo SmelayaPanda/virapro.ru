@@ -3,7 +3,7 @@
     <SupHeader/>
     <el-row id="header">
       <el-col id="logo_wrap" :span="1" :offset="2">
-        <img src="~/assets/icons/logo/virapro.svg" alt="Vira Pro Logo">
+        <img src="~/assets/icons/logo/virapro.svg" alt="Vira Pro Logo" @click="$nuxt.$router.push('/')">
       </el-col>
       <el-col id="algolia_desctop" :md="8" :lg="7" :xl="7" :offset="1">
         <AlgoliaSearch/>
@@ -97,6 +97,9 @@
       margin-left: -4px;
       margin-top: 2px;
       height: 40px;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 

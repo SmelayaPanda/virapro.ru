@@ -4,7 +4,7 @@
     <order-service-dialog></order-service-dialog>
     <el-row id="footer_row">
       <el-col :xs="24" :sm="4" :md="4" :lg="4" :xl="4" id="company_logo">
-        <img src="~/assets/icons/logo/virapro.svg" alt="Vira Pro Logo">
+        <img src="~/assets/icons/logo/virapro.svg" alt="Vira Pro Logo" @click="$nuxt.$router.push('/')">
       </el-col>
       <el-col :xs="14" :sm="7" :md="4" :lg="4" :xl="4" :offset="1">
         <p id="footer_phone">
@@ -170,6 +170,9 @@
     img {
       margin-top: -7px;
       height: 70px;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
