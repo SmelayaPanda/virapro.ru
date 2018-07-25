@@ -69,6 +69,9 @@ export const mutations = {
   setSingleProduct(state, payload) {
     state.singleProduct = payload
   },
+  setMaxFetchPrice(state, payload) {
+    state.maxFetchPrice = payload
+  },
   setLastVisible(state, payload) {
     state.lastVisible = payload
   },

@@ -77,10 +77,15 @@ export const actions = {
           commit('setLastVisible', snap.size === filter.limit ? snap.docs[snap.docs.length - 1] : null)
         }
 
+        let maxFetchPrice = 0
         snap.docs.forEach(doc => {
+          if (doc.data().price && doc.data().price > maxFetchPrice) {
+            maxFetchPrice = doc.data().price
+          }
           products[doc.id] = doc.data()
         })
         commit('setProducts', {...products})
+        commit('setMaxFetchPrice', maxFetchPrice)
         commit('setProductDynamicFilters', '') // dynamic filters work in client side only for categories
         commit('setDynamicFilteredProductsIds', '') // dynamic filters work in client side only for categories
         commit('updateProductCommonFilter', {field: 'group', value: params.group})

@@ -10,6 +10,7 @@ export const getters = {
   // PRODUCTS
   products: state => state.products,
   singleProduct: state => state.singleProduct,
+  maxFetchPrice: state => state.maxFetchPrice,
   lastVisible: state => state.lastVisible,
   productCommonFilters: state => state.productCommonFilters,
   productDynamicFilters: state => state.productDynamicFilters,

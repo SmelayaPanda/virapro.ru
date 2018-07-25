@@ -6,10 +6,10 @@
       <el-slider
         id="price_slider"
         v-model="sliderValues" @change="changePriceRange" range
-        :step="100" :min="0" :max="$store.getters.productStatistics.maxPrice + 100">
+        :step="100" :min="0" :max="~~$store.getters.maxFetchPrice + 100">
       </el-slider>
     </el-col>
-    <el-col id="price_max">{{ sliderValues[1] }} &#8381</el-col>
+    <el-col id="price_max">{{ ~~$store.getters.maxFetchPrice }} &#8381</el-col>
   </el-row>
 </template>
 <script>
