@@ -9,7 +9,7 @@ https://virapro.ru/
  - Admin panel: Dashboard, Add/edit catalog, Orders, User requests, Dictionaries, Reviews, All users actions, Binary questions, Company info, System settings (data dumb/restore, sitemap generator, error log )
 
 
-### Litehouse Audits
+### Lighthouse Audits
 <p align="center">
  <img src="https://firebasestorage.googleapis.com/v0/b/plumbing-prod.appspot.com/o/Audits.png?alt=media&token=1ea292c8-b5ea-4b1b-b883-907bb72d4751" alt="Audits">
 </p>
