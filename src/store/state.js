@@ -356,8 +356,12 @@ export const state = () => ({
       {value: 'metal-plastic-systems', label: 'металлопластиковые системы', type: 'category', filters: ['product_type']},
       {value: 'polypropylene-system', label: 'полипропиленовые системы', type: 'category', filters: ['product_type', 'corpus_diameter', 'pressure', 'reinforcement']},
       {value: 'steel-systems', label: 'стальные системы', type: 'category', filters: ['product_type', 'country', 'conditional_diameter', 'pressure']},
-      {value: 'pipes', label: 'трубы', type: 'category', filters: ['inner_diameter', 'outer_diameter']},
+      {value: 'flanges', label: 'фланцы', type: 'category', filters: ['conditional_diameter', 'pressure', 'country', 'product_type']},
+      {value: 'tees', label: 'тройники', type: 'category'},
+      {value: 'plugs', label: 'заглушки', type: 'category'},
+      {value: 'transitions', label: 'переходы', type: 'category', filters: ['wall_thickness', 'outer_diameter']},
       {value: 'taps', label: 'отводы', type: 'category', filters: ['inner_diameter', 'outer_diameter']},
+      {value: 'pipes', label: 'трубы', type: 'category', filters: ['inner_diameter', 'outer_diameter']},
       {value: 'pipe-blank', label: 'трубная заготовка', type: 'category', filters: ['inner_diameter', 'outer_diameter']},
       {value: 'polyethylene-systems-pnd', label: 'полиэтиленовые системы (ПНД)', type: 'category'}
     ]

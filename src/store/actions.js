@@ -61,6 +61,7 @@ export const actions = {
       query = query.where('category', '==', params.category)
     }
     query = query.orderBy('price', 'asc')
+      // .orderBy('title', 'asc')
     if (getters.lastVisible) {
       query = query.startAfter(getters.lastVisible)
     }
