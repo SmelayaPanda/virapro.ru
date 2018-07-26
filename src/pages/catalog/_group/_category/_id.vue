@@ -160,11 +160,7 @@
         if (subject === 'cart' && operation === 'add') {
           this.$store.dispatch('increaseProductCounter', {id: product.productId, type: 'cart'})
         }
-        this.$store.dispatch('USER_EVENT',
-          `${subject === 'cart' ? 'Корзина' : 'Избранное'}:
-           ${operation === 'add' ? ' добавлен' : ' удален'}
-          "${product.title}"`
-        )
+        this.$store.dispatch('USER_EVENT', `${subject === 'cart' ? 'Корзина' : 'Избранное'}: ${operation === 'add' ? ' добавлен' : ' удален'} "${product.title}"`)
         this.$store.dispatch('updateOwnProducts', {
           subject: subject,
           operation: operation,

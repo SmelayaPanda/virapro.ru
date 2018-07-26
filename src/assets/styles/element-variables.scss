@@ -66,6 +66,10 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
   width: 800px !important;
 }
 
+.el-transfer-panel {
+  width: 380px;
+}
+
 @media only screen and (max-width: $sm-screen) {
   #service_dialog, #delivery_and_payment_dialog {
     .el-dialog {
