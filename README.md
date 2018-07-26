@@ -8,7 +8,6 @@ https://virapro.ru/
  - Firebase Hosting, Auth, Cloud Functions, Emailing, ElementUI, Algolia ...
  - Admin panel: Dashboard, Add/Edit catalog, Orders, User requests, Dictionaries, Reviews, All users actions, Binary questions, Company info, System settings (data dumb/restore, sitemap generator, error log )
 
-
 ### Lighthouse Audits
 <p align="center">
  <img src="https://firebasestorage.googleapis.com/v0/b/plumbing-prod.appspot.com/o/Audits.png?alt=media&token=1ea292c8-b5ea-4b1b-b883-907bb72d4751" alt="Audits">
