@@ -9,25 +9,29 @@
     "precommit": "yarn lint"
   },
   "dependencies": {
-    "algoliasearch": "^3.27.1",
     "@nuxtjs/pwa": "^2.0.8",
+    "algoliasearch": "^3.27.1",
     "babel-plugin-module-resolver": "^2.7.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "chart.js": "^2.7.2",
     "element-ui": "latest",
-    "firebase": "^5.0.4",
     "file-saver": "^1.3.8",
+    "firebase": "^5.0.4",
+    "jszip": "^3.1.5",
     "nuxt": "^1.0.0-rc11",
     "vue": "^2.5.3",
+    "vue-chartjs": "^3.3.2",
     "vue-masked-input": "^0.5.2",
-    "jszip": "^3.1.5",
-    "vue-server-renderer": "^2.5.3",
-    "vue-template-compiler": "^2.5.3",
     "vue-quill-editor": "^3.0.6",
-    "vue-scrollto": "^2.11.0"
+    "vue-scrollto": "^2.11.0",
+    "vue-server-renderer": "^2.5.3",
+    "vue-template-compiler": "^2.5.3"
   },
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "ava": "^0.25.0",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-runtime": "^6.23.0",
     "eslint": "^4.3.0",
@@ -38,14 +42,12 @@
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "jsdom": "^11.11.0",
     "node-sass": "^4.9.0",
     "nuxt-sass-resources-loader": "^1.2.0",
     "sass-loader": "^7.0.1",
-    "vue-style-loader": "^4.1.0",
     "vue-backtotop": "^1.3.12",
-    "ava": "^0.25.0",
-    "jsdom": "^11.11.0",
-    "@vue/test-utils": "^1.0.0-beta.20"
+    "vue-style-loader": "^4.1.0"
   },
   "ava": {
     "require": [
