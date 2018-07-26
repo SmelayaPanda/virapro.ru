@@ -28,18 +28,16 @@
     </transition>
     <div class="line-chart">
       <line-chart :chartData="chartData" :options="chartOptions" :height="280"/>
-      <!--<bar-chart :chartData="chartData" :options="chartOptions" :height="240"/>-->
     </div>
   </div>
 </template>
 <script>
   import {db, fs} from '@/services/fireinit'
   import LineChart from "@/components/chartjs/line-chart"
-  import BarChart from "@/components/chartjs/bar-chart";
 
   export default {
     name: 'UsersEventsChart',
-    components: {BarChart, LineChart},
+    components: {LineChart},
     data() {
       return {
         expandTransfer: false,
