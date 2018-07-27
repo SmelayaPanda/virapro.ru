@@ -11,13 +11,7 @@
       <h3 @click="$nuxt.$router.push(`/catalog/${items[0].group}/${items[0].category}/`)">
         {{ categoryTitle(items[0].group, items[0].category) }}
       </h3>
-      <el-col
-        :span="24" v-for="p in items" :key="p.productId"
-        itemscope itemtype="http://schema.org/ItemList">
-        <ProductCard
-          v-if="showProduct(p)" :id="p.productId"
-          itemprop="itemListElement" itemtype="http://schema.org/Product"/>
-      </el-col>
+      <ProductsGroup :items="items"/>
     </el-row>
     <el-row id="load_more">
       <div>
@@ -34,11 +28,11 @@
 </template>
 <script>
   import PriceFilter from "@/components/catalog/PriceFilter"
-  import ProductCard from "@/components/catalog/ProductCard"
+  import ProductsGroup from "./ProductsGroup"
 
   export default {
     name: 'CatalogProductsView',
-    components: {PriceFilter, ProductCard},
+    components: {ProductsGroup, PriceFilter},
     data() {
       return {
         hoverOnCard: false
@@ -48,13 +42,6 @@
       async loadMore() {
         this.$store.dispatch('USER_EVENT', 'Загрузить больше')
         await this.$store.dispatch('fetchProducts')
-      },
-      showProduct(p) {
-        return (!this.$store.getters.productDynamicFilters ||
-          (this.$store.getters.productDynamicFilters &&
-            this.$store.getters.dynamicFilteredProductsIds.indexOf(p.productId) !== -1)) &&
-          (p.price > this.$store.getters.productCommonFilters.minPrice &&
-            p.price < this.$store.getters.productCommonFilters.maxPrice)
       },
       groupByProp(arr, prop) { // can be used for grouping by any product property
         let grouped = {}
@@ -128,6 +115,8 @@
   }
 
   @media only screen and (max-width: $xs-screen) {
-    flex: 0 0 90vw !important;
+    h3 {
+      margin-left: 10px !important;
+    }
   }
 </style>
