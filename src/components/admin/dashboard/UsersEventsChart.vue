@@ -102,7 +102,9 @@
           chartData.datasets.push({
             data: [],
             label: this.eventsForPlot[i],
-            backgroundColor: i === 0 ? 'rgba(99, 185, 250, .3)' : this.random_rgba()
+            backgroundColor:
+              i === 0 ? 'rgba(100, 185, 250, .3)' :
+                (i === 1 ? 'rgba(5, 250, 100, .3)' : this.random_rgba())
           })
 
           let group = this.groupByTime(this.groupedEvents[this.eventsForPlot[i]])
