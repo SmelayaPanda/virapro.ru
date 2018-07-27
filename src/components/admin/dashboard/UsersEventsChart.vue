@@ -2,11 +2,10 @@
   <div>
     <el-row type="flex">
       <el-radio-group id="period" @change="plotChart" v-model="period" size="mini">
-        <el-radio-button label="1h">1 ч</el-radio-button>
-        <el-radio-button label="3h">3 ч</el-radio-button>
-        <el-radio-button label="12h">12 ч</el-radio-button>
+        <el-radio-button label="hour">час</el-radio-button>
         <el-radio-button label="day">День</el-radio-button>
         <el-radio-button label="week">Неделя</el-radio-button>
+        <el-radio-button label="month">Месяц</el-radio-button>
       </el-radio-group>
       <div id="transfer_switch">
         <el-switch v-model="expandTransfer"></el-switch>
@@ -105,6 +104,7 @@
             label: this.eventsForPlot[i],
             backgroundColor: i === 0 ? 'rgba(99, 185, 250, .3)' : this.random_rgba()
           })
+
           let group = this.groupByTime(this.groupedEvents[this.eventsForPlot[i]])
           for (let interval in group) {
             chartData.datasets[i].data.push(group[interval])
@@ -118,43 +118,47 @@
         this.$store.commit('LOADING', false)
       },
       groupByTime(arr) {
-        let i, m = 0
+        let m = 0
         let periodStart = new Date()
-        if (this.period === '1h') {
+        if (this.period === 'hour') {
           m = 1 / 24;
           this.dateOptions = {hour: 'numeric', minute: 'numeric'}
-          periodStart.setDate(periodStart.getDate() - 3) // one day display
-        } else if (this.period === '3h') {
-          m = 1 / 7
-          this.dateOptions = {hour: 'numeric'}
-          periodStart.setDate(periodStart.getDate() - 7)
-        } else if (this.period === '12h') {
-          m = 1 / 2
-          this.dateOptions = {day: 'numeric', month: 'long'}
-          periodStart.setDate(periodStart.getDate() - 14)
+          periodStart.setDate(periodStart.getDate() - 1) // one day display
         } else if (this.period === 'day') {
           m = 1
           this.dateOptions = {day: 'numeric', month: 'long'}
-          periodStart.setDate(periodStart.getDate() - 30)
+          periodStart.setDate(periodStart.getDate() - 11)
         } else if (this.period === 'week') {
           m = 7
           this.dateOptions = {day: 'numeric', month: 'long'}
-          periodStart.setDate(periodStart.getDate() - 90)
+          periodStart.setDate(periodStart.getDate() - 92)
+        } else if (this.period === 'month') {
+          m = 31
+          this.dateOptions = {month: 'long'}
+          periodStart.setDate(periodStart.getDate() - 367)
         }
-        let iDate = 1000 * 60 * 60 * 24 * m
-        let intervalStart
+        let now = new Date()
+        let iLength = 1000 * 60 * 60 * 24 * m
+        let intervalStart = new Date()
+        let intervals = []
+        let i = 1
+        while (intervalStart > periodStart) {
+          intervalStart = now - i * iLength
+          intervals.unshift(intervalStart)
+          i++
+        }
         let group = {}
-        arr.sort()
-        arr.forEach(date => {
-          if (date > periodStart) {
-            i = Math.floor(date / iDate)
-            intervalStart = i * iDate
-            if (group[intervalStart]) {
-              group[intervalStart] += 1
-            } else {
-              group[intervalStart] = 1
+        intervals.forEach(date => {
+          group[date] = 0
+          arr.forEach(eventDate => {
+            if (eventDate > date && eventDate < date + iLength) {
+              if (group[date]) {
+                group[date] += 1
+              } else {
+                group[date] = 1
+              }
             }
-          }
+          })
         })
         return group
       },
