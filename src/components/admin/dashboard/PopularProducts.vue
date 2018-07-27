@@ -35,7 +35,7 @@
           <nuxt-link :to="`/catalog/${product.group}/${product.category}/${product.productId}`">
             {{ product.title }}
           </nuxt-link>
-          <span class="product_info">( Арт.: {{ product.SKU }}, Цена: {{ product.price }} руб. )</span>
+          <span class="product_info">/ {{ product.price }} &#8381</span>
         </el-row>
       </el-col>
       <el-col :span="7">
@@ -117,7 +117,7 @@
 
   .product_info {
     color: $color-info;
-    font-size: 12px;
+    font-size: 14px;
     margin-left: 5px;
   }
 
