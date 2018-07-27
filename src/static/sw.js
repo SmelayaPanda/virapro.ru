@@ -44,8 +44,8 @@ workboxSW.precache([
     "revision": "aed713de057544f6ee9b8ac9dda144d7"
   },
   {
-    "url": "/assets/manifest.19c769152a39525956ac.js",
-    "revision": "e22f653d8730c2616bf34ad87c80baf4"
+    "url": "/assets/manifest.c16177ab03a3a780afe5.js",
+    "revision": "ee08e840e599da6490b5ddf3c7c5b85a"
   },
   {
     "url": "/assets/modal.888e250548e22562acb5.js",
@@ -76,8 +76,8 @@ workboxSW.precache([
     "revision": "ee63af635f7329790520350f0dd13001"
   },
   {
-    "url": "/assets/pages/admin/index.743c61b1d8a2e4276aa5.js",
-    "revision": "1989420b5f27db93fd085e6afd7f1450"
+    "url": "/assets/pages/admin/index.53c9afb16a96c0b49b19.js",
+    "revision": "462fa3a33a6795c73685476c8fa6e481"
   },
   {
     "url": "/assets/pages/admin/orders/index.5ebdc5cd5997dd0fb2d4.js",

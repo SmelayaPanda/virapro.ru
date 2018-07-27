@@ -87,6 +87,7 @@
             node.children.push({value: el, label: el, prop: prop})
           })
           if (node.children.length) {
+            node.children.sort((a,b) => a.value - b.value)
             tree.push(node)
           }
           node = {}

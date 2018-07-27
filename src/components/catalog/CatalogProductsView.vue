@@ -56,14 +56,6 @@
           (p.price > this.$store.getters.productCommonFilters.minPrice &&
             p.price < this.$store.getters.productCommonFilters.maxPrice)
       },
-      // sortByProp(arr, prop) {
-      //   let x, y
-      //   return arr.sort(function (a, b) {
-      //     x = a[prop] ? a[prop] : ''
-      //     y = b[prop] ? b[prop] : ''
-      //     return x === y ? 0 : +(x > y) || -1
-      //   })
-      // },
       groupByProp(arr, prop) { // can be used for grouping by any product property
         let grouped = {}
         for (let item of arr) {

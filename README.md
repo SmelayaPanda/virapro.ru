@@ -5,7 +5,7 @@
 https://virapro.ru/
 
 # Nuxt.js Universal App with SSR via Firebase Functions and Firebase Hosting.
- - Firebase Hosting, Auth, Cloud Functions, Emailing, ElementUI, Algolia ...
+ - Firebase Hosting, Auth, Cloud Functions, Emailing, ElementUI, Algolia, Chartjs ...
  - Admin panel: Dashboard, Add/Edit catalog, Orders, User requests, Dictionaries, Reviews, All users actions, Binary questions, Company info, System settings (data dumb/restore, sitemap generator, error log )
 
 ### Lighthouse Audits
