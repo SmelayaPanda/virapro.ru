@@ -15,5 +15,5 @@ https://virapro.ru/
 
 ### Admin panel
 <p align="center">
- <img src="https://firebasestorage.googleapis.com/v0/b/plumbing-prod.appspot.com/o/AdminPanel.png?alt=media&token=1f667a52-0501-482a-9b0f-f838f7c0aa6e" alt="Admin panel">
+ <img src="https://firebasestorage.googleapis.com/v0/b/plumbing-prod.appspot.com/o/Admin.png?alt=media&token=9d9b3c5d-f112-40f4-aafc-4d40b45a68cc" alt="Admin panel">
 </p>

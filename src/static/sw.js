@@ -20,8 +20,8 @@ workboxSW.precache([
     "revision": "7a6416948323544f853d7f0bf818818e"
   },
   {
-    "url": "/assets/app.2ddd1d0318ab3ecdfbc7.js",
-    "revision": "1f4425135a163cc0f9dc59240645e982"
+    "url": "/assets/app.447bfdc3a775ef322e37.js",
+    "revision": "333ef746a4a1044c52dcd8d540f2659d"
   },
   {
     "url": "/assets/below-slider.d1ab5e03348e1bc78e70.js",
@@ -44,8 +44,8 @@ workboxSW.precache([
     "revision": "aed713de057544f6ee9b8ac9dda144d7"
   },
   {
-    "url": "/assets/manifest.551bf15a435c3e7b7134.js",
-    "revision": "2fd6421dbba7c8557a93e1317eefaa7b"
+    "url": "/assets/manifest.19c769152a39525956ac.js",
+    "revision": "e22f653d8730c2616bf34ad87c80baf4"
   },
   {
     "url": "/assets/modal.888e250548e22562acb5.js",
@@ -76,8 +76,8 @@ workboxSW.precache([
     "revision": "ee63af635f7329790520350f0dd13001"
   },
   {
-    "url": "/assets/pages/admin/index.847cd0b3176d0783740a.js",
-    "revision": "e890a63503480ef23cfb319cb6fe8edc"
+    "url": "/assets/pages/admin/index.743c61b1d8a2e4276aa5.js",
+    "revision": "1989420b5f27db93fd085e6afd7f1450"
   },
   {
     "url": "/assets/pages/admin/orders/index.5ebdc5cd5997dd0fb2d4.js",
@@ -92,8 +92,8 @@ workboxSW.precache([
     "revision": "dcede9057a171c2617f5b1b38ef24bb4"
   },
   {
-    "url": "/assets/pages/admin/requests/index.481ca4e1fe49e25b4d4c.js",
-    "revision": "dac4537584fa36d7fb1ef6e69c3cbd01"
+    "url": "/assets/pages/admin/requests/index.5e7452adf6f26b1551db.js",
+    "revision": "de53e27e7ff6e2a46c21bbc185e12173"
   },
   {
     "url": "/assets/pages/admin/reviews/index.2ddf4668140aba384838.js",

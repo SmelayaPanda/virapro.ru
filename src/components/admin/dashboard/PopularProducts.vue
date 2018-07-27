@@ -42,7 +42,7 @@
         <div class="doughnut-chart">
           <doughnut-chart
             :chartData="doughnutChartData"
-            :options="chartOptions" :height="420"/>
+            :options="chartOptions" :height="390"/>
         </div>
       </el-col>
     </el-row>

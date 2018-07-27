@@ -32,14 +32,14 @@
     "img/search.2e4a635.svg",
     "img/vira-v.25ab4ff.svg",
     "img/shopping-cart.90d0051.svg",
-    "pages/admin/index.847cd0b3176d0783740a.js",
+    "pages/admin/index.743c61b1d8a2e4276aa5.js",
     "pages/admin/system/index.eec87194e9df2a893134.js",
     "pages/catalog/_group/index.1717d78ca3f2098dcd1a.js",
     "pages/cart/index.1d706c9e0cd6d483188a.js",
     "pages/catalog/_group/_category/index.c599744a6448a47778d5.js",
     "layouts/default.7aa9a8401f29adb14ade.js",
     "pages/admin/products/index.68e6a11b6754833ec4e5.js",
-    "pages/admin/requests/index.481ca4e1fe49e25b4d4c.js",
+    "pages/admin/requests/index.5e7452adf6f26b1551db.js",
     "layouts/admin.85e7d68121240c0e4b15.js",
     "pages/admin/reviews/index.2ddf4668140aba384838.js",
     "pages/admin/orders/index.5ebdc5cd5997dd0fb2d4.js",
@@ -55,23 +55,23 @@
     "pages/catalog/index.cb80bbf7dd610c1f7656.js",
     "fonts/element-icons.6f0a763.ttf",
     "common.0c3b66ec0d08bf8fb29e.js",
-    "app.2ddd1d0318ab3ecdfbc7.js",
+    "app.447bfdc3a775ef322e37.js",
     "below-slider.d1ab5e03348e1bc78e70.js",
     "modal.888e250548e22562acb5.js",
     "26.2126e8219f1b241b1f51.js",
     "27.bfac52610c2366633b5c.js",
     "28.d75ac66742968d97ee60.js",
-    "manifest.551bf15a435c3e7b7134.js",
+    "manifest.19c769152a39525956ac.js",
     "common.e97852012acbc306d6031c7d87403e71.css",
     "LICENSES",
-    "pages/admin/index.847cd0b3176d0783740a.js.map",
+    "pages/admin/index.743c61b1d8a2e4276aa5.js.map",
     "pages/admin/system/index.eec87194e9df2a893134.js.map",
     "pages/catalog/_group/index.1717d78ca3f2098dcd1a.js.map",
     "pages/cart/index.1d706c9e0cd6d483188a.js.map",
     "pages/catalog/_group/_category/index.c599744a6448a47778d5.js.map",
     "layouts/default.7aa9a8401f29adb14ade.js.map",
     "pages/admin/products/index.68e6a11b6754833ec4e5.js.map",
-    "pages/admin/requests/index.481ca4e1fe49e25b4d4c.js.map",
+    "pages/admin/requests/index.5e7452adf6f26b1551db.js.map",
     "layouts/admin.85e7d68121240c0e4b15.js.map",
     "pages/admin/reviews/index.2ddf4668140aba384838.js.map",
     "pages/admin/orders/index.5ebdc5cd5997dd0fb2d4.js.map",
@@ -87,14 +87,14 @@
     "pages/catalog/index.cb80bbf7dd610c1f7656.js.map",
     "pages/account/signup.d00d43541870737ec958.js.map",
     "common.0c3b66ec0d08bf8fb29e.js.map",
-    "app.2ddd1d0318ab3ecdfbc7.js.map",
+    "app.447bfdc3a775ef322e37.js.map",
     "common.e97852012acbc306d6031c7d87403e71.css.map",
     "below-slider.d1ab5e03348e1bc78e70.js.map",
     "modal.888e250548e22562acb5.js.map",
     "26.2126e8219f1b241b1f51.js.map",
     "27.bfac52610c2366633b5c.js.map",
     "28.d75ac66742968d97ee60.js.map",
-    "manifest.551bf15a435c3e7b7134.js.map",
+    "manifest.19c769152a39525956ac.js.map",
     "icons/icon_64.c3Mvx$448Ub.png",
     "icons/icon_120.c3Mvx$448Ub.png",
     "icons/icon_144.c3Mvx$448Ub.png",
@@ -107,20 +107,20 @@
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.551bf15a435c3e7b7134.js",
+    "manifest.19c769152a39525956ac.js",
     "common.0c3b66ec0d08bf8fb29e.js",
-    "app.2ddd1d0318ab3ecdfbc7.js"
+    "app.447bfdc3a775ef322e37.js"
   ],
   "async": [
     "pages/account/signup.d00d43541870737ec958.js",
-    "pages/admin/index.847cd0b3176d0783740a.js",
+    "pages/admin/index.743c61b1d8a2e4276aa5.js",
     "pages/admin/system/index.eec87194e9df2a893134.js",
     "pages/catalog/_group/index.1717d78ca3f2098dcd1a.js",
     "pages/cart/index.1d706c9e0cd6d483188a.js",
     "pages/catalog/_group/_category/index.c599744a6448a47778d5.js",
     "layouts/default.7aa9a8401f29adb14ade.js",
     "pages/admin/products/index.68e6a11b6754833ec4e5.js",
-    "pages/admin/requests/index.481ca4e1fe49e25b4d4c.js",
+    "pages/admin/requests/index.5e7452adf6f26b1551db.js",
     "layouts/admin.85e7d68121240c0e4b15.js",
     "pages/admin/reviews/index.2ddf4668140aba384838.js",
     "pages/admin/orders/index.5ebdc5cd5997dd0fb2d4.js",
@@ -4677,6 +4677,10 @@
       66,
       18
     ],
+    "5db11fe6": [
+      31,
+      63
+    ],
     "77d550da": [
       54,
       61,
@@ -4810,14 +4814,6 @@
       53,
       85
     ],
-    "d009c7a2": [
-      53,
-      85
-    ],
-    "4806d61b": [
-      32,
-      64
-    ],
     "87dbb59c": [
       44,
       76
@@ -4836,6 +4832,14 @@
       5,
       10,
       29
+    ],
+    "d009c7a2": [
+      53,
+      85
+    ],
+    "4806d61b": [
+      32,
+      64
     ]
   }
 }
