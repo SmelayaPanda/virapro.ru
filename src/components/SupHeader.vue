@@ -10,13 +10,17 @@
     </el-col>
     <el-col id="address" :md="6" :lg="4" :xl="4">
       <img src="~/assets/icons/home/location.svg" alt="Местоположение">
-      г. {{ $store.getters.companyInfo.address.city }},
-      ул. {{ $store.getters.companyInfo.address.street }},
-      д. {{ $store.getters.companyInfo.address.build }}
+      <div v-if="$store.getters.companyInfo.address">
+        г. {{ $store.getters.companyInfo.address.city }},
+        ул. {{ $store.getters.companyInfo.address.street }},
+        д. {{ $store.getters.companyInfo.address.build }}
+      </div>
     </el-col>
     <el-col :xs="22" :sm="22" :md="6" :lg="4" :xl="4" :offset="1" id="phone">
       <img src="~/assets/icons/home/phone.svg" alt="Телефон">
-      {{ $store.getters.companyInfo.contacts.phone }}
+      <div v-if="$store.getters.companyInfo.contacts">
+        {{ $store.getters.companyInfo.contacts.phone }}
+      </div>
     </el-col>
   </el-row>
 </template>

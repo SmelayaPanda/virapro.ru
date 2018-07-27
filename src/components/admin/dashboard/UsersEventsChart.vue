@@ -92,7 +92,7 @@
             count: this.groupedEvents[eName].length
           })
         }
-        this.transferData = this.sortByProp(eventNames, 'count')
+        this.transferData = this.sortByProp(eventNames, 'count').slice(0, 101) // get top 101 events
 
         let chartData = {
           labels: [],
@@ -118,35 +118,42 @@
         this.$store.commit('LOADING', false)
       },
       groupByTime(arr) {
-        let i
-        let m
+        let i, m = 0
+        let periodStart = new Date()
         if (this.period === '1h') {
           m = 1 / 24;
-          this.dateOptions = {hour: 'numeric'}
+          this.dateOptions = {hour: 'numeric', minute: 'numeric'}
+          periodStart.setDate(periodStart.getDate() - 3) // one day display
         } else if (this.period === '3h') {
           m = 1 / 7
           this.dateOptions = {hour: 'numeric'}
+          periodStart.setDate(periodStart.getDate() - 7)
         } else if (this.period === '12h') {
           m = 1 / 2
           this.dateOptions = {day: 'numeric', month: 'long'}
+          periodStart.setDate(periodStart.getDate() - 14)
         } else if (this.period === 'day') {
           m = 1
           this.dateOptions = {day: 'numeric', month: 'long'}
+          periodStart.setDate(periodStart.getDate() - 30)
         } else if (this.period === 'week') {
           m = 7
           this.dateOptions = {day: 'numeric', month: 'long'}
+          periodStart.setDate(periodStart.getDate() - 90)
         }
         let iDate = 1000 * 60 * 60 * 24 * m
-        let periodStart
+        let intervalStart
         let group = {}
         arr.sort()
         arr.forEach(date => {
-          i = Math.floor(date / iDate)
-          periodStart = i * iDate
-          if (group[periodStart]) {
-            group[periodStart] += 1
-          } else {
-            group[periodStart] = 1
+          if (date > periodStart) {
+            i = Math.floor(date / iDate)
+            intervalStart = i * iDate
+            if (group[intervalStart]) {
+              group[intervalStart] += 1
+            } else {
+              group[intervalStart] = 1
+            }
           }
         })
         return group
@@ -166,11 +173,8 @@
         return grouped
       },
       sortByProp(arr, prop) {
-        let x, y
         return arr.sort(function (a, b) {
-          x = a[prop] ? a[prop] : ''
-          y = b[prop] ? b[prop] : ''
-          return x === y ? 0 : +(x < y) || -1
+          return a[prop] === b[prop] ? 0 : +(a[prop] < b[prop]) || -1
         })
       },
       random_rgba() {
