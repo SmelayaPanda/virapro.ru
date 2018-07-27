@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Host Nuxt.js SSR app on Firebase Cloud Functions with Firebase Dynamic Hosting.",
   "license": "MIT",
-  "author": "David Royer",
+  "author": "Alexey Azarov",
   "repository": "https://github.com/davidroyer/nuxt-ssr-firebase",
   "scripts": {
     "dev": "cd \"src\" && yarn dev",

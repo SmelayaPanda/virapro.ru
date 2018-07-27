@@ -14,7 +14,7 @@
     <transition name="fade">
       <el-transfer
         v-if="expandTransfer"
-        style="margin-bottom: 10px;"
+        id="transfer"
         :titles="['Все события', 'На график']"
         filterable
         :filter-method="filterMethod"
@@ -49,7 +49,7 @@
           return item.label.toLowerCase().indexOf(query.toLowerCase()) > -1;
         },
         chartOptions: {
-          legend: {display: false},
+          legend: {display: true},
           maintainAspectRatio: false
         },
         chartData: {labels: [], datasets: []},
@@ -207,11 +207,16 @@
   }
 
   #period {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
   #transfer_switch {
     margin-top: 3px;
     margin-left: 15px;
+  }
+
+  #transfer {
+    margin-bottom: 10px;
+    margin-top: 15px;
   }
 </style>

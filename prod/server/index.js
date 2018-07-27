@@ -10,6 +10,7 @@ const {Nuxt} = require('nuxt');
 const express = require('express');
 const app = express();
 admin.initializeApp();
+// admin.firestore().settings({timestampsInSnapshots: true})
 const config = {
     dev: false,
     debug: true,

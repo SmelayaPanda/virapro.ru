@@ -40,12 +40,12 @@ workboxSW.precache([
     "revision": "a9ea407bde41c0ba42b68166da944bd8"
   },
   {
-    "url": "/assets/layouts/default.903dad95a11fa74c6f4e.js",
-    "revision": "eeb6e336fdeabc7ea973f4fbfcc1a834"
+    "url": "/assets/layouts/default.7aa9a8401f29adb14ade.js",
+    "revision": "aed713de057544f6ee9b8ac9dda144d7"
   },
   {
-    "url": "/assets/manifest.fa348ce17fe22689a6d1.js",
-    "revision": "134327e29d8ffbb0ad4378219be7750b"
+    "url": "/assets/manifest.551bf15a435c3e7b7134.js",
+    "revision": "2fd6421dbba7c8557a93e1317eefaa7b"
   },
   {
     "url": "/assets/modal.888e250548e22562acb5.js",
@@ -76,8 +76,8 @@ workboxSW.precache([
     "revision": "ee63af635f7329790520350f0dd13001"
   },
   {
-    "url": "/assets/pages/admin/index.c5f1d0d07296a8fc236b.js",
-    "revision": "8c32469d055537f0ded9b9ad440e0d00"
+    "url": "/assets/pages/admin/index.847cd0b3176d0783740a.js",
+    "revision": "e890a63503480ef23cfb319cb6fe8edc"
   },
   {
     "url": "/assets/pages/admin/orders/index.5ebdc5cd5997dd0fb2d4.js",
