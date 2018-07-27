@@ -1,9 +1,14 @@
 <template>
   <div>
-    <div id="sorting">
+    <div id="switch">
+      <el-switch v-model="showSort" active-color="#0976d4"></el-switch>
+    </div>
+    <div v-if="showSort" id="sorting">
+      <h4>Сортировка</h4>
       <el-radio-group v-model="sortBy" size="mini" style="margin-bottom: 10px;">
         <el-radio-button label="price">Цена</el-radio-button>
         <el-radio-button label="title">Название</el-radio-button>
+        <el-radio-button label="SKU">Артикул</el-radio-button>
       </el-radio-group>
       <el-radio-group v-model="asc" size="mini" style="margin-left: 10px; margin-bottom: 10px;">
         <el-radio-button :label="true">Возрастание</el-radio-button>
@@ -14,7 +19,7 @@
       :span="24" v-for="p in sortByProp(items, 'price', asc)" :key="p.productId"
       itemscope itemtype="http://schema.org/ItemList">
       <ProductCard
-        v-if="showProduct"
+        v-if="showProduct(p)"
         :id="p.productId"
         itemprop="itemListElement"
         itemtype="http://schema.org/Product"/>
@@ -34,7 +39,8 @@
     data() {
       return {
         asc: true,
-        sortBy: 'title'
+        sortBy: 'title',
+        showSort: false
       }
     },
     methods: {
@@ -71,8 +77,20 @@
     }
   }
 
+  #switch {
+    margin-bottom: 10px;
+    margin-top: -10px;
+    margin-left: 10px;
+  }
+
   #sorting {
     margin-bottom: 10px;
+    margin-left: 10px;
+    h4 {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      color: $color-info;
+    }
   }
 
   @media only screen and (max-width: $md-screen) {

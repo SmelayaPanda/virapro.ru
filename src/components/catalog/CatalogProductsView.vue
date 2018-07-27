@@ -92,6 +92,7 @@
 <style scoped lang="scss">
 
   h3 {
+    margin-left: 10px;
     color: $color-primary;
     &:hover {
       cursor: pointer;
