@@ -48,11 +48,14 @@
       sortByProp(arr) {
         let prop = this.sortBy
         let asc = this.asc
+        let x, y
         return arr.sort(function (a, b) {
+          x = typeof a[prop] === 'string' ? a[prop].trim() : a[prop]
+          y = typeof b[prop] === 'string' ? b[prop].trim() : b[prop]
           if (asc) {
-            return a[prop] === b[prop] ? 0 : +(a[prop] > b[prop]) || -1
+            return x === y ? 0 : +(x > y) || -1
           } else {
-            return a[prop] === b[prop] ? 0 : +(a[prop] < b[prop]) || -1
+            return x === y ? 0 : +(x < y) || -1
           }
         })
       }
