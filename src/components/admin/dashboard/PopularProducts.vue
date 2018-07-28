@@ -108,7 +108,7 @@
 </script>
 <style scoped lang="scss">
   h3 {
-    margin: 0px;
+    margin: 0;
   }
 
   p {

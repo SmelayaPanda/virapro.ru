@@ -156,16 +156,22 @@
         <PopularProducts/>
       </el-col>
     </el-row>
+    <el-row>
+      <el-col :span="24">
+        <EndingProducts/>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
   import UsersEventsChart from "@/components/admin/dashboard/UsersEventsChart";
   import PopularProducts from "@/components/admin/dashboard/PopularProducts";
+  import EndingProducts from "@/components/admin/dashboard/EndingProducts";
 
   export default {
     name: 'index',
-    components: {PopularProducts, UsersEventsChart},
+    components: {EndingProducts, PopularProducts, UsersEventsChart},
     layout: 'admin',
     methods: {
       fetchDashboardStatistics() {

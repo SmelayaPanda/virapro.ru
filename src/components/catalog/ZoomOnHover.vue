@@ -1,18 +1,18 @@
 <template>
   <div class="zoom-on-hover" @mousemove="move" @mouseenter="zoom" @mouseleave="unzoom">
     <img class="normal" ref="normal" :src="imgNormal"
-         :alt="$store.getters.singleProduct.title + '(фото главное)'"
+         :alt="$store.getters.singleProduct.title"
          onerror="this.onerror=null;this.src='/catalog/no_photo.svg';"/>
     <img class="zoom" ref="zoom" :src="imgZoom || imgNormal" height="700px" width="auto"
-         :alt="$store.getters.singleProduct.title + '(фото увеличенное)'"
+         :alt="$store.getters.singleProduct.title"
          onerror="this.onerror=null;this.src='/catalog/no_photo.svg';"/>
   </div>
 </template>
 
 <script>
 /* this component displays an image with the width of the parent element and on hover
-      shows the full image or a scaled image in the image area.
-      features: activate/deactivate method, active/inactive on load, scale parameter, separate zoom image */
+   shows the full image or a scaled image in the image area.
+   features: activate/deactivate method, active/inactive on load, scale parameter, separate zoom image */
 export default {
   props:
       ['imgNormal', 'imgZoom', 'scale', 'disabled'],
