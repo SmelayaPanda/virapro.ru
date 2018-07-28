@@ -10,7 +10,7 @@ const {Nuxt} = require('nuxt');
 const express = require('express');
 const app = express();
 admin.initializeApp();
-// admin.firestore().settings({timestampsInSnapshots: true})
+
 const config = {
     dev: false,
     debug: true,
@@ -24,7 +24,7 @@ const config = {
 const nuxt = new Nuxt(config);
 
 function handleRequest(req, res) {
-    res.set('Cache-Control', 'public, max-age=600, s-maxage=600');
+    res.set('Cache-Control', 'public, max-age=86400, s-maxage=86400'); // 60 x 60 x 24
     return new Promise((resolve, reject) => {
         nuxt.render(req, res, promise => {
             promise.then(resolve).catch(reject)

@@ -31,7 +31,7 @@
     "img/search.2e4a635.svg",
     "img/vira-v.25ab4ff.svg",
     "img/shopping-cart.90d0051.svg",
-    "pages/admin/index.53c9afb16a96c0b49b19.js",
+    "pages/admin/index.2b7ba9239995ca8fe363.js",
     "pages/admin/system/index.eec87194e9df2a893134.js",
     "pages/catalog/_group/index.3e5ca356dcac5a6144d1.js",
     "pages/catalog/_group/_category/index.188ecdb12de49d2ced8b.js",
@@ -47,7 +47,7 @@
     "pages/admin/questions/index.f855c947706de9f2b794.js",
     "pages/admin/company/index.6db4cd90f3831780fd3a.js",
     "pages/about/index.a774a1e75787f2b3b84d.js",
-    "pages/catalog/_group/_category/_id.940f889c23e7679024aa.js",
+    "pages/catalog/_group/_category/_id.0aee195341f80c086aa7.js",
     "pages/admin/users/index.978ed28a207234c848b2.js",
     "pages/admin/dictionaries/index.3fe1193d28058233b027.js",
     "pages/account/signin.469174452e099de3ac29.js",
@@ -60,10 +60,10 @@
     "26.2126e8219f1b241b1f51.js",
     "27.bfac52610c2366633b5c.js",
     "28.d75ac66742968d97ee60.js",
-    "manifest.60bdc157199ba1518ea4.js",
+    "manifest.d3afc8e244c66e441906.js",
     "common.aaa4b39b3638796ee106150fa074eab3.css",
     "LICENSES",
-    "pages/admin/index.53c9afb16a96c0b49b19.js.map",
+    "pages/admin/index.2b7ba9239995ca8fe363.js.map",
     "pages/admin/system/index.eec87194e9df2a893134.js.map",
     "pages/catalog/_group/index.3e5ca356dcac5a6144d1.js.map",
     "pages/catalog/_group/_category/index.188ecdb12de49d2ced8b.js.map",
@@ -79,7 +79,7 @@
     "pages/admin/questions/index.f855c947706de9f2b794.js.map",
     "pages/admin/company/index.6db4cd90f3831780fd3a.js.map",
     "pages/about/index.a774a1e75787f2b3b84d.js.map",
-    "pages/catalog/_group/_category/_id.940f889c23e7679024aa.js.map",
+    "pages/catalog/_group/_category/_id.0aee195341f80c086aa7.js.map",
     "pages/admin/users/index.978ed28a207234c848b2.js.map",
     "pages/admin/dictionaries/index.3fe1193d28058233b027.js.map",
     "pages/account/signin.469174452e099de3ac29.js.map",
@@ -93,7 +93,7 @@
     "26.2126e8219f1b241b1f51.js.map",
     "27.bfac52610c2366633b5c.js.map",
     "28.d75ac66742968d97ee60.js.map",
-    "manifest.60bdc157199ba1518ea4.js.map",
+    "manifest.d3afc8e244c66e441906.js.map",
     "icons/icon_64.c3Mvx$448Ub.png",
     "icons/icon_120.c3Mvx$448Ub.png",
     "icons/icon_144.c3Mvx$448Ub.png",
@@ -106,13 +106,13 @@
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.60bdc157199ba1518ea4.js",
+    "manifest.d3afc8e244c66e441906.js",
     "common.0c3b66ec0d08bf8fb29e.js",
     "app.dbe72d6516c6c302f315.js"
   ],
   "async": [
     "pages/account/signup.d00d43541870737ec958.js",
-    "pages/admin/index.53c9afb16a96c0b49b19.js",
+    "pages/admin/index.2b7ba9239995ca8fe363.js",
     "pages/admin/system/index.eec87194e9df2a893134.js",
     "pages/catalog/_group/index.3e5ca356dcac5a6144d1.js",
     "pages/catalog/_group/_category/index.188ecdb12de49d2ced8b.js",
@@ -128,7 +128,7 @@
     "pages/admin/questions/index.f855c947706de9f2b794.js",
     "pages/admin/company/index.6db4cd90f3831780fd3a.js",
     "pages/about/index.a774a1e75787f2b3b84d.js",
-    "pages/catalog/_group/_category/_id.940f889c23e7679024aa.js",
+    "pages/catalog/_group/_category/_id.0aee195341f80c086aa7.js",
     "pages/admin/users/index.978ed28a207234c848b2.js",
     "pages/admin/dictionaries/index.3fe1193d28058233b027.js",
     "pages/account/signin.469174452e099de3ac29.js",
@@ -723,6 +723,10 @@
       38,
       70
     ],
+    "51e50291": [
+      30,
+      62
+    ],
     "d021c186": [
       52,
       84
@@ -1082,6 +1086,10 @@
       84
     ],
     "55d81642": [
+      30,
+      62
+    ],
+    "332283e4": [
       30,
       62
     ],
@@ -1736,6 +1744,10 @@
       85,
       86
     ],
+    "0f1065cc": [
+      30,
+      62
+    ],
     "43ef1bb2": [
       35,
       67,
@@ -2127,6 +2139,10 @@
       16
     ],
     "f7c304a6": [
+      30,
+      62
+    ],
+    "24dac9f6": [
       30,
       62
     ],
@@ -2608,6 +2624,10 @@
     "23f06b4d": [
       44,
       76
+    ],
+    "e8d096f6": [
+      30,
+      62
     ],
     "34fc48e7": [
       43,
@@ -4742,10 +4762,6 @@
       30,
       62
     ],
-    "4806d61b": [
-      31,
-      63
-    ],
     "78e96042": [
       39,
       71
@@ -4766,10 +4782,6 @@
       43,
       75
     ],
-    "d009c7a2": [
-      52,
-      84
-    ],
     "89a9401a": [
       30,
       62
@@ -4784,6 +4796,14 @@
       5,
       10,
       28
+    ],
+    "d009c7a2": [
+      52,
+      84
+    ],
+    "4806d61b": [
+      31,
+      63
     ]
   }
 }
