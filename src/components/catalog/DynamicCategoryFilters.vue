@@ -84,7 +84,11 @@
             }
           }
           unique.forEach(el => {
-            node.children.push({value: el, label: el, prop: prop})
+            node.children.push({
+              value: el,
+              label: el.length > 27 ? `${el.slice(0, 27)}...` : el,
+              prop: prop
+            })
           })
           if (node.children.length) {
             node.children.sort((a,b) => a.value - b.value)
