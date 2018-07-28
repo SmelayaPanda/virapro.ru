@@ -20,8 +20,8 @@ workboxSW.precache([
     "revision": "7a6416948323544f853d7f0bf818818e"
   },
   {
-    "url": "/assets/app.dbe72d6516c6c302f315.js",
-    "revision": "238ff4d60e7feaf61fea9cce79a973ca"
+    "url": "/assets/app.da56ed6c95c7fa4f5520.js",
+    "revision": "0c565dd0a207aaa08d5af9ffb25e6da8"
   },
   {
     "url": "/assets/below-slider.d1ab5e03348e1bc78e70.js",
@@ -44,8 +44,8 @@ workboxSW.precache([
     "revision": "45d46dec593695e990d878f9c8e4493a"
   },
   {
-    "url": "/assets/manifest.d3afc8e244c66e441906.js",
-    "revision": "b995b907b9d5600704edfffbd5971810"
+    "url": "/assets/manifest.6bcc66fa94cea9b00ec1.js",
+    "revision": "b18612500dc758343b9c9654849a05a3"
   },
   {
     "url": "/assets/modal.888e250548e22562acb5.js",
@@ -84,8 +84,8 @@ workboxSW.precache([
     "revision": "4f30456e589aafe44bd46c2e25ef6e40"
   },
   {
-    "url": "/assets/pages/admin/products/index.68e6a11b6754833ec4e5.js",
-    "revision": "332a15889d7b64e7dd029794da82a1a2"
+    "url": "/assets/pages/admin/products/index.a0003b4698034c2e9e76.js",
+    "revision": "a1551367bcacd47ac7774f64ce3446fe"
   },
   {
     "url": "/assets/pages/admin/questions/index.f855c947706de9f2b794.js",

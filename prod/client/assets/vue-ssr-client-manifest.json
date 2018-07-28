@@ -37,7 +37,7 @@
     "pages/catalog/_group/_category/index.188ecdb12de49d2ced8b.js",
     "pages/cart/index.6a983ce63be962db0a04.js",
     "layouts/default.f23b0d07722fb96e43c5.js",
-    "pages/admin/products/index.68e6a11b6754833ec4e5.js",
+    "pages/admin/products/index.a0003b4698034c2e9e76.js",
     "pages/admin/requests/index.5e7452adf6f26b1551db.js",
     "layouts/admin.85e7d68121240c0e4b15.js",
     "pages/admin/reviews/index.2ddf4668140aba384838.js",
@@ -54,13 +54,13 @@
     "pages/catalog/index.cb80bbf7dd610c1f7656.js",
     "fonts/element-icons.6f0a763.ttf",
     "common.0c3b66ec0d08bf8fb29e.js",
-    "app.dbe72d6516c6c302f315.js",
+    "app.da56ed6c95c7fa4f5520.js",
     "below-slider.d1ab5e03348e1bc78e70.js",
     "modal.888e250548e22562acb5.js",
     "26.2126e8219f1b241b1f51.js",
     "27.bfac52610c2366633b5c.js",
     "28.d75ac66742968d97ee60.js",
-    "manifest.d3afc8e244c66e441906.js",
+    "manifest.6bcc66fa94cea9b00ec1.js",
     "common.aaa4b39b3638796ee106150fa074eab3.css",
     "LICENSES",
     "pages/admin/index.2b7ba9239995ca8fe363.js.map",
@@ -69,7 +69,7 @@
     "pages/catalog/_group/_category/index.188ecdb12de49d2ced8b.js.map",
     "pages/cart/index.6a983ce63be962db0a04.js.map",
     "layouts/default.f23b0d07722fb96e43c5.js.map",
-    "pages/admin/products/index.68e6a11b6754833ec4e5.js.map",
+    "pages/admin/products/index.a0003b4698034c2e9e76.js.map",
     "pages/admin/requests/index.5e7452adf6f26b1551db.js.map",
     "layouts/admin.85e7d68121240c0e4b15.js.map",
     "pages/admin/reviews/index.2ddf4668140aba384838.js.map",
@@ -86,14 +86,14 @@
     "pages/catalog/index.cb80bbf7dd610c1f7656.js.map",
     "pages/account/signup.d00d43541870737ec958.js.map",
     "common.0c3b66ec0d08bf8fb29e.js.map",
-    "app.dbe72d6516c6c302f315.js.map",
+    "app.da56ed6c95c7fa4f5520.js.map",
     "common.aaa4b39b3638796ee106150fa074eab3.css.map",
     "below-slider.d1ab5e03348e1bc78e70.js.map",
     "modal.888e250548e22562acb5.js.map",
     "26.2126e8219f1b241b1f51.js.map",
     "27.bfac52610c2366633b5c.js.map",
     "28.d75ac66742968d97ee60.js.map",
-    "manifest.d3afc8e244c66e441906.js.map",
+    "manifest.6bcc66fa94cea9b00ec1.js.map",
     "icons/icon_64.c3Mvx$448Ub.png",
     "icons/icon_120.c3Mvx$448Ub.png",
     "icons/icon_144.c3Mvx$448Ub.png",
@@ -106,9 +106,9 @@
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.d3afc8e244c66e441906.js",
+    "manifest.6bcc66fa94cea9b00ec1.js",
     "common.0c3b66ec0d08bf8fb29e.js",
-    "app.dbe72d6516c6c302f315.js"
+    "app.da56ed6c95c7fa4f5520.js"
   ],
   "async": [
     "pages/account/signup.d00d43541870737ec958.js",
@@ -118,7 +118,7 @@
     "pages/catalog/_group/_category/index.188ecdb12de49d2ced8b.js",
     "pages/cart/index.6a983ce63be962db0a04.js",
     "layouts/default.f23b0d07722fb96e43c5.js",
-    "pages/admin/products/index.68e6a11b6754833ec4e5.js",
+    "pages/admin/products/index.a0003b4698034c2e9e76.js",
     "pages/admin/requests/index.5e7452adf6f26b1551db.js",
     "layouts/admin.85e7d68121240c0e4b15.js",
     "pages/admin/reviews/index.2ddf4668140aba384838.js",
@@ -707,6 +707,12 @@
       85,
       86
     ],
+    "2c670e28": [
+      53,
+      60,
+      85,
+      86
+    ],
     "174d5888": [
       49,
       81,
@@ -1125,6 +1131,12 @@
     "99eee340": [
       37,
       69
+    ],
+    "12e749b7": [
+      53,
+      60,
+      85,
+      86
     ],
     "f6e52f8e": [
       30,
@@ -3416,6 +3428,19 @@
       30,
       62
     ],
+    "29646d76": [
+      41,
+      73,
+      6,
+      12,
+      15,
+      17,
+      26
+    ],
+    "d009c7a2": [
+      52,
+      84
+    ],
     "f6e7010a": [
       30,
       62
@@ -4057,15 +4082,6 @@
     "236bd1b9": [
       36,
       68
-    ],
-    "29646d76": [
-      41,
-      73,
-      6,
-      12,
-      15,
-      17,
-      26
     ],
     "665d3b5a": [
       43,
@@ -4778,6 +4794,10 @@
       52,
       84
     ],
+    "4806d61b": [
+      31,
+      63
+    ],
     "87dbb59c": [
       43,
       75
@@ -4796,14 +4816,6 @@
       5,
       10,
       28
-    ],
-    "d009c7a2": [
-      52,
-      84
-    ],
-    "4806d61b": [
-      31,
-      63
     ]
   }
 }

@@ -29,7 +29,10 @@ module.exports = {
   },
   modules: [
     '@nuxtjs/pwa',
-    'nuxt-sass-resources-loader'
+    'nuxt-sass-resources-loader',
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-122943918-1'
+    }]
   ],
   sassResources: [
     '@/assets/styles/global.scss'
