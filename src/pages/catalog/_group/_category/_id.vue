@@ -8,19 +8,23 @@
               <img v-if="$store.getters.singleProduct.img_0.thumbnail"
                    :src="$store.getters.singleProduct.img_0.thumbnail" @click="loadOriginal(0)"
                    ref="d_img_0" class="thumb_img active" itemprop="image"
-                   :alt="$store.getters.singleProduct.title + '- фото 1'"/>
+                   :alt="$store.getters.singleProduct.title + '- фото 1'"
+                   onerror="this.onerror=null;this.src='/catalog/no_photo.svg';"/>
               <img v-if="$store.getters.singleProduct.img_1.thumbnail"
                    :src="$store.getters.singleProduct.img_1.thumbnail" @click="loadOriginal(1)"
                    ref="d_img_1" class="thumb_img" itemprop="image"
-                   :alt="$store.getters.singleProduct.title + '- фото 2'"/>
+                   :alt="$store.getters.singleProduct.title + '- фото 2'"
+                   onerror="this.onerror=null;this.src='/catalog/no_photo.svg';"/>
               <img v-if="$store.getters.singleProduct.img_2.thumbnail"
                    :src="$store.getters.singleProduct.img_2.thumbnail" @click="loadOriginal(2)"
                    ref="d_img_2" class="thumb_img" itemprop="image"
-                   :alt="$store.getters.singleProduct.title + '- фото 3'"/>
+                   :alt="$store.getters.singleProduct.title + '- фото 3'"
+                   onerror="this.onerror=null;this.src='/catalog/no_photo.svg';"/>
               <img v-if="$store.getters.singleProduct.img_3.thumbnail"
                    :src="$store.getters.singleProduct.img_3.thumbnail" @click="loadOriginal(3)"
                    :alt="$store.getters.singleProduct.title + '- фото 4'"
-                   ref="d_img_3" class="thumb_img" itemprop="image"/>
+                   ref="d_img_3" class="thumb_img" itemprop="image"
+                   onerror="this.onerror=null;this.src='/catalog/no_photo.svg';"/>
             </el-col>
             <el-col :xs="24" :sm="20" :md="20" :lg="9" :xl="10">
               <zoom-on-hover
@@ -32,19 +36,23 @@
                 <img v-if="$store.getters.singleProduct.img_0.thumbnail"
                      :src="$store.getters.singleProduct.img_0.thumbnail" @click="loadOriginal(0)"
                      ref="m_img_0" class="thumb_img active" itemprop="image"
-                     :alt="$store.getters.singleProduct.title + '- фото 1'"/>
+                     :alt="$store.getters.singleProduct.title + '- фото 1'"
+                     onerror="this.onerror=null;this.src='/catalog/no_photo.svg';"/>
                 <img v-if="$store.getters.singleProduct.img_1.thumbnail"
                      :src="$store.getters.singleProduct.img_1.thumbnail" @click="loadOriginal(1)"
                      ref="m_img_1" class="thumb_img" itemprop="image"
-                     :alt="$store.getters.singleProduct.title + '- фото 2'"/>
+                     :alt="$store.getters.singleProduct.title + '- фото 2'"
+                     onerror="this.onerror=null;this.src='/catalog/no_photo.svg';"/>
                 <img v-if="$store.getters.singleProduct.img_2.thumbnail"
                      :src="$store.getters.singleProduct.img_2.thumbnail" @click="loadOriginal(2)"
                      ref="m_img_2" class="thumb_img" itemprop="image"
-                     :alt="$store.getters.singleProduct.title + '- фото 3'"/>
+                     :alt="$store.getters.singleProduct.title + '- фото 3'"
+                     onerror="this.onerror=null;this.src='/catalog/no_photo.svg';"/>
                 <img v-if="$store.getters.singleProduct.img_3.thumbnail"
                      :src="$store.getters.singleProduct.img_3.thumbnail" @click="loadOriginal(3)"
                      ref="m_img_3" class="thumb_img" itemprop="image"
-                     :alt="$store.getters.singleProduct.title + '- фото 4'"/>
+                     :alt="$store.getters.singleProduct.title + '- фото 4'"
+                     onerror="this.onerror=null;this.src='/catalog/no_photo.svg';"/>
               </el-row>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">

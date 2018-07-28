@@ -426,7 +426,7 @@ export const state = () => ({
     children: [
       {value: 'drop-and-sprinkler-tape', label: 'Капельные и дождевальные лента', type: 'category'},
       {value: 'irrigated-sleeves', label: 'Поливные рукава', type: 'category'},
-      {value: 'mesh-gravel-disk-filters', label: 'Фильтры сетчатые/гравийные/дисковые', type: 'category'},
+      {value: 'mesh-gravel-disk-filters', label: 'Фильтры сетчатые/гравийные/диск.', type: 'category'},
       {value: 'containers-for-applying-fertilizers', label: 'Емкости для внесения удобрений', type: 'category'},
       {value: 'watering-timers', label: 'Таймеры полива', type: 'category'},
       {value: 'solenoid-valves', label: 'Электромагнитные клапана', type: 'category'},

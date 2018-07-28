@@ -70,6 +70,10 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
   width: 380px;
 }
 
+.el-switch__input:focus~.el-switch__core {
+  outline: none;
+}
+
 @media only screen and (max-width: $sm-screen) {
   #service_dialog, #delivery_and_payment_dialog {
     .el-dialog {

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div id="switch">
+    <el-tooltip id="switch" class="item" effect="light" content="Сортировка" placement="right">
       <el-switch v-model="showSort" active-color="#0976d4"></el-switch>
-    </div>
+    </el-tooltip>
     <div v-if="showSort" id="sorting">
       <h4>Сортировка</h4>
       <el-radio-group v-model="sortBy" size="mini" style="margin-bottom: 10px;">
@@ -10,7 +10,7 @@
         <el-radio-button label="title">Название</el-radio-button>
         <el-radio-button label="SKU">Артикул</el-radio-button>
       </el-radio-group>
-      <el-radio-group v-model="asc" size="mini" style="margin-left: 10px; margin-bottom: 10px;">
+      <el-radio-group v-model="asc" size="mini" style="margin-left: 15px; margin-bottom: 10px;">
         <el-radio-button :label="true">Возрастание</el-radio-button>
         <el-radio-button :label="false">Убывание</el-radio-button>
       </el-radio-group>
@@ -89,7 +89,7 @@
     h4 {
       margin-top: 10px;
       margin-bottom: 10px;
-      color: $color-info;
+      color: #77797e;
     }
   }
 
