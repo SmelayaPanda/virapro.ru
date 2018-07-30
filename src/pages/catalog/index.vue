@@ -47,7 +47,7 @@
       await store.dispatch('USER_EVENT', 'Страница: Каталог')
     },
     mounted() {
-      if (this.$store.getters.ANCHOR === '#service_title') { // stupid solution for scrolling to services
+      if (this.$store.getters.ANCHOR === '#service_title') {
         this.$scrollTo('#service_title')
         this.$store.dispatch('ANCHOR', '')
       }

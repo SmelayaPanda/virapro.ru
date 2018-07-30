@@ -145,7 +145,7 @@
       font-weight: 300;
     }
     img {
-      height: 120px;
+      height: 132px;
     }
     &:hover {
       transition: all .5s;

@@ -97,7 +97,7 @@
       }
     },
     mounted() {
-      if (this.$store.getters.ANCHOR === '#reviews') { // stupid solution for scrolling to services
+      if (this.$store.getters.ANCHOR === '#reviews') {
         this.$scrollTo('#reviews')
         this.$store.dispatch('ANCHOR', '')
       }

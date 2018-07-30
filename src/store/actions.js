@@ -986,23 +986,23 @@ export const actions = {
       }
     })
 
-    // REALTIME
-    db.ref('events').on('child_changed', data => {
-      if (data.exists()) {
-        let allUsers = getters.allUsers
-        allUsers[data.key].events = data.val()
-        commit('setAllUsers', {...allUsers})
-      }
-    })
-
-    db.ref('users').on('child_changed', data => {
-      if (data.exists()) {
-        let allUsers = getters.allUsers
-        allUsers[data.key].lastOnline = data.val().lastOnline
-        allUsers[data.key].onlineFrom = data.val().onlineFrom
-        commit('setAllUsers', {...allUsers})
-      }
-    })
+    // REALTIME - NOTE: redesign
+    // db.ref('events').on('child_changed', data => {
+    //   if (data.exists()) {
+    //     let allUsers = getters.allUsers
+    //     allUsers[data.key].events = data.val()
+    //     commit('setAllUsers', {...allUsers})
+    //   }
+    // })
+    //
+    // db.ref('users').on('child_changed', data => {
+    //   if (data.exists()) {
+    //     let allUsers = getters.allUsers
+    //     allUsers[data.key].lastOnline = data.val().lastOnline
+    //     allUsers[data.key].onlineFrom = data.val().onlineFrom
+    //     commit('setAllUsers', {...allUsers})
+    //   }
+    // })
 
     await commit('setAllUsers', {...users})
     commit('LOADING', false)

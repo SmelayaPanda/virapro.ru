@@ -139,10 +139,10 @@
           this.dateOptions = {month: 'long'}
           periodStart.setDate(periodStart.getDate() - 367)
         }
-        let now = new Date()
+        let now = new Date().getTime()
         let iLength = 1000 * 60 * 60 * 24 * m
         let intervalStart = new Date()
-        let intervals = []
+        let intervals = [now]
         let i = 1
         while (intervalStart > periodStart) {
           intervalStart = now - i * iLength
