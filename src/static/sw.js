@@ -20,12 +20,12 @@ workboxSW.precache([
     "revision": "7a6416948323544f853d7f0bf818818e"
   },
   {
-    "url": "/assets/app.da56ed6c95c7fa4f5520.js",
-    "revision": "0c565dd0a207aaa08d5af9ffb25e6da8"
+    "url": "/assets/app.f5206636b529a51f119a.js",
+    "revision": "fddf7280b7464b9ba12116cd559383a0"
   },
   {
-    "url": "/assets/below-slider.d1ab5e03348e1bc78e70.js",
-    "revision": "3fc242fbe5711e7e3ea551ac0eb39a28"
+    "url": "/assets/below-slider.0d0eeb1f6a048673aab2.js",
+    "revision": "720fc606820b6b20976c22e02fc8346b"
   },
   {
     "url": "/assets/common.0c3b66ec0d08bf8fb29e.js",
@@ -44,16 +44,16 @@ workboxSW.precache([
     "revision": "45d46dec593695e990d878f9c8e4493a"
   },
   {
-    "url": "/assets/manifest.6bcc66fa94cea9b00ec1.js",
-    "revision": "b18612500dc758343b9c9654849a05a3"
+    "url": "/assets/manifest.cccf3cd6d571294c47eb.js",
+    "revision": "08b1e14d0b563cd4545d1b1f8b09c409"
   },
   {
     "url": "/assets/modal.888e250548e22562acb5.js",
     "revision": "a910fefdbe74e6d01279a7f097f73ddf"
   },
   {
-    "url": "/assets/pages/about/index.a774a1e75787f2b3b84d.js",
-    "revision": "4378940787a9cd054d3d26a3f9668f09"
+    "url": "/assets/pages/about/index.f596fadbd57bb436a58a.js",
+    "revision": "53fa876f974a710237588ba4283a2012"
   },
   {
     "url": "/assets/pages/account/index.26962afb09bfdb67dcb4.js",
@@ -76,8 +76,8 @@ workboxSW.precache([
     "revision": "ee63af635f7329790520350f0dd13001"
   },
   {
-    "url": "/assets/pages/admin/index.2b7ba9239995ca8fe363.js",
-    "revision": "bea52c1592ef76e5352473d16a770285"
+    "url": "/assets/pages/admin/index.54b389b34a358e27b35b.js",
+    "revision": "3073e6abd74dd08b456a7862b88ae1d1"
   },
   {
     "url": "/assets/pages/admin/orders/index.5ebdc5cd5997dd0fb2d4.js",
@@ -124,8 +124,8 @@ workboxSW.precache([
     "revision": "4e89ab65303842006b77d7e4ba790489"
   },
   {
-    "url": "/assets/pages/catalog/index.cb80bbf7dd610c1f7656.js",
-    "revision": "ec787ad90aa79f318a079d5ad0e2c8f4"
+    "url": "/assets/pages/catalog/index.a83c4a496fe75d1e6e49.js",
+    "revision": "dbb3bb3ddacc9c9f66fa212eb4b9a5f7"
   },
   {
     "url": "/assets/pages/index.f9623167568c14643801.js",

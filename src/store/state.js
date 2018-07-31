@@ -336,7 +336,10 @@ export const state = () => ({
       {value: 'mixers-and-showers', label: 'смесители и душ', type: 'category', filters:['brand', 'mixer_type']},
       {value: 'heated-towel-rails', label: 'полотенцесушители', type: 'category'},
       {value: 'flexible-padding', label: 'гибкая подводка', type: 'category', filters: ['product_type', 'length', 'connection_type']},
-      {value: 'sanitary-facilities', label: 'санфаянс', type: 'category', filters: ['material']}
+      {value: 'sanitary-facilities', label: 'санфаянс', type: 'category', filters: ['material']},
+      {value: 'showers', label: 'душевые кабины', type: 'category', filters: ['material']},
+      {value: 'baths', label: 'ванны', type: 'category', filters: ['material']},
+      {value: 'washbasins', label: 'умывальники', type: 'category', filters: ['material']}
     ]
   }, {
     label: 'Теплый пол',
