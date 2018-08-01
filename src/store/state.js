@@ -398,11 +398,7 @@ export const state = () => ({
       {value: 'sconces-are-1-but-corrugated', label: 'бра 1-но рожковы', type: 'category'},
       {value: 'two-or-more-horns', label: 'бра 2-х и более рожковые', type: 'category'},
       {value: 'wall-and-ceiling-on-the-1st-light', label: 'настенные и потолочные 1 светоточка', type: 'category'},
-      {
-        value: 'wall-and-ceiling-on-the-2nd-and-more-lights',
-        label: 'настенные и потолочные > 1 светоточки',
-        type: 'category'
-      },
+      {value: 'wall-and-ceiling-on-the-2nd-and-more-lights', label: 'настенные и потолочные > 1 светоточки', type: 'category'},
       {value: 'wall-and-ceiling-irises', label: 'настенные и потолочные ирисы', type: 'category'},
       {value: 'table-lamps', label: 'настольные лампы', type: 'category'},
       {value: 'street-lamp', label: 'уличные светильник', type: 'category'},
@@ -442,11 +438,7 @@ export const state = () => ({
       {value: 'saddle-couplers', label: 'Седловые ответвители', type: 'category'},
       {value: 'cranes', label: 'Краны', type: 'category'},
       {value: 'filters', label: 'Фильтры', type: 'category'},
-      {
-        value: 'venturi-injectors-for-fertilizer-application',
-        label: 'Инжекторы Вентури для удобрений',
-        type: 'category'
-      },
+      {value: 'venturi-injectors-for-fertilizer-application', label: 'Инжекторы Вентури для удобрений', type: 'category'},
       {value: 'pressure-regulators', label: 'Регуляторы давления', type: 'category'},
       {value: 'droppers', label: 'Капельницы', type: 'category'},
       {value: 'sprinklers-accessories', label: 'Разбрызгиватели, аксессуары', type: 'category'},

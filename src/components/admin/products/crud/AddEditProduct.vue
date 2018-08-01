@@ -161,6 +161,7 @@
           length: '',
           volume: '',
           weight: '',
+          height: '',
           power: '',
           thickness: '',
           consumption: '',
