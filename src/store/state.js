@@ -203,6 +203,7 @@ export const state = () => ({
     length: {label: 'Длина, м', type: 'Number'},
     volume: {label: 'Объем, л', type: 'Number'},
     weight: {label: 'Вес, кг', type: 'Number'},
+    height: {label: 'Высота, мм', type: 'Number'},
     power: {label: 'Мощность, Вт.', type: 'Number'},
     thickness: {label: 'Толщина, мм', type: 'Number'},
     consumption: {label: 'Расход, л/мин.', type: 'Number'},
