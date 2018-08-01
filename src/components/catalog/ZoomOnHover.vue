@@ -1,6 +1,6 @@
 <template>
   <div class="zoom-on-hover" @mousemove="move" @mouseenter="zoom" @mouseleave="unzoom">
-    <img class="normal" ref="normal" :src="imgNormal"
+    <img class="normal" ref="normal" :src="imgNormal" itemprop="image"
          :alt="$store.getters.singleProduct.title"
          onerror="this.onerror=null;this.src='/catalog/no_photo.svg';"/>
     <img class="zoom" ref="zoom" :src="imgZoom || imgNormal" height="700px" width="auto"

@@ -1,10 +1,10 @@
 {
-  "name": "Nuxt-SSR-Firebase",
+  "name": "virapro",
   "version": "0.1.0",
-  "description": "Host Nuxt.js SSR app on Firebase Cloud Functions with Firebase Dynamic Hosting.",
+  "description": "Сантехника в Новосибирске. Консультация, замерочные работы и установка.",
   "license": "MIT",
-  "author": "Alexey Azarov",
-  "repository": "https://github.com/davidroyer/nuxt-ssr-firebase",
+  "author": "Re:High Studio",
+  "repository": "https://github.com/SmelayaPanda/virapro.ru",
   "scripts": {
     "dev": "cd \"src\" && yarn dev",
     "build": "yarn build:nuxt && yarn clean && yarn copyassets",

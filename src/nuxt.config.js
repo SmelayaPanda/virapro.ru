@@ -10,7 +10,13 @@ module.exports = {
       {name: 'google-site-verification', content: 'a5vJ3KAwgtVY82UOrzKTKEFePCgI2BSOt08GLa9GDZ4'},
       {name: 'yandex-verification', content: '0f23212358a51ff0'},
       {hid: 'description', name: 'description', content: 'Интернет-магазин товаров сантехники и комплексного сервиса ViraPro в Новосибирске. Доступные цены, доставка, консультация специалиста и монтажные работы.'},
-      {name: 'keywords', content: 'интернет-магазины сантехники в новосибирске, интернет-магазин сантехники новосибирск, магазин сантехники новосибирск, интернет-магазин сантехники, сантехника в новосибирске, сантехника для ванной комнаты, магазин сантехники'}
+      {name: 'keywords', content: 'сантехника, интернет-магазины сантехники в новосибирске, интернет-магазин сантехники новосибирск, магазин сантехники новосибирск, интернет-магазин сантехники, сантехника в новосибирске, сантехника для ванной комнаты, магазин сантехники'},
+      {name: 'og:url', content: 'https://virapro.ru/'},
+      {name: 'og:type', content: 'website'},
+      {name: 'og:locale', content: 'ru_RU'},
+      {name: 'og:site_name', content: 'ViraPro'},
+      {name: 'og:image', content: 'https://firebasestorage.googleapis.com/v0/b/plumbing-prod.appspot.com/o/Asset%208.svg?alt=media&token=5803db4b-9e89-44f3-8295-b20fa43dcb5d'},
+      {hid: 'og:description', name: 'og:description', content: 'Интернет-магазин товаров сантехники и комплексного сервиса ViraPro в Новосибирске. Доступные цены, доставка, консультация специалиста и монтажные работы.'},
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
