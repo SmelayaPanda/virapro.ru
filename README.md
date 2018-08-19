@@ -6,8 +6,14 @@ https://virapro.ru/
 
 
 # Nuxt.js Universal App with SSR via Firebase Functions and Firebase Hosting.
+<i>
 The structure of this project is tied to the specific data of this online store, if you want to use it in your own it is better to look at the starting template from David Royer:
 https://github.com/davidroyer/nuxt-ssr-firebase
+</i>
+<br>  
+<br>  
+
+Features:
  - Firebase Hosting, Auth, Cloud Functions, Emailing, ElementUI, Algolia, Chartjs ...
  - Admin panel: Dashboard, Add/Edit catalog, Orders, User requests, Dictionaries, Reviews, All users actions, Binary questions, Company info, System settings (data dumb/restore, sitemap generator, error log )
 
