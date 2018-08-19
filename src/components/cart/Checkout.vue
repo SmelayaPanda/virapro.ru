@@ -276,7 +276,7 @@
                   <privacy-dialog></privacy-dialog>
                 </p>
                 <!--TODO: remove-->
-                <p style="color: red">Открытие магазина 1 сентября!</p>
+                <p style="color: red">Открытие магазина 10 сентября!</p>
                 <el-button @click="checkout" disabled type="success">ОФОРМИТЬ</el-button>
               </div>
             </el-col>

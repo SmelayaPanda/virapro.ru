@@ -325,15 +325,22 @@ export const actions = {
         orders[docRef.id].showDetails = false
         let actions = []
         // 1. Decrease totalQty of each products
-        let decreaseQty = function (id, totalQty) {
-          return fs.collection('products').doc(id).update({totalQty: totalQty})
-        }
-        let productQty = 0
-        payload.products.forEach(el => {
-          productQty = user.cart[el.id].totalQty
-          delete user.cart[el.id]
-          actions.push(decreaseQty(el.id, productQty - el.qty > 0 ? productQty - el.qty : 0))
-        })
+        /*
+        * TODO:
+        * Put product counters into Realtime DB
+        * (because DB rules now == only admin can Create/Update/Delete product)
+        *
+        */
+
+        // let decreaseQty = function (id, totalQty) {
+        //   return fs.collection('products').doc(id).update({totalQty: totalQty})
+        // }
+        // let productQty = 0
+        // payload.products.forEach(el => {
+        //   productQty = user.cart[el.id].totalQty
+        //   delete user.cart[el.id]
+        //   actions.push(decreaseQty(el.id, productQty - el.qty > 0 ? productQty - el.qty : 0))
+        // })
         // 2. Update user data
         let orderIds = Object.keys(orders)
         let cartProductIds = user.cart ? Object.keys(user.cart) : []

@@ -23,7 +23,7 @@ REVIEW STATUSES:
               <p class="user_name">{{ item.user.name }}</p>
             </el-col>
             <el-col :span="20">
-              <span v-html="item.text.slice(0, 300)"></span>
+              <span v-html="item.text.slice(300)"></span>
             </el-col>
           </el-row>
           <el-col :span="24">
