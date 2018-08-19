@@ -8,8 +8,8 @@ const workboxSW = new self.WorkboxSW({
 
 workboxSW.precache([
   {
-    "url": "/assets/26.2126e8219f1b241b1f51.js",
-    "revision": "ee6e63eefa11b93267a643a9c165d2ae"
+    "url": "/assets/26.b7bc85108b30935ce694.js",
+    "revision": "04fbf50da37325028342230c76c45f95"
   },
   {
     "url": "/assets/27.bfac52610c2366633b5c.js",
@@ -20,8 +20,8 @@ workboxSW.precache([
     "revision": "7a6416948323544f853d7f0bf818818e"
   },
   {
-    "url": "/assets/app.c60ca8a933c631bfc787.js",
-    "revision": "5147973ab9ec2eb90b594afddbdf48e1"
+    "url": "/assets/app.5215173f6a209a77f853.js",
+    "revision": "478fc8011be1c2564071310666c7f199"
   },
   {
     "url": "/assets/below-slider.0d0eeb1f6a048673aab2.js",
@@ -44,8 +44,8 @@ workboxSW.precache([
     "revision": "45d46dec593695e990d878f9c8e4493a"
   },
   {
-    "url": "/assets/manifest.5a437df94cbd073cf348.js",
-    "revision": "3a157200c23994b62f3c5bde27d8f049"
+    "url": "/assets/manifest.41926f04b420e71dc936.js",
+    "revision": "4661095271ae25ee078f73910e0d1eec"
   },
   {
     "url": "/assets/modal.888e250548e22562acb5.js",
@@ -108,16 +108,16 @@ workboxSW.precache([
     "revision": "1d1964410a8f8ab5443314a557b29529"
   },
   {
-    "url": "/assets/pages/cart/index.6a983ce63be962db0a04.js",
-    "revision": "2d85d5236a05ce4b4a018239a6669a9c"
+    "url": "/assets/pages/cart/index.4ec38e862d782145865f.js",
+    "revision": "fca41b340d46d2491d756eff1e615933"
   },
   {
     "url": "/assets/pages/catalog/_group/_category/_id.46e0dbbe201a2d0f81e7.js",
     "revision": "689215f57209e3fdcc85e8b3f831e85f"
   },
   {
-    "url": "/assets/pages/catalog/_group/_category/index.188ecdb12de49d2ced8b.js",
-    "revision": "0663fb018938923112c00d24a3feaeeb"
+    "url": "/assets/pages/catalog/_group/_category/index.cba8ff583564a41258e1.js",
+    "revision": "56fa61356ef0342ff843412caa24502a"
   },
   {
     "url": "/assets/pages/catalog/_group/index.3e5ca356dcac5a6144d1.js",

@@ -4,7 +4,7 @@
       <div>
         <img src="~/assets/icons/home/calendar.svg" alt="Рабочее время">
         <!--TODO: remove-->
-        <time>Открытие магазина 1 сентября!</time>
+        <time>Открытие магазина 10 сентября!</time>
         <!--<time>7 дней в неделю с 10<sup>00</sup> до 18<sup>00</sup> часов</time>-->
       </div>
     </el-col>
