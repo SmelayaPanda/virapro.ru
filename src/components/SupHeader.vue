@@ -3,9 +3,7 @@
     <el-col id="work_time" :md="9" :lg="12" :xl="12" :offset="2">
       <div>
         <img src="~/assets/icons/home/calendar.svg" alt="Рабочее время">
-        <!--TODO: remove-->
-        <time>Открытие магазина 10 сентября!</time>
-        <!--<time>7 дней в неделю с 10<sup>00</sup> до 18<sup>00</sup> часов</time>-->
+        <time>7 дней в неделю с 10<sup>00</sup> до 18<sup>00</sup> часов</time>
       </div>
     </el-col>
     <el-col id="address" :md="6" :lg="4" :xl="4">

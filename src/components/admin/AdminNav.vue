@@ -30,7 +30,7 @@
           <img src="~/assets/icons/admin/record_voice_over.svg" alt="">
           <span>Отзывы</span>
         </el-menu-item>
-        <el-menu-item index="/admin/users">
+        <el-menu-item index="/admin/users" disabled>
           <img src="~/assets/icons/admin/how_to_reg.svg" alt="">
           <span>Пользователи</span>
         </el-menu-item>

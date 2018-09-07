@@ -86,7 +86,7 @@
           unique.forEach(el => {
             node.children.push({
               value: el,
-              label: el.length > 27 ? `${el.slice(27)}...` : el,
+              label: el.length > 27 ? `${el.slice(0, 27)}...` : el,
               prop: prop
             })
           })
