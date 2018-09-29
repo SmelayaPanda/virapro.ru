@@ -322,16 +322,14 @@ export const state = () => ({
     type: 'group',
     children: [
       {value: 'expansion-tanks-for-heating', label: 'расширительные баки для отопления', type: 'category', filters: ['volume', 'height', 'avg_resource', 'corpus_diameter', 'corpus_material']},
-      {value: 'accumulators', label: 'гидроаккумуляторы', type: 'category', filters: ['volume', 'height', 'avg_resource', 'corpus_diameter', 'corpus_material']},
-      {value: 'cast-iron-radiators', label: 'чугунные радиаторы', type: 'category', filters: ['volume', 'height', 'avg_resource', 'corpus_material']},
-      {value: 'steel-panel-radiators-sti', label: 'стальные панельные радиаторы STI', type: 'category', filters: ['volume', 'height', 'avg_resource', 'corpus_material']},
-      {value: 'thermoregulating-reinforcement', label: 'терморегулирующая арматура', type: 'category', filters: ['material']}
+      {value: 'accumulators', label: 'гидроаккумуляторы', type: 'category', filters: ['volume', 'height', 'avg_resource', 'corpus_diameter', 'corpus_material']}
     ]
   }, {
     label: 'Сантехника',
     value: 'sanitary-engineering',
     type: 'group',
     children: [
+      {value: 'triton', label: 'сантехника "Тритон"', type: 'category', filters: ['material']},
       {value: 'armature', label: 'арматура', type: 'category', filters: ['material']},
       {value: 'siphons', label: 'сифоны', type: 'category'},
       {value: 'mixers-and-showers', label: 'смесители и душ', type: 'category', filters:['brand', 'mixer_type']},

@@ -336,11 +336,11 @@ export const actions = {
         //   return fs.collection('products').doc(id).update({totalQty: totalQty})
         // }
         // let productQty = 0
-        // payload.products.forEach(el => {
-        //   productQty = user.cart[el.id].totalQty
-        //   delete user.cart[el.id]
-        //   actions.push(decreaseQty(el.id, productQty - el.qty > 0 ? productQty - el.qty : 0))
-        // })
+        payload.products.forEach(el => {
+          // productQty = user.cart[el.id].totalQty
+          delete user.cart[el.id]
+          // actions.push(decreaseQty(el.id, productQty - el.qty > 0 ? productQty - el.qty : 0))
+        })
         // 2. Update user data
         let orderIds = Object.keys(orders)
         let cartProductIds = user.cart ? Object.keys(user.cart) : []
