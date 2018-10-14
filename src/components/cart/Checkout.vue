@@ -127,6 +127,7 @@
                   <!--EMAIL-->
                   <el-form-item label="Email" prop="email">
                     <el-input type="email" v-model="buyer.email" auto-complete="on"></el-input>
+                    <small style="margin-top: -5px;">( не обязательно )</small>
                   </el-form-item>
                   <!--NAME-->
                   <el-row>
@@ -311,18 +312,18 @@
           callback()
         }
       }
-      let checkEmail = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('Введите адрес вашей эл. почты'))
-        }
-        setTimeout(() => {
-          if (!this.isValidEmail(value)) {
-            callback(new Error('Некорректная эл. почта'))
-          } else {
-            callback()
-          }
-        }, 1000)
-      }
+      // let checkEmail = (rule, value, callback) => {
+      //   if (!value) {
+      //     return callback(new Error('Введите адрес вашей эл. почты'))
+      //   }
+      //   setTimeout(() => {
+      //     if (!this.isValidEmail(value)) {
+      //       callback(new Error('Некорректная эл. почта'))
+      //     } else {
+      //       callback()
+      //     }
+      //   }, 1000)
+      // }
       return {
         dialog: false,
         activeStep: 1,
@@ -357,8 +358,8 @@
         },
         buyerFormRules: {
           firstname: [{validator: notEmptyString, trigger: 'blur'}],
-          lastname: [{validator: notEmptyString, trigger: 'blur'}],
-          email: [{validator: checkEmail, trigger: 'blur'}]
+          lastname: [{validator: notEmptyString, trigger: 'blur'}]
+          // email: [{validator: checkEmail, trigger: 'blur'}]
         },
         addressFormRules: {
           country: [{validator: notEmptyString, trigger: 'blur'}],
@@ -442,7 +443,7 @@
     },
     computed: {
       isValidBuyerData() {
-        return this.isValidPhone() && this.isValidEmail() && this.buyer.firstname && this.buyer.lastname
+        return this.isValidPhone() && this.buyer.firstname && this.buyer.lastname
       },
       isValidAddress() {
         return this.address.country && this.address.city && this.address.build &&

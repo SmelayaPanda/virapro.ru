@@ -2,10 +2,11 @@ exports.handler = function (snap, context, transporter) {
   console.log(CONST.LOG_DELIMITER)
   let info = snap.data()
   console.log(info)
-  return Promise.all([
-    sendOrderEmailNotifyToAdmin(transporter, info),
-    sendOrderEmailNotifyToBuyer(transporter, info)
-  ])
+    let promises = [sendOrderEmailNotifyToAdmin(transporter, info)];
+    if (info.buyer.email) {
+        promises.push(sendOrderEmailNotifyToBuyer(transporter, info))
+    }
+    return Promise.all(promises)
     .then(data => data)
     .catch(err => err)
 }
