@@ -4,7 +4,7 @@
       <h2>Сантехническое, отопительное,<br> промышленное оборудование</h2>
       <el-row>
         <el-col
-          v-if="group.value !== 'all-products'"
+          v-if="group.value !== 'all-products' && idx < 17"
           v-for="(group, idx) in $store.getters.PRODUCT_TREE" :key="group.value"
           :xs="8" :sm="6" :md="6" :lg="6" :xl="6" align="center">
           <div class="tooltip equipment" @click="$nuxt.$router.push(`/catalog/${group.value}/`)">

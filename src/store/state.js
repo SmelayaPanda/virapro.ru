@@ -269,6 +269,13 @@ export const state = () => ({
       {value: 'tool', label: 'инструмент', type: 'category', filters: 'material'}
     ]
   }, {
+    label: 'Автономные системы',
+    value: 'autonomous-systems',
+    type: 'group',
+    children: [
+      {value: 'autonomous-systems-and-accessories', label: 'Автономные системы и комплектующие', type: 'category'}
+    ]
+  }, {
     label: 'Канализационные системы',
     value: 'sewage-systems',
     type: 'group',
@@ -410,12 +417,12 @@ export const state = () => ({
     children: [
       {value: 'hives-ppu', label: 'Ульи ППУ', type: 'category'},
       {value: 'ir-dryers-for-vegetables', label: 'Сушилки ИК (для овощей)', type: 'category'},
-      {value: 'repellers-and-traps-of-moles-mice', label: 'Отпугиватели/ловушки кротов, мышей', type: 'category'},
-      {value: 'repellers-and-traps-of-mosquitoes-flies', label: 'От комаров и мух', type: 'category'},
-      {value: 'goods-for-summer-residents-and-tourists', label: 'Товары для дачников и туристов', type: 'category'},
-      {value: 'mosquito-lamps-and-traps', label: 'Антимоскитные лампы и ловушки', type: 'category'},
-      {value: 'electric-fly-swatter', label: 'Электрические мухобойки', type: 'category'},
-      {value: 'plant-lighting', label: 'Досветка растений', type: 'category'}
+      {value: 'stretch-ceilings-and-accessories', label: 'Натяжные потолки и комплектующие'},
+      {value: 'products-for-construction', label: 'Товары для строительства'},
+      {value: 'items-for-repair', label: 'Товары для ремонта'},
+      {value: 'plastic-windows-and-accessories', label: 'Пластиковые окна и комплектующие'},
+      {value: 'fasteners-and-hardware', label: 'Крепежи и метизы'},
+      {value: 'instruments', label: 'Инструменты'}
     ]
   }, {
     label: 'Капельный полив',
