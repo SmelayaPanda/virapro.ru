@@ -417,12 +417,12 @@ export const state = () => ({
     children: [
       {value: 'hives-ppu', label: 'Ульи ППУ', type: 'category'},
       {value: 'ir-dryers-for-vegetables', label: 'Сушилки ИК (для овощей)', type: 'category'},
-      {value: 'stretch-ceilings-and-accessories', label: 'Натяжные потолки и комплектующие'},
-      {value: 'products-for-construction', label: 'Товары для строительства'},
-      {value: 'items-for-repair', label: 'Товары для ремонта'},
-      {value: 'plastic-windows-and-accessories', label: 'Пластиковые окна и комплектующие'},
-      {value: 'fasteners-and-hardware', label: 'Крепежи и метизы'},
-      {value: 'instruments', label: 'Инструменты'}
+      {value: 'stretch-ceilings-and-accessories', label: 'Натяжные потолки и комплектующие', type: 'category'},
+      {value: 'products-for-construction', label: 'Товары для строительства', type: 'category'},
+      {value: 'items-for-repair', label: 'Товары для ремонта', type: 'category'},
+      {value: 'plastic-windows-and-accessories', label: 'Пластиковые окна и комплектующие', type: 'category'},
+      {value: 'fasteners-and-hardware', label: 'Крепежи и метизы', type: 'category'},
+      {value: 'instruments', label: 'Инструменты', type: 'category'}
     ]
   }, {
     label: 'Капельный полив',
